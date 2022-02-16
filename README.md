@@ -16,7 +16,10 @@ pip install pytoughreact
 ## Usage
 
 ```python
-import pytoughreact
+import numpy as np
+import pytoughreact as pyt
+from pytoughreact import mulgrid, t2grid, Component, Gas, Water_Bio, Biomass, Process, BIODG
+from pytoughreact.pytough.t2grids import rocktype
 
 second = 1
 minute = 60 * second
@@ -25,8 +28,6 @@ day = 24 * hour
 year = 365. * day
 year = float(year)
 simtime = 1 * year
-
-# --------------------------------------------FLOW.INP-----------------------------------------------------------------
 
 length = 9
 xblock = 3
@@ -38,7 +39,7 @@ dz = [2] * zblock
 geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -100])
 geo.write('geom.dat')
 
-bio = t2bio()
+bio = pyt.t2bio()
 bio.title = 'Biodegradation Runs'
 
 bio.grid = t2grid().fromgeo(geo)
@@ -98,7 +99,8 @@ bio.diffusion = [
 
 bio.write('INFILE')
 bio.run('tmvoc.exe')
-return bio
+
+
 ```
 
 ## Contributing
