@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="pytoughreact",
-    version="0.0.1",
+    version="0.0.2",
     description="Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO",
     url="https://pytoughreact.readthedocs.io/",
     author="Temitope Ajayi",
@@ -32,7 +32,9 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent"
     ],
-    packages=["pytoughreact"],
+    # packages=["pytoughreact", "ChemicalCompositions", "pytough"],
+    # packages=find_packages(),
+    packages=find_packages(include=['pytoughreact', 'pytoughreact.*']),
     include_package_data=True,
     install_requires=["numpy"]
 )

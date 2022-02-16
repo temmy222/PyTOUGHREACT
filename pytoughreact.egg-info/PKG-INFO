@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: pytoughreact
-Version: 0.0.1
+Version: 0.0.2
 Summary: Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO
 Home-page: https://pytoughreact.readthedocs.io/
 Author: Temitope Ajayi

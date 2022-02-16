@@ -31,7 +31,10 @@ tmvoc.exe
 treacteos.exe
 /tmvoc.exe
 /treacteos.exe
-
+/.pypirc
+/.travis.yml
+.pypirc
+.travis.yml
 # AWS User-specific
 .idea/**/aws.xml
 
