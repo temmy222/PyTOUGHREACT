@@ -1,0 +1,8 @@
+README.md
+setup.py
+pytoughreact/__init__.py
+pytoughreact.egg-info/PKG-INFO
+pytoughreact.egg-info/SOURCES.txt
+pytoughreact.egg-info/dependency_links.txt
+pytoughreact.egg-info/requires.txt
+pytoughreact.egg-info/top_level.txt

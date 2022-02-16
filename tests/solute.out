@@ -1,0 +1,123 @@
+  TOUGHREACT V3.60demo: solute.out
+ 
+  ---> start reading solute.inp
+ An-Gy-Hal-Hal                                                                     
+
+                 ****** Writing solute transport input ******
+
+
+ Options for controlling chemical calculations:
+ *******************************************
+  Using sequential non-iterative approach
+  Transport Solver =  4 See TOUGH2 V2 Manual
+  Default 1 Iteration: DH and Chemical Solver
+  Flag for gas species transport (0=off/1=on)=  0
+  Print chemical speciation results at specified grid blocks and specified times
+  Calculate porosity and permeability changes and affect fluid flow 
+  CO2 and H2O reaction sources are not considered in flow 
+  Do not consider aqueous density changes due to  reactions
+
+ Constraints for chemistry solver:
+ *********************************
+  Minimum liquid saturation =  1.0000E-04
+  Transport time steps for aq. species and gaslimited by  0.50 x  Courant number
+  Maximum stoichiometric ionic strength =  1.4000E+01
+
+ Input and output file names:
+ ***************************
+  Thermo. database: thddem.dat          
+  Iteration info:   iter.out            
+  Plot aqueous:     kdd_conc.tec        
+  Plot minerals:    kdd_min.tec         
+  Plot gas:         kdd_gas.tec         
+  Plot time series: kdd_tim.tec         
+
+ Time/space weighting factors and diffusion coefficients:
+ *******************************************************
+       WTIME      WUPC    DIFUN     DIFUNG 
+        1.00      1.00  1.650E-10  0.000E+00
+
+ Convergence tolerance data:
+ **************************
+  Maximum iterations for solving transport    =    1
+  Relative tolerance for solving transport    = 1.000E-04
+  Maximum iterations for whole chemical system=  300
+  Relative tolerance for whole chemical system= 1.000E-04
+  (absolute mass action tolerance set at min. 1.E-6)
+  Absolute mass balance tolerance   = 0.000E+00
+  Rel. conc change tolerance for steady-state = 0.000E+00
+  Rel. conc change tolerance for steady-state = 0.000E+00
+
+ Printout/output control flags:
+ *****************************
+  Writing frequency in time           = 1000
+  Number of nodes to output in time file =    1
+  Number of primary species (total amounts) to output in time/plot files =   -1
+  Number of minerals to output time/plot files =   -1
+  Number of aqueous species to output time/plot files =    0
+  Number of adsorbed species to output time/plot files =    0
+  Number of exchange species to output time/plot files =    0
+  ICONFLAG(0=mol/kg H2O,1=mol/L,2=mg/L,3=mg/kg H2O(~ppm))=    1
+  MINFLAG(0=change in mol/m3, 1=change in volume fraction,
+          2=current volume fraction, 3=change in volume%)    1
+  IGASFLAG(0=partial pressure (bars),1=mol fraction) =    1
+
+ Elements for which to output time series:
+   a 1
+
+ Aqueous components for which to output data: 
+ h2o                 
+ h+                  
+ na+                 
+ cl-                 
+ hco3-               
+ ca+2                
+ so4-2               
+ mg+2                
+ H4SiO4              
+ Al+3                
+ Fe+2                
+ HS-                 
+ K+                  
+
+ Minerals for which to output data: 
+ Quartz(alpha)       
+ Microcline          
+ Albite(low)         
+ Muscovite(ordered)  
+ Chlorite(Cca-2)     
+ Dolomite            
+ Calcite             
+
+ Individual aqueous species for which to output molalities:
+
+ Surface complexes for which to output molalities:
+
+ Exchanged species for which to output data: 
+
+ Default values for chemical zones:
+ *********************************
+        IZIW IZBW IZMI IZGS IZAD IZEX IZPP IZKD IZBG
+        ---- ---- ---- ---- ---- ---- ---- ---- ----
+        1    1    1    1    0    0    1    0    1
+
+ Data for chemical zones:
+ ***********************
+ELEM NSEQ NADD IZIW IZBW IZMI IZGS IZAD IZEX IZPP IZKD IZBG
+ ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  a 1    0    0    1    1    1    1    0    0    1    0    1
+  b 1    0    0    1    1    1    1    0    0    1    0    1
+  c 1    0    0    1    1    1    1    0    0    1    0    1
+  a 2    0    0    1    1    1    1    0    0    1    0    1
+  b 2    0    0    1    1    1    1    0    0    1    0    1
+  c 2    0    0    1    1    1    1    0    0    1    0    1
+  a 3    0    0    1    1    1    1    0    0    1    0    1
+  b 3    0    0    1    1    1    1    0    0    1    0    1
+  c 3    0    0    1    1    1    1    0    0    1    0    1
+  a 4    0    0    1    1    1    1    0    0    1    0    1
+  b 4    0    0    1    1    1    1    0    0    1    0    1
+  c 4    0    0    1    1    1    1    0    0    1    0    1
+ 
+ end
+ 
+  ---> finished reading solute.inp 

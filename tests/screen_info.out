@@ -1,0 +1,20 @@
+ 
+      ----------- TOUGHREACT V3.60demo -------
+           Lawrence Berkeley National Laboratory   
+                    Sep 21, 2018
+ 
+     ***** OpenMP Parallel Code Settings **** 
+    *** maximum number of threads allotted  =  56
+    *** maximum number of threads available =  56
+ 
+    --> reading multiphase flow input (flow.inp)
+    --> reading solute transport input (solute.inp)
+    --> reading chemical input (chemical.inp)
+    --> read input data complete
+ 
+    --> performing simulation
+
+    END OF TOUGHREACT V3.60demo SIMULATION
+
+    ELAPSED TIME =      2.182 SEC   CALCULATION TIME =      2.166 SEC   DATA INPUT TIME =    0.016 SEC
+
