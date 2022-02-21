@@ -98,7 +98,7 @@ bio.diffusion = [
 ]
 
 bio.write('INFILE')
-bio.run('tmvoc.exe')
+bio.run('executable_name.exe')
 
 
 ```
