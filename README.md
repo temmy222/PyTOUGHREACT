@@ -19,7 +19,7 @@ pip install pytoughreact
 import numpy as np
 import pytoughreact as pyt
 from pytoughreact import mulgrid, t2grid, Component, Gas, Water_Bio, Biomass, Process, BIODG
-from pytoughreact.pytough.t2grids import rocktype
+from pytoughreact import rocktype
 
 second = 1
 minute = 60 * second

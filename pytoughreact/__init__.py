@@ -11,3 +11,4 @@ from pytoughreact.pytough.t2bio import t2bio
 from pytoughreact.pytough.t2grids import t2grid
 from pytoughreact.pytough.t2components import Component, Gas, Water_Bio, Biomass
 from pytoughreact.pytough.t2process import Process, BIODG
+from pytoughreact.pytough.t2grids import rocktype
