@@ -30,7 +30,7 @@ the tool used is known as TMVOC-BIO. These reaction simulators as is now do not 
 many simulations for tasks such as uncertainty quantification or sensitivity analysis. Users need to create many 
 simulation folders to run every sensitivity they intend to run with the simulator. This makes it cumbersome to use 
 and users could get lost on the purpose of each folder if not correctly labeled. While PyTOUGH and TOUGHIO exists 
-for regular flow and transport simulations, no such tool exists for chemical and biodegradation reactions, 
+for regular flow and transport simulations, no such tool exists for chemical and biodegradation reactions.
 `PyToughReact` fulfills this need for users familiar with python.
 
 # Summary
@@ -162,6 +162,6 @@ bio.run('tmvoc.exe')
 
 Funding for this research is from the National Academy of Sciences, Engineering, and Medicine (NASEM) Gulf Research 
 Program (GRP) grant on “Mitigating Risks to Hydrocarbon Release through Integrative Advanced Materials for Wellbore 
-Plugging and Remediation” under award number 200008863 and the Early Career Research Fellowship of Ipsita Gupta. paper
+Plugging and Remediation” under award number 200008863 and the Early Career Research Fellowship of Ipsita Gupta.
 
 # References
