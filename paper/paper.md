@@ -9,14 +9,19 @@ tags:
 authors:
   - name: Temitope Ajayi^[Co-first author] # note this makes a footnote saying 'Co-first author'
     orcid: 0000-0000-0000-0000
-    affiliation: "1" # (Multiple affiliations must be quoted)
+    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+  - name: Author Without ORCID^[Co-first author] # note this makes a footnote saying 'Co-first author'
+    affiliation: 2
   - name: Author with no affiliation^[Corresponding author]
-    affiliation: 1
+    affiliation: 3
 affiliations:
- - name: Louisiana State University
+ - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
    index: 1
-
-date: 21 March 2022
+ - name: Institution Name, Country
+   index: 2
+ - name: Independent Researcher, Country
+   index: 3
+date: 13 August 2017
 bibliography: paper.bib
 
 
