@@ -8,7 +8,7 @@ tags:
   - TOUGH, PyTOUGH
 authors:
   - name: Temitope Ajayi^[Co-first author] # note this makes a footnote saying 'Co-first author'
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0002-0782-7460
     affiliation: "1" # (Multiple affiliations must be quoted)
   - name: Ipsita Gupta^[Corresponding author]
     affiliation: 1
