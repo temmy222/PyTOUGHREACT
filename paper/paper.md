@@ -10,17 +10,11 @@ authors:
   - name: Temitope Ajayi^[Co-first author] # note this makes a footnote saying 'Co-first author'
     orcid: 0000-0000-0000-0000
     affiliation: "1" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID^[Co-first author] # note this makes a footnote saying 'Co-first author'
-    affiliation: 2
   - name: Ipsita Gupta^[Corresponding author]
-    affiliation: 3
+    affiliation: 1
 affiliations:
  - name: Louisiana State Univeristy, USA
    index: 1
- - name: Institution Name, Country
-   index: 2
- - name: Independent Researcher, Country
-   index: 3
 date: 21 March 2022
 bibliography: paper.bib
  
