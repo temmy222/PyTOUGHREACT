@@ -158,14 +158,7 @@ bio.run('tmvoc.exe')
 
 ```
 
-# Citations
 
-- `@Bondua:2012`  ->  "Bondua et al. (2012)"
-- `[@Croucher:2011]` -> "(Croucher., 2011)"
-- `[@Hu:2016]` -> "(Hu., 2016)"
-- `[@Luu:2020]` -> "(Luu., 2020)"
-- `[@Yamamoto:2008]` -> "(Yamamoto., 2008)"
-- `[@Tecplot:2013]` -> "(Tecplot., 2013)"
 
 
 
