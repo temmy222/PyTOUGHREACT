@@ -23,14 +23,6 @@ Date: 17 May 2022
 
 Bibliography: paper.bib
 
-[comment]: <> (# Summary)
-
-[comment]: <> (This package provides a tool for researchers in the reactive transport community to automate their simulations )
-
-[comment]: <> (with the TOUGH family of codes especially for uncertainty quantifications and sensitivity analysis. Currently, this )
-
-[comment]: <> (package has the ability to automate reaction and biodegradation reactions using both TMVOCBIO and TOUGHREACT.)
-
 # Statement of need
 
 The suite of TOUGH simulators by the Lawrence Berkeley National Laboratory (LBNL) are well known simulators for 
