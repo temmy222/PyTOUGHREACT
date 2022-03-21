@@ -42,7 +42,7 @@ to be conducted as this would require a user to make multiple edits to files and
 As would be imagined, this is also prone to human errors. Further, coupling the simulator with other simulators would 
 be more involving. As a result of this, numerous tools have been created that wrap around the executables. Examples of 
 such include PetraSim [@Yamamoto:2008] for running and viewing simulation results, TOUGH2VIEWER [@Bondua:2012]
-and TECPLOT [@Tecplot:2013] for postprocessing and visualizations and IGMESH for both building and integrating 
+and TECPLOT [@tecplot] for postprocessing and visualizations and IGMESH for both building and integrating 
 visualization tools suited especially for irregular gridding [@Hu:2016]. For scripting purposes, PyTOUGH 
 [@Croucher:2011] and TOUGHIO [@Luu:2020] are used for pre and post processing of TOUGH2 simulations. So far, no tool 
 exists for scripting of the reaction softwares of TOUGH. Reactive processes as with other processes are subject to 
