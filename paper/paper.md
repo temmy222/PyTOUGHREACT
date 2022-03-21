@@ -16,7 +16,7 @@ affiliations:
  - name: Louisiana State Univeristy, USA
    index: 1
 date: 21 March 2022
-bibliography: paper/paper.bib
+bibliography: paper.bib
  
 ---
 
@@ -41,10 +41,10 @@ for interpretation by third party softwares. These makes it cumbersome for sensi
 to be conducted as this would require a user to make multiple edits to files and manually extract required data. 
 As would be imagined, this is also prone to human errors. Further, coupling the simulator with other simulators would 
 be more involving. As a result of this, numerous tools have been created that wrap around the executables. Examples of 
-such include PetraSim (Yamamoto, 2008) for running and viewing simulation results, TOUGH2VIEWER (Bonduà et al., 2012) 
-and TECPLOT (Tecplot, 2013) for postprocessing and visualizations and IGMESH for both building and integrating 
-visualization tools suited especially for irregular gridding ([@Hu:2016]). For scripting purposes, PyTOUGH 
-(Croucher, 2011) and TOUGHIO (Luu, 2020) are used for pre and post processing of TOUGH2 simulations. So far, no tool 
+such include PetraSim [@Yamamoto:2008] for running and viewing simulation results, TOUGH2VIEWER [@Bondua:2012]
+and TECPLOT [@Tecplot:2013] for postprocessing and visualizations and IGMESH for both building and integrating 
+visualization tools suited especially for irregular gridding [@Hu:2016]. For scripting purposes, PyTOUGH 
+[@Croucher:2011] and TOUGHIO [@Luu:2020] are used for pre and post processing of TOUGH2 simulations. So far, no tool 
 exists for scripting of the reaction softwares of TOUGH. Reactive processes as with other processes are subject to 
 uncertainties and thus need to be adequately accounted for in engineering studies. To enable this with the TOUGHREACT 
 simulator, it is essential to create a scripting tool to accomplish this. This tool extends the work done by PyTOUGH 
@@ -156,14 +156,6 @@ bio.run('tmvoc.exe')
 ```
 
 
-# Citations
-
-- `@Bondua:2012`  ->  "Bondua et al. (2012)"
-- `[@Croucher:2011]` -> "(Croucher., 2011)"
-- `[@Hu:2016]` -> "(Hu., 2016)"
-- `[@Luu:2020]` -> "(Luu., 2020)"
-- `[@Yamamoto:2008]` -> "(Yamamoto., 2008)"
-- `[@Tecplot:2013]` -> "(Tecplot., 2013)"
 
 
 # Acknowledgements
