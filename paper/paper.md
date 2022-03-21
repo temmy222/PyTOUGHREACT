@@ -1,171 +1,112 @@
 ---
-Title: 'PyToughReact – A Python Package for automating reactive transport and biodegradation simulations.'
-
-Tags:
+title: 'Gala: A Python package for galactic dynamics'
+tags:
   - Python
-  - reactive transport
-  - uncertainty quantification
-  - sensitivity analysis
-  - TOUGH, PyTOUGH
+  - astronomy
+  - dynamics
+  - galactic dynamics
+  - milky way
+authors:
+  - name: Adrian M. Price-Whelan^[Co-first author] # note this makes a footnote saying 'Co-first author'
+    orcid: 0000-0000-0000-0000
+    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+  - name: Author Without ORCID^[Co-first author] # note this makes a footnote saying 'Co-first author'
+    affiliation: 2
+  - name: Author with no affiliation^[Corresponding author]
+    affiliation: 3
+affiliations:
+ - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+   index: 1
+ - name: Institution Name, Country
+   index: 2
+ - name: Independent Researcher, Country
+   index: 3
+date: 13 August 2017
+bibliography: paper.bib
 
-Authors:
-  - Name: Temitope Ajayi 
-orcid: 0000-0002-0782-7460
-    affiliation: 1 
-  - Name: Ipsita Gupta
-    affiliation: 1
-
-Affiliations:
- - Name: Louisiana State University, USA
- - Index: 1
-
-Date: 17 May 2022
-
-Bibliography: paper.bib
-
-# Statement of need
-
-The suite of TOUGH simulators by the Lawrence Berkeley National Laboratory (LBNL) are well known simulators for 
-flow and transport simulations. In order to model chemical reactions coupled to flow for isothermal and non-isothermal 
-systems, the TOUGHREACT simulator exists. In addition, the TMVOC software exists for the modeling of multicomponent 
-mixtures of volatile organic compounds suitable for contamination problems. When biodegradation is added to the process, 
-the tool used is known as TMVOC-BIO. These reaction simulators as is now do not provide a tool to automatically run 
-many simulations for tasks such as uncertainty quantification or sensitivity analysis. Users need to create many 
-simulation folders to run every sensitivity they intend to run with the simulator. This makes it cumbersome to use 
-and users could get lost on the purpose of each folder if not correctly labeled. While PyTOUGH and TOUGHIO exists 
-for regular flow and transport simulations, no such tool exists for chemical and biodegradation reactions, 
-`PyToughReact` fulfills this need for users familiar with python.
+# Optional fields if submitting to a AAS journal too, see this blog post:
+# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
+aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
+aas-journal: Astrophysical Journal <- The name of the AAS journal.
+---
 
 # Summary
 
-TOUGH based simulators consist of simulators that require the user to write or modify a text file and parse the 
-file to an executable to run the simulation. Results from simulations are subsequently also saved to text files 
-for interpretation by third party softwares. These makes it cumbersome for sensitivity analysis and uncertainty studies 
-to be conducted as this would require a user to make multiple edits to files and manually extract required data. 
-As would be imagined, this is also prone to human errors. Further, coupling the simulator with other simulators would 
-be more involving. As a result of this, numerous tools have been created that wrap around the executables. Examples of 
-such include PetraSim (Yamamoto, 2008) for running and viewing simulation results, TOUGH2VIEWER (Bonduà et al., 2012) 
-and TECPLOT (Tecplot, 2013) for postprocessing and visualizations and IGMESH for both building and integrating 
-visualization tools suited especially for irregular gridding (Hu et al., 2016). For scripting purposes, PyTOUGH 
-(Croucher, 2011) and TOUGHIO (Luu, 2020) are used for pre and post processing of TOUGH2 simulations. So far, no tool 
-exists for scripting of the reaction softwares of TOUGH. Reactive processes as with other processes are subject to 
-uncertainties and thus need to be adequately accounted for in engineering studies. To enable this with the TOUGHREACT 
-simulator, it is essential to create a scripting tool to accomplish this. This tool extends the work done by PyTOUGH 
-in creating an automatic platform for running TOUGH simulations by creating a concurrent tool for automatically running 
-chemical and biodegradation reactions from any python enabled terminal or IDE.  The software is partitioned into two 
-parts for either running biodegradation or chemical reactions. In the biodegradation partition, a t2bio file/class is 
-created containing classes and functions which perform the heavy lifting of reading and writing to files. To complement
-this file, the t2component file is created to read in components and biomasses while the t2process file is available to
-create biodegradation processes.  In the reaction component, a t2react file is created to write and read information 
-into the flow.inp present in TOUGHREACT. In addition, this file modifies the t2grid file from PYTOUGH to t2reactgrid 
-in PYTOUGHREACT to account for chemical zones present in reactive domains. In addition, a t2chemical file exists to 
-read and write in results and date from and into the chemical.inp file and a t2solute file to read and write in results
-and date from and into the solute.inp file. New classes are also created in the reaction components that are essential 
-for successfully writing to a file. The classes created are the Water and WaterComp classes for the composition of 
-fluids and fluid zones, PrimarySpecies class for the primary species present in the domain, Mineral and MineralComp 
-classes to account for minerals and mineral zones, Dissolution and Precipitation classes to account for dissolution 
-and precipitation of minerals, pHDependenceType1 and pHDependenceType2 classes to account for pH dependence, ReactGas 
-class for gases in the domain, PermPoro and PermPoroZone classes for permeability-porosity relationships and zones. 
-For obtaining results from the simulations, a t2result class is used to achieve this objective. The t2result class 
-contains functions used to automatically retrieve data from the simulation for use in python. The simulator can 
-thereafter be coupled with other tools using python to achieve various tasks. 
+The forces on stars, galaxies, and dark matter under external gravitational
+fields lead to the dynamical evolution of structures in the universe. The orbits
+of these bodies are therefore key to understanding the formation, history, and
+future state of galaxies. The field of "galactic dynamics," which aims to model
+the gravitating components of galaxies to study their structure and evolution,
+is now well-established, commonly taught, and frequently used in astronomy.
+Aside from toy problems and demonstrations, the majority of problems require
+efficient numerical tools, many of which require the same base code (e.g., for
+performing numerical orbit integration).
 
-An example of a full biodegradation run file simulation is shown below
+# Statement of need
 
-```python
-import numpy as np
-import pytoughreact as pyt
-from pytoughreact import mulgrid, t2grid, Component, Gas, Water_Bio, Biomass, Process, BIODG, rocktype
+`Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
+enables wrapping low-level languages (e.g., C) for speed without losing
+flexibility or ease-of-use in the user-interface. The API for `Gala` was
+designed to provide a class-based and user-friendly interface to fast (C or
+Cython-optimized) implementations of common operations such as gravitational
+potential and force evaluation, orbit integration, dynamical transformations,
+and chaos indicators for nonlinear dynamics. `Gala` also relies heavily on and
+interfaces well with the implementations of physical units and astronomical
+coordinate systems in the `Astropy` package [@astropy] (`astropy.units` and
+`astropy.coordinates`).
 
-second = 1
-minute = 60 * second
-hour = 60 * minute
-day = 24 * hour
-year = 365. * day
-year = float(year)
-simtime = 1 * year
+`Gala` was designed to be used by both astronomical researchers and by
+students in courses on gravitational dynamics or astronomy. It has already been
+used in a number of scientific publications [@Pearson:2017] and has also been
+used in graduate courses on Galactic dynamics to, e.g., provide interactive
+visualizations of textbook material [@Binney:2008]. The combination of speed,
+design, and support for Astropy functionality in `Gala` will enable exciting
+scientific explorations of forthcoming data releases from the *Gaia* mission
+[@gaia] by students and experts alike.
 
-length = 9
-xblock = 3
-yblock = 1
-zblock = 4
-dx = [length / xblock] * xblock
-dy = [0.1]
-dz = [2] * zblock
-geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -100])
-geo.write('geom.dat')
+# Mathematics
 
-bio = pyt.t2bio()
-bio.title = 'Biodegradation Runs'
+Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
 
-bio.grid = t2grid().fromgeo(geo)
-bio.grid.delete_rocktype('dfalt')
-shale = rocktype('shale', 0, 2600, 0.67, [6.51e-14, 6.51e-14, 6.51e-14], 1.5, 900)
-bio.grid.add_rocktype(shale)
+Double dollars make self-standing equations:
 
-for blk in bio.grid.blocklist[0:]:
-    blk.rocktype = bio.grid.rocktype[shale.name]
+$$\Theta(x) = \left\{\begin{array}{l}
+0\textrm{ if } x < 0\cr
+1\textrm{ else}
+\end{array}\right.$$
 
-bio.multi = {'num_components': 3, 'num_equations': 3, 'num_phases': 3,
-             'num_secondary_parameters': 8}
+You can also use plain \LaTeX for equations
+\begin{equation}\label{eq:fourier}
+\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
+\end{equation}
+and refer to \autoref{eq:fourier} from text.
 
-bio.parameter.update(
-    {'print_level': 3,
-     'max_timesteps': 9999,
-     'tstop': simtime,
-     'const_timestep': 1.,
-     'print_interval': 1,
-     'gravity': 9.81,
-     'option': np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-     'relative_error': 1e-5,
-     'phase_index': 2,
-     'default_incons': [9.57e+05, 0, 0, 0, 0, 0, 0, 1e-3, 10.]})
+# Citations
 
-# ,
+Citations to entries in paper.bib should be in
+[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
+format.
 
-bio.start = True
-toluene = Component(1).defaultToluene()
-bio.components = [toluene]
+If you want to cite a software repository URL (e.g. something on GitHub without a preferred
+citation) then you can do it with the example BibTeX entry below for @fidgit.
 
-O2_gas = Gas('O2', 2)
-bio.gas = [O2_gas]
+For a quick reference, the following citation commands can be used:
+- `@author:2001`  ->  "Author et al. (2001)"
+- `[@author:2001]` -> "(Author et al., 2001)"
+- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
 
-water = Water_Bio('H2O')
+# Figures
 
-biomass = Biomass(1, 'biom', 0.153, 1.00e-6, 30, 0, 0.e-6)
-oxygen_ks = 0.5e-6
-oxygen_uptake = 1
-water_uptake = -3
+Figures can be included like this:
+![Caption for example figure.\label{fig:example}](figure.png)
+and referenced from text using \autoref{fig:example}.
 
-process1 = Process(biomass, 2, 1.6944e-04, 0.58, 0)
-water.addToProcess(process1, water_uptake)
-O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
-toluene.addToProcess(process1, 1, 7.4625e-06)
-
-biodegradation = BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9,
-                       [process1],
-                       [biomass])
-bio.biodg = [biodegradation]
-
-bio.diffusion = [
-    [2.e-5, 6.e-10, 6.e-10],
-    [2.e-5, 6.e-10, 6.e-10],
-    [2.e-5, 6.e-10, 6.e-10]
-]
-
-bio.write('INFILE')
-bio.run('tmvoc.exe')
-
-```
-
-
-
-
+Figure sizes can be customized by adding an optional second parameter:
+![Caption for example figure.](figure.png){ width=20% }
 
 # Acknowledgements
 
-Funding for this research is from the National Academy of Sciences, Engineering, and Medicine (NASEM) Gulf Research 
-Program (GRP) grant on “Mitigating Risks to Hydrocarbon Release through Integrative Advanced Materials for Wellbore 
-Plugging and Remediation” under award number 200008863 and the Early Career Research Fellowship of Ipsita Gupta. 
+We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
+Oh, and support from Kathryn Johnston during the genesis of this project.
 
 # References
