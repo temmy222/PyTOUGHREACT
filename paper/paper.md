@@ -83,17 +83,12 @@ and refer to \autoref{eq:fourier} from text.
 
 # Citations
 
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
-
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
+- `@Bondua:2012`  ->  "Bondua et al. (2012)"
+- `[@Croucher:2011]` -> "(Croucher., 2011)"
+- `[@Hu:2016]` -> "(Hu., 2016)"
+- `[@Luu:2020]` -> "(Luu., 2020)"
+- `[@Yamamoto:2008]` -> "(Yamamoto., 2008)"
+- `[@Tecplot:2013]` -> "(Tecplot., 2013)"
 
 
 # Acknowledgements
