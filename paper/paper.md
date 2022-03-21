@@ -9,19 +9,19 @@ tags:
 authors:
   - name: Temitope Ajayi^[Co-first author] # note this makes a footnote saying 'Co-first author'
     orcid: 0000-0000-0000-0000
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+    affiliation: "1" # (Multiple affiliations must be quoted)
   - name: Author Without ORCID^[Co-first author] # note this makes a footnote saying 'Co-first author'
     affiliation: 2
-  - name: Author with no affiliation^[Corresponding author]
+  - name: Ipsita Gupta^[Corresponding author]
     affiliation: 3
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, USA
+ - name: Louisiana State Univeristy, USA
    index: 1
  - name: Institution Name, Country
    index: 2
  - name: Independent Researcher, Country
    index: 3
-date: 13 August 2017
+date: 21 March 2022
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
