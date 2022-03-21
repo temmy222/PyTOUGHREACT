@@ -16,7 +16,7 @@ affiliations:
  - name: Louisiana State Univeristy, USA
    index: 1
 date: 21 March 2022
-bibliography: paper.bib
+bibliography: paper/paper.bib
  
 ---
 
