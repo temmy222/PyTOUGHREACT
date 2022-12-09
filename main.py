@@ -1,12 +1,9 @@
-import os
-
 from pytoughreact import t2chemical, t2react, t2solute, t2result, t2bio
 
 react = t2react()
 react.read('flow.inp')
 writeChemical = t2chemical(t2reactgrid=react.grid)
 writeSolute = t2solute(t2chemical=writeChemical)
-
 
 
 writeChemical.read('chemical.inp')
