@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 class BIODG(object):
     """Process specification"""
 
@@ -39,7 +36,7 @@ class BIODG(object):
 class Process(object):
     """Process specification"""
 
-    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp = 0, NumOfHaldane = 0, NumOfNonCompetiting = 0, NumOfCompetiting = 0, componentParams=None, gasParams=None,
+    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0, NumOfHaldane=0, NumOfNonCompetiting=0, NumOfCompetiting=0, componentParams=None, gasParams=None,
                  waterParams=None):
         self.enthalpy = enthalpy
         self.numberOfComponents = numberOfComponents

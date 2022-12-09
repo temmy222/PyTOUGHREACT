@@ -5,7 +5,9 @@ from copy import deepcopy
 
 from pytoughreact.pytough.customError import ReactiveOptionsError, ReactiveConstraintsError, RequiredInput
 from pytoughreact.pytough.t2incons import *
+import sys
 import struct
+import numpy as np
 
 default_options = {
     'iteration_scheme': 2,
@@ -420,9 +422,11 @@ class t2solute(object):
         """Updates internal section list, based on which properties are present."""
         present = self.present_sections
         missing = [keyword for keyword in present if keyword not in self._sections]
-        for keyword in missing: self.insert_section(keyword)
+        for keyword in missing:
+            self.insert_section(keyword)
         extra = [keyword for keyword in self._sections if keyword not in present]
-        for keyword in extra: self.delete_section(keyword)
+        for keyword in extra:
+            self.delete_section(keyword)
 
     def __repr__(self):
         return self.title
@@ -478,10 +482,10 @@ class t2solute(object):
             self.__dict__['options']['iterative_scheme'] = int(params[0])
             self.__dict__['options']['rsa_newton_raphson'] = int(params[1])
             self.__dict__['options']['linear_equation_solver'] = int(params[2])
-            self.__dict__['options']['activity_coefficient_calculation'] =int(params[3])
+            self.__dict__['options']['activity_coefficient_calculation'] = int(params[3])
             self.__dict__['options']['gaseous_species_in_transport'] = int(params[4])
             self.__dict__['options']['result_printout'] = int(params[5])
-            self.__dict__['options']['poro_perm'] =int(params[6])
+            self.__dict__['options']['poro_perm'] = int(params[6])
             self.__dict__['options']['co2_h2o_effects'] = int(params[7])
             self.__dict__['options']['itds_react'] = int(params[8])
 
@@ -505,7 +509,6 @@ class t2solute(object):
             self.__dict__['constraints']['courant_number'] = float(params[1])
             self.__dict__['constraints']['maximum_ionic_strength'] = float(params[2])
             self.__dict__['constraints']['weighting_factor'] = float(params[3])
-
 
     def write_constraints(self, outfile):
         outfile.write('#constraints for reactive chemical transport ' + '\n')
@@ -594,7 +597,7 @@ class t2solute(object):
             self.__dict__['printout']['number_of_exchange_species'] = int(params[6])
             self.__dict__['printout']['aqueous_unit'] = int(params[7])
             self.__dict__['printout']['mineral_unit'] = int(params[8])
-            self.__dict__['printout']['gas_unit'] =int(params[9])
+            self.__dict__['printout']['gas_unit'] = int(params[9])
 
     def write_printout(self, outfile):
         outfile.write('# Printout control variables:' + '\n')
@@ -613,7 +616,6 @@ class t2solute(object):
             pass
         else:
             self.__dict__['nodes_to_write'] = params
-
 
     def write_nodes(self, outfile):
         if self.nodes_to_write[0] == -1:
@@ -683,7 +685,6 @@ class t2solute(object):
             outfile.write(
                 '# Individual aqueous species for which to output concentrations in time and plot files:' + '\n')
 
-
     def read_adsorption_species(self, infile):
         """Reads adsorption_species to write"""
         pass
@@ -716,7 +717,6 @@ class t2solute(object):
             self.__dict__['chemical_zones']['IZKDDF'] = int(params[7])
             self.__dict__['chemical_zones']['IZBGDF'] = int(params[8])
 
-
     def write_chemical_zones(self, outfile):
         outfile.write('# Default types of chemical zones' + '\n')
         outfile.write('# Initial  Boundary                                      Porosity/ ' + '\n')
@@ -737,16 +737,16 @@ class t2solute(object):
             if zone.water is None:
                 zone.gas = [[], []]
                 zone.water = [[], []]
-                nseq = int(param[1])
-                nadd = int(param[2])
+                # nseq = int(param[1])
+                # nadd = int(param[2])
                 initial_water = int(param[3])
                 boundary_water = int(param[4])
                 mineral = int(param[5])
                 initial_gas = int(param[6])
-                adsorption = int(param[7])
-                exchange = int(param[8])
+                # adsorption = int(param[7])
+                # exchange = int(param[8])
                 perm_poro = int(param[9])
-                decay_zone = int(param[10])
+                # decay_zone = int(param[10])
                 injection_gas = int(param[11])
                 zone.mineral_zone = self.t2chemical.initial_minerals_mapping[mineral]
                 zone.gas[0] = self.t2chemical.initial_gas_mapping[initial_gas]
@@ -763,14 +763,13 @@ class t2solute(object):
             else:
                 pass
 
-
     def read_chemical_zones_to_nodes(self, infile):
         """Reads simulation title"""
         params = infile.get_default_chemical_zone_to_nodes()
         if len(params) == 0:
             block_data = self.generate_zone_to_blocks()
-            self.map_zone_to_blocks( block_data)
-            self.__dict__['chemical_zones_to_nodes'] =  block_data
+            self.map_zone_to_blocks(block_data)
+            self.__dict__['chemical_zones_to_nodes'] = block_data
         else:
             self.map_zone_to_blocks(params)
             self.__dict__['chemical_zones_to_nodes'] = params
@@ -790,12 +789,14 @@ class t2solute(object):
         for vals in self.chemical_zones_to_nodes:
             outfile.write_values(vals, 'chemical_zones_to_nodes')
 
-    def write(self, filename='', meshfilename='',runlocation='',
+    def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
         if runlocation:
-            if not os.path.isdir(runlocation): os.mkdir(runlocation)
+            if not os.path.isdir(runlocation):
+                os.mkdir(runlocation)
             os.chdir(runlocation)
-        if filename == '': filename = 'solute.inp'
+        if filename == '':
+            filename = 'solute.inp'
         self.update_sections()
         self.update_read_write_functions()
         outfile = t2solute_parser(filename, 'w')
@@ -806,12 +807,13 @@ class t2solute(object):
         self.status = 'successful'
         outfile.close()
 
-    def read(self, filename='', meshfilename='', runlocation='',
-              extra_precision=None, echo_extra_precision=None):
+    def read(self, filename='', meshfilename='', runlocation='', extra_precision=None, echo_extra_precision=None):
         if runlocation:
-            if not os.path.isdir(runlocation): os.mkdir(runlocation)
+            if not os.path.isdir(runlocation):
+                os.mkdir(runlocation)
             os.chdir(runlocation)
-        if filename: self.filename = filename
+        if filename:
+            self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
         infile = t2solute_parser(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
@@ -819,7 +821,7 @@ class t2solute(object):
         self.update_read_write_functions()
         more = True
         next_line = None
-        countline = 0
+        # countline = 0
         while more:
             if next_line:
                 line = next_line
@@ -849,5 +851,3 @@ class t2solute(object):
                 more = False
         self.status = 'successful'
         infile.close()
-
-

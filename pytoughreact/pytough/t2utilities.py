@@ -3,13 +3,11 @@ import os
 import shutil
 
 import numpy as np
-import random
-import matplotlib.pyplot as plt
 
 
 class t2utilities(object):
     def __init__(self):
-        welcome = "welcome to utilities"
+
 
     def convert_times(self, arraylist, format_of_date):
         intermediate = arraylist

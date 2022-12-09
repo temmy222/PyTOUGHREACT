@@ -93,7 +93,7 @@ class ToughReact(object):
                     continue
             except:
                 pass
-        output_data = ori_array[0:indices_array[0] + 1]
+        # output_data = ori_array[0:indices_array[0] + 1]
         return indices_array
 
     def getUniqueYData(self, timer):
