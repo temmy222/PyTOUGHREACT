@@ -7,6 +7,9 @@
 # $ git config --global mergetool.keepBackup false
 *.orig
 
+# virtual environment
+venv
+
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
 *.BASE.*
