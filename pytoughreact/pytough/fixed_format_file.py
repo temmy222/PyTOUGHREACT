@@ -12,12 +12,12 @@ You should have received a copy of the GNU Lesser General Public License along w
 import copy
 
 from numpy import nan
-import re
 
 from pytoughreact.ChemicalCompositions.mineral import Mineral, Dissolution, pHDependenceType2, pHDependenceType1, \
     Precipitation, MineralComp, MineralZone, PermPoroZone
 from pytoughreact.ChemicalCompositions.primaryspecies import ReactGas, WaterComp, Water
 from pytoughreact.ChemicalCompositions.zone import PermPoro
+from functools import partial
 
 
 def fortran_float(s, blank_value=0.0):
@@ -88,9 +88,6 @@ default_read_float = value_error_none(float)
 default_read_int = value_error_none(int)
 default_read_str = value_error_none(lambda x: x.rstrip('\n'))
 default_read_space = lambda x: None
-
-from functools import partial
-
 fortran_read_float = partial(fortran_float, blank_value=None)
 fortran_read_int = partial(fortran_int, blank_value=None)
 
@@ -100,7 +97,8 @@ def read_function_dict(floatfn=default_read_float, intfn=default_read_int,
     """Returns a conversion function dictionary using the specified functions for float,
     int, string and space."""
     result = {'s': strfn, 'x': spacefn, 'd': intfn}
-    for typ in ['f', 'e', 'g']: result[typ] = floatfn
+    for typ in ['f', 'e', 'g']:
+        result[typ] = floatfn
     return result
 
 
@@ -206,7 +204,7 @@ class fixed_format_file(object):
                 line = self.file.readline()
                 liner = (line.split())
                 read_dissolution = Dissolution(float(liner[0]), int(liner[1]), float(liner[2]), float(liner[3]), float(liner[4]), float(liner[5]), float(liner[6]),
-                                          float(liner[7]))
+                                               float(liner[7]))
                 type_of_pH = liner[1]
                 if int(type_of_pH) == 0:
                     mineral.dissolution = [read_dissolution]
@@ -215,7 +213,7 @@ class fixed_format_file(object):
                     liner = (line.split())
                     if liner[0].isnumeric():
                         number_of_ph = int(liner[0])
-                        ph_deps =[]
+                        ph_deps = []
                         for i in range(number_of_ph):
                             line = self.file.readline()
                             liner = (line.split())
@@ -235,8 +233,8 @@ class fixed_format_file(object):
                     liner = (line.split())
                     liner = init_line + liner
                     read_precipitation = Precipitation(float(liner[0]), int(liner[1]), float(liner[2]), float(liner[3]), float(liner[4]), float(liner[5]), float(liner[6]),
-                                                   float(liner[7]), float(liner[8]), int(liner[9]), float(liner[10]), float(liner[11]), float(liner[12]))
-                    mineral.precipitation= [read_precipitation]
+                                                       float(liner[7]), float(liner[8]), int(liner[9]), float(liner[10]), float(liner[11]), float(liner[12]))
+                    mineral.precipitation = [read_precipitation]
             all_lines.append(mineral)
             line = self.file.readline()
         return all_lines
@@ -254,25 +252,25 @@ class fixed_format_file(object):
 
     def get_param_values_surface_complex(self):
         all_lines = []
-        line = self.file.readline()
-        while line.startswith("'*") is False:
-            liner = (line.split())
+        # line = self.file.readline()
+        # while line.startswith("'*") is False:
+        #     liner = (line.split())
 
         return all_lines
 
     def get_param_values_decay_species(self):
         all_lines = []
-        line = self.file.readline()
-        while line.startswith("'*") is False:
-            liner = (line.split())
+        # line = self.file.readline()
+        # while line.startswith("'*") is False:
+        #     liner = (line.split())
 
         return all_lines
 
     def get_param_values_exchangeable_cations(self):
         all_lines = []
-        line = self.file.readline()
-        while line.startswith("'*") is False:
-            liner = (line.split())
+        # line = self.file.readline()
+        # while line.startswith("'*") is False:
+        #     liner = (line.split())
 
         return all_lines
 
@@ -382,13 +380,10 @@ class fixed_format_file(object):
         if startIndex >= 0:
             name = name.replace("'", "")
         for i in range(len(primary_aqueous)):
-            masa = primary_aqueous[i].NAME.strip().lower()
             if name.lower() == primary_aqueous[i].NAME.strip().lower():
                 return primary_aqueous[i]
 
-
     def get_param_values_ib_waters(self, primary_aqueous, grid):
-        all_lines = []
         initial_waters_mapping = {}
         initial_waters_list = []
         boundary_waters_mapping = {}
@@ -423,7 +418,7 @@ class fixed_format_file(object):
             initial_waters_list.append(water_composition)
             if liner[0].isnumeric() is False:
                 break
-            counter = counter+1
+            counter = counter + 1
         counter = 1
         if liner[0].isnumeric() is False:
             return initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping
@@ -446,7 +441,7 @@ class fixed_format_file(object):
             # grid.zonelist[water_num -1].water = water_composition
             boundary_waters_mapping[water_num] = water_composition
             boundary_waters_list.append(water_composition)
-            counter = counter+1
+            counter = counter + 1
             if liner[0].isnumeric() is False:
                 break
 
@@ -481,7 +476,7 @@ class fixed_format_file(object):
                 line = self.file.readline()
                 liner = (line.split())
                 initial_mineral_value = initial_mineral_value + liner
-                spec_mineral = MineralComp(mineral_found, float(initial_mineral_value[1]) , int(initial_mineral_value[2]) , float(initial_mineral_value[3]), float(initial_mineral_value[4]), int(initial_mineral_value[5]))
+                spec_mineral = MineralComp(mineral_found, float(initial_mineral_value[1]), int(initial_mineral_value[2]), float(initial_mineral_value[3]), float(initial_mineral_value[4]), int(initial_mineral_value[5]))
                 all_comp.append(spec_mineral)
                 line = self.file.readline()
             line = self.file.readline()
@@ -489,11 +484,11 @@ class fixed_format_file(object):
             # grid.zonelist[mineral_num -1].mineral_zone = MineralZone(all_comp)
             initial_minerals_mapping[mineral_num] = MineralZone(all_comp)
             initial_minerals_list.append(MineralZone(all_comp))
-            counter = counter+1
+            counter = counter + 1
             if len(liner) == 0:
                 break
 
-        return initial_minerals_list,  initial_minerals_mapping
+        return initial_minerals_list, initial_minerals_mapping
 
     def find_gas(self, gases, name):
         startIndex = name.find('\'')
@@ -534,7 +529,7 @@ class fixed_format_file(object):
             initial_gas_list.append([spec_gas])
             if len(liner) == 0:
                 break
-            counter = counter+1
+            counter = counter + 1
         counter = 1
         if len(liner) == 0:
             return initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping
@@ -554,7 +549,7 @@ class fixed_format_file(object):
             # grid.zonelist[gas_num -1].gas = spec_gas
             injection_gas_mapping[gas_num] = spec_gas2
             injection_gas_list.append([spec_gas2])
-            counter = counter+1
+            counter = counter + 1
             if len(liner) == 0:
                 break
 
@@ -587,11 +582,11 @@ class fixed_format_file(object):
             line = self.file.readline()
             liner = (line.split())
             # grid.zonelist[perm_poro_num -1].permporo = all_comp
-            counter = counter+1
+            counter = counter + 1
             if len(liner) == 0:
                 break
 
-        return initial_perm_poro_list,  initial_perm_poro_mapping
+        return initial_perm_poro_list, initial_perm_poro_mapping
 
     def write_values(self, vals, linetype):
         """Inverse of read_values()."""
@@ -605,7 +600,8 @@ class fixed_format_file(object):
         vals = self.read_values(linetype)
         if len(spec[0]) < 2:
             for var, val in zip(spec[0], vals):
-                if val is not None: variable[var] = val
+                if val is not None:
+                    variable[var] = val
         else:
             variable[linetype] = vals
 
@@ -614,7 +610,8 @@ class fixed_format_file(object):
         vals = self.read_values(linetype)
         if len(spec[0]) > 2:
             for var, val in zip(spec[0], vals):
-                if val is not None: variable[var] = val
+                if val is not None:
+                    variable[var] = val
         else:
             variable[linetype] = vals
 
@@ -625,7 +622,8 @@ class fixed_format_file(object):
         vals = self.read_values(linetype)
         if len(spec[0]) < 6:
             for var, val in zip(spec[0], vals):
-                if val is not None: variable[var] = val
+                if val is not None:
+                    variable[var] = val
         else:
             variable[linetype] = vals
 
@@ -636,7 +634,8 @@ class fixed_format_file(object):
         vals = self.read_values(linetype)
         if len(spec[0]) > 6:
             for var, val in zip(spec[0], vals):
-                if val is not None: variable[var] = val
+                if val is not None:
+                    variable[var] = val
         else:
             variable[linetype] = vals
 

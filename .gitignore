@@ -9,6 +9,8 @@
 
 # virtual environment
 venv
+.vscode
+.flake8
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
