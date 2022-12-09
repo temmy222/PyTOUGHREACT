@@ -9,7 +9,7 @@ from pytoughreact.pytough.t2utilities import t2utilities
 
 
 class Tough3(object):
-    def __init__(self, simulatortype, filetitle, filelocation=None,  **kwargs):
+    def __init__(self, simulatortype, filetitle, filelocation=None, **kwargs):
         if filelocation is None:
             self.filelocation = os.getcwd()
         else:
@@ -203,7 +203,7 @@ class Tough3(object):
                     continue
             except:
                 pass
-        output_data = ori_array[0:indices_array[0] + 1]
+        # output_data = ori_array[0:indices_array[0] + 1]
         return indices_array
 
     def getUniqueYData(self, timer):
@@ -308,3 +308,4 @@ class Tough3(object):
         for k, v in dicta.items():
             indexes.append(v[1:])
         return list(itertools.chain.from_iterable(indexes))
+        

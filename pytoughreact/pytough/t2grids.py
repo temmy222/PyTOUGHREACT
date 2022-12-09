@@ -14,6 +14,7 @@ from __future__ import print_function
 
 from pytoughreact.pytough.mulgrids import *
 from pytoughreact.pytough.t2incons import *
+import numpy as np
 
 
 class rocktype(object):
@@ -318,8 +319,10 @@ class t2grid(object):
         """Deletes any unused rock types from the grid"""
         unused_rocktypes = []
         for rt in self.rocktypelist:
-            if self.rocktype_frequency(rt.name) == 0: unused_rocktypes.append(rt.name)
-        for name in unused_rocktypes: self.delete_rocktype(name)
+            if self.rocktype_frequency(rt.name) == 0:
+                unused_rocktypes.append(rt.name)
+        for name in unused_rocktypes:
+            self.delete_rocktype(name)
 
     def add_block(self, newblock=None):
         """Adds a block to the grid"""

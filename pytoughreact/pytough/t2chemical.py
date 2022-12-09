@@ -7,9 +7,8 @@ from pytoughreact.ChemicalCompositions.primaryspecies import PrimarySpecies
 from pytoughreact.pytough.fixed_format_file import *
 from pytoughreact.pytough.t2grids import *
 from pytoughreact.pytough.t2incons import *
-from math import ceil
 import struct
-from os.path import splitext
+import numpy as np
 
 
 def primary_to_region_we(primary):
@@ -348,9 +347,11 @@ class t2chemical(object):
         """Updates internal section list, based on which properties are present."""
         present = self.present_sections
         missing = [keyword for keyword in present if keyword not in self._sections]
-        for keyword in missing: self.insert_section(keyword)
+        for keyword in missing:
+            self.insert_section(keyword)
         extra = [keyword for keyword in self._sections if keyword not in present]
-        for keyword in extra: self.delete_section(keyword)
+        for keyword in extra:
+            self.delete_section(keyword)
 
     def __repr__(self):
         return self.title
@@ -368,7 +369,7 @@ class t2chemical(object):
         all_species = []
         for parameter in params:
             all_species.append(PrimarySpecies(parameter[0], parameter[1]))
-        self.__dict__['primary_aqueous'] =all_species
+        self.__dict__['primary_aqueous'] = all_species
 
     def write_primary_aqueous(self, outfile):
         outfile.write('#----------------------------------------------------------------------------\n')
@@ -398,7 +399,6 @@ class t2chemical(object):
             self.__dict__['aqueous_complexes'] = [-1]
         else:
             self.__dict__['aqueous_complexes'] = params
-
 
     def write_aqueous_complexes(self, outfile):
         if self.aqueous_complexes[0] == -1:
@@ -469,18 +469,17 @@ class t2chemical(object):
         try:
             for gas in self.ij_gas[0][0]:
                 if gas.name not in gas_name:
-                    vals =  [gas.name, gas.fugacity_flag]
+                    vals = [gas.name, gas.fugacity_flag]
                 outfile.write_values(vals, 'gases')
                 gas_name.append(gas.name)
             outfile.write("'*'\n")
         except:
             for gas in self.ij_gas[0]:
                 if gas.name not in gas_name:
-                    vals =  [gas.name, gas.fugacity_flag]
+                    vals = [gas.name, gas.fugacity_flag]
                 outfile.write_values(vals, 'gases')
                 gas_name.append(gas.name)
             outfile.write("'*'\n")
-
 
     def read_surface_complexes(self, infile):
         params = infile.get_param_values_surface_complex()
@@ -530,7 +529,6 @@ class t2chemical(object):
             self.initial_waters_mapping = initial_waters_mapping
             if len(list(boundary_waters_mapping.keys())) > 0:
                 self.boundary_waters_mapping = boundary_waters_mapping
-
 
     def getInitialWaterRow(self, water):
         pass
@@ -669,7 +667,7 @@ class t2chemical(object):
     perm_poro_index = property(getPermPoroIndex)
 
     def read_mineral_zones(self, infile):
-        initial_minerals_list,  initial_minerals_mapping = infile.get_param_values_mineral_zones(
+        initial_minerals_list, initial_minerals_mapping = infile.get_param_values_mineral_zones(
             self.minerals)
         if len(initial_minerals_list) == 0:
             self.__dict__['mineral_zones'] = [-1]
@@ -688,7 +686,7 @@ class t2chemical(object):
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# INITIAL MINERAL ZONES\n')
         vals = [len(self.mineral_zones)]
-        masa = self.countMineralZones()
+        # masa = self.countMineralZones()
         outfile.write_values(vals, 'mineral_zone')
         index = 1
         for zone in self.mineral_zones:
@@ -707,7 +705,7 @@ class t2chemical(object):
         initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping = infile.get_param_values_ij_gases(
             self.gases)
         if len(initial_gas_list) == 0:
-            self.__dict__['ij_gas'] = [[],[]]
+            self.__dict__['ij_gas'] = [[], []]
         else:
             self.__dict__['ij_gas'][0] = initial_gas_list
             self.initial_gas_mapping = initial_gas_mapping
@@ -826,9 +824,11 @@ class t2chemical(object):
     def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
         if runlocation:
-            if not os.path.isdir(runlocation): os.mkdir(runlocation)
+            if not os.path.isdir(runlocation):
+                os.mkdir(runlocation)
             os.chdir(runlocation)
-        if filename == '': filename = 'chemical.inp'
+        if filename == '':
+            filename = 'chemical.inp'
         self.update_sections()
         self.update_read_write_functions()
         outfile = t2chemical_parser(filename, 'w')
@@ -872,12 +872,13 @@ class t2chemical(object):
         else:
             return 'false'
 
-    def read(self, filename='', meshfilename='', runlocation='',
-              extra_precision=None, echo_extra_precision=None):
+    def read(self, filename='', meshfilename='', runlocation='', extra_precision=None, echo_extra_precision=None):
         if runlocation:
-            if not os.path.isdir(runlocation): os.mkdir(runlocation)
+            if not os.path.isdir(runlocation):
+                os.mkdir(runlocation)
             os.chdir(runlocation)
-        if filename: self.filename = filename
+        if filename:
+            self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
         infile = t2chemical_parser(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
@@ -885,7 +886,7 @@ class t2chemical(object):
         self.update_read_write_functions()
         more = True
         next_line = None
-        countline = 0
+        # countline = 0
         while more:
             if next_line:
                 line = next_line

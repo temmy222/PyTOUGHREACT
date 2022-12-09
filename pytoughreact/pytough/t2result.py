@@ -5,7 +5,7 @@ from pytoughreact.pytough.t2reactresult import ToughReact
 
 
 class t2result(object):
-    def __init__(self, simulatortype,  filetitle,filelocation=None, **kwargs):
+    def __init__(self, simulatortype, filetitle, filelocation=None, **kwargs):
         if filelocation is None:
             # self.filelocation = os.path.dirname(os.path.realpath(__file__))
             self.filelocation = os.getcwd()
@@ -19,8 +19,7 @@ class t2result(object):
 
     def read_file(self):
         if self.simulatortype.lower() == "tmvoc" or self.simulatortype.lower() == "tough3":
-            fileReader = Tough3(self.simulatortype,  self.filetitle,self.filelocation,
-                                       generation=self.generation)
+            fileReader = Tough3(self.simulatortype, self.filetitle, self.filelocation, generation=self.generation)
         else:
             fileReader = ToughReact(self.simulatortype, self.filelocation, self.filetitle)
         return fileReader
@@ -39,4 +38,3 @@ class t2result(object):
         fileReader = self.read_file()
         data = fileReader.get_element_data(timer, param)
         return data
-
