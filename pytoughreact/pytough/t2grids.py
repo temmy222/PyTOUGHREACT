@@ -27,8 +27,10 @@ class rocktype(object):
         self.nad = nad
         self.density = density
         self.porosity = porosity
-        if permeability is None: permeability = np.ones(3) * 1.e-15
-        if isinstance(permeability, list): permeability = np.array(permeability)
+        if permeability is None:
+            permeability = np.ones(3) * 1.e-15
+        if isinstance(permeability, list):
+            permeability = np.array(permeability)
         self.permeability = permeability
         self.conductivity = conductivity
         self.specific_heat = specific_heat
@@ -49,11 +51,13 @@ class t2block(object):
     def __init__(self, name='     ', volume=1.0, blockrocktype=None,
                  centre=None, atmosphere=False, ahtx=None, pmx=None,
                  nseq=None, nadd=None):
-        if blockrocktype is None: blockrocktype = rocktype()
+        if blockrocktype is None:
+            blockrocktype = rocktype()
         self.name = name
         self.volume = volume
         self.rocktype = blockrocktype
-        if isinstance(centre, list): centre = np.array(centre)
+        if isinstance(centre, list):
+            centre = np.array(centre)
         self.centre = centre
         self.atmosphere = atmosphere
         self.ahtx = ahtx
@@ -83,8 +87,10 @@ class t2connection(object):
     def __init__(self, blocks=None, direction=1,
                  distance=None, area=1.0, dircos=0.0, sigma=None,
                  nseq=None, nad1=None, nad2=None):
-        if blocks is None: blocks = [t2block(), t2block()]
-        if distance is None: distance = [0.0, 0.0]
+        if blocks is None:
+            blocks = [t2block(), t2block()]
+        if distance is None:
+            distance = [0.0, 0.0]
         self.block = blocks
         self.direction = direction  # permeability direction
         self.distance = distance
@@ -211,7 +217,8 @@ class t2grid(object):
                 sgn = [1., -1.][ilower]
                 con.normal = np.array([0., 0., sgn])
                 con.midpoint = np.hstack((hcentre, np.array([vcentre])))
-                for blk in con.block: con.centre[blk.name] = con.midpoint
+                for blk in con.block:
+                    con.centre[blk.name] = con.midpoint
 
     def rocktype_frequency(self, rockname):
         """Returns how many times the rocktype with given name is used in the grid."""
@@ -226,7 +233,8 @@ class t2grid(object):
         occurring_freqs = list(set([item[1] for item in freq]))
         occurring_freqs.sort()
         frocks = dict([(f, []) for f in occurring_freqs])
-        for item in freq: frocks[item[1]].append(item[0])
+        for item in freq:
+            frocks[item[1]].append(item[0])
         return [(f, frocks[f]) for f in occurring_freqs]
 
     rocktype_frequencies = property(get_rocktype_frequencies)
@@ -252,16 +260,18 @@ class t2grid(object):
             raise Exception("Rocktype " + rockname + " not found.")
 
     def __repr__(self):
-        return str(self.num_rocktypes) + ' rock types; ' + str(self.num_blocks) + \
-               ' blocks; ' + str(self.num_connections) + ' connections'
+        return str(self.num_rocktypes) + ' rock types; ' + str(self.num_blocks) + ' blocks; ' + str(self.num_connections) + ' connections'
 
     def __add__(self, other):
         """Adds two grids together."""
         result = t2grid()
         for grid in [self, other]:
-            for rt in grid.rocktypelist: result.add_rocktype(rt)
-            for blk in grid.blocklist: result.add_block(blk)
-            for con in grid.connectionlist: result.add_connection(con)
+            for rt in grid.rocktypelist:
+                result.add_rocktype(rt)
+            for blk in grid.blocklist:
+                result.add_block(blk)
+            for con in grid.connectionlist:
+                result.add_connection(con)
         return result
 
     def embed(self, subgrid, connection):
@@ -276,8 +286,7 @@ class t2grid(object):
         subvol = sum([blk.volume for blk in subgrid.blocklist])
         hostblock = connection.block[0]
         if subvol < hostblock.volume:
-            dupblks = set([blk.name for blk in self.blocklist]) & \
-                      set([blk.name for blk in subgrid.blocklist])
+            dupblks = set([blk.name for blk in self.blocklist]) & set([blk.name for blk in subgrid.blocklist])
             if len(dupblks) == 0:
                 result = self + subgrid
                 connection.block = [result.block[blk.name] for blk in connection.block]
@@ -300,7 +309,8 @@ class t2grid(object):
 
     def add_rocktype(self, newrocktype=None):
         """Adds a rock type to the grid.  Any existing rocktype of the same name is replaced."""
-        if newrocktype is None: newrocktype = rocktype()
+        if newrocktype is None:
+            newrocktype = rocktype()
         if newrocktype.name in self.rocktype:
             i = self.rocktypelist.index(self.rocktype[newrocktype.name])
             self.rocktypelist[i] = newrocktype
@@ -326,7 +336,8 @@ class t2grid(object):
 
     def add_block(self, newblock=None):
         """Adds a block to the grid"""
-        if newblock is None: newblock = t2block()
+        if newblock is None:
+            newblock = t2block()
         if newblock.name in self.block:
             i = self.blocklist.index(self.block[newblock.name])
             self.blocklist[i] = newblock
@@ -340,21 +351,25 @@ class t2grid(object):
             blk = self.block[blockname]
             from copy import copy
             connames = copy(blk.connection_name)
-            for conname in connames: self.delete_connection(conname)
+            for conname in connames:
+                self.delete_connection(conname)
             del self.block[blockname]
-            if blk in self.blocklist: self.blocklist.remove(blk)
+            if blk in self.blocklist:
+                self.blocklist.remove(blk)
 
     def demote_block(self, blockname):
         """Shifts blocks with specified names to the end of the block list.  The blockname
         parameter can be a block name or a list of them."""
-        if isinstance(blockname, str): blockname = [blockname]
+        if isinstance(blockname, str):
+            blockname = [blockname]
         for name in blockname:
             i = self.block_index(name)
             self.blocklist.append(self.blocklist.pop(i))
 
     def add_connection(self, newconnection=None):
         """Adds a connection to the grid"""
-        if newconnection is None: newconnection = t2connection()
+        if newconnection is None:
+            newconnection = t2connection()
         conname = tuple([blk.name for blk in newconnection.block])
         if conname in self.connection:
             i = self.connectionlist.index(self.connection[conname])
@@ -362,13 +377,15 @@ class t2grid(object):
         else:
             self.connectionlist.append(newconnection)
         self.connection[conname] = newconnection
-        for block in newconnection.block: block.connection_name.add(conname)
+        for block in newconnection.block:
+            block.connection_name.add(conname)
 
     def delete_connection(self, connectionname):
         """Deletes a connection from the grid"""
         if connectionname in self.connection:
             con = self.connection[connectionname]
-            for block in con.block: block.connection_name.remove(connectionname)
+            for block in con.block:
+                block.connection_name.remove(connectionname)
             del self.connection[connectionname]
             self.connectionlist.remove(con)
 
@@ -440,7 +457,8 @@ class t2grid(object):
     def add_vertical_layer_connections(self, geo, lay, layercols=[],
                                        tilt=None, blockmap={}):
         """Add vertical connections in layer"""
-        if tilt is None: tilt = np.array([0., 0., -1.])
+        if tilt is None:
+            tilt = np.array([0., 0., -1.])
         for col in layercols:
             thisblk = self.block[geo.block_name(lay.name, col.name, blockmap)]
             if (geo.layerlist.index(lay) == 1) or (col.surface <= lay.top):
@@ -466,7 +484,8 @@ class t2grid(object):
     def add_horizontal_layer_connections(self, geo, lay, layercols=[],
                                          tilt=None, blockmap={}):
         """Add horizontal connections in layer"""
-        if tilt is None: tilt = np.array([0., 0., -1.])
+        if tilt is None:
+            tilt = np.array([0., 0., -1.])
         from math import cos, sin, radians
         layercolset = set(layercols)
         anglerad = radians(geo.permeability_angle)
@@ -532,22 +551,28 @@ class t2grid(object):
         ub = self.unconnected_blocks
         if len(ub) > 0:
             ok = False
-            if not silent: print('Unconnected blocks:', list(ub))
+            if not silent:
+                print('Unconnected blocks:', list(ub))
             if fix:
-                for blk in ub: self.delete_block(blk)
-                if not silent: print('Unconnected blocks fixed.')
+                for blk in ub:
+                    self.delete_block(blk)
+                if not silent:
+                    print('Unconnected blocks fixed.')
         ib = self.isolated_rocktype_blocks
         if len(ib) > 0:
             ok = False
-            if not silent: print('Isolated rocktype blocks:', list(ib))
+            if not silent:
+                print('Isolated rocktype blocks:', list(ib))
             if fix:
                 for blk in ib:
                     nbr_rocktype = [self.block[nbr].rocktype.name for
                                     nbr in self.block[blk].neighbour_name]
                     pop_rocktype = max(set(nbr_rocktype), key=nbr_rocktype.count)
                     self.block[blk].rocktype = self.rocktype[pop_rocktype]
-                if not silent: print('Isolated rocktype blocks fixed.')
-        if ok and not silent: print('No problems found.')
+                if not silent:
+                    print('Isolated rocktype blocks fixed.')
+        if ok and not silent:
+            print('No problems found.')
         return ok
 
     def get_rocktype_indices(self, geo=None, blockmap={}):
@@ -558,8 +583,7 @@ class t2grid(object):
             return np.array([rockdict[blk.rocktype.name] for blk in self.blocklist])
         else:
             return np.array([rockdict[self.block[
-                blockmap[blkname] if blkname in blockmap else blkname].rocktype.name]
-                             for blkname in geo.block_name_list])
+                blockmap[blkname] if blkname in blockmap else blkname].rocktype.name] for blkname in geo.block_name_list])
 
     rocktype_indices = property(get_rocktype_indices)
 
@@ -609,7 +633,8 @@ class t2grid(object):
         with VTK.
         """
         from vtk import vtkXMLUnstructuredGridWriter
-        if wells: geo.write_well_vtk()
+        if wells:
+            geo.write_well_vtk()
         arrays = geo.get_vtk_data(blockmap)
         grid_arrays = self.get_vtk_data(geo, blockmap)
         for array_type, array_dict in arrays.items():
@@ -634,8 +659,10 @@ class t2grid(object):
                          i, c in enumerate(self.connectionlist)])
         from scipy import sparse
         A = sparse.lil_matrix((3 * nele, self.num_connections))
-        if not self.block_centres_defined: self.calculate_block_centres(geo, blockmap)
-        if not self.connection_centres_defined: self.calculate_connection_centres(geo, blockmap)
+        if not self.block_centres_defined:
+            self.calculate_block_centres(geo, blockmap)
+        if not self.connection_centres_defined:
+            self.calculate_connection_centres(geo, blockmap)
 
         def mname(blk):
             return blockmap[blk] if blk in blockmap else blk
@@ -657,7 +684,8 @@ class t2grid(object):
                 Ablk = -np.linalg.pinv(np.array(M))
                 ib3 = iblk * 3
                 for ic in range(ncons):
-                    for ip in range(3): A[ib3 + ip, icons[ic]] = Ablk[ip, ic]
+                    for ip in range(3):
+                        A[ib3 + ip, icons[ic]] = Ablk[ip, ic]
         return A
 
     def radial(self, rblocks, zblocks, convention=0, atmos_type=2,
@@ -684,11 +712,16 @@ class t2grid(object):
         in the z direction.
         """
 
-        if origin is None: origin = np.array([0., 0.])
-        if isinstance(rblocks, list): rblocks = np.array(rblocks)
-        if isinstance(zblocks, list): zblocks = np.array(zblocks)
-        if isinstance(origin, list): origin = np.array(origin)
-        if len(origin) > 2: origin = origin[[0, 2]]
+        if origin is None:
+            origin = np.array([0., 0.])
+        if isinstance(rblocks, list):
+            rblocks = np.array(rblocks)
+        if isinstance(zblocks, list):
+            zblocks = np.array(zblocks)
+        if isinstance(origin, list):
+            origin = np.array(origin)
+        if len(origin) > 2:
+            origin = origin[[0, 2]]
 
         justfn = [str.rjust, str.ljust][justify == 'l']
         if case is not None:
@@ -775,9 +808,11 @@ class t2grid(object):
         values = np.array(values)
         if len(np.shape(values)) == 1:
             from copy import copy
-            for blk in self.blocklist: inc[blk.name] = copy(tuple(values))
+            for blk in self.blocklist:
+                inc[blk.name] = copy(tuple(values))
         else:
-            for blk, val in zip(self.blocklist, values): inc[blk.name] = tuple(val)
+            for blk, val in zip(self.blocklist, values):
+                inc[blk.name] = tuple(val)
         return inc
 
     def neargroups(self, blocknames):
@@ -787,24 +822,28 @@ class t2grid(object):
         """
         blocknames = list(set(blocknames))
         groups = []
-        for blk in blocknames: groups.append(set([blk]))
+        for blk in blocknames:
+            groups.append(set([blk]))
         from copy import copy
         done = False
         while not done:
             done = True
             for i, g in enumerate(groups):
                 ng = copy(g)
-                for blk in g: ng = ng | self.block[blk].neighbour_name
+                for blk in g:
+                    ng = ng | self.block[blk].neighbour_name
                 if i < len(groups) - 1:
                     for g2 in groups[i + 1:]:
                         ng2 = copy(g2)
-                        for blk in g2: ng2 = ng2 | self.block[blk].neighbour_name
+                        for blk in g2:
+                            ng2 = ng2 | self.block[blk].neighbour_name
                         if ng & ng2:
                             g.update(g2)
                             groups.remove(g2)
                             done = False
                             break
-                    if not done: break
+                    if not done:
+                        break
         return groups
 
     def rectgeo(self, origin_block=None, atmos_volume=1.e25, remove_inactive=False,
@@ -871,7 +910,8 @@ class t2grid(object):
             """Finds next block in specified direction, and connection connecting them."""
             cons = [con for con in blk.connection_name if
                     grid.connection[con].direction == direction]
-            if last: cons = [con for con in cons if last.name not in con]
+            if last:
+                cons = [con for con in cons if last.name not in con]
             nextblk, nextcon, found = None, None, None
             for con in cons:
                 i = con_name_index(con, blk.name)
@@ -881,8 +921,10 @@ class t2grid(object):
                 if max_volume is None:
                     found = True
                 else:
-                    if 0. < nextblk.volume < max_volume: found = True
-                if found: break
+                    if 0. < nextblk.volume < max_volume:
+                        found = True
+                if found:
+                    break
             if found:
                 return nextblk, nextcon
             else:
@@ -902,7 +944,8 @@ class t2grid(object):
                     ok = 0. < blk.volume < max_volume
                 else:
                     ok = True
-                if ok: blks.append(blk)
+                if ok:
+                    blks.append(blk)
                 last_con = con
                 next_blk, con = next_block_in_direction(blk, last, dirn, grid, max_volume)
                 if next_blk:
@@ -934,7 +977,7 @@ class t2grid(object):
             num_missing = len(missing_dirns)
             if num_missing == 1:
                 dirn = missing_dirns[0]
-                present_dirns = [1, 2, 3];
+                present_dirns = [1, 2, 3]
                 present_dirns.remove(dirn)
                 d = ob.volume
                 for pd in present_dirns:
@@ -954,8 +997,10 @@ class t2grid(object):
             remove_blocks = []
             inactive = False
             for blk in grid.blocklist:
-                if remove_inactive and blk.volume <= 0.: inactive = True
-                if inactive: remove_blocks.append(blk)
+                if remove_inactive and blk.volume <= 0.:
+                    inactive = True
+                if inactive:
+                    remove_blocks.append(blk)
             bottom_layer = geo.layerlist[-1]
             for col in geo.columnlist:
                 geoblkname = geo.block_name(bottom_layer.name, col.name)
@@ -966,7 +1011,7 @@ class t2grid(object):
                     remove_col = [blk for blk in colblocks if blk in remove_blocks]
                     for blk in remove_col:
                         i = colblocks.index(blk)
-                        del colblocks[i];
+                        del colblocks[i]
                         del layerthicks[i]
                     topblock = colblocks[-1]
                     zc = topblock.centre[2]
@@ -1028,14 +1073,14 @@ class t2grid(object):
                                     atmblockname = geo.block_name(geo.layerlist[0].name, col.name)
                                     mapping[atmblockname] = atm_blk.name
                             break
-                        last3 = blk;
+                        last3 = blk
                         blk = next_blk
                     icol += 1
                     next1, con = next_block_in_direction(start1, last1, 1, grid, max_volume)
-                    last1 = start1;
+                    last1 = start1
                     start1 = next1
                 next2, con = next_block_in_direction(start2, last2, 2, grid, max_volume)
-                last2 = start2;
+                last2 = start2
                 start2 = next2
             return mapping
 
@@ -1067,7 +1112,8 @@ class t2grid(object):
                 geo = find_surface(geo, self, blockmap, remove_inactive, atmos_volume)
                 geo.snap_columns_to_layers(layer_snap)
                 prune = list(set(blockmap.keys()) - set(geo.block_name_list))
-                for blk in prune: del blockmap[blk]
+                for blk in prune:
+                    del blockmap[blk]
                 return geo, blockmap
 
     def minc(self, volume_fractions, spacing=50., num_fracture_planes=1,
@@ -1077,8 +1123,8 @@ class t2grid(object):
         """Adds MINC blocks to the grid, and returns an array of block
         indices for the different MINC levels. The first three parameters define
         the fracture geometry. The blocks parameter is a list of blocks or block
-        names specifying where MINC is to be applied. The matrix_blockname, 
-        minc_rockname and proximity parameters are optional functions for 
+        names specifying where MINC is to be applied. The matrix_blockname,
+        minc_rockname and proximity parameters are optional functions for
         determining the names of matrix blocks for a given level and rocktype names
         for MINC blocks, and the proximity function. If these are not specified,
         defaults will be used. The atmos_volume parameter specifies the minimum
@@ -1088,8 +1134,7 @@ class t2grid(object):
 
         num_levels = len(volume_fractions)
         if num_levels < 2:
-            raise Exception("Need at least two volume fractions specified " +
-                            "for MINC.")
+            raise Exception("Need at least two volume fractions specified " + "for MINC.")
         else:
 
             from scipy.optimize import bisect
@@ -1098,9 +1143,11 @@ class t2grid(object):
 
             volume_fractions = np.array(volume_fractions, dtype=float64)
 
-            if isinstance(spacing, Number): spacing = [spacing]
+            if isinstance(spacing, Number):
+                spacing = [spacing]
             missing = num_fracture_planes - len(spacing)
-            if missing > 0: spacing = list(spacing) + [spacing[0]] * missing
+            if missing > 0:
+                spacing = list(spacing) + [spacing[0]] * missing
             spacing = np.array(spacing)
             if blocks is None or blocks == []:
                 blocks = [blk.name for blk in self.blocklist]
@@ -1129,16 +1176,17 @@ class t2grid(object):
                                - (u[0] * u[1] + u[1] * u[2] + u[0] * u[2]) \
                                + u[0] + u[1] + u[2]
                 else:
-                    raise Exception("Invalid number of MINC fracture planes" +
-                                    "(" + str(num_fracture_planes) + ").")
+                    raise Exception("Invalid number of MINC fracture planes" + "(" + str(num_fracture_planes) + ").")
 
-            if proximity is None: proximity = default_proximity
+            if proximity is None:
+                proximity = default_proximity
 
             def invert_proximity(vf, xl, xr):
                 def proxv(x):
                     return proximity(x) - vf
 
-                while proxv(xr) < 0.: xr *= 2.
+                while proxv(xr) < 0.:
+                    xr *= 2.
                 x, r = bisect(proxv, xl, xr, full_output=True)
                 if r.converged:
                     return x, xr
@@ -1156,8 +1204,7 @@ class t2grid(object):
                     u = spacing[0:3] - 2. * x
                     return 0.3 * u[0] * u[1] * u[2] / (u[0] * u[1] + u[1] * u[2] + u[0] * u[2])
                 else:
-                    raise Exception("Invalid number of MINC fracture planes" +
-                                    "(" + str(num_fracture_planes) + ").")
+                    raise Exception("Invalid number of MINC fracture planes" + "(" + str(num_fracture_planes) + ").")
 
             # Calculate MINC geometry parameters:
             volume_fractions /= np.sum(volume_fractions)
@@ -1202,8 +1249,10 @@ class t2grid(object):
                     self.add_rocktype(newrock)
 
             # Add MINC blocks and connections:
-            if matrix_blockname is None: matrix_blockname = default_matrix_blockname
-            if minc_rockname is None: minc_rockname = default_minc_rockname
+            if matrix_blockname is None:
+                matrix_blockname = default_matrix_blockname
+            if minc_rockname is None:
+                minc_rockname = default_minc_rockname
             blkidict = dict([(blk.name, i) for i, blk in enumerate(self.blocklist)])
             iblk = self.num_blocks - 1
             blockindex = np.zeros((num_levels, len(blocks)), np.int)
@@ -1311,7 +1360,8 @@ class t2grid(object):
         """Rename blocks according to the specified block mapping. The
         connections involving the renamed blocks must also be renamed."""
 
-        if fix_blocknames: mapping = fix_block_mapping(blockmap)
+        if fix_blocknames:
+            mapping = fix_block_mapping(blockmap)
 
         for blk in self.blocklist:
             name = blk.name

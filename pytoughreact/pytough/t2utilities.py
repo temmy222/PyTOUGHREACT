@@ -7,7 +7,7 @@ import numpy as np
 
 class t2utilities(object):
     def __init__(self):
-
+        pass
 
     def convert_times(self, arraylist, format_of_date):
         intermediate = arraylist
@@ -173,6 +173,7 @@ class t2utilities(object):
             output = 'pH'
         return output
 
+
 class t2utilitiestoughreact(object):
     # takes in file names as a list
     """
@@ -295,6 +296,3 @@ class t2utilitiestoughreact(object):
             for item in mesh:
                 f1.write("%s\n" % item)
         f1.close()
-
-
-
