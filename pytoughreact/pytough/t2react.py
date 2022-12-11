@@ -13,22 +13,20 @@ You should have received a copy of the GNU Lesser General Public License along w
 from __future__ import print_function
 
 import os
-import shutil
+# import shutil
 import sys
 import time
 
-from pytoughreact.pytough.fixed_format_file import *
-from pytoughreact.pytough.t2grids import t2grid
-from pytoughreact.pytough.t2reactgrids import *
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.fixed_format_file import fixed_format_file, default_read_function
+from pytoughreact.pytough.t2reactgrids import t2reactgrid, t2zone, t2connection, t2block, rocktype
+from pytoughreact.pytough.t2incons import t2incon
+from pytoughreact.pytough.mulgrids import padstring, unfix_blockname, fix_blockname, quadtree, fix_block_mapping
 from math import ceil
 import struct
 from os.path import splitext, basename
 from os import devnull, remove
 from subprocess import call, Popen
 import numpy as np
-
-from pytoughreact.pytough.t2reactgrids import t2zone
 
 
 def primary_to_region_we(primary):
@@ -247,7 +245,7 @@ default_parameters = {
     'max_duration': None,
     'print_interval': None,
     '_option_str': '0' * 24,
-    'option': np.zeros(25, int8),
+    'option': np.zeros(25, dtype=int),
     'diff0': None,
     'texp': None,
     'tstart': 0.0,
@@ -291,7 +289,7 @@ class t2react(object):
         self.parameter = deepcopy(default_parameters)
         self.react = default_react.copy()
         self._more_option_str = '0' * 21,
-        self.more_option = np.zeros(22, int8)
+        self.more_option = np.zeros(22, int)
         self.multi = {}
         self.start = False
         self.relative_permeability = {}
@@ -524,8 +522,8 @@ class t2react(object):
         listing file."""
         if runlocation:
             os.chdir(os.path.dirname(os.path.realpath(__file__)))
-            newPath = shutil.copy('treacteos.exe', runlocation)
-            thermPath = shutil.copy('thddem.dat', runlocation)
+            # newPath = shutil.copy('treacteos.exe', runlocation)
+            # thermPath = shutil.copy('thddem.dat', runlocation)
             os.chdir(runlocation)
         if self.filename:
             datbase, ext = splitext(self.filename)
@@ -589,7 +587,7 @@ class t2react(object):
             last_line = f.readline().decode()
             info = last_line.split()
             try:
-                sim_duration = float(info[1])
+                # sim_duration = float(info[1])
                 tolerance = float(info[7])
                 if tolerance < 0.0001:
                     running_flag = False
@@ -657,7 +655,7 @@ class t2react(object):
         specifies a regular expression to be matched.
         """
         import re
-        tg = np.zeros(self.grid.num_blocks, float64)
+        tg = np.zeros(self.grid.num_blocks, float)
         gens = [g for g in self.generatorlist if ((type == g.type) and re.search(name, g.name))]
         for g in gens:
             tg[self.grid.block_index(g.block)] += g.gx
@@ -670,7 +668,7 @@ class t2react(object):
         to be matched.
         """
         import re
-        tg = np.zeros(self.grid.num_blocks, float64)
+        tg = np.zeros(self.grid.num_blocks, float)
         gens = [g for g in self.generatorlist if
                 ((g.type == type) and (re.search(name, g.name)))]
         for g in gens:
@@ -751,7 +749,7 @@ class t2react(object):
         spec = ['param1', 'param1_autough2'][self.type == 'AUTOUGH2']
         infile.read_params_value_line(self.parameter, spec)
         mops = self.parameter['_option_str'].rstrip().ljust(24).replace(' ', '0')
-        self.parameter['option'] = np.array([0] + [int(mop) for mop in mops], int8)
+        self.parameter['option'] = np.array([0] + [int(mop) for mop in mops], int)
         infile.read_params_value_line(self.parameter, 'param2')
         # infile.read_value_line(self.parameter, 'param2')
         if (self.parameter['print_block'] is not None) and \
@@ -817,7 +815,7 @@ class t2react(object):
         """Reads additional parameter options"""
         infile.read_value_line(self.__dict__, '_more_option_str')
         momops = self._more_option_str.rstrip().ljust(21).replace(' ', '0')
-        self.more_option = np.array([0] + [int(mop) for mop in momops], int8)
+        self.more_option = np.array([0] + [int(mop) for mop in momops], int)
 
     def write_more_options(self, outfile):
         """Writes additional parameter options"""
@@ -1997,7 +1995,7 @@ class t2react(object):
         """
         mapping, colmapping = sourcegeo.block_mapping(geo, True)
         from copy import copy, deepcopy
-        self.grid = t2grid().fromgeo(geo)
+        self.grid = t2reactgrid().fromgeo(geo)
         self.simulator = source.simulator
         self.parameter = deepcopy(source.parameter)
         if self.parameter['print_block'] is not None:
@@ -2373,7 +2371,8 @@ class t2react(object):
             elif self.simulator:
                 for eosname in supported_eos.keys():
                     if self.simulator.endswith(eosname):
-                        autseosname = eosname
+                        pass
+                        # autseosname = eosname
         else:
             if isinstance(eos, int):
                 eos_from_index = {1: 'EW', 2: 'EWC', 3: 'EWA', 4: 'EWAV'}

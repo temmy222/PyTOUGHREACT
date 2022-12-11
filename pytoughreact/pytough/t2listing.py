@@ -1157,7 +1157,7 @@ class t2listing(object):
             tables = [tname for tname in
                       ['element', 'element1', 'connection',
                        'primary', 'element2', 'generation'] if tname in tables]
-            tableselection, short_tableselection = [], []
+            tableselection = []
             for table in tables:
                 tselect = [(i, h, rev, sel_index)
                            for (tname, i, ishort, h, rev, sel_index) in
@@ -1612,7 +1612,6 @@ class t2historyfile(object):
         int_index = 0
         for i, item in enumerate(items):
             try:
-                int_item = int(item)
                 int_index = i
                 break
             except:
@@ -1694,8 +1693,9 @@ class t2historyfile(object):
         lines = self._file.readlines()
         for line in lines:
             items = line.strip().split(',')
-            if items[-1] == '': del items[-1]
-            time_index = fortran_int(items.pop(0))
+            if items[-1] == '':
+                del items[-1]
+            # time_index = fortran_int(items.pop(0))
             time = float(items.pop(0))
             self.times.append(time)
             nc1 = self.num_columns + 1
@@ -1740,7 +1740,7 @@ class t2historyfile(object):
                 rowname = key + (time,)
                 if not (key in otherfile_keys):
                     if key in self._keyrows:
-                        keyrows = self._keyrows[key]
+                        # keyrows = self._keyrows[key]
                         keytimes = [self._data[irow][0] for irow in self._keyrows[key]]
                         keyrownames = [self.row_name[irow] for irow in self._keyrows[key]]
                         newtime = not (time in keytimes)

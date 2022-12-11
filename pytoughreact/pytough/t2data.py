@@ -12,10 +12,10 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 from __future__ import print_function
 import sys
-from pytoughreact.pytough.fixed_format_file import *
-from pytoughreact.pytough.mulgrids import padstring, unfix_blockname, fix_blockname
-from pytoughreact.pytough.t2grids import *
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.fixed_format_file import fixed_format_file, default_read_function
+from pytoughreact.pytough.mulgrids import padstring, unfix_blockname, fix_blockname, quadtree, fix_block_mapping
+from pytoughreact.pytough.t2grids import t2grid, t2connection, t2block, rocktype
+from pytoughreact.pytough.t2incons import t2incon
 from math import ceil
 import struct
 from os.path import splitext
@@ -234,7 +234,7 @@ default_parameters = {
     'max_duration': None,
     'print_interval': None,
     '_option_str': '0' * 24,
-    'option': np.zeros(25, int8),
+    'option': np.zeros(25, int),
     'diff0': None,
     'texp': None,
     'tstart': 0.0,
@@ -275,7 +275,7 @@ class t2data(object):
         self.simulator = ''
         self.parameter = deepcopy(default_parameters)
         self._more_option_str = '0' * 21,
-        self.more_option = np.zeros(22, int8)
+        self.more_option = np.zeros(22, int)
         self.multi = {}
         self.start = False
         self.relative_permeability = {}
@@ -595,7 +595,7 @@ class t2data(object):
         specifies a regular expression to be matched.
         """
         import re
-        tg = np.zeros(self.grid.num_blocks, float64)
+        tg = np.zeros(self.grid.num_blocks, float)
         gens = [g for g in self.generatorlist if ((type == g.type) and re.search(name, g.name))]
         for g in gens:
             tg[self.grid.block_index(g.block)] += g.gx
@@ -608,7 +608,7 @@ class t2data(object):
         to be matched.
         """
         import re
-        tg = np.zeros(self.grid.num_blocks, float64)
+        tg = np.zeros(self.grid.num_blocks, float)
         gens = [g for g in self.generatorlist if
                 ((g.type == type) and (re.search(name, g.name)))]
         for g in gens:
@@ -687,7 +687,7 @@ class t2data(object):
         spec = ['param1', 'param1_autough2'][self.type == 'AUTOUGH2']
         infile.read_value_line(self.parameter, spec)
         mops = self.parameter['_option_str'].rstrip().ljust(24).replace(' ', '0')
-        self.parameter['option'] = np.array([0] + [int(mop) for mop in mops], int8)
+        self.parameter['option'] = np.array([0] + [int(mop) for mop in mops], int)
         infile.read_value_line(self.parameter, 'param2')
         if (self.parameter['print_block'] is not None) and \
                 (self.parameter['print_block'].strip() == ''):
@@ -741,7 +741,7 @@ class t2data(object):
         """Reads additional parameter options"""
         infile.read_value_line(self.__dict__, '_more_option_str')
         momops = self._more_option_str.rstrip().ljust(21).replace(' ', '0')
-        self.more_option = np.array([0] + [int(mop) for mop in momops], int8)
+        self.more_option = np.array([0] + [int(mop) for mop in momops], int)
 
     def write_more_options(self, outfile):
         """Writes additional parameter options"""
@@ -1495,8 +1495,7 @@ class t2data(object):
             [part, subsection['type'],
              dummy, subsection['dual']] = infile.parse_string(line, 'minc')
             vals = infile.read_values('part1')
-            subsection['num_continua'], nvol, \
-            subsection['where'], subsection['spacing'] = vals[0], vals[1], vals[2], vals[3:]
+            subsection['num_continua'], nvol, subsection['where'], subsection['spacing'] = vals[0], vals[1], vals[2], vals[3:]
             nlines = int(ceil(nvol / 8.))
             vol = []
             for i in range(nlines):
@@ -2289,7 +2288,8 @@ class t2data(object):
             elif self.simulator:
                 for eosname in supported_eos.keys():
                     if self.simulator.endswith(eosname):
-                        autseosname = eosname
+                        pass
+                        # autseosname = eosname
         else:
             if isinstance(eos, int):
                 eos_from_index = {1: 'EW', 2: 'EWC', 3: 'EWA', 4: 'EWAV'}

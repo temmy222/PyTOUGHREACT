@@ -1,20 +1,18 @@
 from __future__ import print_function
 
 import os
-import shutil
 import sys
-from pytoughreact.pytough.fixed_format_file import *
+from pytoughreact.pytough.fixed_format_file import fixed_format_file, default_read_function
 from os.path import splitext, basename
 from os import devnull, remove
 from subprocess import call
 
-from pytoughreact.pytough.mulgrids import unfix_blockname, fix_blockname, padstring
+from pytoughreact.pytough.mulgrids import unfix_blockname, fix_blockname, padstring, fix_block_mapping, quadtree
 from pytoughreact.pytough.t2components import BaseComponent, Biomass, Water_Bio, Gas
-from pytoughreact.pytough.t2grids import *
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.t2grids import t2grid, t2block, t2connection, rocktype
+from pytoughreact.pytough.t2incons import t2incon
 from math import ceil
 import struct
-from os.path import splitext
 import numpy as np
 
 from pytoughreact.pytough.t2process import Process, BIODG
@@ -233,9 +231,12 @@ class t2generator(object):
                  nseq=None, nadd=None, nads=None, type='MASS',
                  ltab=0, itab='', gx=0.0, ex=0.0, hg=0.0, fg=0.0,
                  time=None, rate=None, enthalpy=None):
-        if time is None: time = []
-        if rate is None: rate = []
-        if enthalpy is None: enthalpy = []
+        if time is None:
+            time = []
+        if rate is None:
+            rate = []
+        if enthalpy is None:
+            enthalpy = []
         self.name = name
         self.block = block
         self.nseq, self.nadd, self.nads = nseq, nadd, nads
@@ -261,7 +262,7 @@ default_parameters = {
     'max_duration': None,
     'print_interval': None,
     '_option_str': '0' * 24,
-    'option': np.zeros(25, int8),
+    'option': np.zeros(25, int),
     'diff0': None,
     'texp': None,
     'tstart': 0.0,
@@ -303,7 +304,7 @@ class t2bio(object):
         self.simulator = ''
         self.parameter = deepcopy(default_parameters)
         self._more_option_str = '0' * 21,
-        self.more_option = np.zeros(22, int8)
+        self.more_option = np.zeros(22, int)
         self.multi = {}
         self.start = False
         self.relative_permeability = {}
@@ -333,7 +334,8 @@ class t2bio(object):
         self._extra_precision, self._echo_extra_precision = [], True
         self.update_read_write_functions()
         self.read_function = read_function
-        if self.filename: self.read(filename, meshfilename)
+        if self.filename:
+            self.read(filename, meshfilename)
 
     def get_extra_precision(self):
         return self._extra_precision
@@ -441,7 +443,8 @@ class t2bio(object):
              self.skip_generators]))
 
         if not self.echo_extra_precision:
-            for section in self.extra_precision: self.read_fn[section] = skip_fn[section]
+            for section in self.extra_precision:
+                self.read_fn[section] = skip_fn[section]
 
     def get_present_sections(self):
         """Returns a list of TOUGH2 section keywords for which there are
@@ -526,9 +529,11 @@ class t2bio(object):
         """Updates internal section list, based on which properties are present."""
         present = self.present_sections
         missing = [keyword for keyword in present if keyword not in self._sections]
-        for keyword in missing: self.insert_section(keyword)
+        for keyword in missing:
+            self.insert_section(keyword)
         extra = [keyword for keyword in self._sections if keyword not in present]
-        for keyword in extra: self.delete_section(keyword)
+        for keyword in extra:
+            self.delete_section(keyword)
 
     def __repr__(self):
         return self.title
@@ -551,8 +556,10 @@ class t2bio(object):
         if self.filename:
             datbase, ext = splitext(self.filename)
             if (self.type == 'AUTOUGH2'):
-                if save_filename == '': save_filename = datbase + '.save'
-                if incon_filename == '': incon_filename = datbase + '.incon'
+                if save_filename == '':
+                    save_filename = datbase + '.save'
+                if incon_filename == '':
+                    incon_filename = datbase + '.incon'
                 savebase, ext = splitext(save_filename)
                 inconbase, ext = splitext(incon_filename)
                 runfilename = datbase + '_' + basename(simulator) + '.in'
@@ -568,7 +575,8 @@ class t2bio(object):
                 infile.close()
                 remove(runfilename)
             else:  # run TOUGH2 (need to specify simulator executable name)
-                if runlocation: os.chdir(runlocation)
+                if runlocation:
+                    os.chdir(runlocation)
                 # if os.path.exists("GENER"): os.remove("GENER")
                 # if os.path.exists("OUTPUT_ELEME.csv"): os.remove("OUTPUT_ELEME.csv")
                 cmd = [simulator]
@@ -639,9 +647,10 @@ class t2bio(object):
         specifies a regular expression to be matched.
         """
         import re
-        tg = np.zeros(self.grid.num_blocks, float64)
+        tg = np.zeros(self.grid.num_blocks, float)
         gens = [g for g in self.generatorlist if ((type == g.type) and re.search(name, g.name))]
-        for g in gens: tg[self.grid.block_index(g.block)] += g.gx
+        for g in gens:
+            tg[self.grid.block_index(g.block)] += g.gx
         return tg
 
     def specific_generation(self, type='MASS', name=''):
@@ -651,7 +660,7 @@ class t2bio(object):
         to be matched.
         """
         import re
-        tg = np.zeros(self.grid.num_blocks, float64)
+        tg = np.zeros(self.grid.num_blocks, float)
         gens = [g for g in self.generatorlist if
                 ((g.type == type) and (re.search(name, g.name)))]
         for g in gens:
@@ -672,7 +681,8 @@ class t2bio(object):
         functions accordingly for reading the main data file.
         """
         infile.read_value_line(self.__dict__, 'simulator')
-        if self.type == 'AUTOUGH2': self.read_extra_precision()
+        if self.type == 'AUTOUGH2':
+            self.read_extra_precision()
 
     def write_simulator(self, outfile):
         if self.simulator:
@@ -691,7 +701,8 @@ class t2bio(object):
                                             density, porosity,
                                             [k1, k2, k3],
                                             conductivity, specific_heat))
-            if nad is None: nad = 0
+            if nad is None:
+                nad = 0
             if nad >= 1:  # additional lines:
                 infile.read_multi_value_line2(self.grid.rocktype[name].__dict__, 'rocks1.1')
                 if nad >= 2:
@@ -705,20 +716,19 @@ class t2bio(object):
 
     def skip_rocktypes(self, infile):
         """Skips rock type section"""
-        while infile.readline().strip(): pass
+        while infile.readline().strip():
+            pass
 
     def write_rocktypes(self, outfile):
         outfile.write('ROCKS\n')
         for rt in self.grid.rocktypelist:
-            vals = [rt.name, rt.nad, rt.density, rt.porosity] + \
-                   list(rt.permeability) + [rt.conductivity, rt.specific_heat]
+            vals = [rt.name, rt.nad, rt.density, rt.porosity] + list(rt.permeability) + [rt.conductivity, rt.specific_heat]
             outfile.write_values(vals, 'rocks1')
             if rt.nad is not None:
                 if rt.nad >= 1:
                     outfile.write_value_line(rt.__dict__, 'rocks1.1')
                     if rt.nad >= 2:
-                        vals = [rt.relative_permeability['type'], None] + \
-                               rt.relative_permeability['parameters']
+                        vals = [rt.relative_permeability['type'], None] + rt.relative_permeability['parameters']
                         outfile.write_values(vals, 'rocks1.2')
                         vals = [rt.capillarity['type'], None] + rt.capillarity['parameters']
                         outfile.write_values(vals, 'rocks1.2')
@@ -805,7 +815,6 @@ class t2bio(object):
             dicta_all.append(dicta)
         return dicta_all
 
-
     def read_biodg(self, infile):
         params = infile.read_values('biodg')
         number_of_processes = int(infile.read_values('biodg1')[0])
@@ -823,7 +832,7 @@ class t2bio(object):
         biomass_details = []
         for i in range(number_of_biomass):
             biomass_1 = infile.read_values('biodg2.1')
-            biomass_class = Biomass(index =i+1, name = 'biom' + str(i), init_conc=biomass_1[0], min_conc = biomass_1[1], max_temp = biomass_1[2], death_rate=biomass_1[3], inhibition_constant=biomass_1[4])
+            biomass_class = Biomass(index=i + 1, name='biom' + str(i), init_conc=biomass_1[0], min_conc=biomass_1[1], max_temp=biomass_1[2], death_rate=biomass_1[3], inhibition_constant=biomass_1[4])
             biomass_details.append(biomass_class)
         water_component = [Water_Bio('H2O')]
         all_components = water_component + self.gas + self.components
@@ -836,14 +845,14 @@ class t2bio(object):
         for i in range(len(process_details)):
             dicta_all = self.reset_bio_dicta(all_components)
             process = Process(biomass=biomass_details[process_details[i][0][1] - 1], numberOfComponents=process_details[i][0][0],
-                    mumax=process_details[i][0][2], yield_mass=process_details[i][0][3],
-                    NumOfCompetiting=process_details[i][0][4], NumOfNonCompetiting=process_details[i][0][5],
-                    NumOfHaldane=process_details[i][0][6], enthalpy=process_details[i][0][7])
+                              mumax=process_details[i][0][2], yield_mass=process_details[i][0][3],
+                              NumOfCompetiting=process_details[i][0][4], NumOfNonCompetiting=process_details[i][0][5],
+                              NumOfHaldane=process_details[i][0][6], enthalpy=process_details[i][0][7])
             for j in range(len(all_components)):
                 dicta_all[j][all_components[j]].append(process_details[i][5][j])
-                for k in range(len( process_details[i][1])):
-                    if process_details[i][1][k] == j+1:
-                        dicta_all[j][all_components[j]].append(process_details[i][1][k+1])
+                for k in range(len(process_details[i][1])):
+                    if process_details[i][1][k] == j + 1:
+                        dicta_all[j][all_components[j]].append(process_details[i][1][k + 1])
                 if len(dicta_all[j][all_components[j]]) == 1:
                     all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0])
                 elif len(dicta_all[j][all_components[j]]) == 2:
@@ -851,7 +860,7 @@ class t2bio(object):
                 elif len(dicta_all[j][all_components[j]]) == 3:
                     all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1], dicta_all[j][all_components[j]][2])
                 elif len(dicta_all[j][all_components[j]]) == 4:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1],dicta_all[j][all_components[j]][2], dicta_all[j][all_components[j]][3])
+                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1], dicta_all[j][all_components[j]][2], dicta_all[j][all_components[j]][3])
                 elif len(dicta_all[j][all_components[j]]) == 5:
                     all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1], dicta_all[j][all_components[j]][2], dicta_all[j][all_components[j]][3], dicta_all[j][all_components[j]][4])
             all_processes.append(process)
@@ -862,7 +871,7 @@ class t2bio(object):
         outfile.write('BIODG\n')
         value = self.biodg[0]
         vals = value.getFirstSet()
-        numberOfBiomass = value.getNumberOfBiomasses()
+        # numberOfBiomass = value.getNumberOfBiomasses()
         outfile.write_values(vals, 'biodg')
         vals = [len(value.processes)]
         outfile.write_values(vals, 'biodg1')
@@ -940,7 +949,7 @@ class t2bio(object):
         # infile.read_value_line(self.parameter, spec)
         infile.read_params_value_line(self.parameter, spec)
         mops = self.parameter['_option_str'].rstrip().ljust(24).replace(' ', '0')
-        self.parameter['option'] = np.array([0] + [int(mop) for mop in mops], int8)
+        self.parameter['option'] = np.array([0] + [int(mop) for mop in mops], int)
         # infile.read_value_line(self.parameter, 'param2')
         infile.read_params_value_line(self.parameter, 'param2')
         if (self.parameter['print_block'] is not None) and \
@@ -988,7 +997,8 @@ class t2bio(object):
             for i in range(nlines):
                 i1, i2 = i * 4, min((i + 1) * 4, num_vars)
                 vals = list(self.parameter['default_incons'][i1: i2])
-                if len(vals) < 4: vals += [None] * (4 - len(vals))
+                if len(vals) < 4:
+                    vals += [None] * (4 - len(vals))
                 outfile.write_values(vals, 'default_incons')
         else:
             outfile.write('\n')
@@ -997,7 +1007,7 @@ class t2bio(object):
         """Reads additional parameter options"""
         infile.read_value_line(self.__dict__, '_more_option_str')
         momops = self._more_option_str.rstrip().ljust(21).replace(' ', '0')
-        self.more_option = np.array([0] + [int(mop) for mop in momops], int8)
+        self.more_option = np.array([0] + [int(mop) for mop in momops], int)
 
     def write_more_options(self, outfile):
         """Writes additional parameter options"""
@@ -1014,7 +1024,8 @@ class t2bio(object):
             self.parameter['timestep'] = []
             for i in range(nlines):
                 for val in infile.read_values('timestep'):
-                    if val is not None: self.parameter['timestep'].append(val)
+                    if val is not None:
+                        self.parameter['timestep'].append(val)
 
     def write_timesteps(self, outfile):
         if self.parameter['const_timestep'] < 0.0:
@@ -1022,7 +1033,8 @@ class t2bio(object):
             for i in range(nlines):
                 i1, i2 = i * 8, min((i + 1) * 8, len(self.parameter['timestep']))
                 vals = self.parameter['timestep'][i1: i2]
-                if len(vals) < 8: vals += [None] * (8 - len(vals))
+                if len(vals) < 8:
+                    vals += [None] * (8 - len(vals))
                 outfile.write_values(vals, 'timestep')
 
     def read_multi(self, infile):
@@ -1033,7 +1045,8 @@ class t2bio(object):
         # for var, val in zip(spec[0], vals):
         #     if val is not None: self.multi[var] = val
         infile.read_multi_value_line(self.multi, spec)
-        if 'eos' in self.multi: self.multi['eos'] = self.multi['eos'].strip()
+        if 'eos' in self.multi:
+            self.multi['eos'] = self.multi['eos'].strip()
 
     def write_multi(self, outfile):
         if self.multi != {}:
@@ -1046,7 +1059,8 @@ class t2bio(object):
         self.start = True
 
     def write_start(self, outfile):
-        if self.start: outfile.write('START\n')
+        if self.start:
+            outfile.write('START\n')
 
     def read_rpcap(self, infile):
         """Reads relative permeability and capillarity parameters"""
@@ -1059,16 +1073,15 @@ class t2bio(object):
 
     def skip_rpcap(self, infile):
         """Skips relative permeability and capillarity parameter section."""
-        for i in range(2): infile.readline()
+        for i in range(2):
+            infile.readline()
 
     def write_rpcap(self, outfile):
         if self.relative_permeability:
             outfile.write('RPCAP\n')
-            vals = [self.relative_permeability['type'], None] + \
-                   self.relative_permeability['parameters']
+            vals = [self.relative_permeability['type'], None] + self.relative_permeability['parameters']
             outfile.write_values(vals, 'relative_permeability')
-            vals = [self.capillarity['type'], None] + \
-                   self.capillarity['parameters']
+            vals = [self.capillarity['type'], None] + self.capillarity['parameters']
             outfile.write_values(vals, 'capillarity')
 
     def read_lineq(self, infile):
@@ -1111,8 +1124,10 @@ class t2bio(object):
                 centre = np.array([x, y, z])
             else:
                 centre = None
-            if nseq == 0: nseq = None
-            if nadd == 0: nadd = None
+            if nseq == 0:
+                nseq = None
+            if nadd == 0:
+                nadd = None
             self.grid.add_block(t2block(name, volume, rocktype,
                                         centre=centre, ahtx=ahtx,
                                         pmx=pmx, nseq=nseq, nadd=nadd))
@@ -1120,7 +1135,8 @@ class t2bio(object):
 
     def skip_blocks(self, infile):
         """Skips blocks section in file"""
-        while infile.readline().strip(): pass
+        while infile.readline().strip():
+            pass
 
     def write_blocks(self, outfile):
         outfile.write('ELEME\n')
@@ -1147,9 +1163,12 @@ class t2bio(object):
              nad1, nad2, isot, d1, d2,
              areax, betax, sigx] = infile.parse_string(line, 'connections')
             name1, name2 = fix_blockname(name1), fix_blockname(name2)
-            if nseq == 0: nseq = None
-            if nad1 == 0: nad1 = None
-            if nad2 == 0: nad2 = None
+            if nseq == 0:
+                nseq = None
+            if nad1 == 0:
+                nad1 = None
+            if nad2 == 0:
+                nad2 = None
             self.grid.add_connection(t2connection([self.grid.block[name1],
                                                    self.grid.block[name2]],
                                                   isot, [d1, d2], areax, betax,
@@ -1158,7 +1177,8 @@ class t2bio(object):
 
     def skip_connections(self, infile):
         """Skips connections section in file"""
-        while infile.readline().strip(): pass
+        while infile.readline().strip():
+            pass
 
     def write_connections(self, outfile):
         outfile.write('CONNE\n')
@@ -1166,14 +1186,14 @@ class t2bio(object):
             for con in self.grid.connectionlist:
                 vals = [unfix_blockname(con.block[0].name),
                         unfix_blockname(con.block[1].name),
-                        con.nseq, con.nad1, con.nad2, con.direction] + \
-                       con.distance + [con.area, con.dircos, con.sigma]
+                        con.nseq, con.nad1, con.nad2, con.direction] + con.distance + [con.area, con.dircos, con.sigma]
                 outfile.write_values(vals, 'connections')
         outfile.write('\n')
 
     def add_generator(self, generator=None):
         """Adds a generator."""
-        if generator is None: generator = t2generator()
+        if generator is None:
+            generator = t2generator()
         self.generatorlist.append(generator)
         self.generator[(generator.block, generator.name)] = self.generatorlist[-1]
 
@@ -1198,7 +1218,8 @@ class t2bio(object):
             if not (gen.block in self.grid.block):
                 delgenindices.append(i)
                 delgens.add((gen.block, gen.name))
-        for bg in delgens: del self.generator[bg]
+        for bg in delgens:
+            del self.generator[bg]
         for i in reversed(delgenindices):
             del self.generatorlist[i]
 
@@ -1215,14 +1236,17 @@ class t2bio(object):
                 nlines = int(ceil(ntimes / 4.))
                 for i in range(nlines):
                     for val in infile.read_values('generation_times'):
-                        if val is not None: time.append(val)
+                        if val is not None:
+                            time.append(val)
                 for i in range(nlines):
                     for val in infile.read_values('generation_rates'):
-                        if val is not None: rate.append(val)
+                        if val is not None:
+                            rate.append(val)
                 if itab.strip():
                     for i in range(nlines):
                         for val in infile.read_values('generation_enthalpy'):
-                            if val is not None: enthalpy.append(val)
+                            if val is not None:
+                                enthalpy.append(val)
         return t2generator(name=name, block=block,
                            nseq=nseq, nadd=nadd, nads=nads,
                            type=gentype, ltab=ltab, itab=itab,
@@ -1244,18 +1268,21 @@ class t2bio(object):
             for i in range(nlines):
                 i1, i2 = i * 4, min((i + 1) * 4, ntimes)
                 vals = list(gen.time[i1: i2])
-                if len(vals) < 4: vals += [None] * (4 - len(vals))
+                if len(vals) < 4:
+                    vals += [None] * (4 - len(vals))
                 outfile.write_values(vals, 'generation_times')
             for i in range(nlines):
                 i1, i2 = i * 4, min((i + 1) * 4, ntimes)
                 vals = list(gen.rate[i1: i2])
-                if len(vals) < 4: vals += [None] * (4 - len(vals))
+                if len(vals) < 4:
+                    vals += [None] * (4 - len(vals))
                 outfile.write_values(vals, 'generation_rates')
             if gen.enthalpy:
                 for i in range(nlines):
                     i1, i2 = i * 4, min((i + 1) * 4, ntimes)
                     vals = list(gen.enthalpy[i1: i2])
-                    if len(vals) < 4: vals += [None] * (4 - len(vals))
+                    if len(vals) < 4:
+                        vals += [None] * (4 - len(vals))
                     outfile.write_values(vals, 'generation_enthalpy')
 
     def read_generators(self, infile):
@@ -1268,7 +1295,8 @@ class t2bio(object):
 
     def skip_generators(self, infile):
         """Skips generator section in file"""
-        while infile.readline().strip(): pass
+        while infile.readline().strip():
+            pass
 
     def write_generators(self, outfile):
         if self.generatorlist:
@@ -1284,7 +1312,8 @@ class t2bio(object):
         nlines = int(ceil(self.output_times['num_times_specified'] / 8.))
         for i in range(nlines):
             for val in infile.read_values('output_times2'):
-                if val is not None: self.output_times['time'].append(val)
+                if val is not None:
+                    self.output_times['time'].append(val)
 
     def write_times(self, outfile):
         if self.output_times:
@@ -1294,7 +1323,8 @@ class t2bio(object):
             for i in range(nlines):
                 i1, i2 = i * 8, min((i + 1) * 8, len(self.output_times['time']))
                 vals = self.output_times['time'][i1: i2]
-                if len(vals) < 8: vals += [None] * (8 - len(vals))
+                if len(vals) < 8:
+                    vals += [None] * (8 - len(vals))
                 outfile.write_values(vals, 'output_times2')
 
     def read_incons(self, infile):
@@ -1306,8 +1336,10 @@ class t2bio(object):
             blockname = fix_blockname(blockname)
             variables = infile.read_values('incon2')
             variables = trim_trailing_nones(variables)
-            if nseq == 0: nseq = None
-            if nadd == 0: nadd = None
+            if nseq == 0:
+                nseq = None
+            if nadd == 0:
+                nadd = None
             if nseq is None:
                 self.incon[blockname] = [porosity, variables]
             else:
@@ -1402,7 +1434,8 @@ class t2bio(object):
         """Reads short output specifications from file.  'headerline' is
         passed in to read the frequency parameter."""
         vals = infile.parse_string(headerline, 'short')
-        if len(vals) > 1: self.short_output['frequency'] = vals[1]
+        if len(vals) > 1:
+            self.short_output['frequency'] = vals[1]
         read_fn = {
             'ELEME': self.read_short_blocks,
             'CONNE': self.read_short_connections,
@@ -1430,13 +1463,11 @@ class t2bio(object):
             if 'connection' in self.short_output:
                 outfile.write('CONNE\n')
                 for con in self.short_output['connection']:
-                    outfile.write(unfix_blockname(con.block[0].name) +
-                                  unfix_blockname(con.block[1].name) + '\n')
+                    outfile.write(unfix_blockname(con.block[0].name) + unfix_blockname(con.block[1].name) + '\n')
             if 'generator' in self.short_output:
                 outfile.write('GENER\n')
                 for gen in self.short_output['generator']:
-                    outfile.write(unfix_blockname(gen.block) + \
-                                  unfix_blockname(gen.name) + '\n')
+                    outfile.write(unfix_blockname(gen.block) + unfix_blockname(gen.name) + '\n')
             outfile.write('\n')
 
     def read_history_blocks(self, infile):
@@ -1559,7 +1590,8 @@ class t2bio(object):
         self.noversion = True
 
     def write_noversion(self, outfile):
-        if self.noversion: outfile.write('NOVER\n')
+        if self.noversion:
+            outfile.write('NOVER\n')
 
     def read_diffusion(self, infile):
         """Reads diffusion coefficients from file"""
@@ -1573,7 +1605,8 @@ class t2bio(object):
     def write_diffusion(self, outfile):
         if self.diffusion:
             outfile.write('DIFFU\n')
-            for comp in self.diffusion: outfile.write_values(comp, 'diffusion')
+            for comp in self.diffusion:
+                outfile.write_values(comp, 'diffusion')
 
     def read_selection(self, infile):
         """Reads selection parameters from file"""
@@ -1581,7 +1614,8 @@ class t2bio(object):
         self.selection['integer'] = int_selec
         nlines = int_selec[0]
         float_selec = []
-        for i in range(nlines): float_selec += infile.read_values('selec2')
+        for i in range(nlines):
+            float_selec += infile.read_values('selec2')
         self.selection['float'] = float_selec
 
     def write_selection(self, outfile):
@@ -1592,7 +1626,8 @@ class t2bio(object):
             for i in range(nlines):
                 i1, i2 = i * 8, min((i + 1) * 8, len(self.selection['float']))
                 vals = self.selection['float'][i1: i2]
-                if len(vals) < 8: vals += [None] * (8 - len(vals))
+                if len(vals) < 8:
+                    vals += [None] * (8 - len(vals))
                 outfile.write_values(vals, 'selec2')
 
     def read_meshmaker(self, infile):
@@ -1606,7 +1641,8 @@ class t2bio(object):
             line = infile.readline()
             if line.strip():
                 keyword = line[0: 5].strip()
-                if keyword in read_fn: read_fn[keyword](infile)
+                if keyword in read_fn:
+                    read_fn[keyword](infile)
             else:
                 more = False
 
@@ -1635,7 +1671,8 @@ class t2bio(object):
                 nlines = int(ceil(nrad / 8.))
                 for i in range(nlines):
                     for val in infile.read_values('radii2'):
-                        if val is not None: subsection['radii'].append(val)
+                        if val is not None:
+                            subsection['radii'].append(val)
             elif keyword == 'EQUID':
                 infile.read_value_line(subsection, 'equid')
             elif keyword == 'LOGAR':
@@ -1644,10 +1681,12 @@ class t2bio(object):
                 nlayers = infile.read_values('layer1')[0]
                 nlines = int(ceil(nlayers / 8.))
                 layer = []
-                for i in range(nlines): layer += infile.read_values('layer2')
+                for i in range(nlines):
+                    layer += infile.read_values('layer2')
                 subsection['layer'] = layer[0: nlayers]
                 more = False  # LAYER indicates end of RZ2D
-            if subsection: section[1].append((keyword.lower(), subsection))
+            if subsection:
+                section[1].append((keyword.lower(), subsection))
         self.meshmaker.append(section)
 
     def write_meshmaker_rz2d(self, section, outfile):
@@ -1661,7 +1700,8 @@ class t2bio(object):
                 for i in range(nlines):
                     i1, i2 = i * 8, min((i + 1) * 8, nrad)
                     vals = subsection['radii'][i1: i2]
-                    if len(vals) < 8: vals += [None] * (8 - len(vals))
+                    if len(vals) < 8:
+                        vals += [None] * (8 - len(vals))
                     outfile.write_values(vals, 'radii2')
             elif stype == 'equid':
                 outfile.write_value_line(subsection, 'equid')
@@ -1674,7 +1714,8 @@ class t2bio(object):
                 for i in range(nlines):
                     i1, i2 = i * 8, min((i + 1) * 8, nrad)
                     vals = subsection['layer'][i1: i2]
-                    if len(vals) < 8: vals += [None] * (8 - len(vals))
+                    if len(vals) < 8:
+                        vals += [None] * (8 - len(vals))
                     outfile.write_values(vals, 'layer2')
 
     def read_meshmaker_xyz(self, infile):
@@ -1710,7 +1751,8 @@ class t2bio(object):
                 for i in range(nlines):
                     i1, i2 = i * 8, min((i + 1) * 8, subsection['no'])
                     vals = subsection['deli'][i1: i2]
-                    if len(vals) < 8: vals += [None] * (8 - len(vals))
+                    if len(vals) < 8:
+                        vals += [None] * (8 - len(vals))
                     outfile.write_values(vals, 'xyz3')
         outfile.write('\n')
 
@@ -1723,12 +1765,11 @@ class t2bio(object):
             [part, subsection['type'],
              dummy, subsection['dual']] = infile.parse_string(line, 'minc')
             vals = infile.read_values('part1')
-            subsection['num_continua'], nvol, \
-            subsection['where'], subsection['spacing'] = vals[0], vals[1], \
-                                                         vals[2], vals[3:]
+            subsection['num_continua'], nvol, subsection['where'], subsection['spacing'] = vals[0], vals[1], vals[2], vals[3:]
             nlines = int(ceil(nvol / 8.))
             vol = []
-            for i in range(nlines): vol += infile.read_values('part2')
+            for i in range(nlines):
+                vol += infile.read_values('part2')
             subsection['vol'] = vol[0: nvol]
             self.meshmaker.append(('minc', subsection))
 
@@ -1742,7 +1783,8 @@ class t2bio(object):
         for i in range(nlines):
             i1, i2 = i * 8, min((i + 1) * 8, nvol)
             vals = section['vol'][i1: i2]
-            if len(vals) < 8: vals += [None] * (8 - len(vals))
+            if len(vals) < 8:
+                vals += [None] * (8 - len(vals))
             outfile.write_values(vals, 'part2')
 
     def read_meshfile(self, infile):
@@ -1780,9 +1822,7 @@ class t2bio(object):
             evol, aht, pmx = (np.array(fa.readrec('%dd' % nel)) for i in range(3))
             gcoord = [np.array(fa.readrec('%dd' % nel)) for i in range(3)]
             gcoord = np.transpose(np.vstack([gc for gc in gcoord]))
-            del1, del2, \
-            area, beta, sig = (np.array(fa.readrec('%dd' % ncon)) for
-                               i in range(5))
+            del1, del2, area, beta, sig = (np.array(fa.readrec('%dd' % ncon)) for i in range(5))
             isox = np.array(fa.readrec('%di' % ncon))
             # read MESHB file:
             elem = [s.decode() for s in fb.readrec('8s' * nel)]
@@ -1811,7 +1851,7 @@ class t2bio(object):
         else:
             print('Files', self.meshfilename[0], 'and', self.meshfilename[1],
                   'do not contain the same number of blocks (', nel, 'vs.', nelb, ').')
-        fa.close();
+        fa.close()
         fb.close()
 
     def write_binary_meshfiles(self):
@@ -1934,9 +1974,11 @@ class t2bio(object):
         an associated '.pdat' file, if it exists.
         """
         if runlocation:
-            if not os.path.isdir(runlocation): os.mkdir(runlocation)
+            if not os.path.isdir(runlocation):
+                os.mkdir(runlocation)
             os.chdir(runlocation)
-        if filename: self.filename = filename
+        if filename:
+            self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
         infile = t2bio_parser(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
@@ -1974,7 +2016,8 @@ class t2bio(object):
                 self.read_meshfile(meshfile)
                 meshfile.close()
             elif isinstance(meshfilename, (list, tuple)):
-                if len(meshfilename) == 2: self.read_binary_meshfiles()
+                if len(meshfilename) == 2:
+                    self.read_binary_meshfiles()
             else:
                 print('Mesh filename must be either a string or a two-element tuple or list.')
         self.status = 'successful'
@@ -1993,13 +2036,17 @@ class t2bio(object):
         """
 
         if runlocation:
-            if not os.path.isdir(runlocation): os.mkdir(runlocation)
+            if not os.path.isdir(runlocation):
+                os.mkdir(runlocation)
             os.chdir(runlocation)
-        if filename: self.filename = filename
-        if self.filename == '': self.filename = 't2bio.dat'
+        if filename:
+            self.filename = filename
+        if self.filename == '':
+            self.filename = 't2bio.dat'
         self.update_sections()
         mesh_sections = []
-        if meshfilename: self.meshfilename = meshfilename
+        if meshfilename:
+            self.meshfilename = meshfilename
         if self.meshfilename:
             if isinstance(self.meshfilename, str):
                 meshfile = t2bio_parser(self.meshfilename, 'w')
@@ -2017,8 +2064,7 @@ class t2bio(object):
         self.write_title(outfile)
         for keyword in self._sections:
             if (keyword not in mesh_sections) and \
-                    ((keyword not in self.extra_precision) or
-                     (keyword in self.extra_precision and self.echo_extra_precision)):
+                    ((keyword not in self.extra_precision) or (keyword in self.extra_precision and self.echo_extra_precision)):
                 self.write_fn[keyword](outfile)
         outfile.write(self.end_keyword + '\n')
         self.status = 'successful'
@@ -2076,8 +2122,10 @@ class t2bio(object):
                     else:
                         ntimes = 1
                     if gen.type in tablegens:
-                        if gen.gx: gen.gx *= area_ratio
-                        if ntimes > 1: gen.rate = [rate * area_ratio for rate in gen.rate]
+                        if gen.gx:
+                            gen.gx *= area_ratio
+                        if ntimes > 1:
+                            gen.rate = [rate * area_ratio for rate in gen.rate]
                     if geo.convention == sourcegeo.convention:
                         category = sourcecategory
                     else:
@@ -2106,8 +2154,10 @@ class t2bio(object):
                         ntimes = 1
                     vol_ratio = blk.volume / vol
                     if gen.type in tablegens:
-                        if gen.gx: gen.gx *= vol_ratio
-                        if ntimes > 1: gen.rate = [rate * vol_ratio for rate in gen.rate]
+                        if gen.gx:
+                            gen.gx *= vol_ratio
+                        if ntimes > 1:
+                            gen.rate = [rate * vol_ratio for rate in gen.rate]
                     if rename:
                         if geo.convention == sourcegeo.convention:
                             category = sourcecategory
@@ -2178,7 +2228,8 @@ class t2bio(object):
         for blkname, inc in source.incon.items():
             mappedblocks = [blk for blk in self.grid.blocklist if
                             mapping[blk.name] == blkname]
-            for blk in mappedblocks: self.incon[blk.name] = inc
+            for blk in mappedblocks:
+                self.incon[blk.name] = inc
         self.indom = copy(source.indom)
         # incon file:
         if (sourceinconfilename != '') and (inconfilename != ''):
@@ -2207,7 +2258,8 @@ class t2bio(object):
         """
         # Modify MULTI:
         if self.multi:
-            if 'eos' in self.multi: del self.multi['eos']
+            if 'eos' in self.multi:
+                del self.multi['eos']
             self.multi['num_inc'] = None
         # Convert LINEQ into corresponding MOP(21) option:
         if self.lineq:
@@ -2224,8 +2276,7 @@ class t2bio(object):
         if self.parameter['option'][10] == 2:
             self.parameter['option'][10] = 0
             self.convert_mulkom_heat_conductivity()
-            warnings.append('MOP(10)=2: MULKOM rock heat conductivities' + \
-                            ' (values have been converted to TOUGH2 equivalents)')
+            warnings.append('MOP(10)=2: MULKOM rock heat conductivities' + ' (values have been converted to TOUGH2 equivalents)')
         if self.parameter['option'][12] == 2:
             self.parameter['option'][12] = 0
             warnings.append('MOP(12)=2: piecewise linear well table interpolation')
@@ -2234,8 +2285,7 @@ class t2bio(object):
             self.parameter['option'][22] = 0
             warnings.append('MOP(22)>0: USERBC')
         if self.parameter['option'][23] > 0:
-            isat2 = self.simulator.startswith('AUTOUGH2') and \
-                    (not self.simulator.startswith('AUTOUGH2.2'))
+            isat2 = self.simulator.startswith('AUTOUGH2') and (not self.simulator.startswith('AUTOUGH2.2'))
             ismulkom = self.simulator.startswith('MULKOM')
             mulkom_compatibility = self.parameter['option'][23] in [0, 1]
             if (isat2 or ismulkom) and mulkom_compatibility:
@@ -2258,7 +2308,8 @@ class t2bio(object):
             self.parameter['option'][21] = 0
         if warn and len(warnings) > 0:
             print('The following options are not supported in TOUGH2:')
-            for warning in warnings: print(warning)
+            for warning in warnings:
+                print(warning)
 
     def convert_TOUGH2_parameters_to_AUTOUGH2(self, warn=True, MP=False):
         """Converts TOUGH2 parameters to AUTOUGH2 parameters, with optional
@@ -2266,7 +2317,8 @@ class t2bio(object):
         MP is True, treat the file as a TOUGH2_MP data file.
         """
         # modify MULTI:
-        if self.multi: self.multi['num_inc'] = None
+        if self.multi:
+            self.multi['num_inc'] = None
         # set up LINEQ:
         if MP:
             solver_type = 2
@@ -2308,7 +2360,8 @@ class t2bio(object):
         self.parameter['option'][21] = 0  # not used in AUTOUGH2
         if warn and len(warnings) > 0:
             print('The following options are not supported in AUTOUGH2:')
-            for warning in warnings: print(warning)
+            for warning in warnings:
+                print(warning)
 
     def convert_AUTOUGH2_generators_to_TOUGH2(self, warn=True):
         """Convert AUTOUGH2 generators to TOUGH2 generators, with optional
@@ -2324,8 +2377,7 @@ class t2bio(object):
             elif not ((gen.type in allowed) or gen.type.startswith('COM')):
                 delgens.append((gen.block, gen.name))
         if warn and len(delgens) > 0:
-            print('The following generators have types not supported' + \
-                  ' by TOUGH2 and have been deleted:')
+            print('The following generators have types not supported' + ' by TOUGH2 and have been deleted:')
             print(delgens)
 
     def convert_short_to_history(self):
@@ -2346,13 +2398,16 @@ class t2bio(object):
         self.short_output = {}
         if self.history_block:
             blks = [blk for blk in self.history_block if isinstance(blk, t2block)]
-            if blks: self.short_output['block'] = blks
+            if blks:
+                self.short_output['block'] = blks
         if self.history_connection:
             cons = [con for con in self.history_connection if isinstance(con, t2connection)]
-            if cons: self.short_output['connection'] = cons
+            if cons:
+                self.short_output['connection'] = cons
         if self.history_generator:
             gens = [gen for gen in self.history_generator if isinstance(gen, t2generator)]
-            if gens: self.short_output['generator'] = gens
+            if gens:
+                self.short_output['generator'] = gens
         self.history_block = []
         self.history_connection = []
         self.history_generator = []
@@ -2366,7 +2421,8 @@ class t2bio(object):
         TOUGH2_MP data file, which treats a few of the parameters
         differently.
         """
-        if MP: self.filename = 'INFILE'
+        if MP:
+            self.filename = 'INFILE'
         self.simulator = ''
         self.delete_section('SIMUL')
         self.convert_AUTOUGH2_parameters_to_TOUGH2(warn, MP)
@@ -2384,7 +2440,8 @@ class t2bio(object):
                     self.filename += '.dat'
         self.simulator = simulator.ljust(10) + eos
         self.insert_section('SIMUL')
-        if self.multi: self.multi['eos'] = eos
+        if self.multi:
+            self.multi['eos'] = eos
         self.convert_TOUGH2_parameters_to_AUTOUGH2(warn, MP)
         self.convert_history_to_short()
 
@@ -2396,8 +2453,10 @@ class t2bio(object):
         specified block mapping is applied.
         """
 
-        if invert: blockmap = {v: k for k, v in blockmap.items()}
-        if fix_blocknames: fix_block_mapping(blockmap)
+        if invert:
+            blockmap = {v: k for k, v in blockmap.items()}
+        if fix_blocknames:
+            fix_block_mapping(blockmap)
 
         self.grid.rename_blocks(blockmap, fix_blocknames=False)
 
@@ -2476,8 +2535,7 @@ class t2bio(object):
         rotation = np.array([[c, s], [-s, c]])
         for blknames in geo.block_connection_name_list:
             con = self.grid.connection[blknames]
-            blkindices = [geo.block_name_index[blkname] -
-                          geo.num_atmosphere_blocks for blkname in blknames]
+            blkindices = [geo.block_name_index[blkname] - geo.num_atmosphere_blocks for blkname in blknames]
             laynames = [geo.layer_name(blkname) for blkname in blknames]
             if laynames[0] != laynames[1]:  # vertical connection
                 underground = all([blkindex >= 0 for blkindex in blkindices])
@@ -2494,7 +2552,8 @@ class t2bio(object):
                     face_directions.append({
                         "cells": blkindices,
                         "permeability_direction": con.direction})
-        if face_directions: jsondata['mesh']['faces'] = face_directions
+        if face_directions:
+            jsondata['mesh']['faces'] = face_directions
         return jsondata
 
     def eos_json(self, eos):
@@ -2505,15 +2564,18 @@ class t2bio(object):
         if eos is None:
             if self.multi:
                 if 'eos' in self.multi:
-                    if self.multi['eos']: aut2eosname = self.multi['eos'].strip()
+                    if self.multi['eos']:
+                        aut2eosname = self.multi['eos'].strip()
             elif self.simulator:
                 for eosname in supported_eos.keys():
                     if self.simulator.endswith(eosname):
-                        autseosname = eosname
+                        pass
+                        # autseosname = eosname
         else:
             if isinstance(eos, int):
                 eos_from_index = {1: 'EW', 2: 'EWC', 3: 'EWA', 4: 'EWAV'}
-                if eos in eos_from_index: aut2eosname = eos_from_index[eos]
+                if eos in eos_from_index:
+                    aut2eosname = eos_from_index[eos]
             else:
                 aut2eosname = eos
         if aut2eosname:
@@ -2532,21 +2594,23 @@ class t2bio(object):
         dictionary."""
         jsondata = {}
         tstop = self.parameter['tstop']
-        if tstop == 0.0: tstop = None
+        if tstop == 0.0:
+            tstop = None
         jsondata['time'] = {'start': self.parameter['tstart'],
                             'stop': tstop}
         maxit = self.parameter['max_iterations']
-        if maxit is None or maxit == 0: maxit = 8
+        if maxit is None or maxit == 0:
+            maxit = 8
         abstol = self.parameter['absolute_error']
-        if abstol == 0: abstol = 1.0
+        if abstol == 0:
+            abstol = 1.0
         reltol = self.parameter['relative_error']
-        if reltol == 0.: reltol = 1.e-5
+        if reltol == 0.:
+            reltol = 1.e-5
         jsondata['time']['step'] = \
             {'maximum': {'size': self.parameter['max_timestep']},
              'method': 'beuler',
-             'solver': {'nonlinear': {'tolerance': {'function':
-                                                        {'absolute': abstol, 'relative': reltol}},
-                                      'maximum': {'iterations': maxit}}}}
+             'solver': {'nonlinear': {'tolerance': {'function': {'absolute': abstol, 'relative': reltol}}, 'maximum': {'iterations': maxit}}}}
         if self.parameter['max_timesteps'] is not None and \
                 self.parameter['max_timesteps'] >= 0:
             jsondata['time']['step']['maximum']['number'] = self.parameter['max_timesteps']
@@ -2660,7 +2724,8 @@ class t2bio(object):
                     cp['lambda'] = pars[0]
                     cp['slr'] = pars[1]
                     cp['P0'] = 1. / pars[2]
-                    if pars[3] > stol: cp['Pmax'] = pars[3]
+                    if pars[3] > stol:
+                        cp['Pmax'] = pars[3]
                     cp['sls'] = pars[4]
                 elif itype == 8:
                     cp = None
@@ -2735,7 +2800,8 @@ class t2bio(object):
                         g['rate'] = gen.gx
                         if gen.gx > 0. or (gen.time and any([r > 0. for r in gen.rate])):
                             g['component'] = mass_component[gen.type]
-                            if gen.type != 'HEAT': g['enthalpy'] = gen.ex
+                            if gen.type != 'HEAT':
+                                g['enthalpy'] = gen.ex
                     if gen.type == 'DELV':
                         if gen.ltab > 1:
                             raise Exception('DELV generator with multiple layers not supported.')
@@ -2758,7 +2824,8 @@ class t2bio(object):
                             elif gen.hg < 0. and gen.type == 'DELG':
                                 g['rate'] = gen.hg  # initial rate for computing productivity index
                                 del g['deliverability']['productivity']
-                        if gen.type == 'DELS': g['production_component'] = 2
+                        if gen.type == 'DELS':
+                            g['production_component'] = 2
                         g['direction'] = 'production'
                     elif gen.type == 'MASD':
                         g['deliverability'] = {'productivity': gen.ex,
@@ -2793,7 +2860,8 @@ class t2bio(object):
                             else:
                                 g['deliverability']['pressure'] = {'enthalpy': data_table}
                         else:
-                            if gen.rate: g['rate'] = data_table
+                            if gen.rate:
+                                g['rate'] = data_table
                             if gen.enthalpy:
                                 g['enthalpy'] = [list(r) for r in zip(gen.time, gen.enthalpy)]
                     jsondata['source'].append(g)
@@ -2830,8 +2898,7 @@ class t2bio(object):
                             if vertical_connection:
                                 normal = np.array([0., 0., nz])
                             else:
-                                raise Exception("Can't find normal vector for connection: " +
-                                                str(conname))
+                                raise Exception("Can't find normal vector for connection: " + str(conname))
                         else:
                             normal = blk.centre - interior_blk.centre
                         normal /= np.linalg.norm(normal)
@@ -2854,8 +2921,8 @@ class t2bio(object):
                         bc['faces'] = {"cells": allcells,
                                        "normal": bc['faces'][0]["normal"]}
                     if bc['faces']:
-                        if isinstance(bc['faces'], list) and \
-                                len(bc['faces']) == 1: bc['faces'] = bc['faces'][0]
+                        if isinstance(bc['faces'], list) and len(bc['faces']) == 1:
+                            bc['faces'] = bc['faces'][0]
                         jsondata['boundaries'].append(bc)
 
             if jsondata['boundaries']:
@@ -2904,7 +2971,8 @@ class t2bio(object):
             'filename': datbase + '.h5',
             'frequency': print_interval,
             'final': True}
-        if self.parameter['option'][24] > 0: jsondata['output']['initial'] = True
+        if self.parameter['option'][24] > 0:
+            jsondata['output']['initial'] = True
         if self.output_times:
             time_tol = 1.e-8
             checkpoint = {'repeat': False}
