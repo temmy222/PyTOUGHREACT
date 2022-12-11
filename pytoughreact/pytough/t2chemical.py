@@ -4,9 +4,7 @@ import os
 import sys
 
 from pytoughreact.ChemicalCompositions.primaryspecies import PrimarySpecies
-from pytoughreact.pytough.fixed_format_file import *
-from pytoughreact.pytough.t2grids import *
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.fixed_format_file import fixed_format_file, default_read_function
 import struct
 import numpy as np
 

@@ -4,7 +4,7 @@ import os
 from copy import deepcopy
 
 from pytoughreact.pytough.customError import ReactiveOptionsError, ReactiveConstraintsError, RequiredInput
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.fixed_format_file import fixed_format_file, default_read_function
 import sys
 import struct
 import numpy as np

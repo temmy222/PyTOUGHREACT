@@ -308,4 +308,3 @@ class Tough3(object):
         for k, v in dicta.items():
             indexes.append(v[1:])
         return list(itertools.chain.from_iterable(indexes))
-        

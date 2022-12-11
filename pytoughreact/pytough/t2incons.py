@@ -10,8 +10,8 @@ PyTOUGH is distributed in the hope that it will be useful, but WITHOUT ANY WARRA
 
 You should have received a copy of the GNU Lesser General Public License along with PyTOUGH.  If not, see <http://www.gnu.org/licenses/>."""
 
-from pytoughreact.pytough.mulgrids import *
-from pytoughreact.pytough.fixed_format_file import *
+from pytoughreact.pytough.mulgrids import padstring, valid_blockname, fix_blockname, unfix_blockname
+from pytoughreact.pytough.fixed_format_file import fixed_format_file, fortran_read_function
 import numpy as np
 import sys
 

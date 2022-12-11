@@ -12,9 +12,11 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 from __future__ import print_function
 
-from pytoughreact.pytough.mulgrids import *
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.mulgrids import uniqstring, mulgrid, column
+from pytoughreact.pytough.t2incons import t2incon
+from pytoughreact.pytough.geometry import line_projection, vector_heading
 import numpy as np
+from string import ascii_lowercase
 
 
 class rocktype(object):
@@ -875,7 +877,8 @@ class t2reactgrid(object):
                             groups.remove(g2)
                             done = False
                             break
-                    if not done: break
+                    if not done:
+                        break
         return groups
 
     def rectgeo(self, origin_block=None, atmos_volume=1.e25, remove_inactive=False,
@@ -1173,7 +1176,7 @@ class t2reactgrid(object):
             from scipy.misc import derivative
             from numbers import Number
 
-            volume_fractions = np.array(volume_fractions, dtype=float64)
+            volume_fractions = np.array(volume_fractions, dtype=float)
 
             if isinstance(spacing, Number):
                 spacing = [spacing]
@@ -1393,7 +1396,8 @@ class t2reactgrid(object):
         connections involving the renamed blocks must also be renamed."""
 
         if fix_blocknames:
-            mapping = fix_block_mapping(blockmap)
+            pass
+            # mapping = fix_block_mapping(blockmap)
 
         for blk in self.blocklist:
             name = blk.name

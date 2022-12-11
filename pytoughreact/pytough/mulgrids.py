@@ -13,8 +13,11 @@ You should have received a copy of the GNU Lesser General Public License along w
 from __future__ import print_function
 import sys
 from string import ascii_lowercase, ascii_uppercase
-from pytoughreact.pytough.geometry import *
-from pytoughreact.pytough.fixed_format_file import *
+from pytoughreact.pytough.geometry import (sub_rectangles, in_rectangle, rectangles_intersect, polygon_area, in_polygon,
+                                           polygon_centroid, bounds_of_points, vector_heading, norm, line_projection,
+                                           line_polygon_intersections, linear_trans2, polyline_line_distance, point_line_distance,
+                                           simplify_polygon)
+from pytoughreact.pytough.fixed_format_file import default_read_function, fixed_format_file
 import numpy as np
 
 
@@ -1998,7 +2001,7 @@ class mulgrid(object):
     def column_values_to_block(self, x):
         """Takes an array of values for each column and extends it into an
         array of values for each block."""
-        blkval = np.zeros(self.num_blocks, float64)
+        blkval = np.zeros(self.num_blocks, float)
         colindex = self.column_index
         for i, blk in enumerate(self.block_name_list):
             colname = self.column_name(blk)
@@ -3639,7 +3642,7 @@ class mulgrid(object):
         corresponding to the grid in 3D.  VTK data arrays may
         optionally be added.
         """
-        from vtk import vtkUnstructuredGrid, vtkPoints, vtkIdList, \
+        from vtk import vtkUnstructuredGrid, vtkPoints, \
             vtkWedge, vtkHexahedron, vtkPentagonalPrism, \
             vtkHexagonalPrism, vtkConvexPointSet
         node3d, elt3d = self.grid3d(surface_snap)

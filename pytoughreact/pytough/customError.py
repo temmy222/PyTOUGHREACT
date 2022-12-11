@@ -14,6 +14,7 @@ class ReactiveOptionsError(Error):
     """Please add options for reaction calculations"""
     pass
 
+
 class ReactiveConstraintsError(Error):
     """Please add options for reaction calculations"""
     pass

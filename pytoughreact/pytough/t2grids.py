@@ -12,8 +12,9 @@ You should have received a copy of the GNU Lesser General Public License along w
 
 from __future__ import print_function
 
-from pytoughreact.pytough.mulgrids import *
-from pytoughreact.pytough.t2incons import *
+from pytoughreact.pytough.mulgrids import line_projection, mulgrid, uniqstring, column, vector_heading, fix_block_mapping
+from pytoughreact.pytough.t2incons import t2incon
+from string import ascii_lowercase
 import numpy as np
 
 
@@ -533,9 +534,7 @@ class t2grid(object):
         # blocks with volume greater than this are considered boundary
         # condition blocks and not counted:
         bc_volume = 1.e20
-        return set([blk.name for blk in self.blocklist if (blk.volume < bc_volume) and
-                    not (blk.rocktype.name in [self.block[nbr].rocktype.name for
-                                               nbr in blk.neighbour_name])])
+        return set([blk.name for blk in self.blocklist if (blk.volume < bc_volume) and not (blk.rocktype.name in [self.block[nbr].rocktype.name for nbr in blk.neighbour_name])])
 
     isolated_rocktype_blocks = property(get_isolated_rocktype_blocks)
 
@@ -1141,7 +1140,7 @@ class t2grid(object):
             from scipy.misc import derivative
             from numbers import Number
 
-            volume_fractions = np.array(volume_fractions, dtype=float64)
+            volume_fractions = np.array(volume_fractions, dtype=float)
 
             if isinstance(spacing, Number):
                 spacing = [spacing]
