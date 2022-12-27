@@ -8,6 +8,7 @@ class Zone(object):
         self.Mineral = Mineral
         self.Gas = Gas
 
+
 class PermPoro(object):
     def __init__(self, law_type, a_param, b_param):
         self.law_type = law_type
