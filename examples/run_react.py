@@ -1,3 +1,59 @@
+'''
+ *  This is the default license template.
+ *  
+ *  File: run_react.py
+ *  Author: tajayi3
+ *  Copyright (c) 2022 tajayi3
+ *  
+ *  To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+'''
+
+"""
+ This is the default license template.
+ 
+ File: run_react.py
+ Author: tajayi3
+ Copyright (c) 2022 tajayi3
+ 
+ To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+"""
+
+This is the default license template.
+ 
+ File: run_react.py
+ Author: tajayi3
+ Copyright (c) 2022 tajayi3
+ 
+ To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+"""
+
+This is the default license template.
+ 
+ File: run_react.py
+ Author: tajayi3
+ Copyright (c) 2022 tajayi3
+ 
+ To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+"""
+
+This is the default license template.
+ 
+ File: run_react.py
+ Author: tajayi3
+ Copyright (c) 2022 tajayi3
+ 
+ To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+"""
+
+This is the default license template.
+ 
+ File: run_react.py
+ Author: tajayi3
+ Copyright (c) 2022 tajayi3
+ 
+ To edit this license information: Press Ctrl+Shift+P and press 'Create new License Template...'.
+"""
+
 import os
 from mulgrids import mulgrid
 from src.writers.react_writing import t2react

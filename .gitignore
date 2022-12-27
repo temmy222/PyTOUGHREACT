@@ -1,4 +1,4 @@
-# virtual environment
+
 venv
 .venv
 .flake8
@@ -7,6 +7,7 @@ src/results/results_factory.py
 src/results/result_object_factory.py
 src/treacteos1.exe
 treacteos1.exe
+setup.py
 chdump.out
 chemical.inp
 chemical.out
@@ -40,6 +41,42 @@ OUTPUT
 OUTPUT_CONNE.csv
 OUTPUT_ELEME.csv
 OUTPUT_GENER.csv
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 
 
 

@@ -1,0 +1,15 @@
+{
+    "license-header-manager.additionalCommentStyles": [{
+        "extension": ".py",
+        "commentStart": "'''",
+        "commentMiddle": " * ",
+        "commentEnd": "'''"
+    }],
+    "license-header-manager.excludeFolders": [
+        "venv"
+    ],
+    "license-header-manager.excludeExtensions": [
+        ".py",
+    ]
+}
+
