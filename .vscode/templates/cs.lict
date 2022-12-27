@@ -1,7 +1,9 @@
-'''
+%(File) 
+%(CopyrightYear)
+
 MIT License
 
-Copyright (c) [2022] [Temitope Ajayi]
+Copyright (c) [year] [fullname]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-'''
-
-class PermPoroZone(object):
-    def __init__(self, permporo):
-        self.permporo = permporo
-
-class PermPoro(object):
-    def __init__(self, law_type, a_param, b_param):
-        self.law_type = law_type
-        self.a_param = a_param
-        self.b_param = b_param
