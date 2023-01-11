@@ -1,7 +1,7 @@
 # PyTOUGHREACT
 
-PyTOUGHREACT is a Python library for automating reactive transport simulations including biodegradation reactions.
-It makes use of TOUGHREACT, TMVOC and TMVOCBIO for running the simulations. These softwares are interfaced
+PyTOUGHREACT is a Python package for automating reactive transport simulations including biodegradation reactions.
+It makes use of TOUGHREACT, TMVOC and TMVOCBIO executables for running the simulations. These executables are interfaced
 with python to automate the runs. It will be particularly useful for uncertainty quantifications, sensitivity 
 analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which 
 only processes for the TOUGH2 software.
