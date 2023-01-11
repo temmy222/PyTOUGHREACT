@@ -2,10 +2,13 @@
 venv
 .venv
 .flake8
-src/pytough_wrapper/pytough
-src/results/results_factory.py
-src/results/result_object_factory.py
-src/treacteos1.exe
+pytoughreact/pytough_wrapper/pytough
+pytoughreact/results/results_factory.py
+pytoughreact/results/result_object_factory.py
+pytoughreact/results/results.py
+pytoughreact/treacteos1.exe
+docs/user_guide.docx
+docs/user_guide.pdf
 treacteos1.exe
 setup.py
 chdump.out

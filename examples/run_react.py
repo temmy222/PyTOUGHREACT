@@ -56,16 +56,16 @@ This is the default license template.
 
 import os
 from mulgrids import mulgrid
-from src.writers.react_writing import t2react
-from src.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from src.pytough_wrapper.wrapper.reactzone import t2zone
-from src.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
-from src.chemical.mineral_composition import MineralComp
-from src.chemical.mineral_zone import MineralZone
-from src.chemical.mineral_description import Mineral
-from src.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
-from src.writers.chemical_writing import t2chemical
-from src.writers.solute_writing import t2solute
+from pytoughreact.writers.react_writing import t2react
+from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
+from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
+from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
+from pytoughreact.chemical.mineral_composition import MineralComp
+from pytoughreact.chemical.mineral_zone import MineralZone
+from pytoughreact.chemical.mineral_description import Mineral
+from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
+from pytoughreact.writers.chemical_writing import t2chemical
+from pytoughreact.writers.solute_writing import t2solute
 from t2grids import rocktype
 
 #__________________________________FLOW.INP______________________________________________________
