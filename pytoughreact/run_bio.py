@@ -33,6 +33,7 @@ from chemical.bio_process_description import BIODG, Process
 from t2grids import t2grid
 from t2data import rocktype, t2generator
 
+#__________________________________FLOW.INP______________________________________________________
 second = 1
 minute = 60 * second
 hour = 60 * minute
@@ -77,8 +78,9 @@ bio.parameter.update(
      'phase_index': 2,
      'default_incons': [9.57e+06, 0,  1e-6, 30.]})
 
-# ,
 
+
+#____________________________________BIODEGRADATION________________________________________________________________
 bio.start = True
 
 toluene = Component(1).defaultToluene()
@@ -99,11 +101,6 @@ process1 = Process(biomass, 2, 1.6944e-04, 0.58, 0)
 water.addToProcess(process1, water_uptake)
 O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
 toluene.addToProcess(process1, 1, 7.4625e-06)
-
-
-
-
-
 
 biodegradation = BIODG(0, 1.e-10, 0, 0.2, 0.9, 0.9,
                        [process1],
@@ -149,9 +146,7 @@ if direction == 'x':
                 bio.add_generator(gen)
             j = j + 1
 
-"""
-Write and Run
-"""
+#____________________________________RUN SIMULATION________________________________________________________________
 bio.write('INFILE', runlocation=os.getcwd())
 bio.run(simulator='tmvoc')
 

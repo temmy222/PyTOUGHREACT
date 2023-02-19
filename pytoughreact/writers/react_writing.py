@@ -36,7 +36,7 @@ import os
 import sys
 from os.path import splitext, basename
 from os import devnull, remove
-from subprocess import call
+from subprocess import call, run, PIPE
 from t2data import trim_trailing_nones
 from mulgrids import padstring
 
@@ -246,7 +246,6 @@ class t2react(t2data):
                 else:  # run TOUGH2 (need to specify simulator executable name)	
                     if runlocation:
                         os.chdir(runlocation)	
-                        print(os.getcwd())
                     if os.path.exists("GENER"):
                         os.remove("GENER")	
                     if os.path.exists("OUTPUT_ELEME.csv"):
@@ -261,8 +260,14 @@ class t2react(t2data):
                             outfilename = datbase + '.out'	
                         else:	
                             outfilename = output_filename	
-                        outfile = open(outfilename, 'w')	
-                    call(cmd, stdin=infile, stdout=outfile)
+                        outfile = open(outfilename, 'w')
+                    p = Popen(os.path.join(current_dir,"file.exe"),cwd=current_dir)
+                    status = call(cmd, stdin=infile, stdout=outfile)
+                    status_2 = run(["treacteos1<flow.inp"], 
+                                  stdout=PIPE, 
+                                  text=True, 
+                                  input="Hello from the other side")
+                    print(status_2)
 
     def read_parameters(self, infile):	
         """Reads simulation parameters"""	
