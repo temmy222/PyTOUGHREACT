@@ -146,11 +146,12 @@ writeChemical.gases = initial_co2
 writeChemical.write()
 
 #____________________________________SOLUTE.INP________________________________________________________________
-writeSolute = t2solute(writeChemical)
+writeSolute = t2solute(t2chemical = writeChemical)
 writeSolute.nodes_to_write = [0]
 masa = writeSolute.getgrid_info()
 writeSolute.write()
 
 #___________________________________ RUN SIMULATION ___________________________________________________________
 print(os.path.dirname(__file__))
+print(os.getcwd())
 react.run(simulator='treacteos1.exe', runlocation=os.getcwd())

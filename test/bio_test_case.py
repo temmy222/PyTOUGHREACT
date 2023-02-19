@@ -7,10 +7,7 @@ import pathlib
 
 
 from mulgrids import mulgrid
-from writers.bio_writing import t2bio
-from chemical.bio_process_description import BIODG, Process
-from chemical.biomass_composition import Component, Gas, Water_Bio, Biomass
-from results.result_single import FileReadSingle
+from context import pytoughreact
 from t2grids import t2grid
 from t2data import rocktype
 
@@ -37,7 +34,7 @@ class BioTestCase(unittest.TestCase):
         geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -100])
         geo.write('geom.dat')
 
-        bio = t2bio()
+        bio = pytoughreact.t2bio()
         bio.title = 'Biodegradation Runs'
 
         bio.grid = t2grid().fromgeo(geo)
@@ -66,25 +63,25 @@ class BioTestCase(unittest.TestCase):
         # ,
 
         bio.start = True
-        toluene = Component(1).defaultToluene()
+        toluene = pytoughreact.Component(1).defaultToluene()
         bio.components = [toluene]
 
-        O2_gas = Gas('O2', 2)
+        O2_gas = pytoughreact.Gas('O2', 2)
         bio.gas = [O2_gas]
 
-        water = Water_Bio('H2O')
+        water = pytoughreact.Water_Bio('H2O')
 
-        biomass = Biomass(1, 'biom', 0.153, 1.00e-6, 30, 0, 0.e-6)
+        biomass = pytoughreact.Biomass(1, 'biom', 0.153, 1.00e-6, 30, 0, 0.e-6)
         oxygen_ks = 0.5e-6
         oxygen_uptake = 1
         water_uptake = -3
 
-        process1 = Process(biomass, 2, 1.6944e-04, 0.58, 0)
+        process1 = pytoughreact.Process(biomass, 2, 1.6944e-04, 0.58, 0)
         water.addToProcess(process1, water_uptake)
         O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
         toluene.addToProcess(process1, 1, 7.4625e-06)
 
-        biodegradation = BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9,
+        biodegradation = pytoughreact.BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9,
                                [process1],
                                [biomass])
         bio.biodg = [biodegradation]
@@ -99,7 +96,7 @@ class BioTestCase(unittest.TestCase):
         return bio
 
     def set_up_read(self):
-        bio_read = t2bio()
+        bio_read = pytoughreact.t2bio()
         bio_read.read('INFILE')
 
         return bio_read
@@ -109,18 +106,18 @@ class BioTestCase(unittest.TestCase):
         result = write_output.status
         self.assertEqual(result, 'successful')
 
-    # def test_read(self):
-    #     write_output = self.set_up_read()
-    #     result = write_output.status
-    #     self.assertEqual(result, 'successful')
+    def test_read(self):
+        write_output = self.set_up_read()
+        result = write_output.status
+        self.assertEqual(result, 'successful')
 
-    # def test_result_first(self):
-    #     results = FileReadSingle('tmvoc', 'OUTPUT_ELEME.csv')
-    #     time = results.get_times('second')
-    #     parameter_result = results.get_time_series_data('X_toluen_L', 0)
-    #     time_length = len(time)
-    #     parameter_result_length =len(parameter_result)
-    #     self.assertEqual(time_length, parameter_result_length)
+    def test_result_first(self):
+        results = pytoughreact.FileReadSingle('tmvoc', 'OUTPUT_ELEME.csv', 'test')
+        time = results.get_times('second')
+        parameter_result = results.get_time_series_data('X_toluen_L', 0)
+        time_length = len(time)
+        parameter_result_length =len(parameter_result)
+        self.assertEqual(time_length, parameter_result_length)
 
 
 

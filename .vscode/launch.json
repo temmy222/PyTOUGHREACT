@@ -8,7 +8,7 @@
             "name": "Python: Run TOUGHREACT",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/src/run_react.py",
+            "program": "${cwd}/pytoughreact/run_react.py",
             "console": "integratedTerminal",
             "justMyCode": false
         },
