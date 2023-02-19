@@ -1,40 +1,44 @@
-# PyTOUGHREACT
+'''
+MIT License
 
-PyTOUGHREACT is a Python package for automating reactive transport simulations including biodegradation reactions.
-It makes use of TOUGHREACT, TMVOC and TMVOCBIO executables for running the simulations. These executables are interfaced
-with python to automate the runs. It will be particularly useful for uncertainty quantifications, sensitivity 
-analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which 
-only processes for the TOUGH2 software.
+Copyright (c) [2022] [Temitope Ajayi]
 
-## Installation
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-PyTOUGHREACT is available on PyPI which is a repository for softwares built with the Python Programming Language. Before 
-installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install PyTOUGHREACT.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-```bash
-pip install pytoughreact
-```
+'''
 
-## Usage
-
-```python
 import os
 from mulgrids import mulgrid
-from pytoughreact.writers.react_writing import t2react
-from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
-from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
-from pytoughreact.chemical.mineral_composition import MineralComp
-from pytoughreact.chemical.mineral_zone import MineralZone
-from pytoughreact.chemical.mineral_description import Mineral
-from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
-from pytoughreact.writers.chemical_writing import t2chemical
-from pytoughreact.writers.solute_writing import t2solute
+from writers.react_writing import t2react
+from pytough_wrapper.wrapper.reactgrid import t2reactgrid
+from pytough_wrapper.wrapper.reactzone import t2zone
+from chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
+from chemical.mineral_composition import MineralComp
+from chemical.mineral_zone import MineralZone
+from chemical.mineral_description import Mineral
+from constants.default_minerals import get_kinetics_minerals, get_specific_mineral
+from writers.chemical_writing import t2chemical
+from writers.solute_writing import t2solute
 from t2grids import rocktype
 
-#__________________________________FLOW.INP____________________________________________
+#________________________FLOW.INP______________________________________________________
+
 length = 0.1
 nblks = 1
 dx = [length / nblks] * nblks
@@ -82,7 +86,7 @@ react.start = True
 
 react.write('flow.inp')
 
-#____________________________________CHEMICAL.INP________________________________________
+#____________________________________CHEMICAL.INP________________________________________________________________
 h2o = PrimarySpecies('h2o', 0)
 h = PrimarySpecies('h+', 0)
 na = PrimarySpecies('na+', 0)
@@ -141,22 +145,13 @@ writeChemical.primary_aqueous = all_species
 writeChemical.gases = initial_co2
 writeChemical.write()
 
-#____________________________________SOLUTE.INP__________________________________________
-writeSolute = t2solute(writeChemical)
+#____________________________________SOLUTE.INP________________________________________________________________
+writeSolute = t2solute(t2chemical = writeChemical)
 writeSolute.nodes_to_write = [0]
 masa = writeSolute.getgrid_info()
 writeSolute.write()
 
-#___________________________________ RUN SIMULATION ______________________________________
+#___________________________________ RUN SIMULATION ___________________________________________________________
+print(os.path.dirname(__file__))
+print(os.getcwd())
 react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
-
-
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)

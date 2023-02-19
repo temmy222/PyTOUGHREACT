@@ -1,25 +1,3 @@
-# PyTOUGHREACT
-
-PyTOUGHREACT is a Python package for automating reactive transport simulations including biodegradation reactions.
-It makes use of TOUGHREACT, TMVOC and TMVOCBIO executables for running the simulations. These executables are interfaced
-with python to automate the runs. It will be particularly useful for uncertainty quantifications, sensitivity 
-analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which 
-only processes for the TOUGH2 software.
-
-## Installation
-
-PyTOUGHREACT is available on PyPI which is a repository for softwares built with the Python Programming Language. Before 
-installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. 
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install PyTOUGHREACT.
-
-```bash
-pip install pytoughreact
-```
-
-## Usage
-
-```python
 import os
 from mulgrids import mulgrid
 from pytoughreact.writers.react_writing import t2react
@@ -34,7 +12,8 @@ from pytoughreact.writers.chemical_writing import t2chemical
 from pytoughreact.writers.solute_writing import t2solute
 from t2grids import rocktype
 
-#__________________________________FLOW.INP____________________________________________
+#__________________________________FLOW.INP______________________________________________________
+
 length = 0.1
 nblks = 1
 dx = [length / nblks] * nblks
@@ -82,7 +61,7 @@ react.start = True
 
 react.write('flow.inp')
 
-#____________________________________CHEMICAL.INP________________________________________
+#____________________________________CHEMICAL.INP________________________________________________________________
 h2o = PrimarySpecies('h2o', 0)
 h = PrimarySpecies('h+', 0)
 na = PrimarySpecies('na+', 0)
@@ -141,22 +120,12 @@ writeChemical.primary_aqueous = all_species
 writeChemical.gases = initial_co2
 writeChemical.write()
 
-#____________________________________SOLUTE.INP__________________________________________
+#____________________________________SOLUTE.INP________________________________________________________________
 writeSolute = t2solute(writeChemical)
 writeSolute.nodes_to_write = [0]
 masa = writeSolute.getgrid_info()
 writeSolute.write()
 
-#___________________________________ RUN SIMULATION ______________________________________
+#___________________________________ RUN SIMULATION ___________________________________________________________
+print(os.path.dirname(__file__))
 react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
-
-
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)

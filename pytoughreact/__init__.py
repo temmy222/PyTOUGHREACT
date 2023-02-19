@@ -1,14 +1,10 @@
-from pytoughreact.pytough.mulgrids import mulgrid
-from pytoughreact.ChemicalCompositions.primaryspecies import WaterComp, Water, PrimarySpecies, ReactGas
-from pytoughreact.ChemicalCompositions.mineral import pHDependenceType2, Dissolution, Precipitation, Mineral, PermPoroZone, MineralComp, MineralZone
-from pytoughreact.ChemicalCompositions.zone import PermPoro
-from pytoughreact.pytough.t2reactgrids import t2reactgrid
-from pytoughreact.pytough.t2chemical import t2chemical
-from pytoughreact.pytough.t2react import t2react
-from pytoughreact.pytough.t2solute import t2solute
-from pytoughreact.pytough.t2result import t2result
-from pytoughreact.pytough.t2bio import t2bio
-from pytoughreact.pytough.t2grids import t2grid
-from pytoughreact.pytough.t2components import Component, Gas, Water_Bio, Biomass
-from pytoughreact.pytough.t2process import Process, BIODG
-from pytoughreact.pytough.t2grids import rocktype
+import os, sys; sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+from pytoughreact.chemical.chemical_composition import WaterComp, Water, PrimarySpecies, ReactGas
+from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation
+from pytoughreact.chemical.mineral_composition import MineralComp
+from pytoughreact.chemical.mineral_description import Mineral
+from pytoughreact.chemical.perm_poro_zone import PermPoro
+from pytoughreact.writers.bio_writing import t2bio
+from pytoughreact.chemical.biomass_composition import Component, Gas, Water_Bio, Biomass
+from pytoughreact.chemical.bio_process_description import Process, BIODG
+from pytoughreact.results.result_single import FileReadSingle
