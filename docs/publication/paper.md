@@ -32,42 +32,207 @@ TOUGH suite of simulators requires users to write or modify a text file and pars
 
 ## General Architecture
 
-The software uses object-oriented programming principles to structure the code. The software can be thought of as composed of two main segments; the processing segment and the output segment \autoref{fig:Figure 1}. The processing segment contains three main sections, IO processing, BIO and REACT.  The IO processing is responsible for most of the input and output processing such as reading, writing. The BIO section is responsible for the TMVOC section of the package where it contains classes for storing biomass and degradation information and processing it before passing to IO processing for read/write. Similarly, the react section assists in processing reaction parameters such as mineral, chemical, and solute information before passing to the IO processing segment for read/write. After the files have been written to or read from the appropriate file types, the executable is called from within PyTOUGHREACT and the simulation is performed using the executable. Thereafter, the output segment is called which can read the results of the simulations and contains methods and functions which assist the user in creating 2D or 3D plots through the plotting module.
+The software uses object-oriented programming principles to structure the code. The software can be thought of as composed of two main segments; the processing segment and the output segment (\autoref{fig:Figure 1}). The processing segment contains three main sections, IO processing, BIO and REACT.  The IO processing is responsible for most of the input and output processing such as reading, writing. The BIO section is responsible for the TMVOC section of the package where it contains classes for storing biomass and degradation information and processing it before passing to IO processing for read/write. Similarly, the react section assists in processing reaction parameters such as mineral, chemical, and solute information before passing to the IO processing segment for read/write. After the files have been written to or read from the appropriate file types, the executable is called from within PyTOUGHREACT and the simulation is performed using the executable. Thereafter, the output segment is called which can read the results of the simulations and contains methods and functions which assist the user in creating 2D or 3D plots through the plotting module.
 
-![Caption for example figure.\label{fig:Figure 1}](../images/general_architecture.png)
+![General Structure of the PyTOUGHREACT package.\label{fig:Figure 1}](../images/general_architecture.png)
 
+## BIO Architecture
 
-An example of a full biodegradation run file simulation is shown below
+The BIO section is responsible for processing the TMVOC inputs. It makes use of two subsections to achieve this (\autoref{fig:Figure 2}). The first subsection is responsible for aggregating the unique constituents of a biodegradation simulation for TMVOC; these constituents include water, gas, biomass, solids, and components. The second subsection is responsible for unique biodegradation processes in the simulation. This is done via two classes Process class and the BIODG class. The process class defines the constituents for any biodegradation process and BIODG class combines all processes together with numerical parameters for that process. 
+
+![BIO Architecture Structure.\label{fig:Figure 2}](../images/bio_architecture.png)
+
+## React Architecture
+
+The react component consists of two main subcomponents: the chemical subcomponent and the solute subcomponent. The chemical subcomponent is responsible for defining the chemical constituents of the simulation such as the primary species, water, mineral, gas while the solute sub component is responsible for mapping each of the defined chemical constituents to the grid of the simulation and other functions such as what grids to write to output etc. 
+
+## Result and Plotting Architecture
+
+Though separate, the result and plotting architecture have very similar structures (\autoref{fig:Figure 3}). The two sections are subdivided into single and multiple file processing. As the name suggests, the single file enables the processing of a single file. While the results section enables users to process simulation output further in python, the plotting sections uses the output from the results section to make line and 2D plots. Similarly, the multiple file processing of the results section makes use of multiple files to output results which are then used in the plotting section for line and 2D plots. The multiple file processing provides efficiency when multiple files are required to be processed or in the plotting section to see variations from one simulation to another in a single plot. 
+
+![BIO Architecture Structure.\label{fig:Figure 3}](../images/result_architecture.png)
+
+# Sample Simulations
+
+Two broad examples are shown in the next two sections to show how the package can be applied to both biodegradation and chemical reaction simulations using TOUGHREACT and TMVOCBIO
+
+## Chemical Reaction Example
 
 ```python
-import numpy as np
-import pytoughreact as pyt
-from pytoughreact import mulgrid, t2grid, Component, Gas, Water_Bio, Biomass, Process, BIODG, rocktype
 
+import os
+from mulgrids import mulgrid
+from writers.react_writing import t2react
+from pytough_wrapper.wrapper.reactgrid import t2reactgrid
+from pytough_wrapper.wrapper.reactzone import t2zone
+from chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
+from chemical.mineral_composition import MineralComp
+from chemical.mineral_zone import MineralZone
+from chemical.mineral_description import Mineral
+from constants.default_minerals import get_kinetics_minerals, get_specific_mineral
+from writers.chemical_writing import t2chemical
+from writers.solute_writing import t2solute
+from t2grids import rocktype
+
+#________________________FLOW.INP____________________________________________________
+length = 0.1
+nblks = 1
+dx = [length / nblks] * nblks
+dy = [0.5]
+dz = [0.5] * 1
+geo = mulgrid().rectangular(dx, dy, dz)
+geo.write('geom.dat')
+
+react = t2react()
+react.title = 'Reaction example'
+
+react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
+               'num_secondary_parameters': 6}
+
+react.grid = t2reactgrid().fromgeo(geo)
+
+react.parameter.update(
+    {'print_level': 4,
+     'max_timesteps': 9999,
+     'tstop': 8640,
+     'const_timestep': 10.,
+     'print_interval': 1,
+     'gravity': 9.81,
+     'relative_error': 1e-5,
+     'phase_index': 2,
+     'default_incons': [1.013e5, 25]})
+
+sand = rocktype('ROCK1', 0, 2600, 0.1, [6.51e-12, 6.51e-12, 6.51e-12], 0.0, 952.9)
+
+react.grid.delete_rocktype('dfalt')
+react.grid.add_rocktype(sand)
+
+for blk in react.grid.blocklist[0:]:
+    blk.rocktype = react.grid.rocktype[sand.name]
+
+
+zone1 = t2zone('zone1')
+
+react.grid.add_zone(zone1)
+
+for blk in react.grid.blocklist[0:]:
+    blk.zone = react.grid.zone[zone1.name]
+
+react.start = True
+
+react.write('flow.inp')
+
+#____________________________________CHEMICAL.INP____________________________________
+h2o = PrimarySpecies('h2o', 0)
+h = PrimarySpecies('h+', 0)
+na = PrimarySpecies('na+', 0)
+cl = PrimarySpecies('cl-', 0)
+hco3 = PrimarySpecies('hco3-', 0)
+ca = PrimarySpecies('ca+2', 0)
+so4 = PrimarySpecies('so4-2', 0)
+mg = PrimarySpecies('mg+2', 0)
+h4sio4 = PrimarySpecies('h4sio4', 0)
+al = PrimarySpecies('al+3', 0)
+fe = PrimarySpecies('fe+2', 0)
+hs = PrimarySpecies('hs-', 0)
+
+all_species = [h2o, h,na, cl, hco3, ca, so4, mg, h4sio4, al, fe, hs]
+
+h2o_comp1 = WaterComp(h2o, 1, 1.0000E+00, 1.000000E+00)
+h_comp1 = WaterComp(h, 1, 1E-7, 1E-7)
+na_comp1 = WaterComp(na, 1, 1E-10, 2.93E-2)
+cl_comp1 = WaterComp(cl, 1, 1E-10, 1.08E-3)
+hco3_comp1 = WaterComp(hco3, 1, 1E-10, 2.21E-08)
+ca_comp1 = WaterComp(ca, 1, 1E-10, 5.9E-03)
+so4_comp1 = WaterComp(so4, 1, 1E-10, 6.94E-3)
+mg_comp1 = WaterComp(mg, 1, 1E-10, 2.54E-8)
+h4sio4_comp1 = WaterComp(h4sio4, 1, 1E-10, 1E-10)
+al_comp1 = WaterComp(al, 1, 1E-10, 9.96E-5)
+fe_comp1 = WaterComp(fe, 1, 1E-10, 9.7E-9)
+hs_comp1 = WaterComp(hs, 1, 1E-10, 1E-10)
+
+initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1, h4sio4_comp1, al_comp1, fe_comp1, hs_comp1], 25, 200)
+
+mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh' , 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
+all_minerals = get_kinetics_minerals(mineral_list)
+
+
+c3fh6_zone1 = MineralComp(get_specific_mineral(mineral_list[0]), 0.1, 0, 0.0E-00, 20000.0, 0)
+tobermorite_zone1 = MineralComp(get_specific_mineral(mineral_list[1]), 0.05, 0, 0.0E-00, 20000.0, 0)
+calcite_zone1 = MineralComp(get_specific_mineral(mineral_list[2]), 0.4, 1, 0.0E-00, 260.0, 0)
+csh_zone1 = MineralComp(get_specific_mineral(mineral_list[3]), 0.1, 1, 0.0E-00, 20000.0, 0)
+portlandite_zone1 = MineralComp(get_specific_mineral(mineral_list[4]), 0.1, 1, 0.0E-00, 1540.0, 0)
+ettringite_zone1 = MineralComp(get_specific_mineral(mineral_list[5]), 0.1, 1, 0.0E-00, 20000.0, 0)
+katoite_zone1 = MineralComp(get_specific_mineral(mineral_list[6]), 0.1, 1, 0.0E-00, 570.0, 0)
+hydrotalcite_zone1 = MineralComp(get_specific_mineral(mineral_list[7]), 0.05, 1, 0.0E-00, 1000.0, 0)
+
+initial_co2 = ReactGas('co2(g)', 0, 1.1)
+ijgas = [[initial_co2], []]
+
+zone1.water = [[initial_water_zone1], []]
+zone1.gas = [[initial_co2], []]
+mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1, katoite_zone1, hydrotalcite_zone1])
+zone1.mineral_zone = mineral_zone1
+
+writeChemical = t2chemical(t2reactgrid=react.grid)
+writeChemical.minerals = all_minerals
+writeChemical.title = 'Automating Tough react'
+writeChemical.primary_aqueous = all_species
+writeChemical.gases = initial_co2
+writeChemical.write()
+
+#____________________________________SOLUTE.INP______________________________________
+writeSolute = t2solute(writeChemical)
+writeSolute.nodes_to_write = [0]
+masa = writeSolute.getgrid_info()
+writeSolute.write()
+
+#___________________________________ RUN SIMULATION _________________________________
+print(os.path.dirname(__file__))
+react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
+
+
+```
+
+## Biodegradation Reaction Example
+
+```python
+
+import numpy as np
+import os
+
+from mulgrids import mulgrid
+from writers.bio_writing import t2bio
+from chemical.biomass_composition import Component, Biomass, Gas, Water_Bio
+from chemical.bio_process_description import BIODG, Process
+from t2grids import t2grid
+from t2data import rocktype, t2generator
+
+#__________________________________FLOW.INP__________________________________________
 second = 1
 minute = 60 * second
 hour = 60 * minute
 day = 24 * hour
 year = 365. * day
 year = float(year)
-simtime = 1 * year
+simtime = 100 * year
 
-length = 9
-xblock = 3
+length = 1000.
+xblock = 10
 yblock = 1
-zblock = 4
+zblock = 5
 dx = [length / xblock] * xblock
-dy = [0.1]
-dz = [2] * zblock
-geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -100])
+dy = [1.0]
+dz = [5] * zblock
+geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -95])
 geo.write('geom.dat')
 
-bio = pyt.t2bio()
+bio = t2bio()
 bio.title = 'Biodegradation Runs'
 
 bio.grid = t2grid().fromgeo(geo)
 bio.grid.delete_rocktype('dfalt')
-shale = rocktype('shale', 0, 2600, 0.67, [6.51e-14, 6.51e-14, 6.51e-14], 1.5, 900)
+shale = rocktype('shale', 0, 2600, 0.27, [6.51e-19, 6.51e-19, 6.51e-19], 1.5, 900)
 bio.grid.add_rocktype(shale)
 
 for blk in bio.grid.blocklist[0:]:
@@ -80,18 +245,21 @@ bio.parameter.update(
     {'print_level': 3,
      'max_timesteps': 9999,
      'tstop': simtime,
-     'const_timestep': 1.,
+     'const_timestep': 100.,
      'print_interval': 1,
      'gravity': 9.81,
      'option': np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
      'relative_error': 1e-5,
      'phase_index': 2,
-     'default_incons': [9.57e+05, 0, 0, 0, 0, 0, 0, 1e-3, 10.]})
+     'default_incons': [9.57e+06, 0,  1e-6, 30.]})
 
-# ,
 
+
+#____________________________________BIODEGRADATION__________________________________
 bio.start = True
+
 toluene = Component(1).defaultToluene()
+
 bio.components = [toluene]
 
 O2_gas = Gas('O2', 2)
@@ -99,7 +267,7 @@ bio.gas = [O2_gas]
 
 water = Water_Bio('H2O')
 
-biomass = Biomass(1, 'biom', 0.153, 1.00e-6, 30, 0, 0.e-6)
+biomass = Biomass(1, 'biom', 0.0153, 1.00e-6, 30, 2.3148e-07, 0.e-6)
 oxygen_ks = 0.5e-6
 oxygen_uptake = 1
 water_uptake = -3
@@ -109,7 +277,7 @@ water.addToProcess(process1, water_uptake)
 O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
 toluene.addToProcess(process1, 1, 7.4625e-06)
 
-biodegradation = BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9,
+biodegradation = BIODG(0, 1.e-10, 0, 0.2, 0.9, 0.9,
                        [process1],
                        [biomass])
 bio.biodg = [biodegradation]
@@ -117,16 +285,48 @@ bio.biodg = [biodegradation]
 bio.diffusion = [
     [2.e-5, 6.e-10, 6.e-10],
     [2.e-5, 6.e-10, 6.e-10],
+    [2.e-5, 6.e-10, 6.e-10],
+    [2.e-5, 6.e-10, 6.e-10],
+    [2.e-5, 6.e-10, 6.e-10],
+    [2.e-5, 6.e-10, 6.e-10],
+    [2.e-5, 6.e-10, 6.e-10],
     [2.e-5, 6.e-10, 6.e-10]
 ]
 
-bio.write('INFILE')
-bio.run('tmvoc.exe')
+well = 'wl '
+compo = ['COM3']
+direction = 'x'
+duration = [0, 1 * year, 101 * year]
+# duration = np.linspace(0, simtime * 2, 7)
+rate = np.array([1.00e-2, 0, 0])
+rate_O2 = [1.00e-03, 0, 0]
+energy = [5, 5, 5]
+
+if direction == 'x':
+    j = 0
+    for i in range(0, xblock):
+        # for i in range(xblock * (zblock - 1), xblock * (zblock)):
+        for component in compo:
+            if component == 'COM2':
+                gen = t2generator(name=well + str(i), block=bio.grid.blocklist[i].name, type=component,
+                                  ltab=len(duration),
+                                  itab=str(3),
+                                  time=duration, rate=rate_O2, enthalpy=energy)
+                bio.add_generator(gen)
+            else:
+                gen = t2generator(name=well + str(i), block=bio.grid.blocklist[i].name, type=component,
+                                  ltab=len(duration),
+                                  itab=str(3),
+                                  time=duration, rate=rate, enthalpy=energy)
+                bio.add_generator(gen)
+            j = j + 1
+
+#____________________________________RUN SIMULATION__________________________________
+bio.write('INFILE', runlocation=os.getcwd())
+bio.run(simulator='tmvoc')
+
 
 ```
-
-
-
 
 # Acknowledgements
 
