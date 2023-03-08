@@ -37,13 +37,23 @@ class RequiredInputException(Exception):
         super().__init__(self.message)
 
 class RelativePermeabilityTypeError(Exception):
+    """ Exception raised for wrong relative peremability inputs """
     def __init__(self, input_value, all_rel_perm_types):
         self.input_value = input_value
         self.all_rel_perm_types = all_rel_perm_types
         self.message =  '{0} is not one of the in-built relative permeability types. Please choose one of {1}'.format(self.input_value, self.all_rel_perm_types)
         super().__init__(self.message)
 
+class NotFoundError(Exception):
+    """ Exception raised when file is not found"""
+    def __init__(self, input_value, directory):
+        self.input_value = input_value
+        self.directory = directory
+        self.message =  '{0} not Found in {1}'.format(self.input_value, self.directory)
+        super().__init__(self.message)
+
 class CapillaryPressureTypeError(Exception):
+    """ Exception raised for wrong capillary pressure inputs """
     def __init__(self, input_value, all_cap_pres_types):
         self.input_value = input_value
         self.all_cap_pres_types = all_cap_pres_types
@@ -52,6 +62,7 @@ class CapillaryPressureTypeError(Exception):
 
 class RestrictionError(Exception):
     def __init__(self, *args, condition_type):
+        """ Exception raised for mathematical constraints of parameters """
         if condition_type == 'greater':
             self.message =  '{1} must be greater than {0}'.format(args[0], args[1])
         if condition_type == 'less':
@@ -66,6 +77,7 @@ class RestrictionError(Exception):
         super().__init__(self.message)
 
 class ParameterLessThanThreeError(Exception):
+    """ Exception raised when parameters are expected to be greater than three"""
     def __init__(self):
         self.message =  'Parameters must be a list of parameter values with parameters less than 3'
         super().__init__(self.message)

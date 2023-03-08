@@ -24,13 +24,17 @@ SOFTWARE.
 
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
-
+from setuptools.command.install import install as _install
 # To use a consistent encoding
 from codecs import open
 from os import path
 
+import pip
+
 # The directory containing this file
 HERE = path.abspath(path.dirname(__file__))
+
+# exec(open('pytoughreact/version.py').read())
 
 # Get the long description from the README file
 with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
@@ -38,33 +42,58 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 # This call to setup() does all the work
 setup(
+    #Package Name
     name="pytoughreact",
-    version="0.0.2",
+
+    # Version number (initial):
+    version='0.0.15',
+
+    #Package Description and Details
     description="Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO",
     url="https://github.com/temmy222/PyTOUGHREACT/tree/master",
+
+    #Package Author
     author="Temitope Ajayi",
     author_email="ajayi_temmy@yahoo.com",
+
+    #License
     license="MIT",
-    classifiers=[
-        "Intended Audience :: Researchers",
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
-        "Operating System :: OS Independent"
-    ],
-    # packages=["pytoughreact", "ChemicalCompositions", "pytough"],
-    # packages=find_packages(),
+
+
     packages=find_packages(include=['pytoughreact', 'pytoughreact.*']),
     include_package_data=True,
     python_requires='>=3.7',
-    dependency_links=[
-        "https://github.com/acroucher/PyTOUGH/tarball/master#egg=package-1.5.6",
-    ],
-    install_requires=["numpy", "scipy", "vtk", "matplotlib"]
+
+    keywords=['python', 'reaction', 'TOUGHREACT', 'TMVOC-BIO', 'Uncertainty quantification', 'Sensitivity Analysis'],
+    install_requires=[
+    "numpy", 
+    "scipy", 
+    "vtk", 
+    "matplotlib",
+    "pandas"
+   ]
 )
+
+#Other Details
+# classifiers=[
+#     "Intended Audience :: Researchers",
+#     "License :: OSI Approved :: MIT License",
+#     "Programming Language :: Python",
+#     "Programming Language :: Python :: 3",
+#     "Programming Language :: Python :: 3.6",
+#     "Programming Language :: Python :: 3.7",
+#     "Programming Language :: Python :: 3.8",
+#     "Programming Language :: Python :: 3.9",
+#     "Programming Language :: Python :: 3.10",
+#     "Programming Language :: Python :: 3.11",
+#     "Operating System :: OS Independent"
+# ],
+# packages=["pytoughreact", "ChemicalCompositions", "pytough"],
+# packages=find_packages(),
+# 'repo @ https://github.com/acroucher/PyTOUGH-master.zip#egg=PyTOUGH'
+# PyTOUGH @ git+ssh://git@github.com/acroucher/PyTOUGH@master#egg=PyTOUGH
+# 'PyTOUGH @ git+https://github.com/acroucher/PyTOUGH.git@master'
+    # dependency_links=[
+    #     "git+https://github.com/acroucher/PyTOUGH.git#egg=PyTOUGH",
+    #     # "git+ssh://git@github.com:acroucher/PyTOUGH.git@1.5.6#egg=PyTOUGH"
+    # ],

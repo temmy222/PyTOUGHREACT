@@ -38,6 +38,7 @@ from writers.solute_writing import t2solute
 from t2grids import rocktype
 
 #________________________FLOW.INP______________________________________________________
+print(os.getcwd())
 
 length = 0.1
 nblks = 1
@@ -154,4 +155,4 @@ writeSolute.write()
 #___________________________________ RUN SIMULATION ___________________________________________________________
 print(os.path.dirname(__file__))
 print(os.getcwd())
-react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
+react.run(writeSolute, simulator='treacteos1.exe')

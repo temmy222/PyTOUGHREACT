@@ -72,11 +72,13 @@ class FileReadMultiple(object):
             plottest.plotMultiElementMultiFile(grid_block_number, legend, format_of_date, plot_kind)
 
     def plotTimePerPanel(self, grid_block_number, panels, format_of_date='day'):
+        """ Plot Multiple plots in a panel """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
         plottest.plotMultiPerPanel(grid_block_number, panels, format_of_date)
 
     def plotParamWithLayer(self, directionX, directionY, layer_num, time, legend):
+        """ Plot of Parameter with Layer """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
         if len(self.props) == 1:
