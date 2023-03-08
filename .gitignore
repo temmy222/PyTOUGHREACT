@@ -59,6 +59,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+upload_package.py
 
 # Unit test / coverage reports
 htmlcov/

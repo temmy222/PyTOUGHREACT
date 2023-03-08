@@ -52,7 +52,7 @@ class t2bio_parser(fixed_format_file):
 
 
 class t2bio(t2data):
-    """Class for TOUGH2 data."""
+    """Class for TMVOC data."""
 
     def __init__(self, filename='', meshfilename='',
                  read_function=default_read_function):
@@ -237,7 +237,7 @@ class t2bio(t2data):
 
     def run(self, save_filename='', incon_filename='', runlocation='', simulator='AUTOUGH2_2',
             silent=False, output_filename=''):
-        """Runs simulation using TMVOC"""
+        """ Runs simulation using TMVOC """
         if runlocation:
             os.chdir(os.path.dirname(os.path.realpath(__file__)))
             print(os.path.dirname(os.path.realpath(__file__)))
@@ -309,6 +309,7 @@ class t2bio(t2data):
             line = padstring(infile.readline())
 
     def read_chem(self, infile):
+        """ Reads chemical components """
         params = infile.read_values('chemp')
         all_comp = []
         for i in range(int(params[0])):
@@ -340,6 +341,7 @@ class t2bio(t2data):
         self.components = all_comp
 
     def write_chem(self, outfile):
+        """ Writes chemical components """
         outfile.write('CHEMP\n')
         vals = [len(self.components)]
         outfile.write_values(vals, 'chemp')
@@ -364,6 +366,7 @@ class t2bio(t2data):
         pass
 
     def read_gas(self, infile):
+        """ Reads Gases """
         params = infile.read_values('ncgas')
         all_comp = []
         for i in range(int(params[0])):
@@ -374,6 +377,7 @@ class t2bio(t2data):
         self.gas = all_comp
 
     def write_gas(self, outfile):
+        """ Writes Gases """
         outfile.write('NCGAS\n')
         vals = [len(self.gas)]
         outfile.write_values(vals, 'ncgas')
@@ -382,6 +386,7 @@ class t2bio(t2data):
             outfile.write(vals + '\n')
 
     def reset_bio_dicta(self, all_components):
+        """ Resets the BIO dicitonary """
         dicta_all = []
         for i in range(len(all_components)):
             dicta = {}
@@ -390,6 +395,7 @@ class t2bio(t2data):
         return dicta_all
 
     def read_biodg(self, infile):
+        """ Reads Biodegradation Block """
         params = infile.read_values('biodg')
         number_of_processes = int(infile.read_values('biodg1')[0])
         process_details = []
@@ -442,6 +448,7 @@ class t2bio(t2data):
         self.biodg.append(biodegradation)
 
     def write_biodg(self, outfile):
+        """ Writes Biodegradation Block """
         outfile.write('BIODG\n')
         value = self.biodg[0]
         vals = value.getFirstSet()
@@ -507,6 +514,7 @@ class t2bio(t2data):
             outfile.write_values(vals, 'biodg2.1')
 
     def read_solids(self, infile):
+        """ Reads Solids Block """
         pass
 
     def write_solids(self, outfile):
@@ -518,6 +526,7 @@ class t2bio(t2data):
             outfile.write_values(vals, 'solids2')
 
     def read_parameters(self, infile):
+        """ Reads Parameters Block """
         """Reads simulation parameters"""
         spec = ['param1', 'param1_autough2'][self.type == 'AUTOUGH2']
         # infile.read_value_line(self.parameter, spec)
@@ -553,6 +562,7 @@ class t2bio(t2data):
         return line
 
     def write_parameters(self, outfile):
+        """ Writes Parameters Block """
         outfile.write('PARAM\n')
         from copy import copy
         paramw = copy(self.parameter)
@@ -595,6 +605,7 @@ class t2bio(t2data):
             self.multi['eos'] = self.multi['eos'].strip()
 
     def write_start(self, outfile):
+        """ Writes Start Block """
         if self.start:
             outfile.write('START\n')
 

@@ -31,6 +31,7 @@ import pandas as pd
 
 
 class ResultReact(object):
+    """ Class for processing results from TOUGHREACT """
     def __init__(self, simulatortype, filelocation, filetitle):
         self.filelocation = filelocation
         os.chdir(self.filelocation)
@@ -42,9 +43,11 @@ class ResultReact(object):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
 
     def getParameters(self):
+        """ Get Parameters """
         return self.data.element.column_name
 
     def get_elements(self):
+        """ Get elements """
         find_connection = SynergyUtilitiesToughReact(self.filelocation, 'CONNE')
         find_connection.findword()
         find_connection.sliceoffline()
@@ -54,6 +57,7 @@ class ResultReact(object):
         return grid_blocks
 
     def get_times(self):
+        """ Get times from data file """
         time_data = self.data.times
         time_data2 = list(time_data)
         value = SynergyUtilities()
@@ -63,12 +67,14 @@ class ResultReact(object):
         return time_data2
 
     def convert_times(self, format_of_date):
+        """ Convert time to required format """
         get_times = self.get_times()
         utility_class = SynergyUtilities()
         timeyear = utility_class.convert_times(get_times, format_of_date)
         return timeyear
 
     def get_timeseries_data(self, param, gridblocknumber):
+        """ Get timeseries data """
         os.chdir(self.filelocation)
         grid = self.get_elements()[gridblocknumber]
         mf = self.data.history([(grid, param)])
@@ -81,20 +87,25 @@ class ResultReact(object):
         return timeseries
 
     def get_element_data(self, time, param):
+        """ Get data for elements """
         self.data.set_time(time)
         final_data = self.data.element[param]
         return final_data
 
     def get_X_data(self, time):
+        """ Get data for X axis """
         return self.get_element_data(time, 'X(m)')
 
     def get_Y_data(self, time):
+        """ Get data for Y axis """
         return self.get_element_data(time, 'Y(m)')
 
     def get_Z_data(self, time):
+        """ Get data for Z axis """
         return self.get_element_data(time, 'Z(m)')
 
     def getUniqueXData(self, timer):
+        """ Get Unique X axis data """
         ori_array = self.get_coord_data('x', timer)
         indices_array = []
         for i in range(0, len(ori_array)):
@@ -109,6 +120,7 @@ class ResultReact(object):
         return output_data
 
     def getXStartPoints(self, timer):
+        """ Get X axis Start Points"""
         ori_array = self.get_coord_data('x', timer)
         indices_array = []
         for i in range(0, len(ori_array)):
@@ -122,16 +134,19 @@ class ResultReact(object):
         return indices_array
 
     def getUniqueYData(self, timer):
+        """ Get Unique Y axis data """
         ori_array = self.get_coord_data('y', timer)
         output = list(set(ori_array))
         return output
 
     def getUniqueZData(self, timer):
+        """ Get Unique Z axis data """
         ori_array = self.get_coord_data('z', timer)
         output = list(set(ori_array))
         return output
 
     def getNumberOfLayers(self, direction):
+        """ Get Number of Layers """
         if direction.lower() == 'x':
             array = self.getUniqueXData(0)
         elif direction.lower() == 'y':
@@ -144,6 +159,7 @@ class ResultReact(object):
         return number
 
     def getZLayerData(self, layer_number, param, timer):
+        """ Get Data for Z (depth) layer """
         x_start = self.getXStartPoints(timer)
         z_data = self.get_element_data(timer, param)
         total_grid_in_z = self.getNumberOfLayers('z')
@@ -160,6 +176,7 @@ class ResultReact(object):
         return output
 
     def getXDepthData(self, line_number, param, timer):
+        """ Get Data for X (depth) layer """
         element_data = self.get_element_data(timer, param)
         x_layers = self.getNumberOfLayers('x')
         z_layers = self.getNumberOfLayers('z')
@@ -170,6 +187,7 @@ class ResultReact(object):
         return data_array
 
     def getLayerData(self, direction, layer_number, timer, param):
+        """ Get Data for Layers """
         number_of_layers = self.getNumberOfLayers(direction)
         if layer_number > number_of_layers:
             raise ValueError("The specified layer is more than the number of layers in the model")
@@ -181,6 +199,7 @@ class ResultReact(object):
         return data_array
 
     def get_coord_data(self, direction, timer):
+        """ Get Coordinate data """
         if direction.lower() == 'x':
             value = self.get_X_data(timer)
         elif direction.lower() == 'y':
@@ -192,6 +211,7 @@ class ResultReact(object):
         return value
 
     def get_unique_coord_data(self, direction, timer):
+        """ Get Unique coordinate data """
         if direction.lower() == 'x':
             value = self.getUniqueXData(timer)
         elif direction.lower() == 'y':

@@ -33,6 +33,7 @@ from utilities.synergy_general_utilities import SynergyUtilities
 
 
 class ResultTough3(object):
+    """ Class for processing results from Tough3 """
     def __init__(self, simulatortype, filelocation, filetitle=None, **kwargs):
         if filelocation is None:
             self.filelocation = os.getcwd()
@@ -48,6 +49,7 @@ class ResultTough3(object):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
 
     def read_file(self):
+        """ Read file """
         os.chdir(self.filelocation)
         with open(self.filetitle) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',', quotechar='"')
@@ -88,6 +90,7 @@ class ResultTough3(object):
         return timeyear
 
     def get_time_index(self):
+        """ Get Index of Time """
         self.read_file()
         indextime = []
         for index, value in enumerate(self.file_as_list):
@@ -97,6 +100,7 @@ class ResultTough3(object):
         return indextime
 
     def getGenerationData(self, param):
+        """ Get Data from GENER file """
         self.read_file()
         resultarray = []
         heading = []
@@ -112,6 +116,7 @@ class ResultTough3(object):
         return resultarray
 
     def get_elements(self):
+        """ Get elements from the simulation """
         self.read_file()
         indextime = self.get_time_index()
         temp_file = self.file_as_list[indextime[0] + 1:indextime[1]]
@@ -121,6 +126,7 @@ class ResultTough3(object):
         return elements
 
     def getParameters(self):
+        """ Remove space from parameters """
         self.read_file()
         full_list = self.file_as_list[0]
         for i in range(len(full_list)):
@@ -140,6 +146,7 @@ class ResultTough3(object):
         return resultdict
 
     def get_timeseries_data(self, param, gridblocknumber):
+        """ Get Time series data"""
         self.read_file()
         results = self.resultdict()
         resultarray = []
@@ -157,6 +164,7 @@ class ResultTough3(object):
         return final_data
 
     def get_element_data(self, time, param):
+        """ Get Data for elements """
         self.read_file()
         timeraw = self.get_times()
         results = self.resultdict()
@@ -183,15 +191,19 @@ class ResultTough3(object):
         return final_data
 
     def get_X_data(self, time):
+        """ Get X Axis Data """
         return self.get_element_data(time, 'x')
 
     def get_Y_data(self, time):
+        """ Get Y Axis Data """
         return self.get_element_data(time, 'y')
 
     def get_Z_data(self, time):
+        """ Get Z Axis Data """
         return self.get_element_data(time, 'z')
 
     def get_coord_data(self, direction, timer):
+        """ Get Coordinate Data """
         if direction.lower() == 'x':
             value = self.get_X_data(timer)
         elif direction.lower() == 'y':
@@ -203,6 +215,7 @@ class ResultTough3(object):
         return value
 
     def getUniqueXData(self, timer):
+        """ Get Unique X Axis Data """
         ori_array = self.get_coord_data('x', timer)
         indices_array = []
         for i in range(0, len(ori_array)):
@@ -217,11 +230,12 @@ class ResultTough3(object):
         return output_data
 
     def getXStartPoints(self, timer):
-        ori_array = self.get_coord_data('x', timer)
+        """ Get X Axis Start Point Data """
+        original_array = self.get_coord_data('x', timer)
         indices_array = []
-        for i in range(0, len(ori_array)):
+        for i in range(0, len(original_array)):
             try:
-                if ori_array[i] > ori_array[i + 1]:
+                if original_array[i] > original_array[i + 1]:
                     indices_array.append(i)
                 else:
                     continue
@@ -231,16 +245,19 @@ class ResultTough3(object):
         return indices_array
 
     def getUniqueYData(self, timer):
+        """ Get Unique Y Axis Data """
         ori_array = self.get_coord_data('y', timer)
         output = list(set(ori_array))
         return output
 
     def getUniqueZData(self, timer):
+        """ Get Unique Z Axis Data """
         ori_array = self.get_coord_data('z', timer)
         output = list(set(ori_array))
         return output
 
     def getNumberOfLayers(self, direction):
+        """ Get Number of Layers """
         if direction.lower() == 'x':
             array = self.getUniqueXData(0)
         elif direction.lower() == 'y':
@@ -253,6 +270,7 @@ class ResultTough3(object):
         return number
 
     def getZLayerData(self, layer_number, param, timer):
+        """ Get Z Layer Data """
         x_start = self.getXStartPoints(timer)
         z_data = self.get_element_data(timer, param)
         total_grid_in_z = self.getNumberOfLayers('z')
@@ -268,6 +286,7 @@ class ResultTough3(object):
         return output
 
     def getXDepthData(self, line_number, param, timer):
+        """ Get X Axis And Depth Data """
         element_data = self.get_element_data(timer, param)
         x_layers = self.getNumberOfLayers('x')
         z_layers = self.getNumberOfLayers('z')
@@ -278,6 +297,7 @@ class ResultTough3(object):
         return data_array
 
     def getLayerData(self, direction, layer_number, timer, param):
+        """ Get Layer Data """
         number_of_layers = self.getNumberOfLayers(direction)
         if layer_number > number_of_layers:
             raise ValueError("The specified layer is more than the number of layers in the model")
@@ -289,6 +309,7 @@ class ResultTough3(object):
         return data_array
 
     def get_unique_coord_data(self, direction, timer):
+        """ Get Unique Coordinate Data """
         if direction.lower() == 'x':
             value = self.getUniqueXData(timer)
         elif direction.lower() == 'y':
@@ -300,6 +321,7 @@ class ResultTough3(object):
         return value
 
     def remove_non_increasing(self, seqA, seqB):
+        """ Remove Non Increasing Data """
         monotone = self.check_strictly_increasing(seqA)
         if not monotone:
             index = self.duplicate_index(seqA)
@@ -312,15 +334,18 @@ class ResultTough3(object):
         return seqA, seqB
 
     def check_strictly_increasing(self, sequence):
+        """ Check for only strictly increasing data """
         dx = np.diff(sequence)
         return np.all(dx > 0)
 
     def del_index(self, my_list, indexes):
+        """ Delete index """
         for index in sorted(indexes, reverse=True):
             del my_list[index]
         return my_list
 
     def duplicate_index(self, sequence):
+        """ Duplicate index """
         dicta = {}
         indexes = []
         dups = collections.defaultdict(list)

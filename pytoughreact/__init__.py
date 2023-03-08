@@ -8,3 +8,4 @@ from pytoughreact.writers.bio_writing import t2bio
 from pytoughreact.chemical.biomass_composition import Component, Gas, Water_Bio, Biomass
 from pytoughreact.chemical.bio_process_description import Process, BIODG
 from pytoughreact.results.result_single import FileReadSingle
+from .version import __version__

@@ -30,6 +30,7 @@ from utilities.synergy_general_utilities import SynergyUtilities
 from results.result_tough_3 import ResultTough3
 
 class MultiResultTough3(object):
+    """ Class for retrieving results from multiple files for Tough3 and TMVOC """
     def __init__(self, simulator_type, file_location, file_title, prop):
         assert isinstance(file_location, list)
         assert isinstance(file_title, list)
@@ -43,6 +44,7 @@ class MultiResultTough3(object):
         return 'Multiple Results from provided file locations and provided files for' + self.simulator_type
 
     def retrieve_data_multi_timeseries(self, grid_block_number, format_of_date='year'):
+        """ DataFrame to retrieve time and timeseries results from file """
         data_table = pd.DataFrame()
         for i in range(0, len(self.file_location)):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
@@ -56,6 +58,7 @@ class MultiResultTough3(object):
         return data_table
 
     def retrieve_data_multi_file_fixed_time(self, direction, time):
+        """ DataFrame to retrieve time and coordinate results from file """
         data_table = pd.DataFrame()
         for i in range(0, len(self.file_location)):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
@@ -70,6 +73,7 @@ class MultiResultTough3(object):
         return data_table
 
     def retrieve_data_multi_file_fixed_time_layer(self, direction, time, layer_num):
+        """ DataFrame to retrieve distance and results from file """
         data_table = pd.DataFrame()
         for i in range(0, len(self.file_location)):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
@@ -83,6 +87,7 @@ class MultiResultTough3(object):
         return data_table
 
     def getMultiElementData(self, grid_block_number, format_of_date):
+        """ DataFrame to retrieve multi element time and results from file """
         data_table = pd.DataFrame()
         pd.set_option('float_format', lambda x: '%.9f' % x)
         # pd.set_option('display.chop_threshold', 0.00000001)
@@ -100,6 +105,7 @@ class MultiResultTough3(object):
         return data_table
 
     def getMultiElementDataPerPanel(self, grid_block_number, panels, format_of_date):
+        """ DataFrame to retrieve multi element time and results from file per panel """
         data_table = pd.DataFrame()
         pd.set_option('float_format', lambda x: '%.9f' % x)
         for i in range(0, len(panels)):

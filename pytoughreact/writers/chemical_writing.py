@@ -40,6 +40,9 @@ class SynergyChemical(fixed_format_file):
 
 
 class t2chemical(t2data):
+    """
+        Main class for structuring the writing , reading  of chemical parameters
+    """
     def __init__(self, filename = '', meshfilename = '', t2reactgrid=None, path=None, read_function=default_read_function):
         self.t2grid = t2reactgrid
         self._sections = []
@@ -65,6 +68,7 @@ class t2chemical(t2data):
         super().__init__(filename, meshfilename, read_function)
 
     def getib_waters(self):
+        """ Get initial and boundary waters """
         ib_waters = [[], []]
         if self.t2grid.zonelist[0].gas is None:
             return ib_waters
@@ -80,6 +84,7 @@ class t2chemical(t2data):
     # ib_waters = property(getib_waters)
 
     def getij_gas(self):
+        """ Get initial and injection gas """
         ij_gas = [[], []]
         if self.t2grid.zonelist[0].gas is None:
             return ij_gas
@@ -98,6 +103,7 @@ class t2chemical(t2data):
     # ij_gas = property(getij_gas)
 
     def get_mineral_zones(self):
+        """ Get Mineral zones"""
         mineral_zone = []
         for zone in self.t2grid.zonelist:
             mineral_zone.append(zone.mineral_zone)
@@ -108,6 +114,7 @@ class t2chemical(t2data):
     mineral_zones = property(get_mineral_zones)
 
     def get_perm_poro_zones(self):
+        """ Get Porosity / Permeability zones"""
         perm_poro_zone = []
         for zone in self.t2grid.zonelist:
             perm_poro_zone.append(zone.permporo)
@@ -116,6 +123,7 @@ class t2chemical(t2data):
     perm_poro = property(get_perm_poro_zones)
 
     def map_mineral_to_zone(self):
+        """ Map Mineral to Zone"""
         zoning = {}
         index = 1
         for zone in self.t2grid.zonelist:
@@ -220,10 +228,12 @@ class t2chemical(t2data):
             return len(self._sections)
 
     def write_title(self, outfile):
+        """ Write Title od Chemical file (chemical.inp)"""
         outfile.write('#Title' + '\n')
         outfile.write(self.title.strip() + '\n')
 
     def read_primary_aqueous(self, infile):
+        """ Read Primary Aqueous Species """
         params = infile.get_param_values('primary_aqueous')
         all_species = []
         for parameter in params:
@@ -231,6 +241,7 @@ class t2chemical(t2data):
         self.__dict__['primary_aqueous'] = all_species
 
     def write_primary_aqueous(self, outfile):
+        """ Write Primary Aqueous Species """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('#DEFINITION OF THE GEOCHEMICAL SYSTEM\n')
         outfile.write('#PRIMARY AQUEOUS SPECIES\n')
@@ -240,6 +251,7 @@ class t2chemical(t2data):
         outfile.write("'*'\n")
 
     def read_aqueous_kinetics(self, infile):
+        """ Read Aqueous Kinetic Species """
         params = infile.get_param_values('aqueous_kinetics')
         if len(params) == 0:
             self.__dict__['aqueous_kinetics'] = [-1]
@@ -247,12 +259,14 @@ class t2chemical(t2data):
             self.__dict__['aqueous_kinetics'] = params
 
     def write_aqueous_kinetics(self, outfile):
+        """ Write Aqueous Kinetic Species """
         if self.aqueous_kinetics[0] == -1:
             outfile.write('# AQUEOUS KINETICS\n')
             outfile.write("'*'\n")
         pass
 
     def read_aqueous_complexes(self, infile):
+        """ Read Aqueous Complexes """
         params = infile.get_param_values('aqueous_complex')
         if len(params) == 0:
             self.__dict__['aqueous_complexes'] = [-1]
@@ -260,11 +274,13 @@ class t2chemical(t2data):
             self.__dict__['aqueous_complexes'] = params
 
     def write_aqueous_complexes(self, outfile):
+        """ Write Aqueous Complexes """
         if self.aqueous_complexes[0] == -1:
             outfile.write('# AQUEOUS COMPLEXES\n')
             outfile.write("'*'\n")
 
     def read_minerals(self, infile):
+        """ Read Minerals """
         params = infile.get_param_values_mineral()
         if len(params) == 0:
             self.__dict__['minerals'] = [-1]
@@ -272,6 +288,7 @@ class t2chemical(t2data):
             self.__dict__['minerals'] = params
 
     def write_dissolution_precipitation(self, outfile, mineral, format):
+        """ Write Dissolution and Precipitation Parameters """
         if format.lower() == 'dissolution':
             try:
                 vals = mineral.getDissolutionParams()
@@ -303,11 +320,13 @@ class t2chemical(t2data):
             outfile.write_values(vals2, 'minerals1.1.1a')
 
     def write_equilibrium(self, outfile, mineral):
+        """ Write Equilibirum Parameters """
         vals = mineral.getEquilibriumData()
         outfile.write_values(vals, 'minerals1.1.1a')
 
 
     def write_minerals(self, outfile):
+        """ Write Minerals to file """
         outfile.write('#MINERALS\n')
         for mineral in self.minerals:
             vals = mineral.getFirstRow()
@@ -321,6 +340,7 @@ class t2chemical(t2data):
         outfile.write("'*'\n")
 
     def read_gases(self, infile):
+        """ Read gases from file """
         params = infile.get_param_values_gas()
         if len(params) == 0:
             # self.__dict__['gas_init'] = [-1]
@@ -330,6 +350,7 @@ class t2chemical(t2data):
             self.__dict__['gases'] = params
 
     def write_gases(self, outfile):
+        """ Write gases to file """
         outfile.write('# GASES\n')
         gas_name = []
         try:
@@ -348,6 +369,7 @@ class t2chemical(t2data):
             outfile.write("'*'\n")
 
     def read_surface_complexes(self, infile):
+        """ Read surface complexes from file """
         params = infile.get_param_values_surface_complex()
         if len(params) == 0:
             self.__dict__['surface_complexes'] = [-1]
@@ -355,11 +377,13 @@ class t2chemical(t2data):
             self.__dict__['surface_complexes'] = params
 
     def write_surface_complexes(self, outfile):
+        """ Write surface complexes to file """
         if self.surface_complexes[0] == -1:
             outfile.write('# SURFACE COMPLEXES\n')
             outfile.write("'*'\n")
 
     def read_decay_species(self, infile):
+        """ Read decay species from file """
         params = infile.get_param_values_decay_species()
         if len(params) == 0:
             self.__dict__['decay_species'] = [-1]
@@ -367,11 +391,13 @@ class t2chemical(t2data):
             self.__dict__['decay_species'] = params
 
     def write_decay_species(self, outfile):
+        """ Write decay species to file """
         if self.decay_species[0] == -1:
             outfile.write('# SPECIES WITH Kd AND DECAY\n')
             outfile.write("'*'\n")
 
     def read_exchangeable_cations(self, infile):
+        """ Read Exchangeable Cations from file """
         params = infile.get_param_values_exchangeable_cations()
         if len(params) == 0:
             self.__dict__['exchangeable_cations'] = [-1]
@@ -379,12 +405,14 @@ class t2chemical(t2data):
             self.__dict__['exchangeable_cations'] = params
 
     def write_exchangeable_cations(self, outfile):
+        """ Write Exchangeable Cations to file """
         if self.exchangeable_cations[0] == -1:
             outfile.write('# EXCHANGEABLE CATIONS\n')
             outfile.write("'*'\n")
         pass
 
     def read_ib_waters(self, infile):
+        """ Read Initial and Boundary waters from file """
         initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping = infile.get_param_values_ib_waters(self.primary_aqueous, self.t2grid)
         if len(initial_waters_list) == 0:
             self.__dict__['ib_waters'] = [-1]
@@ -414,6 +442,7 @@ class t2chemical(t2data):
         #     print(all_waters[0][0]['boundary'])
 
     def write_ib_waters(self, outfile):
+        """ Write Initial and Boundary waters to file """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# # INITIAL AND BOUNDARY WATER TYPES\n')
         initial_waters = self.ib_waters[0]
@@ -472,6 +501,7 @@ class t2chemical(t2data):
                     outfile.write("'*'\n")
 
     def getInitialWaterIndex(self):
+        """ Get Initial Water Index """
         water_index = {}
         initial_waters = self.ib_waters[0]
         for i in range(len(initial_waters)):
@@ -482,6 +512,7 @@ class t2chemical(t2data):
     initial_water_index = property(getInitialWaterIndex)
 
     def getBoundaryWaterIndex(self):
+        """ Get Boundary Water Index """
         water_index = {}
         boundary_water = self.ib_waters[1]
         for i in range(len(boundary_water)):
@@ -492,6 +523,7 @@ class t2chemical(t2data):
     boundary_water_index = property(getBoundaryWaterIndex)
 
     def getMineralIndex(self):
+        """ Get Mineral Index """
         mineral_index = {}
         all_mineral = self.mineral_zones
         if len(all_mineral) != len(set(all_mineral)):
@@ -503,6 +535,7 @@ class t2chemical(t2data):
     mineral_index = property(getMineralIndex)
 
     def getInitialGasIndex(self):
+        """ Get Initial Gas Index """
         gas_index = {}
         initial_gas = self.ij_gas[0]
         for i in range(len(initial_gas)):
@@ -512,6 +545,7 @@ class t2chemical(t2data):
     initial_gas_index = property(getInitialGasIndex)
 
     def getInjectionGasIndex(self):
+        """ Get Injection Gas Index """
         gas_index = {}
         initial_gas = self.ij_gas[1]
         for i in range(len(initial_gas)):
@@ -521,6 +555,7 @@ class t2chemical(t2data):
     injection_gas_index = property(getInjectionGasIndex)
 
     def getPermPoroIndex(self):
+        """ Get Permeability Porosity Index"""
         perm_poro_index = {}
         perm_poro = self.perm_poro
         perm_poro_all = []
@@ -533,6 +568,7 @@ class t2chemical(t2data):
     perm_poro_index = property(getPermPoroIndex)
 
     def read_mineral_zones(self, infile):
+        " Read Mineral Zones "
         initial_minerals_list, initial_minerals_mapping = infile.get_param_values_mineral_zones(
             self.minerals)
         if len(initial_minerals_list) == 0:
@@ -542,13 +578,16 @@ class t2chemical(t2data):
             self.initial_minerals_mapping = initial_minerals_mapping
 
     def countZones(self):
+        " Count number of zones"
         count = len(self.mineral_zones)
         return count
 
     def countMineralZones(self):
+        " Count number of mineral zones"
         return len(set(self.mineral_zones))
 
     def write_mineral_zones(self, outfile):
+        " Write mineral zones"
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# INITIAL MINERAL ZONES\n')
         vals = [len(self.mineral_zones)]
@@ -569,6 +608,7 @@ class t2chemical(t2data):
             outfile.write("'*'\n")
 
     def read_ij_gas(self, infile):
+        """ Read Initial and Injection Gas"""
         initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping = infile.get_param_values_ij_gases(
             self.gases)
         if len(initial_gas_list) == 0:
@@ -582,6 +622,7 @@ class t2chemical(t2data):
                 self.injection_gas_mapping = injection_gas_mapping
 
     def write_ij_gas(self, outfile):
+        """ Write Initial and Injection Gas"""
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# INITIAL and Injection gas ZONES \n')
         initial_gas = self.ij_gas[0]
@@ -623,6 +664,7 @@ class t2chemical(t2data):
                 outfile.write("'*'\n")
 
     def read_perm_poro(self, infile):
+        """ Read Peremability and Porosity Regions"""
         initial_perm_poro_list, initial_perm_poro_mapping = infile.get_param_values_perm_poro(
             self.minerals, self.t2grid)
         if len(initial_perm_poro_list) == 0:
@@ -632,6 +674,7 @@ class t2chemical(t2data):
             self.initial_perm_poro_mapping = initial_perm_poro_mapping
 
     def write_perm_poro(self, outfile):
+        """ Write Peremability and Porosity Regions"""
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# Permeability-Porosity Zones\n')
         all_perm_zones = []
@@ -664,25 +707,31 @@ class t2chemical(t2data):
                     outfile.write("'*'\n")
 
     def read_surface_adsorption(self, infile):
+        """ Read Surface adsorption """
         pass
 
     def write_surface_adsorption(self, outfile):
+        """ Write Surface adsorption """
         if self.surface_adsorption[0] == -1:
             outfile.write('# INITIAL SURFACE ADSORPTION ZONES\n')
             outfile.write("'*'\n")
 
     def read_linear_equilibrium(self, infile):
+        """ Read Linear Equilibrium """
         pass
 
     def write_linear_equilibrium(self, outfile):
+        """ Write Linear Equilibrium """
         if self.linear_equilibrium[0] == -1:
             outfile.write('# INITIAL LINEAR EQUILIBRIUM Kd ZONE\n')
             outfile.write("'*'\n")
 
     def read_cation_exchange(self, infile):
+        """ Read Cation Exchange """
         pass
 
     def write_cation_exchange(self, outfile):
+        """ Write Cation Exchange """
         if self.cation_exchange[0] == -1:
             outfile.write('# INITIAL ZONES OF CATION EXCHANGE\n')
             outfile.write("'*'\n")
@@ -690,6 +739,7 @@ class t2chemical(t2data):
 
     def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
+        """ Write to file (chemical.inp)"""
         if runlocation:
             if not os.path.isdir(runlocation):
                 os.mkdir(runlocation)
@@ -706,6 +756,7 @@ class t2chemical(t2data):
         outfile.close()
 
     def convert_to_t2chemical(self, keyword):
+        """ Get corresponding t2chemical keywords """
         if 'primary' in keyword.lower() and 'aqueous' in keyword.lower():
             return 'PRIMARY_AQUEOUS'
         elif 'kinetics' in keyword.lower() and 'aqueous' in keyword.lower():
@@ -740,6 +791,7 @@ class t2chemical(t2data):
             return 'false'
 
     def read(self, filename='', meshfilename='', runlocation='', extra_precision=None, echo_extra_precision=None):
+        """ Read from file """
         if runlocation:
             if not os.path.isdir(runlocation):
                 os.mkdir(runlocation)

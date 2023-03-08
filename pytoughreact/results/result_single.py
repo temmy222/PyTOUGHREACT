@@ -47,15 +47,18 @@ class FileReadSingle(object):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
 
     def validateFile(self):
+        """ Validate File """
         if type(self.filelocation) != type(self.filetitle):
             print('Values can either be strings or lists')
 
     def getSimulatorType(self):
+        """ Get Simulator Type """
         return self.simulatortype
 
     def plotTime(self, param, gridblocknumber, format_of_date='year', labels=None, singlePlot=False, style='horizontal',
                  width=12,
                  height=8):
+        """ Make Plot of parameter with time """
         if isinstance(param, str):
             plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
                                  restart_files=self.full_args,
@@ -81,14 +84,17 @@ class FileReadSingle(object):
                 plottest.plotMultiParamSinglePlot(param, gridblocknumber, format_of_date, labels)
 
     def plotParamWithParam(self, param1, param2, gridblocknumber):
+        """ Make Plot of parameter with parameter """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         plottest.plotParamWithParam(param1, param2, gridblocknumber)
 
     def plotParamWithLayer(self, directionXAxis, directionYAxis, param, layer_num, time):
+        """ Make Plot of parameter with layer """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         plottest.plotParamWithLayer(directionXAxis, directionYAxis, param, layer_num, time)
 
     def plot2D(self, direction1, direction2, param, timer, grid_type='plain'):
+        """ Make 2D plot either gridded or not gridded """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         if grid_type == 'plain':
             plottest.plot2D_one(direction1, direction2, param, timer)
@@ -96,25 +102,3 @@ class FileReadSingle(object):
             plottest.plot2D_withgrid(direction1, direction2, param, timer)
         else:
             print('Type can either be plain or grid')
-
-
-config = {
-    'spotify_client_key': 'THE_SPOTIFY_CLIENT_KEY',
-    'spotify_client_secret': 'THE_SPOTIFY_CLIENT_SECRET',
-    'pandora_client_key': 'THE_PANDORA_CLIENT_KEY',
-    'pandora_client_secret': 'THE_PANDORA_CLIENT_SECRET',
-    'local_music_location': '/usr/data/music'
-}
-
-class SingleFileService(object):
-    def __init__(self):
-        self._instance = None
-
-    def __call__(self, simulatortype, filelocation, filetitle, **_ignored):
-        if not self._instance:
-            consumer_key, consumer_secret = self.authorize(pandora_client_key, pandora_client_secret)
-            self._instance = PandoraService(consumer_key, consumer_secret)
-        return self._instance
-
-    def authorize(self, key, secret):
-        return 'PANDORA_CONSUMER_KEY', 'PANDORA_CONSUMER_SECRET'

@@ -30,6 +30,7 @@ class SynergyUtilities(object):
         pass
 
     def convert_times(self, arraylist, format_of_date):
+        """ Convert times to second/minute/hour/day/year """
         intermediate = arraylist
         timeyear = []
         if format_of_date.lower() == 'year':
@@ -52,6 +53,7 @@ class SynergyUtilities(object):
         return timeyear
 
     def choplist(self, liste, number=3):
+        """ Reduce the lsit size """
         global finallist
         if isinstance(liste, list):
             if len(liste) > 100:
@@ -62,6 +64,7 @@ class SynergyUtilities(object):
         return finallist
 
     def cutdata(self, time_data, resultdata, slicevalue):
+        """ Cut the result output to avoid too many points on a graph """
         for i in range(len(time_data) - 1, 0, -1):
             if time_data[i] > slicevalue:
                 del time_data[i]
@@ -69,6 +72,7 @@ class SynergyUtilities(object):
         return time_data, resultdata
 
     def removeRepetiting(self, time_list, value_list):
+        """ Remove repetiting values """
         final_time_list = []
         final_value_list = []
         for i in range(0, len(time_list)):
@@ -82,6 +86,7 @@ class SynergyUtilities(object):
         return final_time_list, final_value_list
 
     def param_label_full(self, param):
+        """ Get Full Names of TOUGHREACT and TMVIO parameters """
         dict_param = {'PRES': 'Pressure (Pa)', 'TEMP': 'Temperature ($^o C$)', 'SAT_G': 'Gas Saturation (-)',
                       'SAT_L': 'Liquid Saturation (-)',
                       'SAT_N': 'NAPL Saturation (-)', 'X_WATER_G': 'Water Mass Fraction in Gas (-)',
@@ -117,6 +122,7 @@ class SynergyUtilities(object):
         return r'${} \times 10^{{{}}}$'.format(a, b)
 
     def get_number_of_grids(self, input_list):
+        """ Get number of grids in simulation """
         output = set()
         for x in input_list:
             output.add(x)
@@ -124,6 +130,7 @@ class SynergyUtilities(object):
         return len(output)
 
     def getgridnumber(self, df, direction):
+        """ Get Grid number """
         X = df[direction]
         d = {}
         for i in X:
@@ -185,6 +192,7 @@ class SynergyUtilities(object):
         return self.cust_range(*args, **kwargs, include=[True, False])
 
     def strip_param(self, param):
+        """ Convert Parameters by stripping """
         if param.lower() == 'porosity':
             output = 'Porosity'
         elif param.startswith("t_"):

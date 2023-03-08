@@ -29,11 +29,13 @@ from constants.defaults_constants import DEFAULT_PARAMETERS as default_parameter
 from constants.sections import t2react_sections
 from fixed_format_file import default_read_function, fixed_format_file
 from pytough_wrapper.wrapper.reactgrid import t2reactgrid
+from exceptions.custom_error import NotFoundError
 from copy import deepcopy
 from t2data import t2data
 import numpy as np
 import os
 import sys
+from pathlib import Path
 from os.path import splitext, basename
 from os import devnull, remove
 from subprocess import call, run, PIPE
@@ -58,6 +60,9 @@ class t2_extra_precision_data_parser(fixed_format_file):
 
 class t2react(t2data):
     def __init__(self, filename = '', meshfilename = '', read_function = default_read_function):
+        """
+        Main class for structuring the writing , reading and running of reaction simulations
+        """
         super().__init__(filename = '', meshfilename = '', read_function = default_read_function)
         self.react = default_react.copy()
         self.grid = t2reactgrid()
@@ -208,10 +213,34 @@ class t2react(t2data):
                     return len(self._sections)	
             except ValueError:	
                 return len(self._sections)
+            
+    def check_for_executable(self, executable_name, directory):
+        """
+        check if the executable exists in the folder 
+        """
+        path = Path(directory + '/' + executable_name)
+        output = path.is_file()
+        if output is True:
+            return
+        else:
+            raise NotFoundError('Tough React Executable', path.resolve())
+        
+    def check_for_thermodynamic_database(self, directory, t2solute):
+        """
+        check if the thermodynamic database exists in the folder 
+        """
+        database_name = t2solute.readio['database']
+        path = Path(directory + '/' + database_name)
+        output = path.is_file()
+        if output is True:
+            return
+        else:
+            raise NotFoundError('Thermodynamic Database', path.resolve())
 
-    def run(self, save_filename='', incon_filename='', runlocation='', simulator='AUTOUGH2_2',	
+
+    def run(self, t2solute, save_filename='', incon_filename='', runlocation='', simulator='AUTOUGH2_2',	
                 silent=False, output_filename=''):	
-            """Runs simulation using TOUGH2 or AUTOUGH2.  It's assumed that the	
+            """Runs simulation using TOUGH2 ,AUTOUGH2, TOUGHREACT, TMVOC or TMVOCBIO.  It's assumed that the	
             data object has been written to file using write().  For	
             AUTOUGH2, if the filenames for the save file or initial	
             conditions file are not specified, they are constructed by	
@@ -221,10 +250,13 @@ class t2react(t2data):
             listing file."""	
             if runlocation:	
                 os.chdir(os.path.dirname(os.path.realpath(__file__)))	
-                # newPath = shutil.copy('treacteos.exe', runlocation)	
-                # thermPath = shutil.copy('thddem.dat', runlocation)	
                 os.chdir(runlocation)	
+                self.check_for_thermodynamic_database(runlocation, t2solute)
+                self.check_for_executable(simulator , runlocation)
             if self.filename:	
+                ROOT_DIR = os.path.abspath(os.curdir)
+                self.check_for_executable(simulator , ROOT_DIR)
+                self.check_for_thermodynamic_database(ROOT_DIR, t2solute)
                 datbase, ext = splitext(self.filename)	
                 if (self.type == 'AUTOUGH2'):	
                     if save_filename == '': save_filename = datbase + '.save'	
@@ -261,13 +293,13 @@ class t2react(t2data):
                         else:	
                             outfilename = output_filename	
                         outfile = open(outfilename, 'w')
-                    p = Popen(os.path.join(current_dir,"file.exe"),cwd=current_dir)
+                    # p = Popen(os.path.join(current_dir,">treacteos1<flow.inp"),cwd=current_dir)
                     status = call(cmd, stdin=infile, stdout=outfile)
-                    status_2 = run(["treacteos1<flow.inp"], 
-                                  stdout=PIPE, 
-                                  text=True, 
-                                  input="Hello from the other side")
-                    print(status_2)
+                    # status_2 = run(["treacteos1<flow.inp"], 
+                    #               stdout=PIPE, 
+                    #               text=True, 
+                    #               input="Hello from the other side")
+                    # print(status_2)
 
     def read_parameters(self, infile):	
         """Reads simulation parameters"""	
@@ -395,7 +427,7 @@ class t2react(t2data):
         for keyword in self._sections:	
             if (keyword not in mesh_sections) and ((keyword not in self.extra_precision) or	
                      (keyword in self.extra_precision and self.echo_extra_precision)):	
-                self.write_fn[keyword](outfile)	
+                self.write_fn[keyword](outfile)
         outfile.write(self.end_keyword + '\n')	
         outfile.close()	
 
