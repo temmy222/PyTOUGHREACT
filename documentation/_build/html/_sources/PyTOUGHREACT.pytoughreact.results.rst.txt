@@ -1,0 +1,93 @@
+PyTOUGHREACT.pytoughreact.results package
+=========================================
+
+Submodules
+----------
+
+PyTOUGHREACT.pytoughreact.results.multi\_result\_tough\_3 module
+----------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.multi_result_tough_3
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.multi\_result\_tough\_react module
+--------------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.multi_result_tough_react
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.result\_multiple module
+---------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.result_multiple
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.result\_object\_factory module
+----------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.result_object_factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.result\_single module
+-------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.result_single
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.result\_tough\_3 module
+---------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.result_tough_3
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.result\_tough\_react module
+-------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.result_tough_react
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.results module
+------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.results
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.results\_factory module
+---------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.results_factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.results.simple\_experiment\_data module
+-----------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results.simple_experiment_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.results
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,21 @@
+PyTOUGHREACT.examples package
+=============================
+
+Submodules
+----------
+
+PyTOUGHREACT.examples.run\_react module
+---------------------------------------
+
+.. automodule:: PyTOUGHREACT.examples.run_react
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.examples
+   :members:
+   :undoc-members:
+   :show-inheritance:

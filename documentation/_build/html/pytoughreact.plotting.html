@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.plotting package &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytoughreact.pytough_wrapper package" href="pytoughreact.pytough_wrapper.html" />
+    <link rel="prev" title="pytoughreact.numerical package" href="pytoughreact.numerical.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytoughreact</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pytoughreact.html">pytoughreact package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pytoughreact.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.assembler.html">pytoughreact.assembler package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.chemical.html">pytoughreact.chemical package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.constants.html">pytoughreact.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.exceptions.html">pytoughreact.exceptions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.model.html">pytoughreact.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.numerical.html">pytoughreact.numerical package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pytoughreact.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.pytough_wrapper.html">pytoughreact.pytough_wrapper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.results.html">pytoughreact.results package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.utilities.html">pytoughreact.utilities package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.writers.html">pytoughreact.writers package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-result-bio-module">pytoughreact.result_bio module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-module">pytoughreact.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-bio-module">pytoughreact.run_bio module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-react-module">pytoughreact.run_react module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-result-module">pytoughreact.run_result module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#module-pytoughreact.version">pytoughreact.version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#module-pytoughreact">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pytoughreact</a></li>
+          <li class="breadcrumb-item"><a href="pytoughreact.html">pytoughreact package</a></li>
+      <li class="breadcrumb-item active">pytoughreact.plotting package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pytoughreact.plotting.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytoughreact-plotting-package">
+<h1>pytoughreact.plotting package<a class="headerlink" href="#pytoughreact-plotting-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-pytoughreact.plotting.plot_multiple_files_routine">
+<span id="pytoughreact-plotting-plot-multiple-files-routine-module"></span><h2>pytoughreact.plotting.plot_multiple_files_routine module<a class="headerlink" href="#module-pytoughreact.plotting.plot_multiple_files_routine" title="Permalink to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.plotting.plot_multiple_files_routine.</span></span><span class="sig-name descname"><span class="pre">PlotMultiFiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_locations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_titles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">props</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.multiFileSinglePlot">
+<span class="sig-name descname"><span class="pre">multiFileSinglePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.multiFileSinglePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.multiFileSinglePlot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFile">
+<span class="sig-name descname"><span class="pre">plotMultiElementMultiFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'property'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotMultiElementMultiFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerFile">
+<span class="sig-name descname"><span class="pre">plotMultiElementMultiFilePerFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotMultiElementMultiFilePerFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerProp">
+<span class="sig-name descname"><span class="pre">plotMultiElementMultiFilePerProp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotMultiElementMultiFilePerProp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerProp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiFileDistance">
+<span class="sig-name descname"><span class="pre">plotMultiFileDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotMultiFileDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiFileDistance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiPerPanel">
+<span class="sig-name descname"><span class="pre">plotMultiPerPanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'day'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotMultiPerPanel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiPerPanel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMulti">
+<span class="sig-name descname"><span class="pre">plotRawMulti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotRawMulti"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMulti" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFile">
+<span class="sig-name descname"><span class="pre">plotRawMultiFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotRawMultiFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePanel">
+<span class="sig-name descname"><span class="pre">plotRawMultiFilePanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotRawMultiFilePanel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePanel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePerFile">
+<span class="sig-name descname"><span class="pre">plotRawMultiFilePerFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotRawMultiFilePerFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePerFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawSingle">
+<span class="sig-name descname"><span class="pre">plotRawSingle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.plotRawSingle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawSingle" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.setToughYLabel">
+<span class="sig-name descname"><span class="pre">setToughYLabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.setToughYLabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.setToughYLabel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.validateInput">
+<span class="sig-name descname"><span class="pre">validateInput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_files_routine.html#PlotMultiFiles.validateInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.validateInput" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.plotting.plot_multiple_tough_routine">
+<span id="pytoughreact-plotting-plot-multiple-tough-routine-module"></span><h2>pytoughreact.plotting.plot_multiple_tough_routine module<a class="headerlink" href="#module-pytoughreact.plotting.plot_multiple_tough_routine" title="Permalink to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.plotting.plot_multiple_tough_routine.</span></span><span class="sig-name descname"><span class="pre">PlotMultiTough</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitles</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartDataElement">
+<span class="sig-name descname"><span class="pre">getRestartDataElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.getRestartDataElement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartDataElement" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartDataTime">
+<span class="sig-name descname"><span class="pre">getRestartDataTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.getRestartDataTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartDataTime" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartLocations">
+<span class="sig-name descname"><span class="pre">getRestartLocations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.getRestartLocations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartLocations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_param_multi_file_plot">
+<span class="sig-name descname"><span class="pre">multi_param_multi_file_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.multi_param_multi_file_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_param_multi_file_plot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot">
+<span class="sig-name descname"><span class="pre">multi_time_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.multi_time_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot_restart">
+<span class="sig-name descname"><span class="pre">multi_time_plot_restart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.multi_time_plot_restart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot_restart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.plotMultiParamSinglePlot">
+<span class="sig-name descname"><span class="pre">plotMultiParamSinglePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.plotMultiParamSinglePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.plotMultiParamSinglePlot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_horizontal">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_horizontal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_horizontal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_horizontal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_horizontal_with_expt">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_horizontal_with_expt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data_file.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_horizontal_with_expt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_horizontal_with_expt" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_horizontal">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_restart_horizontal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_restart_horizontal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_horizontal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_horizontal_with_expt">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_restart_horizontal_with_expt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data_file.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_restart_horizontal_with_expt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_horizontal_with_expt" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_vertical">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_restart_vertical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_restart_vertical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_vertical" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_vertical">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_vertical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_vertical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_vertical" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_vertical_with_expt">
+<span class="sig-name descname"><span class="pre">raw_multi_plot_vertical_with_expt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data_file.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.raw_multi_plot_vertical_with_expt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_vertical_with_expt" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file">
+<span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file_multi">
+<span class="sig-name descname"><span class="pre">read_file_multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.read_file_multi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file_multi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.retrieve_multi_data">
+<span class="sig-name descname"><span class="pre">retrieve_multi_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.retrieve_multi_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.retrieve_multi_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.retrieve_multi_data_generation">
+<span class="sig-name descname"><span class="pre">retrieve_multi_data_generation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.retrieve_multi_data_generation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.retrieve_multi_data_generation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.slice_value">
+<span class="sig-name descname"><span class="pre">slice_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_multiple_tough_routine.html#PlotMultiTough.slice_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.slice_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.plotting.plot_tough_routine">
+<span id="pytoughreact-plotting-plot-tough-routine-module"></span><h2>pytoughreact.plotting.plot_tough_routine module<a class="headerlink" href="#module-pytoughreact.plotting.plot_tough_routine" title="Permalink to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.plotting.plot_tough_routine.</span></span><span class="sig-name descname"><span class="pre">PlotTough</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartDataElement">
+<span class="sig-name descname"><span class="pre">getRestartDataElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.getRestartDataElement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartDataElement" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartDataTime">
+<span class="sig-name descname"><span class="pre">getRestartDataTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.getRestartDataTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartDataTime" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartLocations">
+<span class="sig-name descname"><span class="pre">getRestartLocations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.getRestartLocations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartLocations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_one">
+<span class="sig-name descname"><span class="pre">plot2D_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plot2D_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_one" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_withgrid">
+<span class="sig-name descname"><span class="pre">plot2D_withgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plot2D_withgrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_withgrid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithLayer">
+<span class="sig-name descname"><span class="pre">plotParamWithLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionXAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionYAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotParamWithLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithLayer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithParam">
+<span class="sig-name descname"><span class="pre">plotParamWithParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotParamWithParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithParam" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTime">
+<span class="sig-name descname"><span class="pre">plotParamWithTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotParamWithTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTime" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTimeRestart">
+<span class="sig-name descname"><span class="pre">plotParamWithTimeRestart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotParamWithTimeRestart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTimeRestart" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotRaw">
+<span class="sig-name descname"><span class="pre">plotRaw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotRaw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotRaw" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotRawLayer">
+<span class="sig-name descname"><span class="pre">plotRawLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionXAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionYAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotRawLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotRawLayer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.plotRawWithExpt">
+<span class="sig-name descname"><span class="pre">plotRawWithExpt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restart</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data_file.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.plotRawWithExpt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.plotRawWithExpt" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.plotting.plot_tough_routine.PlotTough.read_file">
+<span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/plotting/plot_tough_routine.html#PlotTough.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.plotting.plot_tough_routine.PlotTough.read_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.plotting">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytoughreact.plotting" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pytoughreact.numerical.html" class="btn btn-neutral float-left" title="pytoughreact.numerical package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pytoughreact.pytough_wrapper.html" class="btn btn-neutral float-right" title="pytoughreact.pytough_wrapper package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

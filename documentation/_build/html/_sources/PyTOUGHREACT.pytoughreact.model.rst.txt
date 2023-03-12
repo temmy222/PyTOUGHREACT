@@ -1,0 +1,45 @@
+PyTOUGHREACT.pytoughreact.model package
+=======================================
+
+Submodules
+----------
+
+PyTOUGHREACT.pytoughreact.model.capillary\_pressure module
+----------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.model.capillary_pressure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.model.grid module
+-------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.model.grid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.model.physical\_model module
+------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.model.physical_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PyTOUGHREACT.pytoughreact.model.relative\_permeability module
+-------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.model.relative_permeability
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.model
+   :members:
+   :undoc-members:
+   :show-inheritance:

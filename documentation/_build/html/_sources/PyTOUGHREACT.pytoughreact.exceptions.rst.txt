@@ -1,0 +1,21 @@
+PyTOUGHREACT.pytoughreact.exceptions package
+============================================
+
+Submodules
+----------
+
+PyTOUGHREACT.pytoughreact.exceptions.custom\_error module
+---------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.exceptions.custom_error
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:

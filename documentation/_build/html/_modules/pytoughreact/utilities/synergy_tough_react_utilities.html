@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.utilities.synergy_tough_react_utilities &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.utilities.synergy_tough_react_utilities</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.utilities.synergy_tough_react_utilities</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact">[docs]</a><span class="k">class</span> <span class="nc">SynergyUtilitiesToughReact</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1"># takes in file names as a list</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class prepares the output files from TOUGHREACT for plot visualizations and analysis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">file2</span><span class="o">=</span><span class="s1">&#39;MESH&#39;</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An instance of this class takes in five parameters the last of which is optional;</span>
+
+<span class="sd">        location --&gt; the current direction where the simulations have been carried out</span>
+<span class="sd">        destination ---&gt; the directory containing PYTOUGH and its class which would be needed for</span>
+<span class="sd">        manipulations</span>
+<span class="sd">        filenames -&gt; the result files to be transferred to the destination folder</span>
+<span class="sd">        word --&gt; the word where the truncation in the MESH file is to begin. Typically this should be &#39;CONNE&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word</span> <span class="o">=</span> <span class="n">word</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file2</span> <span class="o">=</span> <span class="n">file2</span>
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact.copyfile"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact.copyfile">[docs]</a>    <span class="k">def</span> <span class="nf">copyfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method copies single file from the location to the destination folder. it takes in a a single argument</span>
+
+<span class="sd">        filename -&gt; the name of the file to be transferred</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># copy specific file</span>
+        <span class="n">src_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">src_files</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">file_name</span> <span class="o">==</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="n">full_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_file_name</span><span class="p">)):</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">full_file_name</span><span class="p">,</span> <span class="n">destination</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact.copyallfiles"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact.copyallfiles">[docs]</a>    <span class="k">def</span> <span class="nf">copyallfiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filenames</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method copies all files given in the instance of the class to the destination folder. It makes use</span>
+<span class="sd">        of the copyfile() method in achieving this</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># copy all files</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">filenames</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;...copying files...&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact.findword"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact.findword">[docs]</a>    <span class="k">def</span> <span class="nf">findword</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method finds the word where the truncation of the MESH file is to occur</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># find the position of a word</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file2</span><span class="p">)</span> <span class="k">as</span> <span class="n">myFile</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">myFile</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">point1</span> <span class="o">=</span> <span class="n">num</span>
+                    <span class="k">return</span> <span class="n">point1</span>
+        <span class="n">myFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact.sliceofffile"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact.sliceofffile">[docs]</a>    <span class="k">def</span> <span class="nf">sliceofffile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method slices off all parameters below the word stated in the instance of the class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#        os.remove(&quot;test2.txt&quot;)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test2.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r+&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">)</span>
+        <span class="n">point1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">findword</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test2.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f1</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file2</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">text_file</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">text_file</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">point1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">f1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact.sliceoffline"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact.sliceoffline">[docs]</a>    <span class="k">def</span> <span class="nf">sliceoffline</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method slices off all grid parameter such as the volume, distance betweeen grids as stated in</span>
+<span class="sd">        the TOUGHREACT flow.inp file</span>
+
+<span class="sd">        The aim of the findword(), sliceofffile() and this method is to provide us with a list of all gridblocks</span>
+<span class="sd">        in the simulation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sliceofffile</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test2.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">thefile</span><span class="p">:</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">thefile</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+            <span class="n">mes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+                <span class="n">mes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">mes</span>
+        <span class="n">thefile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SynergyUtilitiesToughReact.writetofile"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_tough_react_utilities.SynergyUtilitiesToughReact.writetofile">[docs]</a>    <span class="k">def</span> <span class="nf">writetofile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method writes all gridblocks to a separate file called &#39;test.txt&#39; for easy location and onward</span>
+<span class="sd">        manipulations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sliceoffline</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">mesh</span><span class="p">:</span>
+                <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">item</span><span class="p">)</span>
+        <span class="n">f1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

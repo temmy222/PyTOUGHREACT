@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.chemical.biomass_composition &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.chemical.biomass_composition</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.chemical.biomass_composition</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="Biomass"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Biomass">[docs]</a><span class="k">class</span> <span class="nc">Biomass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rock type&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">init_conc</span><span class="p">,</span> <span class="n">min_conc</span><span class="p">,</span> <span class="n">max_temp</span><span class="p">,</span> <span class="n">death_rate</span><span class="p">,</span> <span class="n">inhibition_constant</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">death_rate</span> <span class="o">=</span> <span class="n">death_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_temp</span> <span class="o">=</span> <span class="n">max_temp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_conc</span> <span class="o">=</span> <span class="n">min_conc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_conc</span> <span class="o">=</span> <span class="n">init_conc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inhibition_constant</span> <span class="o">=</span> <span class="n">inhibition_constant</span></div>
+
+
+<div class="viewcode-block" id="Gas"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Gas">[docs]</a><span class="k">class</span> <span class="nc">Gas</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rock type&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<div class="viewcode-block" id="Gas.addToProcess"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Gas.addToProcess">[docs]</a>    <span class="k">def</span> <span class="nf">addToProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">Uptake</span><span class="p">,</span> <span class="n">Ks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Kc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Knc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Kh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="p">:</span> <span class="p">[</span><span class="n">Uptake</span><span class="p">,</span> <span class="n">Ks</span><span class="p">,</span> <span class="n">Kc</span><span class="p">,</span> <span class="n">Knc</span><span class="p">,</span> <span class="n">Kh</span><span class="p">]}</span>
+        <span class="k">if</span> <span class="n">Kc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfCompetiting</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">Knc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfNonCompetiting</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">Kh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfHaldane</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">componentParams</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">allProcesses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">process</span></div></div>
+
+
+<div class="viewcode-block" id="Water_Bio"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Water_Bio">[docs]</a><span class="k">class</span> <span class="nc">Water_Bio</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rock type&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;H2O&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<div class="viewcode-block" id="Water_Bio.addToProcess"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Water_Bio.addToProcess">[docs]</a>    <span class="k">def</span> <span class="nf">addToProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">Uptake</span><span class="p">,</span> <span class="n">Ks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Kc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Knc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Kh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="p">:</span> <span class="p">[</span><span class="n">Uptake</span><span class="p">,</span> <span class="n">Ks</span><span class="p">,</span> <span class="n">Kc</span><span class="p">,</span> <span class="n">Knc</span><span class="p">,</span> <span class="n">Kh</span><span class="p">]}</span>
+        <span class="k">if</span> <span class="n">Kc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfCompetiting</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">Knc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfNonCompetiting</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">Kh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfHaldane</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">componentParams</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">allProcesses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">process</span></div></div>
+
+
+<div class="viewcode-block" id="BaseComponent"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent">[docs]</a><span class="k">class</span> <span class="nc">BaseComponent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rock type&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">critTemp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">critPres</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">critComp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">acentricFactor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dipoleMoment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">boilPoint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vapPressA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vapPressB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vapPressC</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vapPressD</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">molWeight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heatCapConstantA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heatCapConstantB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">heatCapConstantC</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">heatCapConstantD</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">liqDensity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refTempForDensity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refBinaryDif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refTempForDif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expChemDif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">liqVisConstA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqVisConstB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqVisConstC</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqVisConstD</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqCritVol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">liqChemSolA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqChemSolB</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqChemSolC</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">liqChemSolD</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">carbonPartCoefficient</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fracCarbon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">decayConstant</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffNAPL</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffGas</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffAqueous</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqCritVol</span> <span class="o">=</span> <span class="n">liqCritVol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstD</span> <span class="o">=</span> <span class="n">liqVisConstD</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstC</span> <span class="o">=</span> <span class="n">liqVisConstC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decayConstant</span> <span class="o">=</span> <span class="n">decayConstant</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fracCarbon</span> <span class="o">=</span> <span class="n">fracCarbon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">carbonPartCoefficient</span> <span class="o">=</span> <span class="n">carbonPartCoefficient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolA</span> <span class="o">=</span> <span class="n">liqChemSolA</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolD</span> <span class="o">=</span> <span class="n">liqChemSolD</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolB</span> <span class="o">=</span> <span class="n">liqChemSolB</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolC</span> <span class="o">=</span> <span class="n">liqChemSolC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstB</span> <span class="o">=</span> <span class="n">liqVisConstB</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstA</span> <span class="o">=</span> <span class="n">liqVisConstA</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expChemDif</span> <span class="o">=</span> <span class="n">expChemDif</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refTempForDif</span> <span class="o">=</span> <span class="n">refTempForDif</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refBinaryDif</span> <span class="o">=</span> <span class="n">refBinaryDif</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refTempForDensity</span> <span class="o">=</span> <span class="n">refTempForDensity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">liqDensity</span> <span class="o">=</span> <span class="n">liqDensity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantD</span> <span class="o">=</span> <span class="n">heatCapConstantD</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantC</span> <span class="o">=</span> <span class="n">heatCapConstantC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantB</span> <span class="o">=</span> <span class="n">heatCapConstantB</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantA</span> <span class="o">=</span> <span class="n">heatCapConstantA</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molWeight</span> <span class="o">=</span> <span class="n">molWeight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vapPressD</span> <span class="o">=</span> <span class="n">vapPressD</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vapPressB</span> <span class="o">=</span> <span class="n">vapPressB</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vapPressA</span> <span class="o">=</span> <span class="n">vapPressA</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boilPoint</span> <span class="o">=</span> <span class="n">boilPoint</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dipoleMoment</span> <span class="o">=</span> <span class="n">dipoleMoment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">acentricFactor</span> <span class="o">=</span> <span class="n">acentricFactor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">critComp</span> <span class="o">=</span> <span class="n">critComp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vapPressC</span> <span class="o">=</span> <span class="n">vapPressC</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">critPres</span> <span class="o">=</span> <span class="n">critPres</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">critTemp</span> <span class="o">=</span> <span class="n">critTemp</span>
+
+<div class="viewcode-block" id="BaseComponent.getFirstSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getFirstSet">[docs]</a>    <span class="k">def</span> <span class="nf">getFirstSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">critTemp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">critPres</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">critComp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">acentricFactor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dipoleMoment</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.getSecondSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getSecondSet">[docs]</a>    <span class="k">def</span> <span class="nf">getSecondSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">boilPoint</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vapPressA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vapPressB</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vapPressC</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vapPressD</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.getThirdSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getThirdSet">[docs]</a>    <span class="k">def</span> <span class="nf">getThirdSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">molWeight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantB</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantC</span><span class="p">,</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">heatCapConstantD</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.getFourthSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getFourthSet">[docs]</a>    <span class="k">def</span> <span class="nf">getFourthSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">liqDensity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refTempForDensity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refBinaryDif</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">refTempForDif</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">expChemDif</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.getFifthSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getFifthSet">[docs]</a>    <span class="k">def</span> <span class="nf">getFifthSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstB</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstC</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqVisConstD</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqCritVol</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.getSixthSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getSixthSet">[docs]</a>    <span class="k">def</span> <span class="nf">getSixthSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolB</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolC</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">liqChemSolD</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.getSeventhSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.getSeventhSet">[docs]</a>    <span class="k">def</span> <span class="nf">getSeventhSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">carbonPartCoefficient</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fracCarbon</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">decayConstant</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div>
+
+<div class="viewcode-block" id="BaseComponent.addToProcess"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.addToProcess">[docs]</a>    <span class="k">def</span> <span class="nf">addToProcess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">,</span> <span class="n">Uptake</span><span class="p">,</span> <span class="n">Ks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Kc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Knc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">Kh</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="p">:</span> <span class="p">[</span><span class="n">Uptake</span><span class="p">,</span> <span class="n">Ks</span><span class="p">,</span> <span class="n">Kc</span><span class="p">,</span> <span class="n">Knc</span><span class="p">,</span> <span class="n">Kh</span><span class="p">]}</span>
+        <span class="k">if</span> <span class="n">Kc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfCompetiting</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">Knc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfNonCompetiting</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">Kh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">process</span><span class="o">.</span><span class="n">NumOfHaldane</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">componentParams</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">allProcesses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">process</span></div>
+
+<div class="viewcode-block" id="BaseComponent.defaultToluene"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.defaultToluene">[docs]</a>    <span class="k">def</span> <span class="nf">defaultToluene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">toluene</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="s2">&quot;Toluene&quot;</span><span class="p">,</span> <span class="mf">591.8</span><span class="p">,</span> <span class="mf">41.0</span><span class="p">,</span> <span class="mf">0.263</span><span class="p">,</span> <span class="mf">0.263</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span>
+                                <span class="mf">383.8</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.28607</span><span class="p">,</span> <span class="mf">1.38091</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.83433</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.79168</span><span class="p">,</span>
+                                <span class="mf">92.141</span><span class="p">,</span> <span class="o">-</span><span class="mf">.2435E+02</span><span class="p">,</span> <span class="mf">0.5125E+00</span><span class="p">,</span> <span class="o">-</span><span class="mf">.2765E-03</span><span class="p">,</span> <span class="mf">0.4911E-07</span><span class="p">,</span>
+                                <span class="mi">867</span><span class="p">,</span> <span class="mf">293.0</span><span class="p">,</span> <span class="mf">0.0000088</span><span class="p">,</span> <span class="mf">303.10</span><span class="p">,</span> <span class="mf">1.41</span><span class="p">,</span>
+                                <span class="o">-</span><span class="mf">5.878</span><span class="p">,</span> <span class="mi">1287</span><span class="p">,</span> <span class="mf">0.004575</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.000004499</span><span class="p">,</span> <span class="mf">316.0</span><span class="p">,</span>
+                                <span class="mf">0.000101</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                <span class="mf">0.0088649</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">toluene</span></div>
+
+<div class="viewcode-block" id="BaseComponent.defaultBenzene"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.defaultBenzene">[docs]</a>    <span class="k">def</span> <span class="nf">defaultBenzene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">benzene</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="s2">&quot;Benzene&quot;</span><span class="p">,</span> <span class="mf">562.2</span><span class="p">,</span> <span class="mf">48.2</span><span class="p">,</span> <span class="mf">0.271</span><span class="p">,</span> <span class="mf">0.212</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>
+                                <span class="mf">353.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.98273</span><span class="p">,</span> <span class="mf">1.33213</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.62863</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.33399</span><span class="p">,</span>
+                                <span class="mf">78.114</span><span class="p">,</span> <span class="o">-</span><span class="mf">.3392E+02</span><span class="p">,</span> <span class="mf">0.4739E+00</span><span class="p">,</span> <span class="o">-</span><span class="mf">.3017E-03</span><span class="p">,</span> <span class="mf">0.7130E-07</span><span class="p">,</span>
+                                <span class="mi">885</span><span class="p">,</span> <span class="mf">289.00</span><span class="p">,</span> <span class="mf">0.770E-05</span><span class="p">,</span> <span class="mf">273.10</span><span class="p">,</span> <span class="mf">1.52</span><span class="p">,</span>
+                                <span class="mf">0.4612E+01</span><span class="p">,</span> <span class="mf">0.1489E+03</span><span class="p">,</span> <span class="o">-</span><span class="mf">.2544E-01</span><span class="p">,</span> <span class="mf">0.2222E-04</span><span class="p">,</span> <span class="mf">259.0</span><span class="p">,</span>
+                                <span class="mf">0.411E-03</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                <span class="mf">0.891E-01</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">benzene</span></div>
+
+<div class="viewcode-block" id="BaseComponent.defaultNDecane"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.defaultNDecane">[docs]</a>    <span class="k">def</span> <span class="nf">defaultNDecane</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">component</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="s2">&quot;n-Decane&quot;</span><span class="p">,</span> <span class="mf">617.7</span><span class="p">,</span> <span class="mf">21.2</span><span class="p">,</span> <span class="mf">0.249</span><span class="p">,</span> <span class="mf">0.489</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>
+                                  <span class="mf">447.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.56523</span><span class="p">,</span> <span class="mf">1.97756</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.81971</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.29982</span><span class="p">,</span>
+                                  <span class="mf">142.286</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.913E+0</span><span class="p">,</span> <span class="mf">9.609E-1</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.288E-4</span><span class="p">,</span> <span class="mf">1.131E-7</span><span class="p">,</span>
+                                  <span class="mf">730.000</span><span class="p">,</span> <span class="mf">293.000</span><span class="p">,</span> <span class="mf">1.000E-5</span><span class="p">,</span> <span class="mf">293.000</span><span class="p">,</span> <span class="mf">1.600</span><span class="p">,</span>
+                                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5900</span><span class="p">,</span> <span class="mf">293.000</span><span class="p">,</span> <span class="mf">603.000</span><span class="p">,</span>
+                                  <span class="mf">3.799e-7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                  <span class="mf">7.000</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">component</span></div>
+
+<div class="viewcode-block" id="BaseComponent.defaultPXylene"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.defaultPXylene">[docs]</a>    <span class="k">def</span> <span class="nf">defaultPXylene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">component</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="s2">&quot;p-Xylene&quot;</span><span class="p">,</span> <span class="mf">616.2</span><span class="p">,</span> <span class="mf">35.1</span><span class="p">,</span> <span class="mf">0.260</span><span class="p">,</span> <span class="mf">0.320</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span>
+                                  <span class="mf">411.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.63495</span><span class="p">,</span> <span class="mf">1.50724</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.19678</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.78710</span><span class="p">,</span>
+                                  <span class="mf">106.168</span><span class="p">,</span> <span class="o">-</span><span class="mf">.2509E+02</span><span class="p">,</span> <span class="mf">0.6042E+00</span><span class="p">,</span> <span class="o">-</span><span class="mf">.3374E-03</span><span class="p">,</span> <span class="mf">0.6820E-07</span><span class="p">,</span>
+                                  <span class="mi">861</span><span class="p">,</span> <span class="mf">293.00</span><span class="p">,</span> <span class="mf">0.704E-05</span><span class="p">,</span> <span class="mf">293.00</span><span class="p">,</span> <span class="mf">1.93</span><span class="p">,</span>
+                                  <span class="o">-</span><span class="mf">.7790E+01</span><span class="p">,</span> <span class="mf">0.1580E+04</span><span class="p">,</span> <span class="mf">0.8730E-02</span><span class="p">,</span> <span class="o">-</span><span class="mf">.6735E-05</span><span class="p">,</span> <span class="mf">379.0</span><span class="p">,</span>
+                                  <span class="mf">0.297E-04</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                  <span class="mf">0.550E+00</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">component</span></div>
+
+<div class="viewcode-block" id="BaseComponent.defaultNPropylBenzene"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.defaultNPropylBenzene">[docs]</a>    <span class="k">def</span> <span class="nf">defaultNPropylBenzene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">component</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="s2">&quot;n-PropylBenzene&quot;</span><span class="p">,</span> <span class="mf">638.200</span><span class="p">,</span> <span class="mf">32.000</span><span class="p">,</span> <span class="mf">0.265</span><span class="p">,</span> <span class="mf">0.344</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">,</span>
+                                  <span class="mf">432.400</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.92198</span><span class="p">,</span> <span class="mf">1.97403</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.27504</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.28568</span><span class="p">,</span>
+                                  <span class="mf">120.195</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.129E+1</span><span class="p">,</span> <span class="mf">7.486E-1</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.601E-4</span><span class="p">,</span> <span class="mf">1.081E-7</span><span class="p">,</span>
+                                  <span class="mf">862.000</span><span class="p">,</span> <span class="mf">293.000</span><span class="p">,</span> <span class="mf">1.000E-5</span><span class="p">,</span> <span class="mf">293.000</span><span class="p">,</span> <span class="mf">1.600</span><span class="p">,</span>
+                                  <span class="o">-</span><span class="mf">4.297E+00</span><span class="p">,</span> <span class="mf">1.215E+03</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">440.0</span><span class="p">,</span>
+                                  <span class="mf">8.985e-6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                  <span class="mf">1.050</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">component</span></div>
+
+<div class="viewcode-block" id="BaseComponent.defaultNPentane"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.BaseComponent.defaultNPentane">[docs]</a>    <span class="k">def</span> <span class="nf">defaultNPentane</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">component</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="s2">&quot;n-Pentane&quot;</span><span class="p">,</span> <span class="mf">469.7</span><span class="p">,</span> <span class="mf">33.7</span><span class="p">,</span> <span class="mf">0.263</span><span class="p">,</span> <span class="mf">0.251</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>
+                                  <span class="mf">309.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.28936</span><span class="p">,</span> <span class="mf">1.53679</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.08367</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.02456</span><span class="p">,</span>
+                                  <span class="mf">72.151</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.626E+00</span><span class="p">,</span> <span class="mf">.4873E+00</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.580E-04</span><span class="p">,</span> <span class="mf">5.305E-08</span><span class="p">,</span>
+                                  <span class="mi">626</span><span class="p">,</span> <span class="mf">293.00</span><span class="p">,</span> <span class="mf">0.770E-05</span><span class="p">,</span> <span class="mf">273.10</span><span class="p">,</span> <span class="mf">1.52</span><span class="p">,</span>
+                                  <span class="o">-</span><span class="mf">3.958E+00</span><span class="p">,</span> <span class="mf">7.222E+02</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">304.0</span><span class="p">,</span>
+                                  <span class="mf">0.997E-07</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                  <span class="mf">0.635E-00</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">component</span></div></div>
+
+
+<div class="viewcode-block" id="Component"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Component">[docs]</a><span class="k">class</span> <span class="nc">Component</span><span class="p">(</span><span class="n">BaseComponent</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+
+<div class="viewcode-block" id="Component.getToluene"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Component.getToluene">[docs]</a>    <span class="k">def</span> <span class="nf">getToluene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="Solids"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Solids">[docs]</a><span class="k">class</span> <span class="nc">Solids</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">mol_weight</span><span class="p">,</span> <span class="n">carbonPartCoefficient</span><span class="p">,</span> <span class="n">decayConstant</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mol_weight</span> <span class="o">=</span> <span class="n">mol_weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">carbonPartCoefficient</span> <span class="o">=</span> <span class="n">carbonPartCoefficient</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decayConstant</span> <span class="o">=</span> <span class="n">decayConstant</span>
+
+<div class="viewcode-block" id="Solids.getFirstSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.biomass_composition.Solids.getFirstSet">[docs]</a>    <span class="k">def</span> <span class="nf">getFirstSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">listo</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol_weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">carbonPartCoefficient</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">decayConstant</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">listo</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

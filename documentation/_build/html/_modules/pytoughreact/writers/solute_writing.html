@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.writers.solute_writing &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.writers.solute_writing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.writers.solute_writing</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">fixed_format_file</span> <span class="kn">import</span> <span class="n">default_read_function</span><span class="p">,</span> <span class="n">fixed_format_file</span>
+<span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">t2data</span>
+<span class="kn">from</span> <span class="nn">constants.format_specifications</span> <span class="kn">import</span> <span class="n">t2solute_format_specification</span>
+<span class="kn">from</span> <span class="nn">constants.sections</span> <span class="kn">import</span> <span class="n">t2solute_sections</span>
+<span class="kn">from</span> <span class="nn">constants.defaults_constants</span> <span class="kn">import</span> <span class="n">DEFAULT_OPTIONS</span><span class="p">,</span> <span class="n">DEFAULT_CONSTRAINTS</span><span class="p">,</span> <span class="n">DEFAULT_READIO</span><span class="p">,</span> <span class="n">DEFAULT_WEIGHT_DIFFUSION</span><span class="p">,</span> <span class="n">DEFAULT_TOLERANCE</span><span class="p">,</span> <span class="n">DEFAULT_PRINTOUT</span><span class="p">,</span> <span class="n">DEFAULT_ZONE</span>
+<span class="kn">from</span> <span class="nn">exceptions.custom_error</span> <span class="kn">import</span> <span class="n">ReactiveOptionsError</span><span class="p">,</span> <span class="n">RequiredInputException</span><span class="p">,</span> <span class="n">ReactiveConstraintsError</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<div class="viewcode-block" id="t2solute_parser"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute_parser">[docs]</a><span class="k">class</span> <span class="nc">t2solute_parser</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for parsing SOLUTE.INP data file.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">t2solute_parser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
+                                              <span class="n">t2solute_format_specification</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="t2solute"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute">[docs]</a><span class="k">class</span> <span class="nc">t2solute</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main class for structuring the writing , reading  of solute parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chemical_zones</span> <span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">readio</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight_diffusion</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">printout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">t2chemical</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">meshfilename</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="o">=</span> <span class="n">t2chemical</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">title</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Reactive Transport&#39;</span>
+        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_OPTIONS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="n">constraints</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_CONSTRAINTS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">readio</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">readio</span> <span class="o">=</span> <span class="n">readio</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">readio</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_READIO</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">weight_diffusion</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span> <span class="o">=</span> <span class="n">weight_diffusion</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_WEIGHT_DIFFUSION</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tolerance</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="n">tolerance</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_TOLERANCE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">printout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">printout</span> <span class="o">=</span> <span class="n">printout</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">printout</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_PRINTOUT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodes_to_write</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">primary_species</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">primary_aqueous</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">primary_species</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">minerals</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aqueous_species</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adsorption_species</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exchange_species</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">chemical_zones</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span> <span class="o">=</span> <span class="n">chemical_zones</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_ZONE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">=</span> <span class="s1">&#39;# this &quot;end&quot; record is needed &#39;</span> \
+                           <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">end</span><span class="se">\n</span><span class="s1">*************************************************************************** &#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_water_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_water_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundary_water_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">boundary_water_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mineral_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">mineral_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_gas_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_gas_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">injection_gas_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">injection_gas_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">perm_poro_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">perm_poro_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_function</span> <span class="o">=</span> <span class="n">read_function</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones_to_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getgrid_info</span><span class="p">()</span>
+
+<div class="viewcode-block" id="t2solute.getZoneValue"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getZoneValue">[docs]</a>    <span class="k">def</span> <span class="nf">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dict_to_check</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get value of a particular zone&quot;&quot;&quot;</span>
+        <span class="n">key_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_to_check</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">val_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_to_check</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">key_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">zone_number</span> <span class="o">=</span> <span class="n">val_list</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">zone_number</span></div>
+
+<div class="viewcode-block" id="t2solute.getgrid_info"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getgrid_info">[docs]</a>    <span class="k">def</span> <span class="nf">getgrid_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get values for grid including gas, water, minerals, permeability&quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">viewer</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+                <span class="n">initial_water</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">water</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">mineral_in_block</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">mineral_zone</span>
+                <span class="n">perm_poro</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">permporo</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">initial_gas</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">gas</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="n">initial_gas</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">boundary_water</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">water</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="n">boundary_water</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">injection_gas</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">gas</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="n">injection_gas</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">initial_water_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_water_index</span><span class="p">,</span> <span class="n">initial_water</span><span class="p">)</span>
+                <span class="n">mineral_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mineral_index</span><span class="p">,</span> <span class="n">mineral_in_block</span><span class="p">)</span>
+                <span class="n">perm_poro_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">perm_poro_index</span><span class="p">,</span> <span class="n">perm_poro</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">initial_gas_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_gas_index</span><span class="p">,</span> <span class="n">initial_gas</span><span class="p">)</span>
+                    <span class="n">boundary_water_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundary_water_index</span><span class="p">,</span> <span class="n">boundary_water</span><span class="p">)</span>
+                    <span class="n">injection_gas_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZoneValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">injection_gas_index</span><span class="p">,</span> <span class="n">injection_gas</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">boundary_water_zone</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">injection_gas_zone</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">initial_gas_zone</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">appender</span> <span class="o">=</span> <span class="p">[</span><span class="n">block</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">initial_water_zone</span><span class="p">,</span> <span class="n">boundary_water_zone</span><span class="p">,</span> <span class="n">mineral_zone</span><span class="p">,</span> <span class="n">initial_gas_zone</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                            <span class="n">perm_poro_zone</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">injection_gas_zone</span><span class="p">]</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">appender</span><span class="p">)</span>
+                <span class="n">viewer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">output</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output</span></div>
+
+    <span class="c1"># chemical_zones_to_nodes = property(getgrid_info)</span>
+
+<div class="viewcode-block" id="t2solute.update_read_write_functions"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates functions for reading and writing sections of data file.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2solute_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_title</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_constraints</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_readio</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_weight_diffu</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_tolerance</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_printout</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_nodes</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_primary_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_minerals</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_aqueous_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_adsorption_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_exchange_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_chemical_zones</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_chemical_zones_to_nodes</span>
+             <span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2solute_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">write_title</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_constraints</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_readio</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_weight_diffu</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_tolerance</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_printout</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_nodes</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_primary_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_minerals</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_aqueous_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_adsorption_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_exchange_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_chemical_zones</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_chemical_zones_to_nodes</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="t2solute.get_present_sections"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of TOUGH2 section keywords for which there are</span>
+<span class="sd">        corresponding data in the t2bio object.&quot;&quot;&quot;</span>
+        <span class="n">data_present</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2solute_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">nodes_to_write</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">primary_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">aqueous_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">adsorption_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">exchange_species</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones_to_nodes</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">keyword</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2solute_sections</span> <span class="k">if</span> <span class="n">data_present</span><span class="p">[</span><span class="n">keyword</span><span class="p">]]</span></div>
+
+    <span class="n">present_sections</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_present_sections</span><span class="p">)</span>
+
+<div class="viewcode-block" id="t2solute.getGridBlocks"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getGridBlocks">[docs]</a>    <span class="k">def</span> <span class="nf">getGridBlocks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Return name of grid blocks&quot;&quot;&quot;</span>
+        <span class="n">blk</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t2block</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+            <span class="n">blk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t2block</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">blk</span></div>
+
+<div class="viewcode-block" id="t2solute.getInitialWaterIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getInitialWaterIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInitialWaterIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Initial Water Index&quot;&quot;&quot;</span>
+        <span class="n">water_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_water_index</span>
+        <span class="n">key_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">water_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">val_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">water_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">key_list</span><span class="p">,</span> <span class="n">val_list</span></div>
+
+<div class="viewcode-block" id="t2solute.getInitialWater"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getInitialWater">[docs]</a>    <span class="k">def</span> <span class="nf">getInitialWater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Initial Water Parameters&quot;&quot;&quot;</span>
+        <span class="n">zone_water</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">blk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+            <span class="n">zone_water</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blk</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">water</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">zone_water</span></div>
+
+<div class="viewcode-block" id="t2solute.getBoundaryWaterIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getBoundaryWaterIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getBoundaryWaterIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Boundary Water Index&quot;&quot;&quot;</span>
+        <span class="n">water_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">boundary_water_index</span>
+        <span class="n">key_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">water_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">val_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">water_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">key_list</span><span class="p">,</span> <span class="n">val_list</span></div>
+
+<div class="viewcode-block" id="t2solute.getBoundaryWater"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getBoundaryWater">[docs]</a>    <span class="k">def</span> <span class="nf">getBoundaryWater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Boundary Water Parameters&quot;&quot;&quot;</span>
+        <span class="n">zone_water</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">blk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+            <span class="n">zone_water</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blk</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">water</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">zone_water</span></div>
+
+<div class="viewcode-block" id="t2solute.getMineral"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.getMineral">[docs]</a>    <span class="k">def</span> <span class="nf">getMineral</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Mineral Parameters&quot;&quot;&quot;</span>
+        <span class="n">mineral_zone</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">blk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+            <span class="n">mineral_zone</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blk</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">mineral</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mineral_zone</span></div>
+
+<div class="viewcode-block" id="t2solute.section_insertion_index"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines an appropriate position to insert the specified section</span>
+<span class="sd">        in the internal list of data file sections.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">listindex</span> <span class="o">=</span> <span class="n">t2solute_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">listindex</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># SIMUL section</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># first look for sections above the one specified,</span>
+                <span class="c1"># and put new one just after the last found:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">listindex</span><span class="p">)):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">section_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t2solute_sections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">return</span> <span class="n">section_index</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="c1"># look for sections below the one specified,</span>
+                <span class="c1"># and put new one just before the first found:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">listindex</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t2solute_sections</span><span class="p">)):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">section_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t2solute_sections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">return</span> <span class="n">section_index</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.convert_to_t2solute"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.convert_to_t2solute">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_t2solute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get corresponding key parameters&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;options&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;reactive&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;OPTIONS&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;constraints&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;reactive&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;CONSTRAINTS&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;weighting&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;diffusion&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;WEIGHT_DIFFU&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;read&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;input&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;READIO&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;convergence&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;tolerance&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;TOLERANCE&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;printout&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;control&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;PRINTOUT&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;nodes&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;output&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;NODES&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;primary&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;aqueous&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;PRIMARY_SPECIES&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;mineral&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;output&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;MINERALS&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;aqueous&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;output&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;AQUEOUS_SPECIES&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;adsorption&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;output&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;ADSORPTION_SPECIES&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;exchange&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;output&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;EXCHANGE_SPECIES&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;chemical&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;default&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;CHEMICAL_ZONES&#39;</span>
+        <span class="k">elif</span> <span class="s1">&#39;chemical&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;zones&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;CHEMICAL_ZONES_TO_NODES&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;false&#39;</span></div>
+
+<div class="viewcode-block" id="t2solute.write_title"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_title">[docs]</a>    <span class="k">def</span> <span class="nf">write_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write title of file&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">title</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#Title&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_options"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_options">[docs]</a>    <span class="k">def</span> <span class="nf">read_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads reaction options&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_reactive_options</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ReactiveOptionsError</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;iterative_scheme&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;rsa_newton_raphson&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;linear_equation_solver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;activity_coefficient_calculation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;gaseous_species_in_transport&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;result_printout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;poro_perm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;co2_h2o_effects&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;itds_react&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="t2solute.write_options"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_options">[docs]</a>    <span class="k">def</span> <span class="nf">write_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes reaction options&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#options for reactive chemical transport &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# ISPIA itersfa ISOLVC NGAMM NGAS1 ichdump kcpl Ico2h2o  iTDS_REACT&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;iteration_scheme&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;rsa_newton_raphson&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;linear_equation_solver&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;activity_coefficient_calculation&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;gaseous_species_in_transport&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;result_printout&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;poro_perm&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;co2_h2o_effects&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;itds_react&#39;</span><span class="p">]]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;options&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_constraints"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_constraints">[docs]</a>    <span class="k">def</span> <span class="nf">read_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads simulation constraints&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_reactive_constraints</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ReactiveConstraintsError</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;constraints&#39;</span><span class="p">][</span><span class="s1">&#39;skip_saturation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;constraints&#39;</span><span class="p">][</span><span class="s1">&#39;courant_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;constraints&#39;</span><span class="p">][</span><span class="s1">&#39;maximum_ionic_strength&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;constraints&#39;</span><span class="p">][</span><span class="s1">&#39;weighting_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="t2solute.write_constraints"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_constraints">[docs]</a>    <span class="k">def</span> <span class="nf">write_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes simulation constraints&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#constraints for reactive chemical transport &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# SL1MIN        rcour     STIMAX    CNFACT(=1 fully implicit)&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">[</span><span class="s1">&#39;skip_saturation&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">[</span><span class="s1">&#39;courant_number&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">[</span><span class="s1">&#39;maximum_ionic_strength&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">[</span><span class="s1">&#39;weighting_factor&#39;</span><span class="p">]]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;constraints&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_readio"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_readio">[docs]</a>    <span class="k">def</span> <span class="nf">read_readio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads names of files to write output to&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_readio</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RequiredInputException</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;readio&#39;</span><span class="p">][</span><span class="s1">&#39;database&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;readio&#39;</span><span class="p">][</span><span class="s1">&#39;iteration_info&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;readio&#39;</span><span class="p">][</span><span class="s1">&#39;aqueous_concentration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;readio&#39;</span><span class="p">][</span><span class="s1">&#39;minerals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;readio&#39;</span><span class="p">][</span><span class="s1">&#39;gas&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;readio&#39;</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="t2solute.write_readio"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_readio">[docs]</a>    <span class="k">def</span> <span class="nf">write_readio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes names of files to write output to&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#Read input and output file names&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;iteration_info&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;aqueous_concentration&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;minerals&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;gas&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_weight_diffu"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_weight_diffu">[docs]</a>    <span class="k">def</span> <span class="nf">read_weight_diffu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads weighting and diffusion parameters&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_weight_diffusion</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RequiredInputException</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;weight_diffusion&#39;</span><span class="p">][</span><span class="s1">&#39;time_weighting&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;weight_diffusion&#39;</span><span class="p">][</span><span class="s1">&#39;upstream_weighting&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;weight_diffusion&#39;</span><span class="p">][</span><span class="s1">&#39;aqueous_diffusion_coefficient&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;weight_diffusion&#39;</span><span class="p">][</span><span class="s1">&#39;gas_diffusion_coefficient&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="t2solute.write_weight_diffu"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_weight_diffu">[docs]</a>    <span class="k">def</span> <span class="nf">write_weight_diffu</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes weighting and diffusion parameters&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Weighting space/time, aq. and gas diffusion coeffs&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# ITIME     WUPC   DFFUN     DFFUNG&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span><span class="p">[</span><span class="s1">&#39;time_weighting&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span><span class="p">[</span><span class="s1">&#39;upstream_weighting&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span><span class="p">[</span><span class="s1">&#39;aqueous_diffusion_coefficient&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">weight_diffusion</span><span class="p">[</span><span class="s1">&#39;gas_diffusion_coefficient&#39;</span><span class="p">]]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;weight_diffu&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_tolerance"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_tolerance">[docs]</a>    <span class="k">def</span> <span class="nf">read_tolerance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads tolerance values&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_tolerance_values</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RequiredInputException</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;maximum_iterations_transport&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;transport_tolerance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;maximum_iterations_chemistry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;chemistry_tolerance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;not_used1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;not_used2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;relative_concentration_change&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;tolerance&#39;</span><span class="p">][</span><span class="s1">&#39;relative_kinetics_change&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="t2solute.write_tolerance"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_tolerance">[docs]</a>    <span class="k">def</span> <span class="nf">write_tolerance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes tolerance values&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Convergence and tolerance parameters&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#  MAXITPTR  TOLTR    MAXITPCH  TOLCH    NOT-USED  NOT-USED    TOLDC    TOLDR&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;maximum_iterations_transport&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;transport_tolerance&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;maximum_iterations_chemistry&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;chemistry_tolerance&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;not_used1&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;not_used2&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;relative_concentration_change&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">[</span><span class="s1">&#39;relative_kinetics_change&#39;</span><span class="p">]]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;tolerance&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_printout"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_printout">[docs]</a>    <span class="k">def</span> <span class="nf">read_printout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads printout_options&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_printout_options</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RequiredInputException</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;printout_frequency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;number_of_gridblocks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;number_of_chemical_components&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;number_of_minerals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;number_of_aqueous&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;number_of_surface_complexes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;number_of_exchange_species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;aqueous_unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;mineral_unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;printout&#39;</span><span class="p">][</span><span class="s1">&#39;gas_unit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="t2solute.write_printout"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_printout">[docs]</a>    <span class="k">def</span> <span class="nf">write_printout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes printout_options&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Printout control variables:&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# NWTI NWNOD NWCOM NWMIN NWAQ NWADS NWEXC iconflag minflag igasflag&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;printout_frequency&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;number_of_gridblocks&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;number_of_chemical_components&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;number_of_minerals&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;number_of_aqueous&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;number_of_surface_complexes&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;number_of_exchange_species&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;aqueous_unit&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;mineral_unit&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">printout</span><span class="p">[</span><span class="s1">&#39;gas_unit&#39;</span><span class="p">]]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;printout&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_nodes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">read_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads nodes to write to&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_nodes_to_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;nodes_to_write&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
+
+<div class="viewcode-block" id="t2solute.write_nodes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">write_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes nodes to write to&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes_to_write</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Nodes for which to output data in time file (15a5):&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Nodes for which to output data in time file (15a5):&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_to_write</span><span class="p">)):</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">node</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_primary_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_primary_species">[docs]</a>    <span class="k">def</span> <span class="nf">read_primary_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads primary species to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_primary_species_to_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">primary_aqueous</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;primary_species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
+
+<div class="viewcode-block" id="t2solute.write_primary_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_primary_species">[docs]</a>    <span class="k">def</span> <span class="nf">write_primary_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes primary species to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s1">&#39;# Primary (total) aqueous species for which to output concentrations in time and plot files:&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">species</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_species</span><span class="p">:</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">species</span><span class="o">.</span><span class="n">NAME</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_species</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_minerals"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">read_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads minerals for which to output data in time and plot files&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_minerals_to_write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">minerals</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;minerals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
+
+<div class="viewcode-block" id="t2solute.write_minerals"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">write_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes minerals for which to output data in time and plot files&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Minerals for which to output data in time and plot files:&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">mineral</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span><span class="p">:</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mineral</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">mineral</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span><span class="p">:</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mineral</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">:</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">val</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_aqueous_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_aqueous_species">[docs]</a>    <span class="k">def</span> <span class="nf">read_aqueous_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads aqueous species for which to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2solute.write_aqueous_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_aqueous_species">[docs]</a>    <span class="k">def</span> <span class="nf">write_aqueous_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes aqueous species for which to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="c1"># TODO find out why leaving a space doesnt run</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aqueous_species</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># outfile.write(&#39;# Individual aqueous species for which to output concentrations in time and plot files:&#39; + &#39; \n tr&#39; )</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                <span class="s1">&#39;# Individual aqueous species for which to output concentrations in time and plot files:&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_adsorption_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_adsorption_species">[docs]</a>    <span class="k">def</span> <span class="nf">read_adsorption_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads Adsorption species for which to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2solute.write_adsorption_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_adsorption_species">[docs]</a>    <span class="k">def</span> <span class="nf">write_adsorption_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes Adsorption species for which to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adsorption_species</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Adsorption species for which to output concentrations in time and plot files:&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_exchange_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_exchange_species">[docs]</a>    <span class="k">def</span> <span class="nf">read_exchange_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads Exchange species for which to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2solute.write_exchange_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_exchange_species">[docs]</a>    <span class="k">def</span> <span class="nf">write_exchange_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes Exchange species for which to output concentrations in time and plot files&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchange_species</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Exchange species for which to output concentrations in time and plot files:&#39;</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.read_chemical_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_chemical_zones">[docs]</a>    <span class="k">def</span> <span class="nf">read_chemical_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads default chemical zones&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_default_chemical_zones</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RequiredInputException</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZIWDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZBWDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZMIDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZGSDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZADDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZEXDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZPPDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZKDDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones&#39;</span><span class="p">][</span><span class="s1">&#39;IZBGDF&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="t2solute.write_chemical_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_chemical_zones">[docs]</a>    <span class="k">def</span> <span class="nf">write_chemical_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes default chemical zones&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Default types of chemical zones&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Initial  Boundary                                      Porosity/ &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+            <span class="s1">&#39;#  Water    Water   Minerals   Gases Adsorption Exchange  Permeab  Kd zones  Injection Gas Zones&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# IZIWDF   IZBWDF    IZMIDF   IZGSDF   IZADDF    IZEXDF   IZPPDF    IZKDDF     IZBGDF&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZIWDF&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZBWDF&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZMIDF&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZGSDF&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZADDF&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZEXDF&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZPPDF&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZKDDF&#39;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="p">[</span><span class="s1">&#39;IZBGDF&#39;</span><span class="p">]]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemical_zones&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.map_zone_to_blocks"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.map_zone_to_blocks">[docs]</a>    <span class="k">def</span> <span class="nf">map_zone_to_blocks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Accurately map zone to blocks in the simulation&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="n">grid_name</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="n">grid_name</span><span class="p">]</span><span class="o">.</span><span class="n">zone</span>
+            <span class="k">if</span> <span class="n">zone</span><span class="o">.</span><span class="n">water</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">zone</span><span class="o">.</span><span class="n">gas</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+                <span class="n">zone</span><span class="o">.</span><span class="n">water</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+                <span class="c1"># nseq = int(param[1])</span>
+                <span class="c1"># nadd = int(param[2])</span>
+                <span class="n">initial_water</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">boundary_water</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+                <span class="n">mineral</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+                <span class="n">initial_gas</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+                <span class="c1"># adsorption = int(param[7])</span>
+                <span class="c1"># exchange = int(param[8])</span>
+                <span class="n">perm_poro</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+                <span class="c1"># decay_zone = int(param[10])</span>
+                <span class="n">injection_gas</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">11</span><span class="p">])</span>
+                <span class="n">zone</span><span class="o">.</span><span class="n">mineral_zone</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_minerals_mapping</span><span class="p">[</span><span class="n">mineral</span><span class="p">]</span>
+                <span class="n">zone</span><span class="o">.</span><span class="n">gas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_gas_mapping</span><span class="p">[</span><span class="n">initial_gas</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">zone</span><span class="o">.</span><span class="n">gas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">injection_gas_mapping</span><span class="p">[</span><span class="n">injection_gas</span><span class="p">]</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="n">zone</span><span class="o">.</span><span class="n">water</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_waters_mapping</span><span class="p">[</span><span class="n">initial_water</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">zone</span><span class="o">.</span><span class="n">water</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">boundary_waters_mapping</span><span class="p">[</span><span class="n">boundary_water</span><span class="p">]</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="n">zone</span><span class="o">.</span><span class="n">permporo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">initial_perm_poro_mapping</span><span class="p">[</span><span class="n">perm_poro</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2solute.read_chemical_zones_to_nodes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read_chemical_zones_to_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">read_chemical_zones_to_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads chemical zones in each node/grid&quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_default_chemical_zone_to_nodes</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">block_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_zone_to_blocks</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_zone_to_blocks</span><span class="p">(</span><span class="n">block_data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones_to_nodes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">block_data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map_zone_to_blocks</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;chemical_zones_to_nodes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
+
+<div class="viewcode-block" id="t2solute.generate_zone_to_blocks"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.generate_zone_to_blocks">[docs]</a>    <span class="k">def</span> <span class="nf">generate_zone_to_blocks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate chemical zones in each node/grid&quot;&quot;&quot;</span>
+        <span class="n">all_blocks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2chemical</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+            <span class="n">all_blocks</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">block</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="n">all_blocks</span></div>
+
+<div class="viewcode-block" id="t2solute.write_chemical_zones_to_nodes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write_chemical_zones_to_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">write_chemical_zones_to_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write chemical zones in each node/grid&quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Types of chemical zones for specific nodes (optional)&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Gridblock  Gridblocks Increment   Water    Water     Minerals   Gases  Adsorption Exchange  &#39;</span>
+                      <span class="s1">&#39;Permeab  Kd zones Injection Gas Zones&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# ELEM(a5)   NSEQ         NADD       IZIWDF   IZBWDF    IZMIDF   IZGSDF   IZADDF    IZEXDF    &#39;</span>
+                      <span class="s1">&#39;IZPPDF   IZKDDF     IZBGDF&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">chemical_zones_to_nodes</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemical_zones_to_nodes&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2solute.write"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+              <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write to simulation file (solute.inp)&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;solute.inp&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_sections</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">t2solute_parser</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">](</span><span class="n">outfile</span><span class="p">)</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;successful&#39;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="t2solute.read"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.solute_writing.t2solute.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read from simulation file (solute.inp)&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">else</span> <span class="s1">&#39;rU&#39;</span>
+        <span class="n">infile</span> <span class="o">=</span> <span class="n">t2solute_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_title</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">next_line</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># countline = 0</span>
+        <span class="k">while</span> <span class="n">more</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">next_line</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">next_line</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="c1"># keyword = line[0: 5].strip()</span>
+                <span class="n">keyword</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+                <span class="n">check_presence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_to_t2solute</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ENDCY&#39;</span><span class="p">,</span> <span class="s1">&#39;ENDFI&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]:</span>
+                    <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">=</span> <span class="n">keyword</span>
+                <span class="c1"># elif keyword in t2chemical_read_sections:</span>
+                <span class="c1"># elif any(ext in keyword for ext in t2chemical_read_sections):</span>
+                <span class="k">elif</span> <span class="n">check_presence</span> <span class="o">!=</span> <span class="s1">&#39;false&#39;</span><span class="p">:</span>
+                    <span class="n">keyword</span> <span class="o">=</span> <span class="n">check_presence</span>
+                    <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">]</span>
+                    <span class="n">next_line</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="n">keyword</span> <span class="o">==</span> <span class="s1">&#39;SHORT&#39;</span><span class="p">:</span>
+                        <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">keyword</span> <span class="o">==</span> <span class="s1">&#39;PARAM&#39;</span><span class="p">:</span>
+                        <span class="n">next_line</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;successful&#39;</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

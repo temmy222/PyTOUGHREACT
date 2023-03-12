@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.numerical package &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytoughreact.plotting package" href="pytoughreact.plotting.html" />
+    <link rel="prev" title="pytoughreact.model package" href="pytoughreact.model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytoughreact</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pytoughreact.html">pytoughreact package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pytoughreact.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.assembler.html">pytoughreact.assembler package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.chemical.html">pytoughreact.chemical package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.constants.html">pytoughreact.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.exceptions.html">pytoughreact.exceptions package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.model.html">pytoughreact.model package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pytoughreact.numerical package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.plotting.html">pytoughreact.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.pytough_wrapper.html">pytoughreact.pytough_wrapper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.results.html">pytoughreact.results package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.utilities.html">pytoughreact.utilities package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.writers.html">pytoughreact.writers package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-result-bio-module">pytoughreact.result_bio module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-module">pytoughreact.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-bio-module">pytoughreact.run_bio module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-react-module">pytoughreact.run_react module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-result-module">pytoughreact.run_result module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#module-pytoughreact.version">pytoughreact.version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#module-pytoughreact">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pytoughreact</a></li>
+          <li class="breadcrumb-item"><a href="pytoughreact.html">pytoughreact package</a></li>
+      <li class="breadcrumb-item active">pytoughreact.numerical package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pytoughreact.numerical.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytoughreact-numerical-package">
+<h1>pytoughreact.numerical package<a class="headerlink" href="#pytoughreact-numerical-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-pytoughreact.numerical.physical_model_numericals">
+<span id="pytoughreact-numerical-physical-model-numericals-module"></span><h2>pytoughreact.numerical.physical_model_numericals module<a class="headerlink" href="#module-pytoughreact.numerical.physical_model_numericals" title="Permalink to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.numerical.physical_model_numericals.PhysicalNumericals">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.numerical.physical_model_numericals.</span></span><span class="sig-name descname"><span class="pre">PhysicalNumericals</span></span><a class="reference internal" href="_modules/pytoughreact/numerical/physical_model_numericals.html#PhysicalNumericals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.numerical.physical_model_numericals.PhysicalNumericals" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.numerical.physical_model_numericals.PhysicalNumericals.timesteps">
+<span class="sig-name descname"><span class="pre">timesteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maximum_time_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">999</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/numerical/physical_model_numericals.html#PhysicalNumericals.timesteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.numerical.physical_model_numericals.PhysicalNumericals.timesteps" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.numerical.physical_model_numericals.PhysicalNumericals.toughMOPS">
+<span class="sig-name descname"><span class="pre">toughMOPS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/numerical/physical_model_numericals.html#PhysicalNumericals.toughMOPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.numerical.physical_model_numericals.PhysicalNumericals.toughMOPS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.numerical">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytoughreact.numerical" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pytoughreact.model.html" class="btn btn-neutral float-left" title="pytoughreact.model package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pytoughreact.plotting.html" class="btn btn-neutral float-right" title="pytoughreact.plotting package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
