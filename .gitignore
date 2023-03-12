@@ -61,6 +61,10 @@ var/
 *.egg
 upload_package.py
 
+# documentation
+documentation/*
+!documentation/_build
+
 # Unit test / coverage reports
 htmlcov/
 .tox/

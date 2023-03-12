@@ -1,0 +1,18 @@
+PyTOUGHREACT.pytoughreact.pytough\_wrapper package
+==================================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   PyTOUGHREACT.pytoughreact.pytough_wrapper.wrapper
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.pytough_wrapper
+   :members:
+   :undoc-members:
+   :show-inheritance:

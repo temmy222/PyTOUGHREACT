@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.utilities.synergy_general_utilities &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.utilities.synergy_general_utilities</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.utilities.synergy_general_utilities</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="SynergyUtilities"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities">[docs]</a><span class="k">class</span> <span class="nc">SynergyUtilities</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="SynergyUtilities.convert_times"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.convert_times">[docs]</a>    <span class="k">def</span> <span class="nf">convert_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arraylist</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Convert times to second/minute/hour/day/year &quot;&quot;&quot;</span>
+        <span class="n">intermediate</span> <span class="o">=</span> <span class="n">arraylist</span>
+        <span class="n">timeyear</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;year&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)):</span>
+                <span class="n">timeyear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intermediate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mf">3.154e+7</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;day&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)):</span>
+                <span class="n">timeyear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intermediate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">86400</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;hour&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)):</span>
+                <span class="n">timeyear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intermediate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;minute&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)):</span>
+                <span class="n">timeyear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intermediate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;second&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intermediate</span><span class="p">)):</span>
+                <span class="n">timeyear</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">intermediate</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;format can either be year, day, hour, minute or second&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">timeyear</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.choplist"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.choplist">[docs]</a>    <span class="k">def</span> <span class="nf">choplist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">liste</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reduce the lsit size &quot;&quot;&quot;</span>
+        <span class="k">global</span> <span class="n">finallist</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+                <span class="n">liste</span> <span class="o">=</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span><span class="n">number</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">finallist</span> <span class="o">=</span> <span class="n">liste</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">):</span><span class="n">number</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">finallist</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.cutdata"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.cutdata">[docs]</a>    <span class="k">def</span> <span class="nf">cutdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_data</span><span class="p">,</span> <span class="n">resultdata</span><span class="p">,</span> <span class="n">slicevalue</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Cut the result output to avoid too many points on a graph &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">time_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">slicevalue</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">time_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">resultdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">time_data</span><span class="p">,</span> <span class="n">resultdata</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.removeRepetiting"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.removeRepetiting">[docs]</a>    <span class="k">def</span> <span class="nf">removeRepetiting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_list</span><span class="p">,</span> <span class="n">value_list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Remove repetiting values &quot;&quot;&quot;</span>
+        <span class="n">final_time_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">final_value_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_list</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">time_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">final_time_list</span><span class="p">:</span>
+                <span class="n">final_time_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">final_value_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">final_time_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">final_time_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">final_time_list</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">del</span> <span class="n">final_time_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">final_value_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">final_time_list</span><span class="p">,</span> <span class="n">final_value_list</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.param_label_full"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.param_label_full">[docs]</a>    <span class="k">def</span> <span class="nf">param_label_full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Full Names of TOUGHREACT and TMVIO parameters &quot;&quot;&quot;</span>
+        <span class="n">dict_param</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;PRES&#39;</span><span class="p">:</span> <span class="s1">&#39;Pressure (Pa)&#39;</span><span class="p">,</span> <span class="s1">&#39;TEMP&#39;</span><span class="p">:</span> <span class="s1">&#39;Temperature ($^o C$)&#39;</span><span class="p">,</span> <span class="s1">&#39;SAT_G&#39;</span><span class="p">:</span> <span class="s1">&#39;Gas Saturation (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;SAT_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Liquid Saturation (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;SAT_N&#39;</span><span class="p">:</span> <span class="s1">&#39;NAPL Saturation (-)&#39;</span><span class="p">,</span> <span class="s1">&#39;X_WATER_G&#39;</span><span class="p">:</span> <span class="s1">&#39;Water Mass Fraction in Gas (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_AIR_G&#39;</span><span class="p">:</span> <span class="s1">&#39;Air Mass Fraction in Gas (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_WATER_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Water Mass Fraction in Liquid (-)&#39;</span><span class="p">,</span> <span class="s1">&#39;X_AIR_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Air Mass Fraction in Liquid (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_WATER_N&#39;</span><span class="p">:</span> <span class="s1">&#39;Water Mass Fraction in NAPL (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_AIR_N&#39;</span><span class="p">:</span> <span class="s1">&#39;Air Mass Fraction in NAPL (-)&#39;</span><span class="p">,</span> <span class="s1">&#39;REL_G&quot;&#39;</span><span class="p">:</span> <span class="s1">&#39;Relative Permeability of Gas (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;REL_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Relative Permeability of Liquid (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;REL_N&#39;</span><span class="p">:</span> <span class="s1">&#39;Relative Permeability of NAPL (-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;PCAP_GL&#39;</span><span class="p">:</span> <span class="s1">&#39;Capillary Pressure of Gas in Liquid (Pa)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;PCAP_GN&#39;</span><span class="p">:</span> <span class="s1">&#39;Capillary Pressure of Gas in NAPL (Pa)&#39;</span><span class="p">,</span> <span class="s1">&#39;DEN_G&#39;</span><span class="p">:</span> <span class="s1">&#39;Gas Density ($kg/m^3$)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;DEN_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Liquid Density ($kg/m^3$)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;DEN_N&#39;</span><span class="p">:</span> <span class="s1">&#39;NAPL Density ($kg/m^3$)&#39;</span><span class="p">,</span> <span class="s1">&#39;POR&#39;</span><span class="p">:</span> <span class="s1">&#39;Porosity&#39;</span><span class="p">,</span> <span class="s1">&#39;BIO1&#39;</span><span class="p">:</span> <span class="s1">&#39;Biomass Mass Fraction(-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;BIO2&#39;</span><span class="p">:</span> <span class="s1">&#39;Biomass Mass Fraction(-)&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_BENZEN_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of Benzene in Liquid&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_TOLUEN_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of Toluene in Liquid&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_N-DECA_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of Decane in Liquid&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_TOLUEN_N&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of Toluene in NAPL&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_TOLUEN_G&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of Toluene in Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;PH&#39;</span><span class="p">:</span> <span class="s1">&#39;pH&#39;</span><span class="p">,</span> <span class="s1">&#39;T_NA+&#39;</span><span class="p">:</span> <span class="s1">&#39;Concentration of Sodium&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;T_CL-&#39;</span><span class="p">:</span> <span class="s1">&#39;Concentration of Chlorine&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;T_CA+2&#39;</span><span class="p">:</span> <span class="s1">&#39;Concentration of Calcium&#39;</span><span class="p">,</span> <span class="s1">&#39;T_H2O&#39;</span><span class="p">:</span> <span class="s1">&#39;Concentration of Water&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;T_H+&#39;</span><span class="p">:</span> <span class="s1">&#39;Concentration of Hydrogen&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;CALCITE&#39;</span><span class="p">:</span> <span class="s1">&#39;Calcite&#39;</span><span class="p">,</span> <span class="s1">&#39;PORTLANDITE&#39;</span><span class="p">:</span> <span class="s1">&#39;Portlandite&#39;</span><span class="p">,</span> <span class="s1">&#39;GYPSUM&#39;</span><span class="p">:</span> <span class="s1">&#39;Gypsum&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;POROSITY&#39;</span><span class="p">:</span> <span class="s1">&#39;Porosity&#39;</span><span class="p">,</span> <span class="s1">&#39;ETTRINGITE&#39;</span><span class="p">:</span> <span class="s1">&#39;Ettringite&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X3_L_TOLUENE&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of Toluene&#39;</span><span class="p">,</span> <span class="s1">&#39;X2_L_O2&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction Oxygen&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;X_P-XYLE_L&#39;</span><span class="p">:</span> <span class="s1">&#39;Mass Fraction of p-Xylene&#39;</span>
+                      <span class="p">}</span>
+        <span class="k">return</span> <span class="n">dict_param</span><span class="p">[</span><span class="n">param</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.fmt"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.fmt">[docs]</a>    <span class="k">def</span> <span class="nf">fmt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.2e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;$</span><span class="si">{}</span><span class="s1"> \times 10^{{</span><span class="si">{}</span><span class="s1">}}$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.get_number_of_grids"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.get_number_of_grids">[docs]</a>    <span class="k">def</span> <span class="nf">get_number_of_grids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get number of grids in simulation &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">input_list</span><span class="p">:</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.getgridnumber"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.getgridnumber">[docs]</a>    <span class="k">def</span> <span class="nf">getgridnumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Grid number &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">direction</span><span class="p">]</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">m</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.cust_range"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.cust_range">[docs]</a>    <span class="k">def</span> <span class="nf">cust_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Combines numpy.arange and numpy.isclose to mimic</span>
+<span class="sd">        open, half-open and closed intervals.</span>
+<span class="sd">        Avoids also floating point rounding errors as with</span>
+<span class="sd">        &gt;&gt;&gt; numpy.arange(1, 1.3, 0.1)</span>
+<span class="sd">        array([1. , 1.1, 1.2, 1.3])</span>
+
+<span class="sd">        args: [start, ]stop, [step, ]</span>
+<span class="sd">            as in numpy.arange</span>
+<span class="sd">        rtol, atol: floats</span>
+<span class="sd">            floating point tolerance as in numpy.isclose</span>
+<span class="sd">        include: boolean list-like, length 2</span>
+<span class="sd">            if start and end point are included</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># process arguments</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">args</span>
+            <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="c1"># determine number of segments</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="c1"># do rounding for n</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="n">atol</span><span class="p">):</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+        <span class="c1"># correct for start/end is excluded</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">include</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">start</span> <span class="o">+=</span> <span class="n">step</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">include</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">stop</span> <span class="o">-=</span> <span class="n">step</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.crange"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.crange">[docs]</a>    <span class="k">def</span> <span class="nf">crange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cust_range</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.orange"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.orange">[docs]</a>    <span class="k">def</span> <span class="nf">orange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cust_range</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="SynergyUtilities.strip_param"><a class="viewcode-back" href="../../../pytoughreact.utilities.html#pytoughreact.utilities.synergy_general_utilities.SynergyUtilities.strip_param">[docs]</a>    <span class="k">def</span> <span class="nf">strip_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Convert Parameters by stripping &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;porosity&#39;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;Porosity&#39;</span>
+        <span class="k">elif</span> <span class="n">param</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;t_&quot;</span><span class="p">):</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;Total Concentration (mol/L)&quot;</span>
+        <span class="k">elif</span> <span class="n">param</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pH&quot;</span><span class="p">):</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;pH&#39;</span>
+        <span class="k">return</span> <span class="n">output</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

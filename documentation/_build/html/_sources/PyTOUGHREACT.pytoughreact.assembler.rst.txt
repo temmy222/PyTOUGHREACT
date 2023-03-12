@@ -1,0 +1,10 @@
+PyTOUGHREACT.pytoughreact.assembler package
+===========================================
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.assembler
+   :members:
+   :undoc-members:
+   :show-inheritance:

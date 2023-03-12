@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.model.relative_permeability &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.model.relative_permeability</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.model.relative_permeability</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">constants.rel_perm_constants</span> <span class="k">as</span> <span class="nn">rel_perm_constants</span>
+<span class="kn">from</span> <span class="nn">exceptions.custom_error</span> <span class="kn">import</span> <span class="n">RelativePermeabilityTypeError</span><span class="p">,</span> <span class="n">RestrictionError</span>
+
+<div class="viewcode-block" id="RelativePermeability"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability">[docs]</a><span class="k">class</span> <span class="nc">RelativePermeability</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_rel</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span> <span class="o">=</span> <span class="n">type_rel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span>
+        <span class="k">if</span> <span class="n">type_rel</span> <span class="o">==</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VERMA</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.895</span><span class="p">,</span> <span class="mf">1.259</span><span class="p">,</span> <span class="mf">1.7615</span><span class="p">,</span> <span class="mf">0.5089</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_rel_perm</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="RelativePermeability.validate_rel_perm"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.validate_rel_perm">[docs]</a>    <span class="k">def</span> <span class="nf">validate_rel_perm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rel_perm_aggregates</span> <span class="o">=</span> <span class="p">[</span><span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_COREY</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_EXPONENTIAL</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_FAT_KLIKOFF</span><span class="p">,</span>
+                               <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_GRANT</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_LINEAR</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_MOBILE_PHASES</span><span class="p">,</span>
+                               <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VAN_GENUCHTEN</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VERMA</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rel_perm_aggregates</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RelativePermeabilityTypeError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="p">,</span> <span class="n">rel_perm_aggregates</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">rel_perm_aggregates</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_LINEAR</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validate_linear</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_COREY</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validate_corey</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_GRANT</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">validate_grant</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="RelativePermeability.validate_linear"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.validate_linear">[docs]</a>    <span class="k">def</span> <span class="nf">validate_linear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">RestrictionError</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s1">&#39;greater&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">RestrictionError</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="s1">&#39;greater&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RelativePermeability.validate_corey"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.validate_corey">[docs]</a>    <span class="k">def</span> <span class="nf">validate_corey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RestrictionError</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;addition less one&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RelativePermeability.validate_grant"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.validate_grant">[docs]</a>    <span class="k">def</span> <span class="nf">validate_grant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RestrictionError</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="s1">&#39;addition less one&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RelativePermeability.validate_fat_klikoff"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.validate_fat_klikoff">[docs]</a>    <span class="k">def</span> <span class="nf">validate_fat_klikoff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">RestrictionError</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;greater&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RelativePermeability.rel_perm_converter"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.rel_perm_converter">[docs]</a>    <span class="k">def</span> <span class="nf">rel_perm_converter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mapping_rel_perm</span> <span class="o">=</span> <span class="p">{</span><span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_LINEAR</span><span class="p">:</span><span class="mi">1</span> <span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_EXPONENTIAL</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_COREY</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                            <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_GRANT</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_MOBILE_PHASES</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_FAT_KLIKOFF</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span>
+                            <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VAN_GENUCHTEN</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VERMA</span><span class="p">:</span><span class="mi">8</span><span class="p">}</span>
+        <span class="n">rel_perm</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">mapping_rel_perm</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()],</span> <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">rel_perm</span></div></div>
+        
+
+
+    
+
+        
+
+        
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+PyTOUGHREACT.pytoughreact.numerical package
+===========================================
+
+Submodules
+----------
+
+PyTOUGHREACT.pytoughreact.numerical.physical\_model\_numericals module
+----------------------------------------------------------------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.numerical.physical_model_numericals
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: PyTOUGHREACT.pytoughreact.numerical
+   :members:
+   :undoc-members:
+   :show-inheritance:

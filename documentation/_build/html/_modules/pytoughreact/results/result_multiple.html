@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.results.result_multiple &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.results.result_multiple</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.results.result_multiple</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">plotting.plot_multiple_files_routine</span> <span class="kn">import</span> <span class="n">PlotMultiFiles</span>
+
+<div class="viewcode-block" id="FileReadMultiple"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.result_multiple.FileReadMultiple">[docs]</a><span class="k">class</span> <span class="nc">FileReadMultiple</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for processing multiple file results</span>
+<span class="sd">    file_locations (list of strings) - specifies the location of the files on the system</span>
+<span class="sd">    file_titles (list of strings) - gives the title of the file e.g &#39;kdd.conc&#39; or &#39;OUTPUT.csv</span>
+<span class="sd">    simulator_type (string) can either be toughreact, tmvoc or tough3</span>
+<span class="sd">    props (list of strings) -  are the properties to be plotted</span>
+
+<span class="sd">    **kwargs</span>
+<span class="sd">    x_slice value (integer) - if the plot should be sliced a the  x axis</span>
+<span class="sd">    per_file -  (boolean) - if the plot should be made per file and not per property</span>
+<span class="sd">    title (list of strings) - title of each of the plots</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator_type</span><span class="p">,</span> <span class="n">file_locations</span><span class="p">,</span> <span class="n">file_titles</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_locations</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_titles</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span> <span class="o">=</span> <span class="n">file_locations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span> <span class="o">=</span> <span class="n">file_titles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span> <span class="o">=</span> <span class="n">simulator_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">props</span> <span class="o">=</span> <span class="n">props</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_slice_value&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">per_file</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;per_file&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FileReadMultiple.plotTime"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.result_multiple.FileReadMultiple.plotTime">[docs]</a>    <span class="k">def</span> <span class="nf">plotTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">plot_kind</span><span class="o">=</span><span class="s1">&#39;property&#39;</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">):</span>
+        <span class="c1"># TODO write code to slice x axis</span>
+        <span class="c1"># TODO write code to slice through domain</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param format_of_date:</span>
+<span class="sd">        :param grid_block_number: grid block number in mesh</span>
+<span class="sd">        :type grid_block_number: int</span>
+<span class="sd">        :param legend:</span>
+<span class="sd">        :type legend: list</span>
+<span class="sd">        :param plot_kind:</span>
+<span class="sd">        :type plot_kind: string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotMultiFiles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">,</span>
+                                  <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">,</span> <span class="n">per_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">per_file</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">plottest</span><span class="o">.</span><span class="n">multiFileSinglePlot</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plottest</span><span class="o">.</span><span class="n">plotMultiElementMultiFile</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">plot_kind</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FileReadMultiple.plotTimePerPanel"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.result_multiple.FileReadMultiple.plotTimePerPanel">[docs]</a>    <span class="k">def</span> <span class="nf">plotTimePerPanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="s1">&#39;day&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot Multiple plots in a panel &quot;&quot;&quot;</span>
+        <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotMultiFiles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">,</span>
+                                  <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">,</span> <span class="n">per_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">per_file</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">plottest</span><span class="o">.</span><span class="n">plotMultiPerPanel</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FileReadMultiple.plotParamWithLayer"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.result_multiple.FileReadMultiple.plotParamWithLayer">[docs]</a>    <span class="k">def</span> <span class="nf">plotParamWithLayer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directionX</span><span class="p">,</span> <span class="n">directionY</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Parameter with Layer &quot;&quot;&quot;</span>
+        <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotMultiFiles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">,</span>
+                                  <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">,</span> <span class="n">per_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">per_file</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plottest</span><span class="o">.</span><span class="n">plotMultiFileDistance</span><span class="p">(</span><span class="n">directionX</span><span class="p">,</span> <span class="n">directionY</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.writers.bio_writing &mdash; PyToughReact 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyToughReact
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyToughReact</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.writers.bio_writing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.writers.bio_writing</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">splitext</span><span class="p">,</span> <span class="n">basename</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">devnull</span><span class="p">,</span> <span class="n">remove</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">t2grids</span> <span class="kn">import</span> <span class="n">t2grid</span><span class="p">,</span> <span class="n">rocktype</span>
+<span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">t2data</span><span class="p">,</span> <span class="n">trim_trailing_nones</span>
+<span class="kn">from</span> <span class="nn">mulgrids</span> <span class="kn">import</span> <span class="n">unfix_blockname</span><span class="p">,</span> <span class="n">padstring</span>
+<span class="kn">from</span> <span class="nn">fixed_format_file</span> <span class="kn">import</span> <span class="n">fixed_format_file</span>
+<span class="kn">from</span> <span class="nn">fixed_format_file</span> <span class="kn">import</span> <span class="n">default_read_function</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.constants.format_specifications</span> <span class="kn">import</span> <span class="n">t2bio_format_specification</span>
+<span class="kn">from</span> <span class="nn">constants.sections</span> <span class="kn">import</span> <span class="n">t2bio_sections</span>
+<span class="kn">from</span> <span class="nn">constants.defaults_constants</span> <span class="kn">import</span> <span class="n">DEFAULT_PARAMETERS</span>
+<span class="kn">from</span> <span class="nn">chemical.biomass_composition</span> <span class="kn">import</span> <span class="n">BaseComponent</span><span class="p">,</span> <span class="n">Gas</span><span class="p">,</span> <span class="n">Water_Bio</span><span class="p">,</span> <span class="n">Biomass</span>
+<span class="kn">from</span> <span class="nn">chemical.bio_process_description</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">BIODG</span>
+
+
+<div class="viewcode-block" id="t2bio_parser"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio_parser">[docs]</a><span class="k">class</span> <span class="nc">t2bio_parser</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for parsing TMVOC data file.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">t2bio_parser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
+                                           <span class="n">t2bio_format_specification</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="t2bio"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio">[docs]</a><span class="k">class</span> <span class="nc">t2bio</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for TMVOC data.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">read_function</span> <span class="o">=</span> <span class="n">default_read_function</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span> <span class="o">=</span> <span class="n">meshfilename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">DEFAULT_PARAMETERS</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_more_option_str</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">*</span> <span class="mi">21</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">more_option</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multi</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relative_permeability</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">capillarity</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">biodg</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineq</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_times</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">t2grid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generatorlist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">short_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incon</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_block</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_connection</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_generator</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indom</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noversion</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffusion</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selection</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meshmaker</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">=</span> <span class="s1">&#39;ENDCY&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_extra_precision</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_echo_extra_precision</span> <span class="o">=</span> <span class="p">[],</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_function</span> <span class="o">=</span> <span class="n">read_function</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">meshfilename</span><span class="p">)</span>
+
+<div class="viewcode-block" id="t2bio.set_echo_extra_precision"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.set_echo_extra_precision">[docs]</a>    <span class="k">def</span> <span class="nf">set_echo_extra_precision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_echo_extra_precision</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>  <span class="c1"># remove previously echoed sections from section list</span>
+                <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extra_precision</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">delete_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># add sections previously not echoed to section list</span>
+                <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extra_precision</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">insert_section</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_echo_extra_precision</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="t2bio.update_read_write_functions"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates functions for reading and writing sections of data file.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2bio_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_simulator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_rocktypes</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_multi</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_chem</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_gas</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_biodg</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_solids</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_parameters</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_more_options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_noversion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_rpcap</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_lineq</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_solver</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_times</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_selection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_meshmaker</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_short_output</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_history_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_history_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_history_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_incons</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_indom</span><span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2bio_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">write_simulator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_rocktypes</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_multi</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_chem</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_gas</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_biodg</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_solids</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_parameters</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_more_options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_noversion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_rpcap</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_lineq</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_solver</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_times</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_selection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_meshmaker</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_short_output</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_history_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_history_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_history_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_incons</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_indom</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="t2bio.get_present_sections"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of TOUGH2 section keywords for which there are</span>
+<span class="sd">        corresponding data in the t2bio object.&quot;&quot;&quot;</span>
+        <span class="n">data_present</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2bio_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">biodg</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">solids</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">more_option</span><span class="p">),</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">noversion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">relative_permeability</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">capillarity</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">lineq</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">solver</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">output_times</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">selection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">meshmaker</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">generatorlist</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">short_output</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">history_block</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">history_connection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">history_generator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">incon</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">indom</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">keyword</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2bio_sections</span> <span class="k">if</span> <span class="n">data_present</span><span class="p">[</span><span class="n">keyword</span><span class="p">]]</span></div>
+
+    <span class="n">present_sections</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_present_sections</span><span class="p">)</span>
+
+<div class="viewcode-block" id="t2bio.section_insertion_index"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines an appropriate position to insert the specified section</span>
+<span class="sd">        in the internal list of data file sections.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">listindex</span> <span class="o">=</span> <span class="n">t2bio_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">listindex</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># SIMUL section</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># first look for sections above the one specified,</span>
+                <span class="c1"># and put new one just after the last found:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">listindex</span><span class="p">)):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">section_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t2bio_sections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">return</span> <span class="n">section_index</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="c1"># look for sections below the one specified,</span>
+                <span class="c1"># and put new one just before the first found:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">listindex</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t2bio_sections</span><span class="p">)):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">section_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t2bio_sections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">return</span> <span class="n">section_index</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.run"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">incon_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="s1">&#39;AUTOUGH2_2&#39;</span><span class="p">,</span>
+            <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Runs simulation using TMVOC &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+            <span class="c1"># newPath = shutil.copy(&#39;tmvoc.exe&#39;, runlocation)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="n">datbase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">save_filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                    <span class="n">save_filename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;.save&#39;</span>
+                <span class="k">if</span> <span class="n">incon_filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                    <span class="n">incon_filename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;.incon&#39;</span>
+                <span class="n">savebase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="n">save_filename</span><span class="p">)</span>
+                <span class="n">inconbase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="n">incon_filename</span><span class="p">)</span>
+                <span class="n">runfilename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">basename</span><span class="p">(</span><span class="n">simulator</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.in&#39;</span>
+                <span class="nb">open</span><span class="p">(</span><span class="n">runfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">savebase</span><span class="p">,</span> <span class="n">inconbase</span><span class="p">,</span> <span class="n">datbase</span><span class="p">]))</span>
+                <span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">runfilename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulator</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">silent</span><span class="p">:</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="c1"># run AUTOUGH2:</span>
+                <span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">outfile</span><span class="p">)</span>
+                <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">remove</span><span class="p">(</span><span class="n">runfilename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># run TOUGH2 (need to specify simulator executable name)</span>
+                <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+                <span class="c1"># if os.path.exists(&quot;GENER&quot;): os.remove(&quot;GENER&quot;)</span>
+                <span class="c1"># if os.path.exists(&quot;OUTPUT_ELEME.csv&quot;): os.remove(&quot;OUTPUT_ELEME.csv&quot;)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulator</span><span class="p">]</span>
+                <span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">silent</span><span class="p">:</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">output_filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                        <span class="n">datbase</span> <span class="o">=</span> <span class="s1">&#39;iter&#39;</span>
+                        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">output_filename</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+                <span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">outfile</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="t2bio.read_rocktypes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_rocktypes">[docs]</a>    <span class="k">def</span> <span class="nf">read_rocktypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads grid rock types&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+        <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">nad</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">porosity</span><span class="p">,</span>
+             <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="n">conductivity</span><span class="p">,</span> <span class="n">specific_heat</span><span class="p">]</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;rocks1&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">add_rocktype</span><span class="p">(</span><span class="n">rocktype</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">nad</span><span class="p">,</span>
+                                            <span class="n">density</span><span class="p">,</span> <span class="n">porosity</span><span class="p">,</span>
+                                            <span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">],</span>
+                                            <span class="n">conductivity</span><span class="p">,</span> <span class="n">specific_heat</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">nad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">nad</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">nad</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># additional lines:</span>
+                <span class="n">infile</span><span class="o">.</span><span class="n">read_multi_value_line2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s1">&#39;rocks1.1&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">nad</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;rocks1.2&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">relative_permeability</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">relative_permeability</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;rocks1.3&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">capillarity</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">capillarity</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="t2bio.read_chem"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_chem">[docs]</a>    <span class="k">def</span> <span class="nf">read_chem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads chemical components &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp&#39;</span><span class="p">)</span>
+        <span class="n">all_comp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="n">comp_name</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1&#39;</span><span class="p">)</span>
+            <span class="n">first_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.1&#39;</span><span class="p">)</span>
+            <span class="n">second_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.2&#39;</span><span class="p">)</span>
+            <span class="n">third_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.3&#39;</span><span class="p">)</span>
+            <span class="n">fourth_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.4&#39;</span><span class="p">)</span>
+            <span class="n">fifth_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.5&#39;</span><span class="p">)</span>
+            <span class="n">sixth_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.6&#39;</span><span class="p">)</span>
+            <span class="n">seventh_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp1.7&#39;</span><span class="p">)</span>
+            <span class="n">comp</span> <span class="o">=</span> <span class="n">BaseComponent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">comp_name</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">critTemp</span><span class="o">=</span><span class="n">first_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">critPres</span><span class="o">=</span><span class="n">first_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                 <span class="n">critComp</span><span class="o">=</span><span class="n">first_line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                 <span class="n">acentricFactor</span><span class="o">=</span><span class="n">first_line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">dipoleMoment</span><span class="o">=</span><span class="n">first_line</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                                 <span class="n">boilPoint</span><span class="o">=</span><span class="n">second_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vapPressA</span><span class="o">=</span><span class="n">second_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vapPressB</span><span class="o">=</span><span class="n">second_line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                 <span class="n">vapPressC</span><span class="o">=</span><span class="n">second_line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">vapPressD</span><span class="o">=</span><span class="n">second_line</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                                 <span class="n">molWeight</span><span class="o">=</span><span class="n">third_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">heatCapConstantA</span><span class="o">=</span><span class="n">third_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                 <span class="n">heatCapConstantB</span><span class="o">=</span><span class="n">third_line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">heatCapConstantC</span><span class="o">=</span><span class="n">third_line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                                 <span class="n">heatCapConstantD</span><span class="o">=</span><span class="n">third_line</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                                 <span class="n">liqDensity</span><span class="o">=</span><span class="n">fourth_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">refTempForDensity</span><span class="o">=</span><span class="n">fourth_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                 <span class="n">refBinaryDif</span><span class="o">=</span><span class="n">fourth_line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">refTempForDif</span><span class="o">=</span><span class="n">fourth_line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">expChemDif</span><span class="o">=</span><span class="n">fourth_line</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                                 <span class="n">liqVisConstA</span><span class="o">=</span><span class="n">fifth_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">liqVisConstB</span><span class="o">=</span><span class="n">fifth_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">liqVisConstC</span><span class="o">=</span><span class="n">fifth_line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                 <span class="n">liqVisConstD</span><span class="o">=</span><span class="n">fifth_line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">liqCritVol</span><span class="o">=</span><span class="n">fifth_line</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                                 <span class="n">liqChemSolA</span><span class="o">=</span><span class="n">sixth_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">liqChemSolB</span><span class="o">=</span><span class="n">sixth_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">liqChemSolC</span><span class="o">=</span><span class="n">sixth_line</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                 <span class="n">liqChemSolD</span><span class="o">=</span><span class="n">sixth_line</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                                 <span class="n">carbonPartCoefficient</span><span class="o">=</span><span class="n">seventh_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fracCarbon</span><span class="o">=</span><span class="n">seventh_line</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                 <span class="n">decayConstant</span><span class="o">=</span><span class="n">seventh_line</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">all_comp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="n">all_comp</span></div>
+
+<div class="viewcode-block" id="t2bio.write_chem"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_chem">[docs]</a>    <span class="k">def</span> <span class="nf">write_chem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes chemical components &quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;CHEMP</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">)]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">vals</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getFirstSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.1&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getSecondSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.2&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getThirdSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.3&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getFourthSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.4&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getFifthSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.5&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getSixthSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.6&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">getSeventhSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp1.7&#39;</span><span class="p">)</span>
+        <span class="c1"># outfile.write(str(comp_total) + &#39;\n&#39;)</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2bio.read_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_gas">[docs]</a>    <span class="k">def</span> <span class="nf">read_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Gases &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;ncgas&#39;</span><span class="p">)</span>
+        <span class="n">all_comp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="n">first_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;ncgas1&#39;</span><span class="p">)</span>
+            <span class="n">comp</span> <span class="o">=</span> <span class="n">Gas</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">first_line</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">all_comp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span> <span class="o">=</span> <span class="n">all_comp</span></div>
+
+<div class="viewcode-block" id="t2bio.write_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_gas">[docs]</a>    <span class="k">def</span> <span class="nf">write_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Gases &quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;NCGAS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="p">)]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;ncgas&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="p">)):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">vals</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.reset_bio_dicta"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.reset_bio_dicta">[docs]</a>    <span class="k">def</span> <span class="nf">reset_bio_dicta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_components</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Resets the BIO dicitonary &quot;&quot;&quot;</span>
+        <span class="n">dicta_all</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_components</span><span class="p">)):</span>
+            <span class="n">dicta</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">dicta</span><span class="p">[</span><span class="n">all_components</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">dicta_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dicta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dicta_all</span></div>
+
+<div class="viewcode-block" id="t2bio.read_biodg"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_biodg">[docs]</a>    <span class="k">def</span> <span class="nf">read_biodg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Biodegradation Block &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg&#39;</span><span class="p">)</span>
+        <span class="n">number_of_processes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">process_details</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_processes</span><span class="p">):</span>
+            <span class="n">first_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1.1&#39;</span><span class="p">)</span>
+            <span class="n">second_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1.1.1&#39;</span><span class="p">)</span>
+            <span class="n">third_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1.1.2&#39;</span><span class="p">)</span>
+            <span class="n">fourth_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1.1.3&#39;</span><span class="p">)</span>
+            <span class="n">fifth_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1.1.4&#39;</span><span class="p">)</span>
+            <span class="n">sixth_line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1.1.5&#39;</span><span class="p">)</span>
+            <span class="n">comp</span> <span class="o">=</span> <span class="p">[</span><span class="n">first_line</span><span class="p">,</span> <span class="n">second_line</span><span class="p">,</span> <span class="n">third_line</span><span class="p">,</span> <span class="n">fourth_line</span><span class="p">,</span> <span class="n">fifth_line</span><span class="p">,</span> <span class="n">sixth_line</span><span class="p">]</span>
+            <span class="n">process_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+        <span class="n">number_of_biomass</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg2&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">biomass_details</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_biomass</span><span class="p">):</span>
+            <span class="n">biomass_1</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg2.1&#39;</span><span class="p">)</span>
+            <span class="n">biomass_class</span> <span class="o">=</span> <span class="n">Biomass</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;biom&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">init_conc</span><span class="o">=</span><span class="n">biomass_1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">min_conc</span><span class="o">=</span><span class="n">biomass_1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">max_temp</span><span class="o">=</span><span class="n">biomass_1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">death_rate</span><span class="o">=</span><span class="n">biomass_1</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">inhibition_constant</span><span class="o">=</span><span class="n">biomass_1</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+            <span class="n">biomass_details</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">biomass_class</span><span class="p">)</span>
+        <span class="n">water_component</span> <span class="o">=</span> <span class="p">[</span><span class="n">Water_Bio</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)]</span>
+        <span class="n">all_components</span> <span class="o">=</span> <span class="n">water_component</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span>
+        <span class="n">dicta_all</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># for i in range(len(all_components)):</span>
+        <span class="c1">#     dicta = {}</span>
+        <span class="c1">#     dicta[all_components[i]] = []</span>
+        <span class="c1">#     dicta_all.append(dicta)</span>
+        <span class="n">all_processes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">process_details</span><span class="p">)):</span>
+            <span class="n">dicta_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_bio_dicta</span><span class="p">(</span><span class="n">all_components</span><span class="p">)</span>
+            <span class="n">process</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">biomass</span><span class="o">=</span><span class="n">biomass_details</span><span class="p">[</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">numberOfComponents</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                              <span class="n">mumax</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">yield_mass</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span>
+                              <span class="n">NumOfCompetiting</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="n">NumOfNonCompetiting</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">5</span><span class="p">],</span>
+                              <span class="n">NumOfHaldane</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">],</span> <span class="n">enthalpy</span><span class="o">=</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_components</span><span class="p">)):</span>
+                <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">5</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])):</span>
+                    <span class="k">if</span> <span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">==</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process_details</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">addToProcess</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">addToProcess</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">addToProcess</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">2</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">addToProcess</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">2</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">3</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                    <span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">addToProcess</span><span class="p">(</span><span class="n">process</span><span class="p">,</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">1</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">2</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">3</span><span class="p">],</span> <span class="n">dicta_all</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">all_components</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="mi">4</span><span class="p">])</span>
+            <span class="n">all_processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+        <span class="n">biodegradation</span> <span class="o">=</span> <span class="n">BIODG</span><span class="p">(</span><span class="n">imonod</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bfac</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">sw1</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">sw2</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">wea</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">wsub</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">processes</span><span class="o">=</span><span class="n">all_processes</span><span class="p">,</span> <span class="n">biomass</span><span class="o">=</span><span class="n">biomass_details</span><span class="p">,</span> <span class="n">icflag</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">biodg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">biodegradation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.write_biodg"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_biodg">[docs]</a>    <span class="k">def</span> <span class="nf">write_biodg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Biodegradation Block &quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;BIODG</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">biodg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">getFirstSet</span><span class="p">()</span>
+        <span class="c1"># numberOfBiomass = value.getNumberOfBiomasses()</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">)]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">)):</span>
+            <span class="n">sub_degrade</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">getKs</span><span class="p">()</span>
+            <span class="n">comp_degrade</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">getKc</span><span class="p">()</span>
+            <span class="n">ncomp_degrade</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">getKnc</span><span class="p">()</span>
+            <span class="n">h_degrade</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">getKh</span><span class="p">()</span>
+            <span class="n">uptake</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">getUptake</span><span class="p">()</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">sub_degrade</span><span class="p">),</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">biomass</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mumax</span><span class="p">,</span>
+                    <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yield_mass</span><span class="p">,</span>
+                    <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">NumOfCompetiting</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">NumOfNonCompetiting</span><span class="p">,</span>
+                    <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">NumOfHaldane</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">enthalpy</span><span class="p">]</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1.1&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">sub_degrade</span><span class="p">:</span>
+                <span class="n">component</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+                <span class="n">value1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value1</span><span class="p">)</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1.1.1&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">comp_degrade</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">comp_degrade</span><span class="p">:</span>
+                    <span class="n">component</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">value1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1.1.2&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ncomp_degrade</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">ncomp_degrade</span><span class="p">:</span>
+                    <span class="n">component</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">value1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1.1.3&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">h_degrade</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">h_degrade</span><span class="p">:</span>
+                    <span class="n">component</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+                    <span class="n">value1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1.1.4&#39;</span><span class="p">)</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">uptake</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg1.1.5&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">)]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg2&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">)):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">init_conc</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">min_conc</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max_temp</span><span class="p">,</span>
+                    <span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">death_rate</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">inhibition_constant</span><span class="p">]</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg2.1&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.read_solids"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_solids">[docs]</a>    <span class="k">def</span> <span class="nf">read_solids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Solids Block &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2bio.write_solids"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_solids">[docs]</a>    <span class="k">def</span> <span class="nf">write_solids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SOLIDS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solids</span><span class="p">),</span> <span class="s1">&#39;solids1&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solids</span><span class="p">)):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solids</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">getFirstSet</span><span class="p">()</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;solids2&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.read_parameters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">read_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Parameters Block &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads simulation parameters&quot;&quot;&quot;</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param1_autough2&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">]</span>
+        <span class="c1"># infile.read_value_line(self.parameter, spec)</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_params_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
+        <span class="n">mops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;_option_str&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;option&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mop</span><span class="p">)</span> <span class="k">for</span> <span class="n">mop</span> <span class="ow">in</span> <span class="n">mops</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># infile.read_value_line(self.parameter, &#39;param2&#39;)</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_params_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_timesteps</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+        <span class="c1"># infile.read_value_line(self.parameter, &#39;param3&#39;)</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_params_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param3&#39;</span><span class="p">)</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param4&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;default_incons&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trim_trailing_nones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">])</span>
+        <span class="c1"># read any additional lines of default incons:</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">more</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2bio_sections</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">section</span><span class="p">:</span>
+                    <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">more_incons</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;default_incons&#39;</span><span class="p">)</span>
+                    <span class="n">more_incons</span> <span class="o">=</span> <span class="n">trim_trailing_nones</span><span class="p">(</span><span class="n">more_incons</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">more_incons</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">more</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">line</span></div>
+
+<div class="viewcode-block" id="t2bio.write_parameters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">write_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Parameters Block &quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;PARAM</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+        <span class="n">paramw</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">paramw</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">paramw</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">unfix_blockname</span><span class="p">(</span><span class="n">paramw</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;_option_str&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;option&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]])</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param1_autough2&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">]</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_value_line</span><span class="p">(</span><span class="n">paramw</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_timesteps</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param3&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param4&#39;</span><span class="p">)</span>
+        <span class="n">num_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">num_vars</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">nlines</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">num_vars</span> <span class="o">/</span> <span class="mf">4.</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nlines</span><span class="p">):</span>
+                <span class="n">i1</span><span class="p">,</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="nb">min</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num_vars</span><span class="p">)</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">][</span><span class="n">i1</span><span class="p">:</span> <span class="n">i2</span><span class="p">])</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+                    <span class="n">vals</span> <span class="o">+=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">))</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;default_incons&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.read_more_options"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_more_options">[docs]</a>    <span class="k">def</span> <span class="nf">read_more_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads additional parameter options&quot;&quot;&quot;</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s1">&#39;_more_option_str&#39;</span><span class="p">)</span>
+        <span class="n">momops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_more_option_str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">more_option</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mop</span><span class="p">)</span> <span class="k">for</span> <span class="n">mop</span> <span class="ow">in</span> <span class="n">momops</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.read_multi"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_multi">[docs]</a>    <span class="k">def</span> <span class="nf">read_multi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads EOS parameters&quot;&quot;&quot;</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span> <span class="s1">&#39;multi_autough2&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">]</span>
+        <span class="c1"># spec = self.specification[spec]</span>
+        <span class="c1"># vals = infile.read_values(&#39;multi&#39;)</span>
+        <span class="c1"># for var, val in zip(spec[0], vals):</span>
+        <span class="c1">#     if val is not None: self.multi[var] = val</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_multi_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;eos&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">[</span><span class="s1">&#39;eos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">[</span><span class="s1">&#39;eos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="t2bio.write_start"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_start">[docs]</a>    <span class="k">def</span> <span class="nf">write_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Start Block &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;START</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2bio.read"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads data from file.  Mesh data can optionally be read from an</span>
+<span class="sd">        auxiliary file.  Extra precision data will also be read from</span>
+<span class="sd">        an associated &#39;.pdat&#39; file, if it exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">else</span> <span class="s1">&#39;rU&#39;</span>
+        <span class="n">infile</span> <span class="o">=</span> <span class="n">t2bio_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_title</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">next_line</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="n">more</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">next_line</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">next_line</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">keyword</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ENDCY&#39;</span><span class="p">,</span> <span class="s1">&#39;ENDFI&#39;</span><span class="p">]:</span>
+                    <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">=</span> <span class="n">keyword</span>
+                <span class="k">elif</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2bio_sections</span><span class="p">:</span>
+                    <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">]</span>
+                    <span class="n">next_line</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="n">keyword</span> <span class="o">==</span> <span class="s1">&#39;SHORT&#39;</span><span class="p">:</span>
+                        <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">keyword</span> <span class="o">==</span> <span class="s1">&#39;PARAM&#39;</span><span class="p">:</span>
+                        <span class="n">next_line</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">meshfilename</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">num_blocks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span> <span class="o">=</span> <span class="n">meshfilename</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meshfilename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">else</span> <span class="s1">&#39;rU&#39;</span>
+                <span class="n">meshfile</span> <span class="o">=</span> <span class="n">t2bio_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_meshfile</span><span class="p">(</span><span class="n">meshfile</span><span class="p">)</span>
+                <span class="n">meshfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meshfilename</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">meshfilename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">read_binary_meshfiles</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mesh filename must be either a string or a two-element tuple or list.&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;successful&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="t2bio.write"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+              <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes data to file.  Mesh data can optionally be written to an</span>
+<span class="sd">        auxiliary file.  For AUTOUGH2, if extra_precision is True or a</span>
+<span class="sd">        list of section names, the corresponding data sections will be</span>
+<span class="sd">        written to an extra precision file; otherwise, the same</span>
+<span class="sd">        sections (if any) that were read in as extra precision will</span>
+<span class="sd">        also be written out as extra precision.  If</span>
+<span class="sd">        echo_extra_precision is True, the extra precision sections</span>
+<span class="sd">        will also be written to the main data file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;t2bio.dat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_sections</span><span class="p">()</span>
+        <span class="n">mesh_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">meshfilename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span> <span class="o">=</span> <span class="n">meshfilename</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">meshfile</span> <span class="o">=</span> <span class="n">t2bio_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_blocks</span><span class="p">(</span><span class="n">meshfile</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_connections</span><span class="p">(</span><span class="n">meshfile</span><span class="p">)</span>
+                <span class="n">meshfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">mesh_sections</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ELEME&#39;</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">write_binary_meshfiles</span><span class="p">()</span>
+                    <span class="n">mesh_sections</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ELEME&#39;</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_extra_precision</span><span class="p">(</span><span class="n">extra_precision</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">t2bio_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_title</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mesh_sections</span><span class="p">)</span> <span class="ow">and</span> \
+                    <span class="p">((</span><span class="n">keyword</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_precision</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_precision</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">echo_extra_precision</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">](</span><span class="n">outfile</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;successful&#39;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
