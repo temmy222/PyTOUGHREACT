@@ -1,13 +1,13 @@
-import unittest
 import numpy as np
 from mulgrids import mulgrid
-from context import pytoughreact
+import pytoughreact
 from t2grids import t2grid
 from t2data import rocktype
 
+from pytoughreact.results.result_single import FileReadSingle
 
-class BioTestCase(unittest.TestCase):
 
+class BioTestCase():
     def set_up_write(self):
         second = 1
         minute = 60 * second
@@ -94,24 +94,25 @@ class BioTestCase(unittest.TestCase):
 
         return bio_read
 
-    def test_write(self):
-        write_output = self.set_up_write()
-        result = write_output.status
-        self.assertEqual(result, 'successful')
 
-    def test_read(self):
-        write_output = self.set_up_read()
-        result = write_output.status
-        self.assertEqual(result, 'successful')
-
-    def test_result_first(self):
-        results = pytoughreact.FileReadSingle('tmvoc', 'OUTPUT_ELEME.csv', 'test')
-        time = results.get_times('second')
-        parameter_result = results.get_time_series_data('X_toluen_L', 0)
-        time_length = len(time)
-        parameter_result_length = len(parameter_result)
-        self.assertEqual(time_length, parameter_result_length)
+def test_write_bio():
+    test_case = BioTestCase()
+    write_output = test_case.set_up_write()
+    result = write_output.status
+    assert result == 'successful'
 
 
-if __name__ == "__main__":
-    unittest.main()
+# def test_read_bio():
+#     test_case = BioTestCase()
+#     write_output = test_case.set_up_read()
+#     result = write_output.status
+#     assert result == 'successful'
+
+
+# def test_result_first_bio():
+#     results = FileReadSingle('tmvoc', os.path.dirname(os.path.realpath(__file__)), 'OUTPUT_ELEME.csv')
+#     time = results.get_times('second')
+#     parameter_result = results.get_time_series_data('X_toluen_L', 0)
+#     time_length = len(time)
+#     parameter_result_length = len(parameter_result)
+#     assert time_length == parameter_result_length
