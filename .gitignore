@@ -7,9 +7,16 @@ pytoughreact/results/results_factory.py
 pytoughreact/results/result_object_factory.py
 pytoughreact/results/results.py
 pytoughreact/treacteos1.exe
+src/pytoughreact/pytough_wrapper/pytough
+src/pytoughreact/results/results_factory.py
+src/pytoughreact/results/result_object_factory.py
+src/pytoughreact/results/results.py
+src/pytoughreact/treacteos1.exe
+test/geom.dat
 docs/user_guide.docx
 docs/user_guide.pdf
 treacteos1.exe
+**/treacteos1.exe*
 setup.py
 chdump.out
 chemical.inp
@@ -26,6 +33,7 @@ kdd_conc.tec
 kdd_gas.tec
 kdd_min.tec
 kdd_tim.tec
+screen_info.out
 LINEQ
 MESH
 runlog.out
@@ -37,6 +45,7 @@ thddem.dat
 VERS
 savechem
 tmvoc.exe
+**/tmvoc.exe*
 INFILE
 MESHA
 MESHB
@@ -44,6 +53,7 @@ OUTPUT
 OUTPUT_CONNE.csv
 OUTPUT_ELEME.csv
 OUTPUT_GENER.csv
+.vscode
 
 # Distribution / packaging
 bin/
@@ -60,6 +70,7 @@ var/
 .installed.cfg
 *.egg
 upload_package.py
+.mypy_cache
 
 # documentation
 documentation/*

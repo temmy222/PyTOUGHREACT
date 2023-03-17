@@ -503,7 +503,7 @@ class PlotMultiTough(object):
                     else:
                         axs.plot(time_year, result_array, label=labels[i], marker=markers[i])
                     axs.set_xlabel(pc.TIME_CAPS + ' ' + pc.OPEN_BRACKET + format_of_date + pc.CLOSE_BRACKET, fontsize=14)
-                    axs.set_ylabel(pc.Mass_Fraction, fontsize=14)
+                    axs.set_ylabel(pc.MASS_FRACTION, fontsize=14)
                     axs.ticklabel_format(useOffset=False, style=pc.PLAIN_STYLE, axis=pc.BOTH)
                 plt.setp(axs.get_xticklabels(), fontsize=14)
                 plt.setp(axs.get_yticklabels(), fontsize=14)

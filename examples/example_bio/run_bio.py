@@ -76,7 +76,7 @@ bio.parameter.update(
      'option': np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
      'relative_error': 1e-5,
      'phase_index': 2,
-     'default_incons': [9.57e+06, 0,  1e-6, 30.]})
+     'default_incons': [9.57e+06, 0, 1e-6, 30.]})
 
 # ______________________________________BIODEGRADATION______________________________
 bio.start = True

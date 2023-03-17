@@ -23,13 +23,13 @@ SOFTWARE.
 '''
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
-from setuptools.command.install import install as _install
+from setuptools import setup
+# from setuptools.command.install import install as _install
 # To use a consistent encoding
-from codecs import open
-from os import path
+# from codecs import open
+# from os import path
 
-import pip
+# import pip
 
 if __name__ == "__main__":
     setup()
@@ -69,15 +69,15 @@ if __name__ == "__main__":
 
 #     keywords=['python', 'reaction', 'TOUGHREACT', 'TMVOC-BIO', 'Uncertainty quantification', 'Sensitivity Analysis'],
 #     install_requires=[
-#     "numpy", 
-#     "scipy", 
-#     "vtk", 
+#     "numpy",
+#     "scipy",
+#     "vtk",
 #     "matplotlib",
 #     "pandas"
 #    ]
 # )
 
-#Other Details
+# Other Details
 # classifiers=[
 #     "Intended Audience :: Researchers",
 #     "License :: OSI Approved :: MIT License",

@@ -6,13 +6,12 @@ from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
 from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
-from pytoughreact.chemical.mineral_description import Mineral
 from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
 from pytoughreact.writers.chemical_writing import t2chemical
 from pytoughreact.writers.solute_writing import t2solute
 from t2grids import rocktype
 
-#__________________________________FLOW.INP______________________________________________________
+# __________________________________FLOW.INP______________________________________________________
 
 length = 0.1
 nblks = 1
@@ -61,7 +60,7 @@ react.start = True
 
 react.write('flow.inp')
 
-#____________________________________CHEMICAL.INP________________________________________________________________
+# ____________________________________CHEMICAL.INP________________________________________________________________
 h2o = PrimarySpecies('h2o', 0)
 h = PrimarySpecies('h+', 0)
 na = PrimarySpecies('na+', 0)
@@ -75,7 +74,7 @@ al = PrimarySpecies('al+3', 0)
 fe = PrimarySpecies('fe+2', 0)
 hs = PrimarySpecies('hs-', 0)
 
-all_species = [h2o, h,na, cl, hco3, ca, so4, mg, h4sio4, al, fe, hs]
+all_species = [h2o, h, na, cl, hco3, ca, so4, mg, h4sio4, al, fe, hs]
 
 h2o_comp1 = WaterComp(h2o, 1, 1.0000E+00, 1.000000E+00)
 h_comp1 = WaterComp(h, 1, 1E-7, 1E-7)
@@ -92,7 +91,7 @@ hs_comp1 = WaterComp(hs, 1, 1E-10, 1E-10)
 
 initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1, h4sio4_comp1, al_comp1, fe_comp1, hs_comp1], 25, 200)
 
-mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh' , 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
+mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh', 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
 all_minerals = get_kinetics_minerals(mineral_list)
 
 
@@ -120,12 +119,13 @@ writeChemical.primary_aqueous = all_species
 writeChemical.gases = initial_co2
 writeChemical.write()
 
-#____________________________________SOLUTE.INP________________________________________________________________
-writeSolute = t2solute(writeChemical)
+# ____________________________________SOLUTE.INP________________________________________________________________
+writeSolute = t2solute(t2chemical=writeChemical)
 writeSolute.nodes_to_write = [0]
 masa = writeSolute.getgrid_info()
 writeSolute.write()
 
-#___________________________________ RUN SIMULATION ___________________________________________________________
+# ___________________________________ RUN SIMULATION ___________________________________________________________
 print(os.path.dirname(__file__))
-react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
+react.run(writeSolute, simulator='treacteos1.exe')
+# react.run(simulator='treacteos1.exe', runlocation=os.getcwd())

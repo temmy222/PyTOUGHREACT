@@ -25,11 +25,17 @@ SOFTWARE.
 
 import os
 import sys
+import copy
 from t2data import t2data
 from fixed_format_file import default_read_function, fixed_format_file
 from pytoughreact.constants.format_specifications import t2chemical_format_specification
 from pytoughreact.constants.sections import t2chemical_sections
-from pytoughreact.chemical.chemical_composition import PrimarySpecies
+from pytoughreact.chemical.chemical_composition import PrimarySpecies, ReactGas, Water, WaterComp
+from pytoughreact.chemical.mineral_description import Mineral
+from pytoughreact.chemical.mineral_composition import MineralComp
+from pytoughreact.chemical.mineral_zone import MineralZone
+from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
+from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation, pHDependenceType1
 
 
 class SynergyChemical(fixed_format_file):
@@ -38,6 +44,418 @@ class SynergyChemical(fixed_format_file):
     def __init__(self, filename, mode, read_function=default_read_function):
         super(SynergyChemical, self).__init__(filename, mode,
                                               t2chemical_format_specification, read_function)
+
+    def get_param_values(self, linetype):
+        line = 'start'
+        all_lines = []
+        while line.startswith("'*") is False:
+            line = self.file.readline()
+            particular_line = self.parse_string(line, linetype)
+            if line.startswith("'*") is False:
+                all_lines.append(particular_line)
+        return all_lines
+
+    def get_param_values_mineral(self):
+        line = 'start'
+        all_lines = []
+        line = self.file.readline()
+        while line.startswith("'*") is False:
+            liner = (line.split())
+            precip_presence = int(liner[2])
+            presence = any(c.isalpha() for c in liner[0])
+            if presence is True:
+                mineral = Mineral(liner[0], int(liner[1]), int(liner[2]), int(liner[3]), int(liner[4]))
+                line = self.file.readline()
+                liner = (line.split())
+                read_dissolution = Dissolution(float(liner[0]), int(liner[1]), float(liner[2]), float(liner[3]), float(liner[4]),
+                                               float(liner[5]), float(liner[6]), float(liner[7]))
+                type_of_pH = liner[1]
+                if int(type_of_pH) == 0:
+                    mineral.dissolution = [read_dissolution]
+                else:
+                    line = self.file.readline()
+                    liner = (line.split())
+                    if liner[0].isnumeric():
+                        number_of_ph = int(liner[0])
+                        ph_deps = []
+                        for i in range(number_of_ph):
+                            line = self.file.readline()
+                            liner = (line.split())
+                            if type_of_pH == '2':
+                                ph_dep = pHDependenceType2(float(liner[0]), float(liner[1]), int(liner[2]), liner[3], float(liner[4]))
+                            elif type_of_pH == '1':
+                                ph_dep = pHDependenceType1(float(liner[0]), int(liner[1]), float(liner[2]), int(liner[3]))
+                            ph_deps.append(ph_dep)
+                        read_dissolution.pHDependence = ph_deps
+                        mineral.dissolution = [read_dissolution]
+                presence = any(c.isalpha() for c in liner[0])
+                if precip_presence > 1:
+                    line = self.file.readline()
+                    liner = (line.split())
+                    init_line = liner
+                    line = self.file.readline()
+                    liner = (line.split())
+                    liner = init_line + liner
+                    read_precipitation = Precipitation(float(liner[0]), int(liner[1]), float(liner[2]), float(liner[3]),
+                                                       float(liner[4]), float(liner[5]), float(liner[6]),
+                                                       float(liner[7]), float(liner[8]), int(liner[9]), float(liner[10]),
+                                                       float(liner[11]), float(liner[12]))
+                    mineral.precipitation = [read_precipitation]
+            all_lines.append(mineral)
+            line = self.file.readline()
+        return all_lines
+
+    def get_param_values_gas(self):
+        all_lines = []
+        line = self.file.readline()
+        while line.startswith("'*") is False:
+            liner = (line.split())
+            react_gas = ReactGas(liner[0], int(liner[1]), 0)
+            all_lines.append(react_gas)
+            line = self.file.readline()
+
+        return all_lines
+
+    def get_param_values_surface_complex(self):
+        all_lines = []
+        # line = self.file.readline()
+        # while line.startswith("'*") is False:
+        #     liner = (line.split())
+
+        return all_lines
+
+    def get_param_values_decay_species(self):
+        all_lines = []
+        # line = self.file.readline()
+        # while line.startswith("'*") is False:
+        #     liner = (line.split())
+
+        return all_lines
+
+    def get_param_values_exchangeable_cations(self):
+        all_lines = []
+        # line = self.file.readline()
+        # while line.startswith("'*") is False:
+        #     liner = (line.split())
+
+        return all_lines
+
+    def get_reactive_options(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_reactive_constraints(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_readio(self):
+        all_values = []
+        for i in range(6):
+            line = self.file.readline()
+            liner = (line.split())
+            all_values.append(liner[0])
+
+        return all_values
+
+    def get_weight_diffusion(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_tolerance_values(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_printout_options(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def search_for_node_index(self, blocks, nodes):
+        indexes = []
+        for i in range(len(nodes)):
+            for j in range(len(blocks)):
+                if blocks[j].name == nodes[i]:
+                    indexes.append(j)
+        return indexes
+
+    def get_nodes_to_read(self, grid):
+        all_values = []
+        line = self.file.readline()
+        while len(line.strip()) != 0:
+            all_values.append(line.rstrip())
+            line = self.file.readline()
+
+        output = self.search_for_node_index(grid.blocklist, all_values)
+        return output
+
+    def get_primary_species_to_read(self, primary_aqueous):
+        all_values = []
+        line = self.file.readline()
+        while len(line.strip()) != 0:
+            specie = self.find_primary_aqueous(primary_aqueous, line.rstrip())
+            all_values.append(specie)
+            line = self.file.readline()
+
+        return all_values
+
+    def get_minerals_to_write(self, minerals):
+        all_values = []
+        line = self.file.readline()
+        while len(line.strip()) != 0:
+            specie = self.find_minerals(minerals, line.rstrip())
+            all_values.append(specie)
+            line = self.file.readline()
+
+        return all_values
+
+    def get_default_chemical_zones(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_default_chemical_zone_to_nodes(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        line = self.file.readline()
+        all_values = []
+        while len(line.strip()) != 0:
+            grid_name = []
+            grid_name.append(line[0:5])
+            liner = (line.split())
+            value = grid_name + liner[2:]
+            for i in range(1, len(value)):
+                value[i] = int(value[i])
+            line = self.file.readline()
+            all_values.append(value)
+        return all_values
+
+    def find_primary_aqueous(self, primary_aqueous, name):
+        startIndex = name.find('\'')
+        if startIndex >= 0:
+            name = name.replace("'", "")
+        for i in range(len(primary_aqueous)):
+            if name.lower() == primary_aqueous[i].NAME.strip().lower():
+                return primary_aqueous[i]
+
+    def get_param_values_ib_waters(self, primary_aqueous, grid):
+        initial_waters_mapping = {}
+        initial_waters_list = []
+        boundary_waters_mapping = {}
+        boundary_waters_list = []
+        line = self.file.readline()
+        liner = (line.split())
+        number_of_initial_waters = int(liner[0])
+        if len(liner) > 1:
+            number_of_boundary_waters = int(liner[1])
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        counter = 1
+        while int(liner[0]) < number_of_initial_waters + 1 and counter < number_of_initial_waters + 1:
+            water_num = int(liner[0])
+            temp = float(liner[1])
+            pressure = float(liner[2])
+            line = self.file.readline()
+            line = self.file.readline()
+            all_comp = []
+            while line.startswith("'*") is False:
+                liner = (line.split())
+                specie = self.find_primary_aqueous(primary_aqueous, liner[0])
+                all_comp.append(WaterComp(specie, int(liner[1]), float(liner[2]), float(liner[3]), liner[4], float(liner[5])))
+                line = self.file.readline()
+            line = self.file.readline()
+            line = self.file.readline()
+            liner = (line.split())
+            water_composition = [Water(all_comp, temp, pressure)]
+            # grid.zonelist[water_num -1].water = water_composition
+            initial_waters_mapping[water_num] = water_composition
+            initial_waters_list.append(water_composition)
+            if liner[0].isnumeric() is False:
+                break
+            counter = counter + 1
+        counter = 1
+        if liner[0].isnumeric() is False:
+            return initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping
+        while int(liner[0]) < number_of_boundary_waters + 1 and counter < number_of_boundary_waters + 1:
+            water_num = int(liner[0])
+            temp = float(liner[1])
+            pressure = float(liner[2])
+            line = self.file.readline()
+            line = self.file.readline()
+            all_comp = []
+            while line.startswith("'*") is False:
+                liner = (line.split())
+                specie = self.find_primary_aqueous(primary_aqueous, liner[0])
+                all_comp.append(WaterComp(specie, int(liner[1]), float(liner[2]), float(liner[3]), liner[4], float(liner[5])))
+                line = self.file.readline()
+            line = self.file.readline()
+            line = self.file.readline()
+            liner = (line.split())
+            water_composition = [Water(all_comp, temp, pressure)]
+            # grid.zonelist[water_num -1].water = water_composition
+            boundary_waters_mapping[water_num] = water_composition
+            boundary_waters_list.append(water_composition)
+            counter = counter + 1
+            if liner[0].isnumeric() is False:
+                break
+
+        return initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping
+
+    def find_minerals(self, minerals, name):
+        startIndex = name.find('\'')
+        if startIndex >= 0:
+            name = name.replace("'", "")
+        for i in range(len(minerals)):
+            if name.lower() == minerals[i].name.strip().lower():
+                return minerals[i]
+
+    def get_param_values_mineral_zones(self, minerals):
+        initial_minerals_mapping = {}
+        initial_minerals_list = []
+        line = self.file.readline()
+        liner = (line.split())
+        number_of_mineral_zones = int(liner[0])
+        line = self.file.readline()
+        liner = (line.split())
+        counter = 1
+        while int(liner[0]) < number_of_mineral_zones + 1 and counter < number_of_mineral_zones + 1:
+            mineral_num = int(liner[0])
+            line = self.file.readline()
+            line = self.file.readline()
+            all_comp = []
+            while line.startswith("'*") is False:
+                liner = (line.split())
+                initial_mineral_value = liner
+                mineral_found = self.find_minerals(minerals, liner[0])
+                line = self.file.readline()
+                liner = (line.split())
+                initial_mineral_value = initial_mineral_value + liner
+                spec_mineral = MineralComp(mineral_found, float(initial_mineral_value[1]), int(initial_mineral_value[2]),
+                                           float(initial_mineral_value[3]), float(initial_mineral_value[4]), int(initial_mineral_value[5]))
+                all_comp.append(spec_mineral)
+                line = self.file.readline()
+            line = self.file.readline()
+            liner = (line.split())
+            # grid.zonelist[mineral_num -1].mineral_zone = MineralZone(all_comp)
+            initial_minerals_mapping[mineral_num] = MineralZone(all_comp)
+            initial_minerals_list.append(MineralZone(all_comp))
+            counter = counter + 1
+            if len(liner) == 0:
+                break
+
+        return initial_minerals_list, initial_minerals_mapping
+
+    def find_gas(self, gases, name):
+        startIndex = name.find('\'')
+        if startIndex >= 0:
+            name = name.replace("'", "")
+        for i in range(len(gases)):
+            if name.lower() == gases[i].name.strip().lower():
+                return gases[i]
+
+    def get_param_values_ij_gases(self, gases):
+        initial_gas_mapping = {}
+        initial_gas_list = []
+        injection_gas_mapping = {}
+        injection_gas_list = []
+        line = self.file.readline()
+        liner = (line.split())
+        number_of_initial_gas = int(liner[0])
+        if len(liner) > 1:
+            number_of_injection_gas = int(liner[1])
+        line = self.file.readline()
+        liner = (line.split())
+        counter = 1
+        while int(liner[0]) < number_of_initial_gas + 1 and counter < number_of_initial_gas + 1:
+            gas_num = int(liner[0])
+            line = self.file.readline()
+            line = self.file.readline()
+            all_comp = []
+            while line.startswith("'*") is False:
+                liner = (line.split())
+                spec_gas = copy.deepcopy(self.find_gas(gases, liner[0]))
+                spec_gas.partial_pressure = float(liner[1])
+                all_comp.append(spec_gas)
+                line = self.file.readline()
+            line = self.file.readline()
+            liner = (line.split())
+            # grid.zonelist[gas_num -1].gas = spec_gas
+            initial_gas_mapping[gas_num] = spec_gas
+            initial_gas_list.append([spec_gas])
+            if len(liner) == 0:
+                break
+            counter = counter + 1
+        counter = 1
+        if len(liner) == 0:
+            return initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping
+        while int(liner[0]) < number_of_injection_gas + 1 and counter < number_of_injection_gas + 1:
+            gas_num = int(liner[0])
+            line = self.file.readline()
+            line = self.file.readline()
+            all_comp = []
+            while line.startswith("'*") is False:
+                liner = (line.split())
+                spec_gas2 = copy.deepcopy(self.find_gas(gases, liner[0]))
+                spec_gas2.partial_pressure = float(liner[1])
+                all_comp.append(spec_gas2)
+                line = self.file.readline()
+            line = self.file.readline()
+            liner = (line.split())
+            # grid.zonelist[gas_num -1].gas = spec_gas
+            injection_gas_mapping[gas_num] = spec_gas2
+            injection_gas_list.append([spec_gas2])
+            counter = counter + 1
+            if len(liner) == 0:
+                break
+
+        return initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping
+
+    def get_param_values_perm_poro(self, minerals, grid):
+        initial_perm_poro_mapping = {}
+        initial_perm_poro_list = []
+        line = self.file.readline()
+        liner = (line.split())
+        number_of_perm_poro_zones = int(liner[0])
+        line = self.file.readline()
+        liner = (line.split())
+        counter = 1
+        if len(liner) == 0:
+            return initial_perm_poro_list, initial_perm_poro_mapping
+        while int(liner[0]) < number_of_perm_poro_zones + 1 and counter < number_of_perm_poro_zones + 1:
+            perm_poro_num = int(liner[0])
+            line = self.file.readline()
+            line = self.file.readline()
+            all_comp = []
+            while line.startswith("'*") is False:
+                liner = (line.split())
+                initial_perm_poro_value = liner
+                liner = (line.split())
+                spec_perm_poro = PermPoro(initial_perm_poro_value[0], initial_perm_poro_value[1], initial_perm_poro_value[2])
+                spec_perm_poro_zone = PermPoroZone([spec_perm_poro])
+                all_comp.append(spec_perm_poro_zone)
+                initial_perm_poro_mapping[perm_poro_num] = PermPoroZone(all_comp)
+                initial_perm_poro_list.append(PermPoroZone(all_comp))
+                line = self.file.readline()
+            line = self.file.readline()
+            liner = (line.split())
+            # grid.zonelist[perm_poro_num -1].permporo = all_comp
+            counter = counter + 1
+            if len(liner) == 0:
+                break
+
+        return initial_perm_poro_list, initial_perm_poro_mapping
 
 
 class t2chemical(t2data):
@@ -71,6 +489,8 @@ class t2chemical(t2data):
     def getib_waters(self):
         """ Get initial and boundary waters """
         ib_waters = [[], []]
+        if len(self.t2grid.zonelist) == 0:
+            return ib_waters
         if self.t2grid.zonelist[0].gas is None:
             return ib_waters
         for zone in self.t2grid.zonelist:
@@ -87,6 +507,8 @@ class t2chemical(t2data):
     def getij_gas(self):
         """ Get initial and injection gas """
         ij_gas = [[], []]
+        if len(self.t2grid.zonelist) == 0:
+            return ij_gas
         if self.t2grid.zonelist[0].gas is None:
             return ij_gas
         try:

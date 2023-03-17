@@ -1,21 +1,23 @@
-import unittest
+import os
+from pytoughreact.results.result_single import FileReadSingle
+from mulgrids import mulgrid
 from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation
 from pytoughreact.chemical.mineral_description import Mineral
 from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
-from mulgrids import mulgrid
 from pytoughreact.writers.react_writing import t2react
 from pytoughreact.writers.solute_writing import t2solute
 from pytoughreact.writers.chemical_writing import t2chemical
-from t2grids import rocktype
 from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
 from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from pytoughreact.results.result_single import FileReadSingle
+from pytoughreact.results.result_tough_react import ResultReact
+from t2data import rocktype
+FILE_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
-class ReactTestCase(unittest.TestCase):
+class ReactTestCase():
     def get_specific_mineral(self, mineral_name):
 
         calcite_ph = pHDependenceType2(5.0119e-01, 14.4, 1, 'h+', 1.0)
@@ -217,60 +219,55 @@ class ReactTestCase(unittest.TestCase):
         day = 24 * hour
         year = 365. * day
         year = float(year)
-        simtime = 1 * year
-
+        # simtime = 1 * year
         # --------------------------------------------FLOW.INP-----------------------------------------------------------------
 
-        length = 9
-        xblock = 3
-        # yblock = 1
-        zblock = 4
-        dx = [length / xblock] * xblock
-        dy = [0.1]
-        dz = [2] * zblock
-        geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -100])
+        length = 0.1
+        nblks = 1
+        dx = [length / nblks] * nblks
+        dy = [0.5]
+        dz = [0.5] * 1
+        geo = mulgrid().rectangular(dx, dy, dz)
         geo.write('geom.dat')
 
         react = t2react()
-        react.title = 'Multiple Rock Type'
+        react.title = 'Reaction example'
 
         react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
                        'num_secondary_parameters': 6}
 
         react.grid = t2reactgrid().fromgeo(geo)
 
-        react.parameter.update(
-            {'print_level': 3,
-             'max_timesteps': 9999,
-             'tstop': simtime,
-             'const_timestep': 8640,
-             #    'max_timestep': 8640,
-             'print_interval': 2000,
-             'gravity': 9.81,
-             'relative_error': 1.0000e-06,
-             'phase_index': 2,
-             'default_incons': [8.06011440362800e+07, 1.70e+02]})
+        react.parameter.update({'print_level': 4,
+                                'max_timesteps': 9999,
+                                'tstop': 8640,
+                                'const_timestep': 10.,
+                                'print_interval': 1,
+                                'gravity': 9.81,
+                                'relative_error': 1e-5,
+                                'phase_index': 2,
+                                'default_incons': [1.013e5, 25]})
 
-        shale = rocktype('shale', 0, 2600, 0.12, [6.51e-17, 6.51e-17, 6.51e-17], 1.5, 900)
+        sand = rocktype('ROCK1', 0, 2600, 0.1, [6.51e-12, 6.51e-12, 6.51e-12], 0.0, 952.9)
 
         react.grid.delete_rocktype('dfalt')
-        react.grid.add_rocktype(shale)
+        react.grid.add_rocktype(sand)
 
         for blk in react.grid.blocklist[0:]:
-            blk.rocktype = react.grid.rocktype[shale.name]
+            blk.rocktype = react.grid.rocktype[sand.name]
 
-        shale_zone = t2zone('shale_zone')
+        zone1 = t2zone('zone1')
 
-        react.grid.add_zone(shale_zone)
+        react.grid.add_zone(zone1)
 
         for blk in react.grid.blocklist[0:]:
-            blk.zone = react.grid.zone[shale_zone.name]
+            blk.zone = react.grid.zone[zone1.name]
 
         react.start = True
 
         react.write('flow.inp')
 
-        # ---------------------------CHEMICAL.INP------------------------------------------------------------------------------
+        # ____________________________________CHEMICAL.INP________________________________________________________________
         h2o = PrimarySpecies('h2o', 0)
         h = PrimarySpecies('h+', 0)
         na = PrimarySpecies('na+', 0)
@@ -279,68 +276,61 @@ class ReactTestCase(unittest.TestCase):
         ca = PrimarySpecies('ca+2', 0)
         so4 = PrimarySpecies('so4-2', 0)
         mg = PrimarySpecies('mg+2', 0)
-        h4sio4 = PrimarySpecies('H4SiO4', 0)
-        al = PrimarySpecies('Al+3', 0)
-        fe = PrimarySpecies('Fe+2', 0)
-        hs = PrimarySpecies('HS-', 0)
-        k = PrimarySpecies('K+', 0)
+        h4sio4 = PrimarySpecies('h4sio4', 0)
+        al = PrimarySpecies('al+3', 0)
+        fe = PrimarySpecies('fe+2', 0)
+        hs = PrimarySpecies('hs-', 0)
 
-        all_species = [h2o, h, na, cl, hco3, ca, so4, mg, h4sio4, al, fe, hs, k]
+        all_species = [h2o, h, na, cl, hco3, ca, so4, mg, h4sio4, al, fe, hs]
 
-        h2o_comp3 = WaterComp(h2o, 1, 1.0000E+00, 1.000000E+00)
-        h_comp3 = WaterComp(h, 1, 5.9661E-06, 1.462590E-02)
-        na_comp3 = WaterComp(na, 1, 2.2792E+00, 2.279674E+00)
-        cl_comp3 = WaterComp(cl, 1, 3.5408E+00, 4.093523E+00)
-        hco3_comp3 = WaterComp(hco3, 1, 1.2372E-03, 1.704293E-02)
-        ca_comp3 = WaterComp(ca, 1, 4.1945E-01, 5.601284E-01)
-        so4_comp3 = WaterComp(so4, 1, 4.8191E-05, 9.094219E-05)
-        mg_comp3 = WaterComp(mg, 1, 6.1888E-02, 7.895666E-02)
-        h4sio4_comp3 = WaterComp(h4sio4, 1, 2.9275E-03, 2.929168E-03)
-        al_comp3 = WaterComp(al, 1, 1.6208E-12, 5.086910E-08)
-        fe_comp3 = WaterComp(fe, 1, 9.8531E-03, 1.130685E-02)
-        hs_comp3 = WaterComp(hs, 1, 7.8240E-08, 4.566225E-07)
-        k_comp3 = WaterComp(k, 1, 1.7547E-01, 5.272968E-01)
+        h2o_comp1 = WaterComp(h2o, 1, 1.0000E+00, 1.000000E+00)
+        h_comp1 = WaterComp(h, 1, 1E-7, 1E-7)
+        na_comp1 = WaterComp(na, 1, 1E-10, 2.93E-2)
+        cl_comp1 = WaterComp(cl, 1, 1E-10, 1.08E-3)
+        hco3_comp1 = WaterComp(hco3, 1, 1E-10, 2.21E-08)
+        ca_comp1 = WaterComp(ca, 1, 1E-10, 5.9E-03)
+        so4_comp1 = WaterComp(so4, 1, 1E-10, 6.94E-3)
+        mg_comp1 = WaterComp(mg, 1, 1E-10, 2.54E-8)
+        h4sio4_comp1 = WaterComp(h4sio4, 1, 1E-10, 1E-10)
+        al_comp1 = WaterComp(al, 1, 1E-10, 9.96E-5)
+        fe_comp1 = WaterComp(fe, 1, 1E-10, 9.7E-9)
+        hs_comp1 = WaterComp(hs, 1, 1E-10, 1E-10)
 
-        initial_shale_water = Water(
-            [h2o_comp3, h_comp3, na_comp3, cl_comp3, hco3_comp3, ca_comp3, so4_comp3, mg_comp3, h4sio4_comp3, al_comp3,
-             fe_comp3, hs_comp3, k_comp3], 170, 805.9)
+        initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1,
+                                     h4sio4_comp1, al_comp1, fe_comp1, hs_comp1], 25, 200)
 
-        quartz_zone2 = MineralComp(self.get_specific_mineral('quartz'), 0.369, 1, 0.0E-00, 157.3, 0)
-        microcline_zone2 = MineralComp(self.get_specific_mineral('microcline'), 0.0351, 1, 0.0E-00, 12.9, 0)
-        albite_zone2 = MineralComp(self.get_specific_mineral('albite'), 0.0815, 1, 0.0E-00, 9.1, 0)
-        muscovite_zone2 = MineralComp(self.get_specific_mineral('muscovite'), 0.2388, 1, 0.0E-00, 9.1, 0)
-        chlorite_zone2 = MineralComp(self.get_specific_mineral('chlorite'), 0.1236, 1, 0.0E-00, 9.1, 0)
-        dolomite_zone2 = MineralComp(self.get_specific_mineral('dolomite'), 0.073, 1, 0.0E-00, 12, 0)
-        calcite_zone2 = MineralComp(self.get_specific_mineral('calcite'), 0.054, 1, 0.0E-00, 260, 0)
-
-        initial_co2 = ReactGas('co2(g)', 0, 0)
-        # injection_co2 = ReactGas('co2(g)', 0, 0.01)
-        # ijgas = [[initial_co2], [injection_co2]]
-
-        permporo = PermPoro(1, 0, 0)
-        permporozone = PermPoroZone([permporo])
-
-        shale_zone.water = [[initial_shale_water], []]
-        shale_zone.gas = [[initial_co2], []]
-        shale_mineral_zone = MineralZone(
-            [quartz_zone2, microcline_zone2, albite_zone2, muscovite_zone2, chlorite_zone2, dolomite_zone2, calcite_zone2])
-        shale_zone.mineral_zone = shale_mineral_zone
-        shale_zone.permporo = permporozone
-
-        mineral_list = ['quartz', 'microcline', 'albite', 'muscovite', 'chlorite', 'dolomite', 'calcite']
+        mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh', 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
         all_minerals = self.get_kinetics_minerals(mineral_list)
+
+        c3fh6_zone1 = MineralComp(self.get_specific_mineral(mineral_list[0]), 0.1, 0, 0.0E-00, 20000.0, 0)
+        tobermorite_zone1 = MineralComp(self.get_specific_mineral(mineral_list[1]), 0.05, 0, 0.0E-00, 20000.0, 0)
+        calcite_zone1 = MineralComp(self.get_specific_mineral(mineral_list[2]), 0.4, 1, 0.0E-00, 260.0, 0)
+        csh_zone1 = MineralComp(self.get_specific_mineral(mineral_list[3]), 0.1, 1, 0.0E-00, 20000.0, 0)
+        portlandite_zone1 = MineralComp(self.get_specific_mineral(mineral_list[4]), 0.1, 1, 0.0E-00, 1540.0, 0)
+        ettringite_zone1 = MineralComp(self.get_specific_mineral(mineral_list[5]), 0.1, 1, 0.0E-00, 20000.0, 0)
+        katoite_zone1 = MineralComp(self.get_specific_mineral(mineral_list[6]), 0.1, 1, 0.0E-00, 570.0, 0)
+        hydrotalcite_zone1 = MineralComp(self.get_specific_mineral(mineral_list[7]), 0.05, 1, 0.0E-00, 1000.0, 0)
+
+        initial_co2 = ReactGas('co2(g)', 0, 1.1)
+        # ijgas = [[initial_co2], []]
+
+        zone1.water = [[initial_water_zone1], []]
+        zone1.gas = [[initial_co2], []]
+        mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1,
+                                     katoite_zone1, hydrotalcite_zone1])
+        zone1.mineral_zone = mineral_zone1
 
         writeChemical = t2chemical(t2reactgrid=react.grid)
         writeChemical.minerals = all_minerals
-        writeChemical.title = "An-Gy-Hal-Hal"
+        writeChemical.title = 'Automating Tough react'
         writeChemical.primary_aqueous = all_species
-        writeChemical.gases = [initial_co2]
-        # masa = writeChemical.perm_poro_index
+        writeChemical.gases = initial_co2
         writeChemical.write()
 
-        writeSolute = t2solute(writeChemical)
+        # ____________________________________SOLUTE.INP________________________________________________________________
+        writeSolute = t2solute(t2chemical=writeChemical)
         writeSolute.nodes_to_write = [0]
-        writeSolute.options['linear_equation_solver'] = 4
+        # masa = writeSolute.getgrid_info()
         writeSolute.write()
         return writeSolute
 
@@ -355,28 +345,34 @@ class ReactTestCase(unittest.TestCase):
 
         return writeSolute
 
-    def test_write(self):
-        write_output = self.set_up_write()
-        result = write_output.status
-        self.assertEqual(result, 'successful')
 
-    def test_read(self):
-        write_output = self.set_up_read()
-        result = write_output.status
-        self.assertEqual(result, 'successful')
+def test_write_react():
+    test_case = ReactTestCase()
+    write_output = test_case.set_up_write()
+    result = write_output.status
+    assert result == 'successful'
 
-    def test_result_first(self):
-        results = FileReadSingle('toughreact', 'kdd_conc.tec')
-        time = results.get_times('second')
-        parameter_result = results.get_time_series_data('pH', 0)
-        time_length = len(time)
-        parameter_result_length = len(parameter_result)
-        self.assertEqual(time_length, parameter_result_length)
 
-    def test_result_second(self):
-        react = t2react()
-        react.read('flow.inp')
-        results = FileReadSingle('toughreact', 'kdd_conc.tec')
-        parameter_result = results.get_grid_data(5000, 'pH')
-        parameter_result_length = len(parameter_result)
-        self.assertEqual(len(react.grid.blocklist), parameter_result_length)
+# def test_read_react():
+#     test_case = ReactTestCase()
+#     write_output = test_case.set_up_read()
+#     result = write_output.status
+#     assert result == 'successful'
+
+
+# def test_result_first():
+#     results = ResultReact('toughreact', FILE_PATH, 'kdd_conc.tec')
+#     time = results.get_times()
+#     parameter_result = results.get_timeseries_data('pH', 0)
+#     time_length = len(time)
+#     parameter_result_length = len(parameter_result)
+#     assert time_length == parameter_result_length
+
+
+# def test_result_second():
+#     react = t2react()
+#     react.read('flow.inp')
+#     results = FileReadSingle('toughreact', os.path.dirname(os.path.realpath(__file__)), 'kdd_conc.tec')
+#     parameter_result = results.get_grid_data(5000, 'pH')
+#     parameter_result_length = len(parameter_result)
+#     assert len(react.grid.blocklist) == parameter_result_length

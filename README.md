@@ -161,4 +161,4 @@ Please make sure to update tests as appropriate.
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-![Tests]()
+![Tests](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/tests.yml/badge.svg)

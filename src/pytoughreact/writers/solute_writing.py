@@ -42,6 +42,123 @@ class t2solute_parser(fixed_format_file):
         super(t2solute_parser, self).__init__(filename, mode,
                                               t2solute_format_specification, read_function)
 
+    def get_reactive_options(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_reactive_constraints(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_readio(self):
+        all_values = []
+        for i in range(6):
+            line = self.file.readline()
+            liner = (line.split())
+            all_values.append(liner[0])
+
+        return all_values
+
+    def get_weight_diffusion(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_tolerance_values(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_printout_options(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def search_for_node_index(self, blocks, nodes):
+        indexes = []
+        for i in range(len(nodes)):
+            for j in range(len(blocks)):
+                if blocks[j].name == nodes[i]:
+                    indexes.append(j)
+        return indexes
+
+    def get_nodes_to_read(self, grid):
+        all_values = []
+        line = self.file.readline()
+        while len(line.strip()) != 0:
+            all_values.append(line.rstrip())
+            line = self.file.readline()
+
+        output = self.search_for_node_index(grid.blocklist, all_values)
+        return output
+
+    def get_primary_species_to_read(self, primary_aqueous):
+        all_values = []
+        line = self.file.readline()
+        while len(line.strip()) != 0:
+            specie = self.find_primary_aqueous(primary_aqueous, line.rstrip())
+            all_values.append(specie)
+            line = self.file.readline()
+
+        return all_values
+
+    def get_minerals_to_write(self, minerals):
+        all_values = []
+        line = self.file.readline()
+        while len(line.strip()) != 0:
+            specie = self.find_minerals(minerals, line.rstrip())
+            all_values.append(specie)
+            line = self.file.readline()
+
+        return all_values
+
+    def get_default_chemical_zones(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        line = self.file.readline()
+        line = self.file.readline()
+        liner = (line.split())
+        return liner
+
+    def get_default_chemical_zone_to_nodes(self):
+        line = self.file.readline()
+        line = self.file.readline()
+        line = self.file.readline()
+        all_values = []
+        while len(line.strip()) != 0:
+            grid_name = []
+            grid_name.append(line[0:5])
+            liner = (line.split())
+            value = grid_name + liner[2:]
+            for i in range(1, len(value)):
+                value[i] = int(value[i])
+            line = self.file.readline()
+            all_values.append(value)
+        return all_values
+
+    def find_primary_aqueous(self, primary_aqueous, name):
+        startIndex = name.find('\'')
+        if startIndex >= 0:
+            name = name.replace("'", "")
+        for i in range(len(primary_aqueous)):
+            if name.lower() == primary_aqueous[i].NAME.strip().lower():
+                return primary_aqueous[i]
+
+    def find_minerals(self, minerals, name):
+        startIndex = name.find('\'')
+        if startIndex >= 0:
+            name = name.replace("'", "")
+        for i in range(len(minerals)):
+            if name.lower() == minerals[i].name.strip().lower():
+                return minerals[i]
+
 
 class t2solute(t2data):
     """
