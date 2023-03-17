@@ -2,6 +2,7 @@
 venv
 .venv
 .flake8
+.vscode/settings.json
 pytoughreact/pytough_wrapper/pytough
 pytoughreact/results/results_factory.py
 pytoughreact/results/result_object_factory.py
@@ -71,6 +72,7 @@ var/
 *.egg
 upload_package.py
 .mypy_cache
+
 
 # documentation
 documentation/*
