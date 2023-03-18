@@ -31,8 +31,9 @@ from fixed_format_file import default_read_function, fixed_format_file
 from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
 from pytoughreact.pytough_wrapper.wrapper.reactblock import t2block
 from pytoughreact.exceptions.custom_error import NotFoundError
+from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
 from copy import deepcopy
-from t2data import t2data, fix_blockname
+from t2data import t2data, fix_blockname, rocktype
 import numpy as np
 import os
 import sys
@@ -99,6 +100,35 @@ class t2react(t2data):
         self.read_function = read_function
         if self.filename:
             self.read(filename, meshfilename)
+        self.minerals = []
+        self.all_species = []
+
+    def read_rocktypes(self, infile):
+        """Reads grid rock types"""
+        self.grid.rocktypelist = []
+        self.grid.rocktype = {}
+        line = padstring(infile.readline())
+        while line.strip():
+            [name, nad, density, porosity,
+             k1, k2, k3, conductivity, specific_heat] = infile.parse_string(line, 'rocks1')
+            self.grid.add_rocktype(rocktype(name, nad,
+                                            density, porosity,
+                                            [k1, k2, k3],
+                                            conductivity, specific_heat))
+            if nad is None:
+                nad = 0
+            if nad >= 1:  # additional lines:
+                infile.read_value_line(self.grid.rocktype[name].__dict__, 'rocks1.1')
+                if nad >= 2:
+                    vals = infile.read_values('rocks1.2')
+                    self.grid.rocktype[name].relative_permeability['type'] = vals[0]
+                    self.grid.rocktype[name].relative_permeability['parameters'] = vals[2: -1]
+                    vals = infile.read_values('rocks1.3')
+                    self.grid.rocktype[name].capillarity['type'] = vals[0]
+                    self.grid.rocktype[name].capillarity['parameters'] = vals[2: -1]
+            line = padstring(infile.readline())
+            zone = t2zone(name)
+            self.grid.add_zone(zone)
 
     def read_blocks(self, infile):
         """Reads grid blocks"""
@@ -110,6 +140,8 @@ class t2react(t2data):
             name = fix_blockname(name)
             if rockname in self.grid.rocktype:
                 rocktype = self.grid.rocktype[rockname]
+            if rockname in self.grid.zone:
+                zonename = self.grid.zone[rockname]
             elif rockname.strip() == '' and self.grid.num_rocktypes > 0:
                 rocktype = self.grid.rocktypelist[0]  # default
             else:
@@ -126,7 +158,7 @@ class t2react(t2data):
                 nseq = None
             if nadd == 0:
                 nadd = None
-            self.grid.add_block(t2block(name, volume, rocktype,
+            self.grid.add_block(t2block(name, volume, rocktype, blockzone=zonename,
                                         centre=centre, ahtx=ahtx,
                                         pmx=pmx, nseq=nseq, nadd=nadd))
             line = padstring(infile.readline())
@@ -328,11 +360,14 @@ class t2react(t2data):
                         outfilename = output_filename
                     outfile = open(outfilename, 'w')
                 # p = Popen(os.path.join(current_dir,">treacteos1<flow.inp"),cwd=current_dir)
-                call(cmd, stdin=infile, stdout=outfile)
-                # status_2 = run(["treacteos1<flow.inp"],
-                #               stdout=PIPE,
-                #               text=True,
-                #               input="Hello from the other side")
+                status = call(cmd, stdin=infile, stdout=outfile)
+                print(status)
+                outfile.close()
+                infile.close()
+                # status_2 = run(["treacteos1.exe"],
+                #                stdin=infile,
+                #                stdout=PIPE,
+                #                text=True)
                 # print(status_2)
 
     def read_parameters(self, infile):

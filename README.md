@@ -1,15 +1,23 @@
 # PyTOUGHREACT
 
+
+- [PyTOUGHREACT](#pytoughreact)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Tests](#tests)
+
+
 PyTOUGHREACT is a Python package for automating reactive transport simulations including biodegradation reactions.
 It makes use of TOUGHREACT, TMVOC and TMVOCBIO executables for running the simulations. These executables are interfaced
 with python to automate the runs. It will be particularly useful for uncertainty quantifications, sensitivity 
 analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which 
-only processes for the TOUGH2 software.
+only processes for the TOUGH2 executables.
 
 ## Installation
 
-PyTOUGHREACT is available on PyPI which is a repository for softwares built with the Python Programming Language. Before 
-installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. 
+PyTOUGHREACT is available on PyPI which is a repository of softwares built with the Python Programming Language. Before installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. Python can be downloaded from the [python.org](python.org) website and installing. Windows users should ensure that the path to the python is set in the environment variable to ensure availability everywhere.
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install PyTOUGHREACT.
 
@@ -160,5 +168,7 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Tests
 
 ![Tests](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/tests.yml/badge.svg)

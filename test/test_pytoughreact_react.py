@@ -1,5 +1,4 @@
 import os
-from pytoughreact.results.result_single import FileReadSingle
 from mulgrids import mulgrid
 from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation
 from pytoughreact.chemical.mineral_description import Mineral
@@ -12,9 +11,9 @@ from pytoughreact.writers.solute_writing import t2solute
 from pytoughreact.writers.chemical_writing import t2chemical
 from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
 from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from pytoughreact.results.result_tough_react import ResultReact
+from pytoughreact.results.t2result import t2result
 from t2data import rocktype
-FILE_PATH = os.path.dirname(os.path.realpath(__file__))
+FILE_PATH = os.path.abspath(os.curdir)
 
 
 class ReactTestCase():
@@ -314,11 +313,15 @@ class ReactTestCase():
         initial_co2 = ReactGas('co2(g)', 0, 1.1)
         # ijgas = [[initial_co2], []]
 
+        permporo = PermPoro(1, 0, 0)
+        permporozone = PermPoroZone([permporo])
+
         zone1.water = [[initial_water_zone1], []]
         zone1.gas = [[initial_co2], []]
         mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1,
                                      katoite_zone1, hydrotalcite_zone1])
         zone1.mineral_zone = mineral_zone1
+        zone1.permporo = permporozone
 
         writeChemical = t2chemical(t2reactgrid=react.grid)
         writeChemical.minerals = all_minerals
@@ -332,6 +335,7 @@ class ReactTestCase():
         writeSolute.nodes_to_write = [0]
         # masa = writeSolute.getgrid_info()
         writeSolute.write()
+        react.run(writeSolute, simulator='treacteos1.exe')
         return writeSolute
 
     def set_up_read(self):
@@ -353,26 +357,26 @@ def test_write_react():
     assert result == 'successful'
 
 
-# def test_read_react():
-#     test_case = ReactTestCase()
-#     write_output = test_case.set_up_read()
-#     result = write_output.status
-#     assert result == 'successful'
+def test_read_react():
+    test_case = ReactTestCase()
+    write_output = test_case.set_up_read()
+    result = write_output.status
+    assert result == 'successful'
 
 
-# def test_result_first():
-#     results = ResultReact('toughreact', FILE_PATH, 'kdd_conc.tec')
-#     time = results.get_times()
-#     parameter_result = results.get_timeseries_data('pH', 0)
-#     time_length = len(time)
-#     parameter_result_length = len(parameter_result)
-#     assert time_length == parameter_result_length
+def test_result_first():
+    results = t2result('toughreact', 'kdd_conc.tec', FILE_PATH)
+    time = results.get_times()
+    parameter_result = results.get_time_series_data('pH', 0)
+    time_length = len(time)
+    parameter_result_length = len(parameter_result)
+    assert time_length == parameter_result_length
 
 
-# def test_result_second():
-#     react = t2react()
-#     react.read('flow.inp')
-#     results = FileReadSingle('toughreact', os.path.dirname(os.path.realpath(__file__)), 'kdd_conc.tec')
-#     parameter_result = results.get_grid_data(5000, 'pH')
-#     parameter_result_length = len(parameter_result)
-#     assert len(react.grid.blocklist) == parameter_result_length
+def test_result_second():
+    react = t2react()
+    react.read('flow.inp')
+    results = t2result('toughreact', 'kdd_conc.tec', FILE_PATH)
+    parameter_result = results.get_grid_data(5000, 'pH')
+    parameter_result_length = len(parameter_result)
+    assert len(react.grid.blocklist) == parameter_result_length

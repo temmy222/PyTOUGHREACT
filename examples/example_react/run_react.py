@@ -8,11 +8,11 @@ from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
 from pytoughreact.writers.chemical_writing import t2chemical
+from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
 from pytoughreact.writers.solute_writing import t2solute
 from t2grids import rocktype
 
 # __________________________________FLOW.INP______________________________________________________
-
 length = 0.1
 nblks = 1
 dx = [length / nblks] * nblks
@@ -47,7 +47,6 @@ react.grid.add_rocktype(sand)
 
 for blk in react.grid.blocklist[0:]:
     blk.rocktype = react.grid.rocktype[sand.name]
-
 
 zone1 = t2zone('zone1')
 
@@ -107,10 +106,14 @@ hydrotalcite_zone1 = MineralComp(get_specific_mineral(mineral_list[7]), 0.05, 1,
 initial_co2 = ReactGas('co2(g)', 0, 1.1)
 ijgas = [[initial_co2], []]
 
+permporo = PermPoro(1, 0, 0)
+permporozone = PermPoroZone([permporo])
+
 zone1.water = [[initial_water_zone1], []]
 zone1.gas = [[initial_co2], []]
 mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1, katoite_zone1, hydrotalcite_zone1])
 zone1.mineral_zone = mineral_zone1
+zone1.permporo = permporozone
 
 writeChemical = t2chemical(t2reactgrid=react.grid)
 writeChemical.minerals = all_minerals
