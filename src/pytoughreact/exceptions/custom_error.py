@@ -88,6 +88,13 @@ class ParameterLessThanThreeError(Exception):
         super().__init__(self.message)
 
 
+class MissingParameter(Exception):
+    """ Exception raised when parameters are expected to be greater than three"""
+    def __init__(self):
+        self.message = 'Parameters Missing'
+        super().__init__(self.message)
+
+
 class ReactiveOptionsError(Error):
     """Please add options for reaction calculations"""
     pass

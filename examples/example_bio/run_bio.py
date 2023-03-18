@@ -141,6 +141,8 @@ if direction == 'x':
                 bio.add_generator(gen)
             j = j + 1
 
-# ____________________________________RUN SIMULATION________________________________________________________________
+# ____________________________________RUN SIMULATION_______________________________________________________________
+
+runlocation = os.getcwd()
 bio.write('INFILE', runlocation=os.getcwd())
-bio.run(simulator='tmvoc')
+bio.run(simulator='tmvoc', runlocation='')

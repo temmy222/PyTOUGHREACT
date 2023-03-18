@@ -36,6 +36,7 @@ from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
 from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation, pHDependenceType1
+from pytoughreact.exceptions.custom_error import MissingParameter
 
 
 class SynergyChemical(fixed_format_file):
@@ -432,7 +433,7 @@ class SynergyChemical(fixed_format_file):
         liner = (line.split())
         counter = 1
         if len(liner) == 0:
-            return initial_perm_poro_list, initial_perm_poro_mapping
+            raise MissingParameter
         while int(liner[0]) < number_of_perm_poro_zones + 1 and counter < number_of_perm_poro_zones + 1:
             perm_poro_num = int(liner[0])
             line = self.file.readline()

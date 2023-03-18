@@ -50,6 +50,28 @@ class t2bio_parser(fixed_format_file):
         super(t2bio_parser, self).__init__(filename, mode,
                                            t2bio_format_specification, read_function)
 
+    def read_multi_value_line(self, variable, linetype):
+        """Reads a line of parameter multi values from the file into a dictionary variable.
+        Null values are ignored."""
+        spec = self.specification[linetype]
+        vals = self.read_values(linetype)
+        if len(spec[0]) < 6:
+            for var, val in zip(spec[0], vals):
+                if val is not None:
+                    variable[var] = val
+        else:
+            variable[linetype] = vals
+
+    def read_params_value_line(self, variable, linetype):
+        spec = self.specification[linetype]
+        vals = self.read_values(linetype)
+        if len(spec[0]) > 2:
+            for var, val in zip(spec[0], vals):
+                if val is not None:
+                    variable[var] = val
+        else:
+            variable[linetype] = vals
+
 
 class t2bio(t2data):
     """Class for TMVOC data."""

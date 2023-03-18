@@ -8,15 +8,22 @@
             "name": "Python: Run TOUGHREACT",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/pytoughreact/run_react.py",
+            "program": "${cwd}/examples/example_react/run_react.py",
             "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Read TOUGHREACT",
+            "type": "python",
+            "request": "launch",
+            "program": "${cwd}/examples/example_react/read_react.py",
             "justMyCode": false
         },
         {
             "name": "Python: Run results of TOUGHREACT",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/src/run_result.py",
+            "program": "${cwd}/examples/example_react/result_react.py",
             "console": "integratedTerminal",
             "justMyCode": false
         },
@@ -24,7 +31,15 @@
             "name": "Python: Run TMVOC",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/src/run_bio.py",
+            "program": "${cwd}/examples/example_bio/run_bio.py",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: READ TMVOC",
+            "type": "python",
+            "request": "launch",
+            "program": "${cwd}/examples/example_bio/read_bio.py",
             "console": "integratedTerminal",
             "justMyCode": false
         },
@@ -32,7 +47,7 @@
             "name": "Python: Run results of TMVOC",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/src/result_bio.py",
+            "program": "${cwd}/examples/example_bio/result_bio.py",
             "console": "integratedTerminal",
             "justMyCode": false
         },                          
