@@ -30,7 +30,6 @@ flowvector.tec
 GENER
 INCON
 iter.out
-kdd_conc.tec
 kdd_gas.tec
 kdd_min.tec
 kdd_tim.tec
