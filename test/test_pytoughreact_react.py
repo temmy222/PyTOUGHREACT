@@ -335,7 +335,7 @@ class ReactTestCase():
         writeSolute.nodes_to_write = [0]
         # masa = writeSolute.getgrid_info()
         writeSolute.write()
-        react.run(writeSolute, simulator='treacteos1.exe')
+        # react.run(writeSolute, simulator='treacteos1.exe')
         return writeSolute
 
     def set_up_read(self):

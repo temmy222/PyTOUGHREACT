@@ -5,7 +5,7 @@ from t2grids import t2grid
 from t2data import rocktype, t2generator
 
 
-from pytoughreact.results.t2result import t2result
+# from pytoughreact.results.t2result import t2result
 from pytoughreact.writers.bio_writing import t2bio
 from pytoughreact.chemical.biomass_composition import Component, Biomass, Gas, Water_Bio
 from pytoughreact.chemical.bio_process_description import BIODG, Process
@@ -118,7 +118,7 @@ class BioTestCase():
 
         # ____________________________________RUN SIMULATION_______________________________________________________________
         bio.write('INFILE', runlocation=os.getcwd())
-        bio.run(simulator='tmvoc', runlocation='')
+        # bio.run(simulator='tmvoc', runlocation='')
         return bio
 
     def set_up_read(self):
@@ -142,10 +142,12 @@ def test_read_bio():
     assert result == 'successful'
 
 
-def test_result_first_bio():
-    results = t2result('tmvoc', 'OUTPUT_ELEME.csv')
-    time = results.get_times('second')
-    parameter_result = results.get_time_series_data('X_toluen_L', 0)
-    time_length = len(time)
-    parameter_result_length = len(parameter_result)
-    assert time_length == parameter_result_length
+# For local test, run executables for this test to work
+
+# def test_result_first_bio():
+#     results = t2result('tmvoc', 'OUTPUT_ELEME.csv')
+#     time = results.get_times('second')
+#     parameter_result = results.get_time_series_data('X_toluen_L', 0)
+#     time_length = len(time)
+#     parameter_result_length = len(parameter_result)
+#     assert time_length == parameter_result_length
