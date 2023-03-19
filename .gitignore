@@ -36,7 +36,6 @@ kdd_min.tec
 kdd_tim.tec
 screen_info.out
 LINEQ
-MESH
 runlog.out
 SAVE
 solute.inp
