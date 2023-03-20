@@ -12,18 +12,25 @@
 PyTOUGHREACT is a Python package for automating reactive transport simulations including biodegradation reactions.
 It makes use of TOUGHREACT, TMVOC and TMVOCBIO executables for running the simulations. These executables are interfaced
 with python to automate the runs. It will be particularly useful for uncertainty quantifications, sensitivity 
-analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which 
-only processes for the TOUGH2 executables.
+analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which processes for the TOUGH2 executables.
 
 ## Installation
 
-PyTOUGHREACT is available on PyPI which is a repository of softwares built with the Python Programming Language. Before installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. Python can be downloaded from the [python.org](python.org) website and installing. Windows users should ensure that the path to the python is set in the environment variable to ensure availability everywhere.
+PyTOUGHREACT is available on PyPI which is a repository of softwares built with the Python Programming Language. Before installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. Python can be downloaded from the [python.org](python.org) website and installing it by following the instructions. Windows users should ensure that the path to the python is set in the environment variable to ensure availability everywhere.
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install PyTOUGHREACT.
 
 ```bash
 pip install pytoughreact
 ```
+
+The package can also be forked from this GitHub page and installation performed using
+
+```bash
+python setup.py install  or py setup.py install
+```
+
+Because pytoughreact requires PyTOUGH and PyTOUGH is not uploaded to PyPI, it is required to download the zip folder of PyTOUGH from the GitHub repository https://github.com/acroucher/PyTOUGH. Unzip the folder and place in your current working directory. Change directory into the PyTOUGH folder and run python setup.py install or pip install on the command line. With PyTOUGH installed, PyTOUGHREACT is ready to be used as a package.
 
 ## Usage
 
