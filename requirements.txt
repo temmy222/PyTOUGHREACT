@@ -4,3 +4,4 @@ scipy==1.10.0
 pandas==1.5.2
 matplotlib==3.7.1
 scipy==1.10.1
+PYTOUGH @ git+https://git@github.com/acroucher/PYTOUGH.git
