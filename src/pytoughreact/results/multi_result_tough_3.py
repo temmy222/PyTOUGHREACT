@@ -43,7 +43,20 @@ class MultiResultTough3(object):
         return 'Multiple Results from provided file locations and provided files for' + self.simulator_type
 
     def retrieve_data_multi_timeseries(self, grid_block_number, format_of_date='year'):
-        """ DataFrame to retrieve time and timeseries results from file """
+        """ Function retrieve time and timeseries results from file
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number for which to retireve the results
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+        """
         data_table = pd.DataFrame()
         for i in range(0, len(self.file_location)):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
