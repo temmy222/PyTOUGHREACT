@@ -42,7 +42,5 @@ Results for t2result
 .. automodule:: pytoughreact.results.t2result
     :members:
 
-Dependencies
-================
-**Python**: `pandas <https://pandas.pydata.org/>` _ library
+
 
