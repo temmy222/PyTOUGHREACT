@@ -6,8 +6,8 @@
 Welcome to PyToughReact's documentation!
 ========================================
 
-.. .. automodule:: pytoughreact.results.multi_result_tough_3
-..     :members:
+.. automodule:: pytoughreact.results.multi_result_tough_3
+    :members:
 
 
 .. _Installation:
