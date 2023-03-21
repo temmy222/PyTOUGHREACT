@@ -8,7 +8,7 @@
 
 
 # retructured text link - https://docutils.sourceforge.io/docs/user/rst/quickref.html
-import pytoughreact.results
+import pytoughreact
 import os
 import sys
 
