@@ -48,7 +48,7 @@ class MultiResultTough3(object):
         Parameters
         -----------
         grid_block_number :  int
-            The grid block number for which to retireve the results
+            The grid block number for which to retrieve the results
         format_of_date : str
             Provides information to the method on format of the date. For example. year, hour, min or seconds
 
