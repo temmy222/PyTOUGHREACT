@@ -6,8 +6,8 @@
 Welcome to PyToughReact's documentation!
 ========================================
 
-.. automodule:: pytoughreact.results.multi_result_tough_3
-    :members:
+.. .. automodule:: pytoughreact.results.multi_result_tough_3
+..     :members:
 
 
 .. _Installation:
@@ -21,7 +21,7 @@ Welcome to PyToughReact's documentation!
    :maxdepth: 2
    :caption: Repository Code:
    
-   results
+   results.rst
    modules.rst
 
 Indices and tables
