@@ -3,7 +3,7 @@ Chemical Class
 ++++++++++++++++++++++
 Biodegradation Processes
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.chemical.bio_process_description
+.. autoclass:: pytoughreact.chemical.bio_process_description
     :members:
 ++++++++++++++++++++++
 Biomass Composition
