@@ -3,4 +3,5 @@ scipy
 pandas
 matplotlib
 scipy
+pytoughreact
 PYTOUGH @ git+https://git@github.com/acroucher/PYTOUGH.git
