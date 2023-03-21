@@ -1,5 +1,5 @@
 Results Class
------------
+==============
 .. automodule:: pytoughreact.results.multi_result_tough_3
     :members:
 
