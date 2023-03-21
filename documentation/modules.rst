@@ -1,4 +1,4 @@
-All methods
+Source Code
 ============
 
 .. toctree::

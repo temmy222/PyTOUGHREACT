@@ -3,12 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to PyToughReact's documentation!
+Welcome to PyTOUGHREACT's documentation!
 ========================================
-
-.. automodule:: pytoughreact.results.multi_result_tough_3
-    :members:
-
 
 .. _Installation:
 .. toctree::
