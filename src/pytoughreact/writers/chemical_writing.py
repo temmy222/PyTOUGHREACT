@@ -39,12 +39,12 @@ from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolut
 from pytoughreact.exceptions.custom_error import MissingParameter
 
 
-class SynergyChemical(fixed_format_file):
+class t2ChemicalData(fixed_format_file):
     """Class for parsing CHEMICAL.INP data file."""
 
     def __init__(self, filename, mode, read_function=default_read_function):
-        super(SynergyChemical, self).__init__(filename, mode,
-                                              t2chemical_format_specification, read_function)
+        super(t2ChemicalData, self).__init__(filename, mode,
+                                             t2chemical_format_specification, read_function)
 
     def get_param_values(self, linetype):
         line = 'start'
@@ -1171,7 +1171,7 @@ class t2chemical(t2data):
             filename = 'chemical.inp'
         self.update_sections()
         self.update_read_write_functions()
-        outfile = SynergyChemical(filename, 'w')
+        outfile = t2ChemicalData(filename, 'w')
         for keyword in self._sections:
             self.write_fn[keyword](outfile)
             outfile.write('\n')
@@ -1222,7 +1222,7 @@ class t2chemical(t2data):
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = SynergyChemical(self.filename, mode, read_function=self.read_function)
+        infile = t2ChemicalData(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
         self._sections = []
         self.update_read_write_functions()

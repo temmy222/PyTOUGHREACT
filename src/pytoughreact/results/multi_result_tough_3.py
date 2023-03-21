@@ -43,7 +43,7 @@ class MultiResultTough3(object):
         return 'Multiple Results from provided file locations and provided files for' + self.simulator_type
 
     def retrieve_data_multi_timeseries(self, grid_block_number, format_of_date='year'):
-        """ Function retrieve time and timeseries results from file
+        """ Function that retrieves time and timeseries results from file
 
         Parameters
         -----------

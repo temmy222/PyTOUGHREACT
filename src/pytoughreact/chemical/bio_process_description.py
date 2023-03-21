@@ -26,7 +26,6 @@ SOFTWARE.
 
 class BIODG(object):
     """Process specification"""
-
     def __init__(self, imonod, bfac, sw1, sw2, wea, wsub, processes, biomass, icflag=0):
         self.biomass = biomass
         self.icflag = icflag
@@ -40,16 +39,48 @@ class BIODG(object):
         self.null = " "
 
     def getFirstSet(self):
-        listo = [self.imonod, self.icflag, self.bfac, self.null, self.sw1, self.sw2, self.wea, self.wsub]
-        return listo
+        """ Function that gets the first line of information
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        bio_numerical_parameters : list
+            List of numerical parameters for biodegradation
+        """
+        bio_numerical_parameters = [self.imonod, self.icflag, self.bfac, self.null, self.sw1, self.sw2, self.wea, self.wsub]
+        return bio_numerical_parameters
 
     def getNumberOfBiomasses(self):
+        """ Function that gets the number of biomasses
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        biomass_number : int
+            Number of biomasses
+        """
         biomasses = []
         for process in self.processes:
             biomasses.append(process.biomass)
         return len(set(biomasses))
 
     def getBaseParameterAndIndex(self, process):
+        """ Function that retrieves base parameter and index
+
+        Parameters
+        -----------
+        process :  bio.Process
+            the particular process of investigation
+
+        Returns
+        --------
+        index : int
+            Index and Base Parameter
+        """
         print(len(process.allProcesses))
         for i in range(len(process.allProcesses)):
             first = process.allProcesses[i]
@@ -79,9 +110,29 @@ class Process(object):
         self.totalComp = totalComp
 
     def getNumOfCompetiting(self):
+        """ Function that retrieves number of competiting specie
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        num_of_competiting : int
+            Number of Competiting species
+        """
         self.componentParams.values()
 
     def getUptake(self):
+        """ Function that retrieves uptake information
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            list of uptake parameters
+        """
         output = []
         for process in self.allProcesses:
             uptake_values = list(process.values())[0][0]
