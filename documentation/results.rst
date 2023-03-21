@@ -1,5 +1,8 @@
 Results Class
 ==============
+++++++++++++++++++++++
+Results for Tough 3
+++++++++++++++++++++++
 .. automodule:: pytoughreact.results.result_tough_3
     :members:
 .. automodule:: pytoughreact.results.result_tough_react
