@@ -1,4 +1,4 @@
-pytoughreact
+All methods
 ============
 
 .. toctree::
