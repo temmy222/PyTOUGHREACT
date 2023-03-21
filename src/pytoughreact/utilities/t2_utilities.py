@@ -26,7 +26,7 @@ SOFTWARE.
 import numpy as np
 
 
-class SynergyUtilities(object):
+class t2Utilities(object):
     def __init__(self):
         pass
 

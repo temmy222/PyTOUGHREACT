@@ -21,7 +21,12 @@ Welcome to PyTOUGHREACT's documentation!
    chemical.rst
    constants.rst
    exceptions.rst
+   model.rst
+   plotting.rst
    results.rst
+   utilities.rst
+   wrapper.rst
+   writers.rst
    modules.rst
    dependencies.rst
 

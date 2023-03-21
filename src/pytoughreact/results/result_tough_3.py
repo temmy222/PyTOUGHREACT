@@ -28,7 +28,7 @@ import numpy as np
 import csv
 import collections
 import itertools
-from pytoughreact.utilities.synergy_general_utilities import SynergyUtilities
+from pytoughreact.utilities.t2_utilities import t2Utilities
 
 
 class ResultTough3(object):
@@ -84,7 +84,7 @@ class ResultTough3(object):
         :return: a list of the time
         """
         intermediate = self.get_times()
-        utility_function = SynergyUtilities()
+        utility_function = t2Utilities()
         timeyear = utility_function.convert_times(intermediate, format_of_date)
         return timeyear
 
