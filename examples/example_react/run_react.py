@@ -1,8 +1,8 @@
 import os
 from mulgrids import mulgrid
 from pytoughreact.writers.react_writing import t2react
-from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactgrid import t2reactgrid
+from pytoughreact.wrapper.reactzone import t2zone
 from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone

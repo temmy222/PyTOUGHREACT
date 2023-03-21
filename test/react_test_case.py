@@ -10,8 +10,8 @@ from pytoughreact.writers.react_writing import t2react
 from pytoughreact.writers.solute_writing import t2solute
 from pytoughreact.writers.chemical_writing import t2chemical
 from t2grids import rocktype
-from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
-from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
+from pytoughreact.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactgrid import t2reactgrid
 from pytoughreact.results.result_single import FileReadSingle
 
 
