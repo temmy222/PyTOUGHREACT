@@ -1,6 +1,7 @@
 Functions:
 -----------
-
+.. currentmodule:: pytoughreact.results
+.. autoclass:: pytoughreact.results
 
 Dependencies
 ================
