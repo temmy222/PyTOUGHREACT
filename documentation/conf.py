@@ -8,12 +8,11 @@
 
 
 # retructured text link - https://docutils.sourceforge.io/docs/user/rst/quickref.html
-import pytoughreact
+
 import os
 import sys
-
-sys.path.insert(0, os.path.abspath(".."))
-
+print(sys.executable)
+sys.path.insert(0, os.path.abspath("../src/pytoughreact"))
 
 project = 'PyToughReact'
 copyright = '2023, Temitope Ajayi'
