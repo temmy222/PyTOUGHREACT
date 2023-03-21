@@ -30,7 +30,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from scipy.interpolate import griddata
-from pytoughreact.utilities.synergy_general_utilities import SynergyUtilities
+from pytoughreact.utilities.t2_utilities import t2Utilities
 from pytoughreact.results.result_tough_3 import ResultTough3
 from pytoughreact.results.result_tough_react import ResultReact
 from pytoughreact.results.simple_experiment_data import Experiment
@@ -46,7 +46,7 @@ class PlotTough(object):
         os.chdir(self.file_location)
         self.filetitle = filetitle
         self.simulatortype = simulatortype
-        self.modifier = SynergyUtilities()
+        self.modifier = t2Utilities()
         self.generation = kwargs.get(gc.GENERATION)
         self.args = kwargs.get(gc.RESTART_FILES)
         self.expt = kwargs.get(gc.EXPERIMENT)
@@ -60,7 +60,7 @@ class PlotTough(object):
         return fileReader
 
     def plotRaw(self, param, gridblocknumber, format_of_date, restart=False):
-        parameters = SynergyUtilities()
+        parameters = t2Utilities()
         if restart is True:
             time_year = self.getRestartDataTime(format_of_date)
             result_array = self.getRestartDataElement(param, gridblocknumber)
@@ -158,7 +158,7 @@ class PlotTough(object):
         expt_test = Experiment(self.expt[0], data_file)
         time_year_expt = expt_test.get_times()
         result_array_expt = expt_test.get_timeseries_data(param)
-        parameters = SynergyUtilities()
+        parameters = t2Utilities()
         if restart is True:
             time_year = self.getRestartDataTime(format_of_date)
             result_array = self.getRestartDataElement(param, gridblocknumber)

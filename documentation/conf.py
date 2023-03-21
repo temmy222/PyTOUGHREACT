@@ -14,7 +14,7 @@ import sys
 print(sys.executable)
 sys.path.insert(0, os.path.abspath("../src/pytoughreact"))
 
-project = 'PyToughReact'
+project = 'PyTOUGHREACT'
 copyright = '2023, Temitope Ajayi'
 author = 'Temitope Ajayi'
 release = '0.0.15'

@@ -24,7 +24,7 @@ SOFTWARE.
 '''
 
 import itertools
-from pytoughreact.utilities.synergy_general_utilities import SynergyUtilities
+from pytoughreact.utilities.t2_utilities import t2Utilities
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -42,7 +42,7 @@ class PlotMultiTough(object):
         self.filelocations = filelocations
         self.filetitles = filetitles
         self.simulatortype = simulatortype
-        self.modifier = SynergyUtilities()
+        self.modifier = t2Utilities()
         self.generation = kwargs.get(gc.GENERATION)
         self.args = kwargs.get(gc.RESTART_FILES)
         self.expt = kwargs.get(gc.EXPERIMENT)
@@ -113,7 +113,7 @@ class PlotMultiTough(object):
         fig, axs = plt.subplots(len(param), sharex=False)
         for parameter in param:
             result_array = self.getRestartDataElement(parameter, gridblocknumber)
-            parameters = SynergyUtilities()
+            parameters = t2Utilities()
             time_year, result_array = parameters.removeRepetiting(time_year, result_array)
             axs[j].plot(time_year, result_array, marker=pc.CARET,
                         label=self.modifier.param_label_full(parameter.upper()))
@@ -288,7 +288,7 @@ class PlotMultiTough(object):
         time_year_expt = expt_test.get_times()
         for parameter in param:
             result_array = self.getRestartDataElement(parameter, gridblocknumber)
-            parameters = SynergyUtilities()
+            parameters = t2Utilities()
             time_year, result_array = parameters.removeRepetiting(time_year, result_array)
             result_array_expt = expt_test.get_timeseries_data(parameter)
             axs[j].plot(time_year, result_array, marker=pc.CARET_SYMBOL, label=gc.SIMULATION)

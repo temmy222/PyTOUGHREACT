@@ -28,7 +28,7 @@ import shutil
 import itertools
 
 
-class SynergyUtilitiesToughReact(object):
+class t2UtilitiesToughReact(object):
     # takes in file names as a list
     """
     This class prepares the output files from TOUGHREACT for plot visualizations and analysis

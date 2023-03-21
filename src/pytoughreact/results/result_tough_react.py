@@ -24,8 +24,8 @@ SOFTWARE.
 '''
 
 import os
-from pytoughreact.utilities.synergy_general_utilities import SynergyUtilities
-from pytoughreact.utilities.synergy_tough_react_utilities import SynergyUtilitiesToughReact
+from pytoughreact.utilities.t2_utilities import t2Utilities
+from pytoughreact.utilities.t2_tough_react_utilities import t2UtilitiesToughReact
 import t2listing
 
 
@@ -47,7 +47,7 @@ class ResultReact(object):
 
     def get_elements(self):
         """ Get elements """
-        find_connection = SynergyUtilitiesToughReact(self.filelocation, 'CONNE')
+        find_connection = t2UtilitiesToughReact(self.filelocation, 'CONNE')
         find_connection.findword()
         find_connection.sliceoffline()
         find_connection.writetofile()
@@ -59,7 +59,7 @@ class ResultReact(object):
         """ Get times from data file """
         time_data = self.data.times
         time_data2 = list(time_data)
-        value = SynergyUtilities()
+        value = t2Utilities()
         if len(time_data2) > 15:
             time_data = value.choplist(time_data2, 15)
             return time_data
@@ -68,7 +68,7 @@ class ResultReact(object):
     def convert_times(self, format_of_date):
         """ Convert time to required format """
         get_times = self.get_times()
-        utility_class = SynergyUtilities()
+        utility_class = t2Utilities()
         timeyear = utility_class.convert_times(get_times, format_of_date)
         return timeyear
 
@@ -79,7 +79,7 @@ class ResultReact(object):
         mf = self.data.history([(grid, param)])
         timeseries = mf[1]
         timeseries = list(timeseries)
-        value = SynergyUtilities()
+        value = t2Utilities()
         if len(timeseries) > 15:
             timeseries = value.choplist(timeseries, 15)
             return timeseries

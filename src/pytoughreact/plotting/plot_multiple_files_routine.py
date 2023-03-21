@@ -34,7 +34,7 @@ import pytoughreact.constants.generalconstants as gc
 import pytoughreact.constants.plotconstants as pc
 import pytoughreact.constants.reactionconstants as rc
 
-from pytoughreact.utilities.synergy_general_utilities import SynergyUtilities
+from pytoughreact.utilities.t2_utilities import t2Utilities
 
 
 class PlotMultiFiles(object):
@@ -46,7 +46,7 @@ class PlotMultiFiles(object):
         self.file_titles = file_titles
         self.simulator_type = simulator_type
         self.props = props
-        self.modifier = SynergyUtilities
+        self.modifier = t2Utilities
         self.x_slice_value = kwargs.get(gc.X_SLICE_VALUE)
         self.per_file = kwargs.get(gc.PER_FILE)
         self.title = kwargs.get(gc.TITLE)
