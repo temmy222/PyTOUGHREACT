@@ -38,7 +38,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
 </ul>
@@ -95,26 +99,24 @@
 
 <span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">mulgrid</span>
 <span class="kn">import</span> <span class="nn">t2data</span>
-<span class="kn">from</span> <span class="nn">exceptions.custom_error</span> <span class="kn">import</span> <span class="n">RequiredInputException</span><span class="p">,</span> <span class="n">RelativePermeabilityTypeError</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.exceptions.custom_error</span> <span class="kn">import</span> <span class="n">RequiredInputException</span>
 <span class="kn">from</span> <span class="nn">t2grids</span> <span class="kn">import</span> <span class="n">t2grid</span>
-<span class="kn">from</span> <span class="nn">numerical.physical_model_numericals</span> <span class="kn">import</span> <span class="n">PhysicalNumericals</span>
-<span class="kn">import</span> <span class="nn">constants.grid_constants</span> <span class="k">as</span> <span class="nn">grid_constants</span>
-<span class="kn">import</span> <span class="nn">constants.rel_perm_constants</span> <span class="k">as</span> <span class="nn">rel_perm_constants</span>
-<span class="kn">from</span> <span class="nn">model.relative_permeability</span> <span class="kn">import</span> <span class="n">RelativePermeability</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.numerical.physical_model_numericals</span> <span class="kn">import</span> <span class="n">PhysicalNumericals</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.grid_constants</span> <span class="k">as</span> <span class="nn">grid_constants</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.model.relative_permeability</span> <span class="kn">import</span> <span class="n">RelativePermeability</span>
 
 
 <div class="viewcode-block" id="PhysicalModel"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.physical_model.PhysicalModel">[docs]</a><span class="k">class</span> <span class="nc">PhysicalModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_title</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">t2data</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">model_title</span>
-        
 
 <div class="viewcode-block" id="PhysicalModel.createGrid"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.physical_model.PhysicalModel.createGrid">[docs]</a>    <span class="k">def</span> <span class="nf">createGrid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">grid</span><span class="p">:</span>
             <span class="n">geo</span> <span class="o">=</span> <span class="n">mulgrid</span><span class="p">()</span><span class="o">.</span><span class="n">rectangular</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">x_dimension</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">y_dimension</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">z_dimension</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">grid_top</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">geo</span> <span class="o">=</span> <span class="n">geo</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">RequiredInputException</span><span class="p">(</span><span class="n">grid_constants</span><span class="o">.</span><span class="n">GRID_NAME</span><span class="p">)</span>         
+            <span class="k">raise</span> <span class="n">RequiredInputException</span><span class="p">(</span><span class="n">grid_constants</span><span class="o">.</span><span class="n">GRID_NAME</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">geo</span></div>
 
 <div class="viewcode-block" id="PhysicalModel.convertGrid"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.physical_model.PhysicalModel.convertGrid">[docs]</a>    <span class="k">def</span> <span class="nf">convertGrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -124,7 +126,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PhysicalModel.specifyGravity"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.physical_model.PhysicalModel.specifyGravity">[docs]</a>    <span class="k">def</span> <span class="nf">specifyGravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gravity</span> <span class="o">=</span><span class="mf">9.81</span><span class="p">):</span>
+<div class="viewcode-block" id="PhysicalModel.specifyGravity"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.physical_model.PhysicalModel.specifyGravity">[docs]</a>    <span class="k">def</span> <span class="nf">specifyGravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gravity</span><span class="o">=</span><span class="mf">9.81</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gravity</span> <span class="o">=</span> <span class="n">gravity</span></div>
 
 <div class="viewcode-block" id="PhysicalModel.initialConditions"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.physical_model.PhysicalModel.initialConditions">[docs]</a>    <span class="k">def</span> <span class="nf">initialConditions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">):</span>
@@ -151,7 +153,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">poro</span> <span class="o">=</span> <span class="n">porosity</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rock_type</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rock_type</span> <span class="o">=</span> <span class="n">rock_type</span></div></div>
-
 </pre></div>
 
            </div>

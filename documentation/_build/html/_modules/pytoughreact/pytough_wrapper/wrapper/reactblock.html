@@ -38,7 +38,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">pytoughreact</a></li>
 </ul>
@@ -95,17 +99,20 @@
 <span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">rocktype</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+
 <div class="viewcode-block" id="t2block"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactblock.t2block">[docs]</a><span class="k">class</span> <span class="nc">t2block</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Grid block&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;     &#39;</span><span class="p">,</span> <span class="n">volume</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">blockrocktype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blockzone</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">centre</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">atmosphere</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ahtx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pmx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">nseq</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="n">blockzone</span>
-        <span class="k">if</span> <span class="n">blockrocktype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">blockrocktype</span> <span class="o">=</span> <span class="n">rocktype</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">blockrocktype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">blockrocktype</span> <span class="o">=</span> <span class="n">rocktype</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rocktype</span> <span class="o">=</span> <span class="n">blockrocktype</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">centre</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span> <span class="n">centre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">centre</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">centre</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">centre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">centre</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">centre</span> <span class="o">=</span> <span class="n">centre</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atmosphere</span> <span class="o">=</span> <span class="n">atmosphere</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ahtx</span> <span class="o">=</span> <span class="n">ahtx</span>

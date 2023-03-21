@@ -38,7 +38,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
 </ul>
@@ -94,10 +98,9 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">utilities.synergy_general_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilities</span>
-<span class="kn">from</span> <span class="nn">utilities.synergy_tough_react_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilitiesToughReact</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.synergy_general_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilities</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.synergy_tough_react_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilitiesToughReact</span>
 <span class="kn">import</span> <span class="nn">t2listing</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 
 <div class="viewcode-block" id="ResultReact"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact">[docs]</a><span class="k">class</span> <span class="nc">ResultReact</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -184,7 +187,7 @@
                     <span class="n">indices_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">continue</span>
-            <span class="k">except</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">pass</span>
         <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">output_data</span></div>
@@ -199,7 +202,7 @@
                     <span class="n">indices_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">continue</span>
-            <span class="k">except</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">pass</span>
         <span class="k">return</span> <span class="n">indices_array</span></div>
 

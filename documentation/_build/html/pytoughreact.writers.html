@@ -40,7 +40,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytoughreact</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pytoughreact.html">pytoughreact package</a><ul class="current">
@@ -282,6 +286,18 @@ will also be written to the main data file.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.writers.bio_writing.</span></span><span class="sig-name descname"><span class="pre">t2bio_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_function={'d':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'e':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'f':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'g':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'s':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'x':</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/bio_writing.html#t2bio_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.bio_writing.t2bio_parser" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">fixed_format_file</span></code></p>
 <p>Class for parsing TMVOC data file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.bio_writing.t2bio_parser.read_multi_value_line">
+<span class="sig-name descname"><span class="pre">read_multi_value_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linetype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/bio_writing.html#t2bio_parser.read_multi_value_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.bio_writing.t2bio_parser.read_multi_value_line" title="Permalink to this definition"></a></dt>
+<dd><p>Reads a line of parameter multi values from the file into a dictionary variable.
+Null values are ignored.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.bio_writing.t2bio_parser.read_params_value_line">
+<span class="sig-name descname"><span class="pre">read_params_value_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linetype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/bio_writing.html#t2bio_parser.read_params_value_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.bio_writing.t2bio_parser.read_params_value_line" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -309,6 +325,131 @@ SOFTWARE.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.writers.chemical_writing.</span></span><span class="sig-name descname"><span class="pre">SynergyChemical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_function={'d':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'e':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'f':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'g':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'s':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'x':</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">fixed_format_file</span></code></p>
 <p>Class for parsing CHEMICAL.INP data file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.find_gas">
+<span class="sig-name descname"><span class="pre">find_gas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.find_gas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.find_gas" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.find_minerals">
+<span class="sig-name descname"><span class="pre">find_minerals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minerals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.find_minerals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.find_minerals" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.find_primary_aqueous">
+<span class="sig-name descname"><span class="pre">find_primary_aqueous</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_aqueous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.find_primary_aqueous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.find_primary_aqueous" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_default_chemical_zone_to_nodes">
+<span class="sig-name descname"><span class="pre">get_default_chemical_zone_to_nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_default_chemical_zone_to_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_default_chemical_zone_to_nodes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_default_chemical_zones">
+<span class="sig-name descname"><span class="pre">get_default_chemical_zones</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_default_chemical_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_default_chemical_zones" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_minerals_to_write">
+<span class="sig-name descname"><span class="pre">get_minerals_to_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minerals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_minerals_to_write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_minerals_to_write" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_nodes_to_read">
+<span class="sig-name descname"><span class="pre">get_nodes_to_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_nodes_to_read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_nodes_to_read" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values">
+<span class="sig-name descname"><span class="pre">get_param_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linetype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_decay_species">
+<span class="sig-name descname"><span class="pre">get_param_values_decay_species</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_decay_species"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_decay_species" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_exchangeable_cations">
+<span class="sig-name descname"><span class="pre">get_param_values_exchangeable_cations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_exchangeable_cations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_exchangeable_cations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_gas">
+<span class="sig-name descname"><span class="pre">get_param_values_gas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_gas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_gas" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_ib_waters">
+<span class="sig-name descname"><span class="pre">get_param_values_ib_waters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_aqueous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_ib_waters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_ib_waters" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_ij_gases">
+<span class="sig-name descname"><span class="pre">get_param_values_ij_gases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gases</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_ij_gases"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_ij_gases" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_mineral">
+<span class="sig-name descname"><span class="pre">get_param_values_mineral</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_mineral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_mineral" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_mineral_zones">
+<span class="sig-name descname"><span class="pre">get_param_values_mineral_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minerals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_mineral_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_mineral_zones" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_perm_poro">
+<span class="sig-name descname"><span class="pre">get_param_values_perm_poro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minerals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_perm_poro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_perm_poro" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_surface_complex">
+<span class="sig-name descname"><span class="pre">get_param_values_surface_complex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_param_values_surface_complex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_surface_complex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_primary_species_to_read">
+<span class="sig-name descname"><span class="pre">get_primary_species_to_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_aqueous</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_primary_species_to_read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_primary_species_to_read" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_printout_options">
+<span class="sig-name descname"><span class="pre">get_printout_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_printout_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_printout_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_reactive_constraints">
+<span class="sig-name descname"><span class="pre">get_reactive_constraints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_reactive_constraints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_reactive_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_reactive_options">
+<span class="sig-name descname"><span class="pre">get_reactive_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_reactive_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_reactive_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_readio">
+<span class="sig-name descname"><span class="pre">get_readio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_readio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_readio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_tolerance_values">
+<span class="sig-name descname"><span class="pre">get_tolerance_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_tolerance_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_tolerance_values" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.get_weight_diffusion">
+<span class="sig-name descname"><span class="pre">get_weight_diffusion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.get_weight_diffusion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.get_weight_diffusion" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.chemical_writing.SynergyChemical.search_for_node_index">
+<span class="sig-name descname"><span class="pre">search_for_node_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/chemical_writing.html#SynergyChemical.search_for_node_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.chemical_writing.SynergyChemical.search_for_node_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -753,23 +894,29 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.get_present_sections">
 <span class="sig-name descname"><span class="pre">get_present_sections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.get_present_sections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.get_present_sections" title="Permalink to this definition"></a></dt>
-<dd><p>Returns a list of TOUGH2 section keywords for which there are   
+<dd><p>Returns a list of TOUGH2 section keywords for which there are
 corresponding data in the t2react object.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.present_sections">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">present_sections</span></span><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.present_sections" title="Permalink to this definition"></a></dt>
-<dd><p>Returns a list of TOUGH2 section keywords for which there are   
+<dd><p>Returns a list of TOUGH2 section keywords for which there are
 corresponding data in the t2react object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meshfilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.read" title="Permalink to this definition"></a></dt>
-<dd><p>Reads data from file.  Mesh data can optionally be read from an 
-auxiliary file.  Extra precision data will also be read from    
+<dd><p>Reads data from file.  Mesh data can optionally be read from an
+auxiliary file.  Extra precision data will also be read from
 an associated ‘.pdat’ file, if it exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.read_blocks">
+<span class="sig-name descname"><span class="pre">read_blocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.read_blocks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.read_blocks" title="Permalink to this definition"></a></dt>
+<dd><p>Reads grid blocks</p>
 </dd></dl>
 
 <dl class="py method">
@@ -784,22 +931,28 @@ an associated ‘.pdat’ file, if it exists.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.read_rocktypes">
+<span class="sig-name descname"><span class="pre">read_rocktypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.read_rocktypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.read_rocktypes" title="Permalink to this definition"></a></dt>
+<dd><p>Reads grid rock types</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t2solute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incon_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runlocation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AUTOUGH2_2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">silent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.run" title="Permalink to this definition"></a></dt>
-<dd><p>Runs simulation using TOUGH2 ,AUTOUGH2, TOUGHREACT, TMVOC or TMVOCBIO.  It’s assumed that the   
-data object has been written to file using write().  For    
-AUTOUGH2, if the filenames for the save file or initial     
-conditions file are not specified, they are constructed by  
-changing the extensions of the data filename.  Set silent to        
-True to suppress screen output. The output_filename applies 
-only to TOUGH2, and specifies the name of the main output   
+<dd><p>Runs simulation using TOUGH2 ,AUTOUGH2, TOUGHREACT, TMVOC or TMVOCBIO.  It’s assumed that the
+data object has been written to file using write().  For
+AUTOUGH2, if the filenames for the save file or initial
+conditions file are not specified, they are constructed by
+changing the extensions of the data filename.  Set silent to
+True to suppress screen output. The output_filename applies
+only to TOUGH2, and specifies the name of the main output
 listing file.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.section_insertion_index">
 <span class="sig-name descname"><span class="pre">section_insertion_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.section_insertion_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.section_insertion_index" title="Permalink to this definition"></a></dt>
-<dd><p>Determines an appropriate position to insert the specified section      
+<dd><p>Determines an appropriate position to insert the specified section
 in the internal list of data file sections.</p>
 </dd></dl>
 
@@ -812,13 +965,13 @@ in the internal list of data file sections.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.writers.react_writing.t2react.write">
 <span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meshfilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runlocation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">echo_extra_precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/react_writing.html#t2react.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.react_writing.t2react.write" title="Permalink to this definition"></a></dt>
-<dd><p>Writes data to file.  Mesh data can optionally be written to an 
-auxiliary file.  For AUTOUGH2, if extra_precision is True or a  
-list of section names, the corresponding data sections will be  
-written to an extra precision file; otherwise, the same 
-sections (if any) that were read in as extra precision will     
-also be written out as extra precision.  If     
-echo_extra_precision is True, the extra precision sections      
+<dd><p>Writes data to file.  Mesh data can optionally be written to an
+auxiliary file.  For AUTOUGH2, if extra_precision is True or a
+list of section names, the corresponding data sections will be
+written to an extra precision file; otherwise, the same
+sections (if any) that were read in as extra precision will
+also be written out as extra precision.  If
+echo_extra_precision is True, the extra precision sections
 will also be written to the main data file.</p>
 </dd></dl>
 
@@ -1147,6 +1300,76 @@ in the internal list of data file sections.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.writers.solute_writing.</span></span><span class="sig-name descname"><span class="pre">t2solute_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_function={'d':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'e':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'f':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'g':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'s':</span> <span class="pre">&lt;function</span> <span class="pre">value_error_none.&lt;locals&gt;.fn&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'x':</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">fixed_format_file</span></code></p>
 <p>Class for parsing SOLUTE.INP data file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.find_minerals">
+<span class="sig-name descname"><span class="pre">find_minerals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minerals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.find_minerals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.find_minerals" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.find_primary_aqueous">
+<span class="sig-name descname"><span class="pre">find_primary_aqueous</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_aqueous</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.find_primary_aqueous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.find_primary_aqueous" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_default_chemical_zone_to_nodes">
+<span class="sig-name descname"><span class="pre">get_default_chemical_zone_to_nodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_default_chemical_zone_to_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_default_chemical_zone_to_nodes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_default_chemical_zones">
+<span class="sig-name descname"><span class="pre">get_default_chemical_zones</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_default_chemical_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_default_chemical_zones" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_minerals_to_write">
+<span class="sig-name descname"><span class="pre">get_minerals_to_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minerals</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_minerals_to_write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_minerals_to_write" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_nodes_to_read">
+<span class="sig-name descname"><span class="pre">get_nodes_to_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_nodes_to_read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_nodes_to_read" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_primary_species_to_read">
+<span class="sig-name descname"><span class="pre">get_primary_species_to_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_aqueous</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_primary_species_to_read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_primary_species_to_read" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_printout_options">
+<span class="sig-name descname"><span class="pre">get_printout_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_printout_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_printout_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_reactive_constraints">
+<span class="sig-name descname"><span class="pre">get_reactive_constraints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_reactive_constraints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_reactive_constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_reactive_options">
+<span class="sig-name descname"><span class="pre">get_reactive_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_reactive_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_reactive_options" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_readio">
+<span class="sig-name descname"><span class="pre">get_readio</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_readio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_readio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_tolerance_values">
+<span class="sig-name descname"><span class="pre">get_tolerance_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_tolerance_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_tolerance_values" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.get_weight_diffusion">
+<span class="sig-name descname"><span class="pre">get_weight_diffusion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.get_weight_diffusion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.get_weight_diffusion" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.writers.solute_writing.t2solute_parser.search_for_node_index">
+<span class="sig-name descname"><span class="pre">search_for_node_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blocks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/writers/solute_writing.html#t2solute_parser.search_for_node_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.writers.solute_writing.t2solute_parser.search_for_node_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>

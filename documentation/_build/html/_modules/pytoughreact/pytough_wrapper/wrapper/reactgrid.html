@@ -38,7 +38,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">pytoughreact</a></li>
 </ul>
@@ -94,9 +98,10 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">from</span> <span class="nn">t2grids</span> <span class="kn">import</span> <span class="n">t2grid</span>
-<span class="kn">from</span> <span class="nn">pytough_wrapper.wrapper.reactzone</span> <span class="kn">import</span> <span class="n">t2zone</span>
-<span class="kn">from</span> <span class="nn">pytough_wrapper.wrapper.reactblock</span> <span class="kn">import</span> <span class="n">t2block</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.pytough_wrapper.wrapper.reactzone</span> <span class="kn">import</span> <span class="n">t2zone</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.pytough_wrapper.wrapper.reactblock</span> <span class="kn">import</span> <span class="n">t2block</span>
 <span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">rocktype</span>
+
 
 <div class="viewcode-block" id="t2reactgrid"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid">[docs]</a><span class="k">class</span> <span class="nc">t2reactgrid</span><span class="p">(</span><span class="n">t2grid</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -107,12 +112,12 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="p">)</span></div>
     <span class="n">num_zones</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_num_zones</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2reactgrid.fromgeo"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.fromgeo">[docs]</a>    <span class="k">def</span> <span class="nf">fromgeo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">blockmap</span> <span class="o">=</span> <span class="p">{}):</span>
+<div class="viewcode-block" id="t2reactgrid.fromgeo"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.fromgeo">[docs]</a>    <span class="k">def</span> <span class="nf">fromgeo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geo</span><span class="p">,</span> <span class="n">blockmap</span><span class="o">=</span><span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Converts a MULgraph grid to a TOUGH2 grid. The blockmap parameter</span>
 <span class="sd">        applies an optional mapping to the block names from the geometry.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">empty</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_rocktype</span><span class="p">(</span><span class="n">rocktype</span><span class="p">())</span> <span class="c1"># add default rock type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_rocktype</span><span class="p">(</span><span class="n">rocktype</span><span class="p">())</span>  <span class="c1"># add default rock type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_blocks</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">blockmap</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_connections</span><span class="p">(</span><span class="n">geo</span><span class="p">,</span> <span class="n">blockmap</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -121,9 +126,12 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds two grids together.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">t2reactgrid</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">grid</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">]:</span>
-            <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">add_rocktype</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">blk</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">blk</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">con</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">connectionlist</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">add_rocktype</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">blk</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">blk</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">con</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">connectionlist</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span>
 
 <div class="viewcode-block" id="t2reactgrid.empty"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.empty">[docs]</a>    <span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -137,7 +145,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">zone</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span> <span class="o">=</span> <span class="p">[]</span></div>
 
-<div class="viewcode-block" id="t2reactgrid.add_block"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.add_block">[docs]</a>    <span class="k">def</span> <span class="nf">add_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newblock</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="t2reactgrid.add_block"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.add_block">[docs]</a>    <span class="k">def</span> <span class="nf">add_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newblock</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a block to the grid&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">newblock</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">newblock</span> <span class="o">=</span> <span class="n">t2block</span><span class="p">()</span>
@@ -148,16 +156,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">blocklist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newblock</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="n">newblock</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">newblock</span></div>
 
-<div class="viewcode-block" id="t2reactgrid.add_zone"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.add_zone">[docs]</a>    <span class="k">def</span> <span class="nf">add_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newzone</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>	
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a rock type to the grid.  Any existing rocktype of the same name is replaced.&quot;&quot;&quot;</span>	
+<div class="viewcode-block" id="t2reactgrid.add_zone"><a class="viewcode-back" href="../../../../pytoughreact.pytough_wrapper.wrapper.html#pytoughreact.pytough_wrapper.wrapper.reactgrid.t2reactgrid.add_zone">[docs]</a>    <span class="k">def</span> <span class="nf">add_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newzone</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a rock type to the grid.  Any existing rocktype of the same name is replaced.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">newzone</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">newzone</span> <span class="o">=</span> <span class="n">t2zone</span><span class="p">()</span>	
-        <span class="k">if</span> <span class="n">newzone</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">zone</span><span class="p">:</span>	
-            <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zone</span><span class="p">[</span><span class="n">newzone</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>	
-            <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">newzone</span>	
-        <span class="k">else</span><span class="p">:</span>	
-            <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newzone</span><span class="p">)</span>	
-        <span class="bp">self</span><span class="o">.</span><span class="n">zone</span><span class="p">[</span><span class="n">newzone</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">newzone</span></div></div>
+            <span class="n">newzone</span> <span class="o">=</span> <span class="n">t2zone</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">newzone</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">zone</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zone</span><span class="p">[</span><span class="n">newzone</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">newzone</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">zonelist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">newzone</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zone</span><span class="p">[</span><span class="n">newzone</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">newzone</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_rocktypes</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; rock types; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_zones</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; zones; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_blocks</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; blocks; &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_connections</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; connections&#39;</span></div>
 </pre></div>
 
            </div>
