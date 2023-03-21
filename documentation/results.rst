@@ -1,6 +1,6 @@
 Functions:
 -----------
-.. currentmodule:: pytoughreact.results.multi_result_tough_3
+.. currentmodule:: pytoughreact.results
 .. autofunction:: retrieve_data_multi_timeseries
 
 Dependencies
