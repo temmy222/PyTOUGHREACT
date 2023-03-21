@@ -6,6 +6,10 @@
 Welcome to PyToughReact's documentation!
 ========================================
 
+.. automodule:: pytoughreact
+    :members:
+
+
 .. _Installation:
 .. toctree::
    :maxdepth: 2
