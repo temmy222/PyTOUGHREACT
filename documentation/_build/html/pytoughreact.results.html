@@ -41,7 +41,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytoughreact</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pytoughreact.html">pytoughreact package</a><ul class="current">
@@ -155,7 +159,21 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries">
 <span class="sig-name descname"><span class="pre">retrieve_data_multi_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries" title="Permalink to this definition"></a></dt>
-<dd><p>DataFrame to retrieve time and timeseries results from file</p>
+<dd><p>Function retrieve time and timeseries results from file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grid_block_number</strong> (<em>int</em>) – The grid block number for which to retireve the results</p></li>
+<li><p><strong>format_of_date</strong> (<em>str</em>) – Provides information to the method on format of the date. For example. year, hour, min or seconds</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data_table</strong> – Dataframe with requested output</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.Dataframe</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

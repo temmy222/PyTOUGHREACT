@@ -38,7 +38,11 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
 </ul>
@@ -93,8 +97,9 @@
 
 <span class="sd">&#39;&#39;&#39;</span>
 
-<span class="kn">import</span> <span class="nn">constants.rel_perm_constants</span> <span class="k">as</span> <span class="nn">rel_perm_constants</span>
-<span class="kn">from</span> <span class="nn">exceptions.custom_error</span> <span class="kn">import</span> <span class="n">RelativePermeabilityTypeError</span><span class="p">,</span> <span class="n">RestrictionError</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.rel_perm_constants</span> <span class="k">as</span> <span class="nn">rel_perm_constants</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.exceptions.custom_error</span> <span class="kn">import</span> <span class="n">RelativePermeabilityTypeError</span><span class="p">,</span> <span class="n">RestrictionError</span>
+
 
 <div class="viewcode-block" id="RelativePermeability"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability">[docs]</a><span class="k">class</span> <span class="nc">RelativePermeability</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_rel</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -103,7 +108,6 @@
         <span class="k">if</span> <span class="n">type_rel</span> <span class="o">==</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VERMA</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.895</span><span class="p">,</span> <span class="mf">1.259</span><span class="p">,</span> <span class="mf">1.7615</span><span class="p">,</span> <span class="mf">0.5089</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">validate_rel_perm</span><span class="p">()</span>
-
 
 <div class="viewcode-block" id="RelativePermeability.validate_rel_perm"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.validate_rel_perm">[docs]</a>    <span class="k">def</span> <span class="nf">validate_rel_perm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rel_perm_aggregates</span> <span class="o">=</span> <span class="p">[</span><span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_COREY</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_EXPONENTIAL</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_FAT_KLIKOFF</span><span class="p">,</span>
@@ -138,19 +142,11 @@
             <span class="k">raise</span> <span class="n">RestrictionError</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;greater&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RelativePermeability.rel_perm_converter"><a class="viewcode-back" href="../../../pytoughreact.model.html#pytoughreact.model.relative_permeability.RelativePermeability.rel_perm_converter">[docs]</a>    <span class="k">def</span> <span class="nf">rel_perm_converter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">mapping_rel_perm</span> <span class="o">=</span> <span class="p">{</span><span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_LINEAR</span><span class="p">:</span><span class="mi">1</span> <span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_EXPONENTIAL</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_COREY</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
-                            <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_GRANT</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_MOBILE_PHASES</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_FAT_KLIKOFF</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span>
-                            <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VAN_GENUCHTEN</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VERMA</span><span class="p">:</span><span class="mi">8</span><span class="p">}</span>
+        <span class="n">mapping_rel_perm</span> <span class="o">=</span> <span class="p">{</span><span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_LINEAR</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_EXPONENTIAL</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_COREY</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                            <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_GRANT</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_MOBILE_PHASES</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_FAT_KLIKOFF</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+                            <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VAN_GENUCHTEN</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="n">rel_perm_constants</span><span class="o">.</span><span class="n">REL_PERM_VERMA</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
         <span class="n">rel_perm</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">mapping_rel_perm</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">type_rel</span><span class="o">.</span><span class="n">upper</span><span class="p">()],</span> <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">rel_perm</span></div></div>
-        
-
-
-    
-
-        
-
-        
 </pre></div>
 
            </div>

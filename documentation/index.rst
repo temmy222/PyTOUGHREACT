@@ -17,6 +17,7 @@ Welcome to PyToughReact's documentation!
    :maxdepth: 2
    :caption: Repository Code:
    
+   results
    modules.rst
 
 Indices and tables

@@ -8,10 +8,12 @@
 
 
 # retructured text link - https://docutils.sourceforge.io/docs/user/rst/quickref.html
+import pytoughreact.results
 import os
 import sys
 
 sys.path.insert(0, os.path.abspath(".."))
+
 
 project = 'PyToughReact'
 copyright = '2023, Temitope Ajayi'
@@ -21,7 +23,8 @@ release = '0.0.15'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc"]
+extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "sphinx.ext.autosummary", "sphinx.ext.mathjax",
+              "sphinx.ext.napoleon", "sphinx.ext.intersphinx", "sphinx.ext.extlinks"]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
