@@ -24,8 +24,8 @@ SOFTWARE.
 '''
 
 from t2grids import t2grid
-from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
-from pytoughreact.pytough_wrapper.wrapper.reactblock import t2block
+from pytoughreact.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactblock import t2block
 from t2data import rocktype
 
 

@@ -28,10 +28,10 @@ from pytoughreact.constants.defaults_constants import DEFAULT_REACT as default_r
 from pytoughreact.constants.defaults_constants import DEFAULT_PARAMETERS as default_parameters
 from pytoughreact.constants.sections import t2react_sections
 from fixed_format_file import default_read_function, fixed_format_file
-from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from pytoughreact.pytough_wrapper.wrapper.reactblock import t2block
+from pytoughreact.wrapper.reactgrid import t2reactgrid
+from pytoughreact.wrapper.reactblock import t2block
 from pytoughreact.exceptions.custom_error import NotFoundError
-from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactzone import t2zone
 from copy import deepcopy
 from t2data import t2data, fix_blockname, rocktype
 import numpy as np

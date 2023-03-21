@@ -1,6 +1,6 @@
 from t2data import t2data, padstring, fix_blockname
 from fixed_format_file import default_read_function
-from pytoughreact.pytough_wrapper.wrapper.reactblock import t2block
+from pytoughreact.wrapper.reactblock import t2block
 import numpy as np
 
 
