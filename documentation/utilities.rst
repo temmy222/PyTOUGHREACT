@@ -3,10 +3,10 @@ Utilities Class
 ++++++++++++++++++++++
 TOUGHREACT Utilities
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.constants.t2_tough_react_utilities
+.. autoclass:: pytoughreact.constants.t2_tough_react_utilities.t2UtilitiesToughReact
     :members:
 ++++++++++++++++++++++
 TOUGH3 Utilities
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.constants.t2_utilities
+.. autoclass:: pytoughreact.constants.t2_utilities.t2Utilities
     :members:

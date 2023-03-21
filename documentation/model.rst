@@ -3,20 +3,20 @@ Model Class
 ++++++++++++++++++++++
 Capillary Pressure 
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.constants.capillary_pressure
+.. autoclass:: pytoughreact.constants.capillary_pressure.CapillaryPressure
     :members:
 ++++++++++++++++++++++
 Grid
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.constants.grid
+.. autoclass:: pytoughreact.constants.grid.Grid
     :members:
 ++++++++++++++++++++++
 Physical Model
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.constants.physical_model
+.. autoclass:: pytoughreact.constants.physical_model.PhysicalModel
     :members:
 ++++++++++++++++++++++
 Relative Permeability
 ++++++++++++++++++++++
-.. automodule:: pytoughreact.constants.relative_permeability
+.. autoclass:: pytoughreact.constants.relative_permeability.RelativePermeability
     :members:
