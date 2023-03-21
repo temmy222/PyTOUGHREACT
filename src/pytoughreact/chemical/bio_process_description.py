@@ -140,6 +140,16 @@ class Process(object):
         return output
 
     def getKs(self):
+        """ Function that retrieves Ks information
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            list of Ks parameters
+        """
         dict_output = {}
         output = []
         for i in reversed(range(len(self.allProcesses))):
@@ -152,6 +162,16 @@ class Process(object):
         return output
 
     def getKc(self):
+        """ Function that retrieves competitive inhibition information
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            list of competitive inhibition parameters
+        """
         dict_output = {}
         output = []
         for i in range(len(self.allProcesses)):
@@ -163,6 +183,16 @@ class Process(object):
         return output
 
     def getKnc(self):
+        """ Function that retrieves non competitive inhibition information
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            list of non competitive inhibition parameters
+        """
         dict_output = {}
         output = []
         for i in range(len(self.allProcesses)):
@@ -174,6 +204,16 @@ class Process(object):
         return output
 
     def getKh(self):
+        """ Function that retrieves haldane inhibition information
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            list of haldana inhibition parameters
+        """
         dict_output = {}
         output = []
         for i in range(len(self.allProcesses)):
