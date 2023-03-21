@@ -5,7 +5,6 @@ Biodegradation Processes
 ++++++++++++++++++++++
 .. autoclass:: pytoughreact.chemical.bio_process_description.BIODG
     :members:
-++++++++++++++++++++++
 .. autoclass:: pytoughreact.chemical.bio_process_description.Process
     :members:
 ++++++++++++++++++++++
