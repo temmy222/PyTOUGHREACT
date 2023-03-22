@@ -29,6 +29,7 @@ Welcome to PyTOUGHREACT's documentation!
    writers.rst
    modules.rst
    dependencies.rst
+   contributing.rst
 
 Indices and tables
 ==================
