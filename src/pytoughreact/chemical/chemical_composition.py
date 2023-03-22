@@ -64,5 +64,14 @@ class PrimarySpecies(object):
         self.NAME = name
 
     def getNameTrans(self):
-        listo = [self.NAME, self.NOTRANS]
-        return listo
+        """ Function that retrieves the name of primary species and flag for transport and surface complexation options
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameter : list
+            List containing name of primary species and flag for transport and surface complexation options
+        """
+        parameter = [self.NAME, self.NOTRANS]
+        return parameter
