@@ -51,8 +51,20 @@ class t2bio_parser(fixed_format_file):
                                            t2bio_format_specification, read_function)
 
     def read_multi_value_line(self, variable, linetype):
-        """Reads a line of parameter multi values from the file into a dictionary variable.
-        Null values are ignored."""
+        """ Reads a line of parameter multi values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+        variable :  str
+            variable to be read
+        linetype: str
+            type of line to be read
+
+        Returns
+        --------
+
+        """
         spec = self.specification[linetype]
         vals = self.read_values(linetype)
         if len(spec[0]) < 6:
@@ -63,6 +75,20 @@ class t2bio_parser(fixed_format_file):
             variable[linetype] = vals
 
     def read_params_value_line(self, variable, linetype):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+        variable :  str
+            variable to be read
+        linetype: str
+            type of line to be read
+
+        Returns
+        --------
+
+        """
         spec = self.specification[linetype]
         vals = self.read_values(linetype)
         if len(spec[0]) > 2:
@@ -193,8 +219,18 @@ class t2bio(t2data):
              self.write_indom]))
 
     def get_present_sections(self):
-        """Returns a list of TOUGH2 section keywords for which there are
-        corresponding data in the t2bio object."""
+        """ Returns a list of TOUGH2 section keywords for which there are
+        corresponding data in the t2bio object.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        present_sections : list
+            Sections with corresponding data in the t2bio object
+
+        """
         data_present = dict(zip(
             t2bio_sections,
             [self.simulator,

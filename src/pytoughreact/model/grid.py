@@ -31,10 +31,49 @@ class Grid(object):
         self.grid_top = grid_top
 
     def add_x_dimension(self, x_array):
+        """ Adds x dimensions to grid
+
+        Parameters
+        -----------
+        x_array :  Array
+            Array of x parameters
+
+        Returns
+        --------
+        grid : Grid
+            Grid with x-array parameters
+
+        """
         self.x_dimension = x_array
 
     def add_y_dimension(self, y_array):
+        """ Adds y dimensions to grid
+
+        Parameters
+        -----------
+        y_array :  Array
+            Array of y parameters
+
+        Returns
+        --------
+        grid : Grid
+            Grid with y-array parameters
+
+        """
         self.y_dimension = y_array
 
     def add_z_dimension(self, z_array):
+        """ Adds z dimensions to grid
+
+        Parameters
+        -----------
+        z_array :  Array
+            Array of z parameters
+
+        Returns
+        --------
+        grid : Grid
+            Grid with z-array parameters
+
+        """
         self.z_dimension = z_array

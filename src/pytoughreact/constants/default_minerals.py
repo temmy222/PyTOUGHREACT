@@ -23,8 +23,8 @@ SOFTWARE.
 
 '''
 
-from chemical.mineral_description import Mineral
-from chemical.kinetic_properties import Precipitation, Dissolution, pHDependenceType2, Equilibrium
+from pytoughreact.chemical.mineral_description import Mineral
+from pytoughreact.chemical.kinetic_properties import Precipitation, Dissolution, pHDependenceType2, Equilibrium
 
 calcite_ph = pHDependenceType2(5.0119e-01, 14.4, 1, 'h+', 1.0)
 dissolution_calcite = Dissolution(1.5488e-06, 2, 1, 1, 23.5, 0, 0, 0)
