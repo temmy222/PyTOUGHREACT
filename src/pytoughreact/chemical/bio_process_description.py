@@ -104,7 +104,7 @@ class Process(object):
         numberOfComponents : int
             Number of Components present in the simulation
         mumax: float
-            Maximum specific substrate degradation rate 
+            Maximum specific substrate degradation rate
 
         Returns
         --------

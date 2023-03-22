@@ -90,6 +90,31 @@ class Water_Bio(object):
         self.name = name
 
     def addToProcess(self, process, Uptake, Ks=None, Kc=None, Knc=None, Kh=None):
+        """ Add water component to the process
+
+        Parameters
+        -----------
+        process :  Process
+            This should be a Process class with all properties of the process
+        Uptake : int
+            uptake coefficient of water component in particular process with respect to 1 mole of
+            degraded primary substrate (mole component / mole substrate).
+        Ks: float
+            Substrate degradation rate
+        Kc: float
+            Competitive inhibition rate
+        Knc: float
+            Non Competitive inhibition rate
+        Kh: float
+            Haldane inhibition rate
+
+        Returns
+        --------
+        output : dict
+            Dicitionary of all parameters
+        process : Process
+            Updated Process with new parameters
+        """
         output = {self: [Uptake, Ks, Kc, Knc, Kh]}
         if Kc is not None:
             process.NumOfCompetiting += 1
@@ -151,35 +176,131 @@ class BaseComponent(object):
         self.critTemp = critTemp
 
     def getFirstSet(self):
-        listo = [self.critTemp, self.critPres, self.critComp, self.acentricFactor, self.dipoleMoment]
-        return listo
+        """ Function that gets the first line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Critical Temperature, Critical Pressure, Acentric Factor,
+            Dipole Moment) for biodegradation
+        """
+        parameters = [self.critTemp, self.critPres, self.critComp, self.acentricFactor, self.dipoleMoment]
+        return parameters
 
     def getSecondSet(self):
-        listo = [self.boilPoint, self.vapPressA, self.vapPressB, self.vapPressC, self.vapPressD]
-        return listo
+        """ Function that gets the second line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Boiling Point, Vapor Pressure) for biodegradation
+        """
+        parameters = [self.boilPoint, self.vapPressA, self.vapPressB, self.vapPressC, self.vapPressD]
+        return parameters
 
     def getThirdSet(self):
-        listo = [self.molWeight, self.heatCapConstantA, self.heatCapConstantB, self.heatCapConstantC,
-                 self.heatCapConstantD]
-        return listo
+        """ Function that gets the third line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Molecular Weight, heat Capacity Constant) for biodegradation
+        """
+        parameters = [self.molWeight, self.heatCapConstantA, self.heatCapConstantB, self.heatCapConstantC,
+                      self.heatCapConstantD]
+        return parameters
 
     def getFourthSet(self):
-        listo = [self.liqDensity, self.refTempForDensity, self.refBinaryDif, self.refTempForDif, self.expChemDif]
-        return listo
+        """ Function that gets the fourth line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Liquid density, Reference Temperature for density, Diffusion) for biodegradation
+        """
+        parameters = [self.liqDensity, self.refTempForDensity, self.refBinaryDif, self.refTempForDif, self.expChemDif]
+        return parameters
 
     def getFifthSet(self):
-        listo = [self.liqVisConstA, self.liqVisConstB, self.liqVisConstC, self.liqVisConstD, self.liqCritVol]
-        return listo
+        """ Function that gets the fifth line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Liquid Viscosity) for biodegradation
+        """
+        parameters = [self.liqVisConstA, self.liqVisConstB, self.liqVisConstC, self.liqVisConstD, self.liqCritVol]
+        return parameters
 
     def getSixthSet(self):
-        listo = [self.liqChemSolA, self.liqChemSolB, self.liqChemSolC, self.liqChemSolD]
-        return listo
+        """ Function that gets the sixth line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Liquid Chemical Solubility) for biodegradation
+        """
+        parameters = [self.liqChemSolA, self.liqChemSolB, self.liqChemSolC, self.liqChemSolD]
+        return parameters
 
     def getSeventhSet(self):
-        listo = [self.carbonPartCoefficient, self.fracCarbon, self.decayConstant]
-        return listo
+        """ Function that gets the seventh line of information in INFILE Component Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (carbon Coefficient, Decay Constant) for biodegradation
+        """
+        parameters = [self.carbonPartCoefficient, self.fracCarbon, self.decayConstant]
+        return parameters
 
     def addToProcess(self, process, Uptake, Ks=None, Kc=None, Knc=None, Kh=None):
+        """ Add bio component to the process
+
+        Parameters
+        -----------
+        process :  Process
+            This should be a Process class with all properties of the process
+        Uptake : int
+            uptake coefficient of bio component in particular process with respect to 1 mole of
+            degraded primary substrate (mole component / mole substrate).
+        Ks: float
+            Substrate degradation rate
+        Kc: float
+            Competitive inhibition rate
+        Knc: float
+            Non Competitive inhibition rate
+        Kh: float
+            Haldane inhibition rate
+
+        Returns
+        --------
+        output : dict
+            Dicitionary of all parameters
+        process : Process
+            Updated Process with new parameters
+        """
         output = {self: [Uptake, Ks, Kc, Knc, Kh]}
         if Kc is not None:
             process.NumOfCompetiting += 1
@@ -192,6 +313,16 @@ class BaseComponent(object):
         return output, process
 
     def defaultToluene(self):
+        """ Function that provides default parameters for Toluene component (can be modified)
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        toluene : BaseComponent
+            List of default parameters for Toluene for biodegradation
+        """
         toluene = BaseComponent("Toluene", 591.8, 41.0, 0.263, 0.263, 0.4,
                                 383.8, -7.28607, 1.38091, -2.83433, -2.79168,
                                 92.141, -.2435E+02, 0.5125E+00, -.2765E-03, 0.4911E-07,
@@ -202,6 +333,16 @@ class BaseComponent(object):
         return toluene
 
     def defaultBenzene(self):
+        """ Function that provides default parameters for Benzene component (can be modified)
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        benzene : BaseComponent
+            List of default parameters for benzene for biodegradation
+        """
         benzene = BaseComponent("Benzene", 562.2, 48.2, 0.271, 0.212, 0.0,
                                 353.2, -6.98273, 1.33213, -2.62863, -3.33399,
                                 78.114, -.3392E+02, 0.4739E+00, -.3017E-03, 0.7130E-07,
@@ -212,6 +353,16 @@ class BaseComponent(object):
         return benzene
 
     def defaultNDecane(self):
+        """ Function that provides default parameters for Decane component (can be modified)
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        decane : BaseComponent
+            List of default parameters for decane for biodegradation
+        """
         component = BaseComponent("n-Decane", 617.7, 21.2, 0.249, 0.489, 0.0,
                                   447.3, -8.56523, 1.97756, -5.81971, -0.29982,
                                   142.286, -7.913E+0, 9.609E-1, -5.288E-4, 1.131E-7,
@@ -222,6 +373,16 @@ class BaseComponent(object):
         return component
 
     def defaultPXylene(self):
+        """ Function that provides default parameters for P-Xylene component (can be modified)
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        component : BaseComponent
+            List of default parameters for pxylene for biodegradation
+        """
         component = BaseComponent("p-Xylene", 616.2, 35.1, 0.260, 0.320, 0.1,
                                   411.5, -7.63495, 1.50724, -3.19678, -2.78710,
                                   106.168, -.2509E+02, 0.6042E+00, -.3374E-03, 0.6820E-07,
@@ -232,6 +393,16 @@ class BaseComponent(object):
         return component
 
     def defaultNPropylBenzene(self):
+        """ Function that provides default parameters for N Propyl Benzene component (can be modified)
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        component : BaseComponent
+            List of default parameters for N Propyl Benzene for biodegradation
+        """
         component = BaseComponent("n-PropylBenzene", 638.200, 32.000, 0.265, 0.344, 0.00,
                                   432.400, -7.92198, 1.97403, -4.27504, -1.28568,
                                   120.195, -3.129E+1, 7.486E-1, -4.601E-4, 1.081E-7,
@@ -242,6 +413,16 @@ class BaseComponent(object):
         return component
 
     def defaultNPentane(self):
+        """ Function that provides default parameters for N Pentane component (can be modified)
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        component : BaseComponent
+            List of default parameters for N Pentane for biodegradation
+        """
         component = BaseComponent("n-Pentane", 469.7, 33.7, 0.263, 0.251, 0.0,
                                   309.2, -7.28936, 1.53679, -3.08367, -1.02456,
                                   72.151, -3.626E+00, .4873E+00, -2.580E-04, 5.305E-08,
@@ -268,5 +449,15 @@ class Solids(object):
         self.decayConstant = decayConstant
 
     def getFirstSet(self):
+        """ Function that gets the first line of information in INFILE Solids Section
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            List of parameters (Name, Molecular Weight, Decay Constant, Carbon Coefficient) for biodegradation
+        """
         listo = [self.name, self.mol_weight, self.carbonPartCoefficient, self.decayConstant]
         return listo
