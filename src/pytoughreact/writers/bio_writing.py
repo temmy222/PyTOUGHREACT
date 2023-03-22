@@ -265,8 +265,19 @@ class t2bio(t2data):
     present_sections = property(get_present_sections)
 
     def section_insertion_index(self, section):
-        """Determines an appropriate position to insert the specified section
+        """ Determines an appropriate position to insert the specified section
         in the internal list of data file sections.
+
+        Parameters
+        -----------
+        section :  list
+            list of sections
+
+        Returns
+        --------
+        parameter : int
+            Appropriate position to insert the specified section in the internal list of data file sections.
+
         """
         try:
             listindex = t2bio_sections.index(section)
@@ -295,7 +306,20 @@ class t2bio(t2data):
 
     def run(self, save_filename='', incon_filename='', runlocation='', simulator='AUTOUGH2_2',
             silent=False, output_filename=''):
-        """ Runs simulation using TMVOC """
+        """ Runs simulation using TMVOC
+
+        Parameters
+        -----------
+        save_filename :  str
+            filename of SAVE file
+
+        Returns
+        --------
+        parameter : int
+            Appropriate position to insert the specified section in the internal list of data file sections.
+
+        """
+
         if runlocation:
             os.chdir(os.path.dirname(os.path.realpath(__file__)))
             print(os.path.dirname(os.path.realpath(__file__)))
