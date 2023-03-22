@@ -45,6 +45,31 @@ class Gas(object):
         self.name = name
 
     def addToProcess(self, process, Uptake, Ks=None, Kc=None, Knc=None, Kh=None):
+        """ Add gas component to the process
+
+        Parameters
+        -----------
+        process :  Process
+            This should be a Process class with all properties of the process
+        Uptake : int
+            uptake coefficient of gas component in particular process with respect to 1 mole of
+            degraded primary substrate (mole component / mole substrate).
+        Ks: float
+            Substrate degradation rate
+        Kc: float
+            Competitive inhibition rate
+        Knc: float
+            Non Competitive inhibition rate
+        Kh: float
+            Haldane inhibition rate
+
+        Returns
+        --------
+        output : dict
+            Dicitionary of all parameters
+        process : Process
+            Updated Process with new parameters
+        """
         output = {self: [Uptake, Ks, Kc, Knc, Kh]}
         if Kc is not None:
             process.NumOfCompetiting += 1
