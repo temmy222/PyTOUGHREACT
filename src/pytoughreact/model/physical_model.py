@@ -38,6 +38,19 @@ class PhysicalModel(object):
         self.data.title = model_title
 
     def createGrid(self, grid):
+        """ Creates Grid
+
+        Parameters
+        -----------
+        grid :  Grid
+            Grid object containing grid parameters
+
+        Returns
+        --------
+        geo : mulgrid
+            mulgrid parameter with all grid parameters
+
+        """
         if grid:
             geo = mulgrid().rectangular(grid.x_dimension, grid.y_dimension, grid.z_dimension, grid.grid_top)
             self.geo = geo

@@ -34,6 +34,16 @@ class CapillaryPressure(object):
         self.validate_cap_press()
 
     def validate_cap_press(self):
+        """ Function that validates capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : Exception
+            Exception depending on what is violated
+        """
         cap_pres_aggregates = [cap_pres_constants.CAP_PRESS_LINEAR, cap_pres_constants.CAP_PRESS_LEVERETT, cap_pres_constants.CAP_PRESS_MILLY,
                                cap_pres_constants.CAP_PRESS_NONE, cap_pres_constants.CAP_PRESS_PICKENS, cap_pres_constants.CAP_PRESS_TRUST,
                                cap_pres_constants.CAP_PRESS_VAN_GENUCHTEN]
@@ -52,10 +62,30 @@ class CapillaryPressure(object):
                 self.validate_leverett()
 
     def validate_linear(self):
+        """ Function that validates linear capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : RestrictionError
+            RestrictionError
+        """
         if self.parameters[2] < self.parameters[1]:
             raise RestrictionError([self.parameters[1], self.parameters[2]], 'greater')
 
     def validate_pickens(self):
+        """ Function that validates Pickens capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : RestrictionError
+            RestrictionError
+        """
         if self.parameters[1] < 0:
             raise RestrictionError([0, self.parameters[1]], 'greater')
         if 1 < self.parameters[1]:
@@ -64,22 +94,62 @@ class CapillaryPressure(object):
             raise RestrictionError([1, self.parameters[2]], 'greater equal')
 
     def validate_trust(self):
+        """ Function that validates Trust capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : RestrictionError
+            RestrictionError
+        """
         if self.parameters[1] < 0:
             raise RestrictionError([0, self.parameters[1]], 'greater equal')
         if self.parameters[2] == 0:
             raise RestrictionError([0, self.parameters[2]], 'not equal')
 
     def validate_milly(self):
+        """ Function that validates Milly capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : RestrictionError
+            RestrictionError
+        """
         if self.parameters[0] < 0:
             raise RestrictionError([0, self.parameters[0]], 'greater equal')
 
     def validate_leverett(self):
+        """ Function that validates Leverett capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : RestrictionError
+            RestrictionError
+        """
         if self.parameters[1] < 0:
             raise RestrictionError([0, self.parameters[1]], 'greater equal')
         if 1 <= self.parameters[1]:
             raise RestrictionError([self.parameters[1], 1], 'greater')
 
     def cap_pres_converter(self):
+        """ Function that converts capillary pressure inputs
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        cap_pres : dict
+            Dictionary of all capillary pressure parameters
+        """
         mapping_cap_pres = {}
         cap_pres = {'type': mapping_cap_pres[self.type_cap.upper()], 'parameters': self.parameters}
         return cap_pres
