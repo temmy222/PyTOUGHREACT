@@ -310,13 +310,22 @@ class t2bio(t2data):
 
         Parameters
         -----------
-        save_filename :  str
+        save_filename : str
             filename of SAVE file
+        incon_filename : str
+            filename of INCON file
+        run_location : str
+            path to Executable and required files
+        simulator : str
+            simulator executable name
+        silent: boolean
+            if output messages should be written out
+        output_filename: str
+            name of output file
 
         Returns
         --------
-        parameter : int
-            Appropriate position to insert the specified section in the internal list of data file sections.
+        
 
         """
 
@@ -365,7 +374,19 @@ class t2bio(t2data):
                 call(cmd, stdin=infile, stdout=outfile)
 
     def read_rocktypes(self, infile):
-        """Reads grid rock types"""
+        """ Reads grid rock types
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        rocktype: self
+            adds rocktype information to grid
+
+        """
         self.grid.rocktypelist = []
         self.grid.rocktype = {}
         line = padstring(infile.readline())
@@ -390,7 +411,19 @@ class t2bio(t2data):
             line = padstring(infile.readline())
 
     def read_chem(self, infile):
-        """ Reads chemical components """
+        """ Reads chemical components
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds components to grid
+
+        """
         params = infile.read_values('chemp')
         all_comp = []
         for i in range(int(params[0])):
@@ -422,7 +455,18 @@ class t2bio(t2data):
         self.components = all_comp
 
     def write_chem(self, outfile):
-        """ Writes chemical components """
+        """ Writes chemical components
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
+
         outfile.write('CHEMP\n')
         vals = [len(self.components)]
         outfile.write_values(vals, 'chemp')
@@ -447,7 +491,19 @@ class t2bio(t2data):
         pass
 
     def read_gas(self, infile):
-        """ Reads Gases """
+        """ Reads Gases
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds gases to grid
+
+        """
         params = infile.read_values('ncgas')
         all_comp = []
         for i in range(int(params[0])):
@@ -458,7 +514,17 @@ class t2bio(t2data):
         self.gas = all_comp
 
     def write_gas(self, outfile):
-        """ Writes Gases """
+        """ Writes Gases
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('NCGAS\n')
         vals = [len(self.gas)]
         outfile.write_values(vals, 'ncgas')
@@ -467,16 +533,40 @@ class t2bio(t2data):
             outfile.write(vals + '\n')
 
     def reset_bio_dicta(self, all_components):
-        """ Resets the BIO dicitonary """
-        dicta_all = []
+        """ Resets the BIO dicitonary
+
+        Parameters
+        -----------
+        all_components : list
+            all components present
+
+        Returns
+        --------
+        empty_list: list
+            empty list containing no parameters
+
+        """
+        empty_list = []
         for i in range(len(all_components)):
             dicta = {}
             dicta[all_components[i]] = []
-            dicta_all.append(dicta)
-        return dicta_all
+            empty_list.append(dicta)
+        return empty_list
 
     def read_biodg(self, infile):
-        """ Reads Biodegradation Block """
+        """ Reads Biodegradation Block
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds biodegradation block to grid
+
+        """
         params = infile.read_values('biodg')
         number_of_processes = int(infile.read_values('biodg1')[0])
         process_details = []
@@ -534,7 +624,17 @@ class t2bio(t2data):
         self.biodg.append(biodegradation)
 
     def write_biodg(self, outfile):
-        """ Writes Biodegradation Block """
+        """ Writes Biodegradation Block
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('BIODG\n')
         value = self.biodg[0]
         vals = value.getFirstSet()
@@ -600,10 +700,33 @@ class t2bio(t2data):
             outfile.write_values(vals, 'biodg2.1')
 
     def read_solids(self, infile):
-        """ Reads Solids Block """
+        """ Reads Solids Block
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds solid block to grid
+
+        """
         pass
 
     def write_solids(self, outfile):
+        """ Writes Solid Block
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('SOLIDS\n')
         outfile.write_values(len(self.solids), 'solids1')
         for i in range(len(self.solids)):
@@ -612,8 +735,20 @@ class t2bio(t2data):
             outfile.write_values(vals, 'solids2')
 
     def read_parameters(self, infile):
-        """ Reads Parameters Block """
-        """Reads simulation parameters"""
+        """ Reads Parameters Block
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds parameters block to grid
+
+        """
+
         spec = ['param1', 'param1_autough2'][self.type == 'AUTOUGH2']
         # infile.read_value_line(self.parameter, spec)
         infile.read_params_value_line(self.parameter, spec)
@@ -648,7 +783,17 @@ class t2bio(t2data):
         return line
 
     def write_parameters(self, outfile):
-        """ Writes Parameters Block """
+        """ Writes Parameters Block
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('PARAM\n')
         from copy import copy
         paramw = copy(self.parameter)
@@ -674,13 +819,37 @@ class t2bio(t2data):
             outfile.write('\n')
 
     def read_more_options(self, infile):
-        """Reads additional parameter options"""
+        """ Reads additional parameter options
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds more_options block to grid
+
+        """
         infile.read_value_line(self.__dict__, '_more_option_str')
         momops = self._more_option_str.rstrip().ljust(21).replace(' ', '0')
         self.more_option = np.array([0] + [int(mop) for mop in momops], int)
 
     def read_multi(self, infile):
-        """Reads EOS parameters"""
+        """ Reads EOS parameters
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds multi block to grid
+
+        """
         spec = ['multi', 'multi_autough2'][self.type == 'AUTOUGH2']
         # spec = self.specification[spec]
         # vals = infile.read_values('multi')
@@ -691,14 +860,37 @@ class t2bio(t2data):
             self.multi['eos'] = self.multi['eos'].strip()
 
     def write_start(self, outfile):
-        """ Writes Start Block """
+        """ Writes Start Block
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.start:
             outfile.write('START\n')
 
     def read(self, filename='', meshfilename='', runlocation=''):
-        """Reads data from file.  Mesh data can optionally be read from an
+        """ Reads data from file.  Mesh data can optionally be read from an
         auxiliary file.  Extra precision data will also be read from
         an associated '.pdat' file, if it exists.
+
+        Parameters
+        -----------
+        filename : str
+            file to read
+        meshfilename : str
+            Mesh file to read
+        runlocation : str
+            Path containing executables
+
+        Returns
+        --------
+
         """
         if runlocation:
             if not os.path.isdir(runlocation):
@@ -752,7 +944,7 @@ class t2bio(t2data):
 
     def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
-        """Writes data to file.  Mesh data can optionally be written to an
+        """ Writes data to file.  Mesh data can optionally be written to an
         auxiliary file.  For AUTOUGH2, if extra_precision is True or a
         list of section names, the corresponding data sections will be
         written to an extra precision file; otherwise, the same
@@ -760,6 +952,23 @@ class t2bio(t2data):
         also be written out as extra precision.  If
         echo_extra_precision is True, the extra precision sections
         will also be written to the main data file.
+
+        Parameters
+        -----------
+        filename : str
+            file to read
+        meshfilename : str
+            Mesh file to read
+        runlocation : str
+            Path containing executables
+        extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+        echo_extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+            
+        Returns
+        --------
+
         """
 
         if runlocation:

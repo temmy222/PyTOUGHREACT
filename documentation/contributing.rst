@@ -18,4 +18,5 @@ pip install -e .
 ```python
 pytest
 ```
+
 5. Make a pull request after passing all tests
