@@ -325,7 +325,6 @@ class t2bio(t2data):
 
         Returns
         --------
-        
 
         """
 
@@ -965,7 +964,7 @@ class t2bio(t2data):
             Required for AUTOUGH from PYTOUGH
         echo_extra_precision: boolean
             Required for AUTOUGH from PYTOUGH
-            
+
         Returns
         --------
 
