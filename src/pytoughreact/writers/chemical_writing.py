@@ -47,6 +47,20 @@ class t2ChemicalData(fixed_format_file):
                                              t2chemical_format_specification, read_function)
 
     def get_param_values(self, linetype):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+        linetype: str
+            type of line to be read
+
+        Returns
+        --------
+        all_lines : list
+            all parameters values
+
+        """
         line = 'start'
         all_lines = []
         while line.startswith("'*") is False:
@@ -57,6 +71,19 @@ class t2ChemicalData(fixed_format_file):
         return all_lines
 
     def get_param_values_mineral(self):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        all_lines : list
+            all parameter mineral values
+
+        """
         line = 'start'
         all_lines = []
         line = self.file.readline()
@@ -107,6 +134,19 @@ class t2ChemicalData(fixed_format_file):
         return all_lines
 
     def get_param_values_gas(self):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        all_lines : list
+            all parameter gas values
+
+        """
         all_lines = []
         line = self.file.readline()
         while line.startswith("'*") is False:
@@ -118,6 +158,19 @@ class t2ChemicalData(fixed_format_file):
         return all_lines
 
     def get_param_values_surface_complex(self):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        all_lines : list
+            all parameter gas values
+
+        """
         all_lines = []
         # line = self.file.readline()
         # while line.startswith("'*") is False:
@@ -126,6 +179,19 @@ class t2ChemicalData(fixed_format_file):
         return all_lines
 
     def get_param_values_decay_species(self):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        all_lines : list
+            all parameter decay species values
+
+        """
         all_lines = []
         # line = self.file.readline()
         # while line.startswith("'*") is False:
@@ -134,6 +200,19 @@ class t2ChemicalData(fixed_format_file):
         return all_lines
 
     def get_param_values_exchangeable_cations(self):
+        """ Reads a line of parameter values from the file into a dictionary variable.
+        Null values are ignored.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        all_lines : list
+            all parameter exchangeable cation values
+
+        """
         all_lines = []
         # line = self.file.readline()
         # while line.startswith("'*") is False:
@@ -142,18 +221,54 @@ class t2ChemicalData(fixed_format_file):
         return all_lines
 
     def get_reactive_options(self):
+        """ Reads reactive options from CHEMICAL.INP file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        liner : list
+            list of all reactive options
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_reactive_constraints(self):
+        """ Reads reactive constraints from CHEMICAL.INP file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        liner : list
+            list of all reactive constraints
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_readio(self):
+        """ Reads reactive input output from CHEMICAL.INP file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        liner : list
+            list of all reactive input output
+
+        """
         all_values = []
         for i in range(6):
             line = self.file.readline()
@@ -163,24 +278,75 @@ class t2ChemicalData(fixed_format_file):
         return all_values
 
     def get_weight_diffusion(self):
+        """ Reads weight diffusion output from CHEMICAL.INP file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        liner : list
+            list of all weight diffusion parameters
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_tolerance_values(self):
+        """ Reads tolerance values from CHEMICAL.INP file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        liner : list
+            list of all tolerance values parameters
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_printout_options(self):
+        """ Reads printout options output from CHEMICAL.INP file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        liner : list
+            list of all printout options parameters
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def search_for_node_index(self, blocks, nodes):
+        """ Search for node index
+
+        Parameters
+        -----------
+        blocks : list
+            list of all blocks in the simulation
+        nodes : list
+            list of all nodes in the simulation
+
+        Returns
+        --------
+        liner : list
+            list of all printout options parameters
+
+        """
         indexes = []
         for i in range(len(nodes)):
             for j in range(len(blocks)):
@@ -189,6 +355,19 @@ class t2ChemicalData(fixed_format_file):
         return indexes
 
     def get_nodes_to_read(self, grid):
+        """ Get nodes to read
+
+        Parameters
+        -----------
+        grid : list
+            list containing all grids in the simulatioj
+
+        Returns
+        --------
+        liner : list
+            list of all printout options parameters
+
+        """
         all_values = []
         line = self.file.readline()
         while len(line.strip()) != 0:
@@ -199,6 +378,19 @@ class t2ChemicalData(fixed_format_file):
         return output
 
     def get_primary_species_to_read(self, primary_aqueous):
+        """ Get primary species to read
+
+        Parameters
+        -----------
+        primary aqueous : list
+            list of all primary aqueous species
+
+        Returns
+        --------
+        all_values : list
+            all primary species
+
+        """
         all_values = []
         line = self.file.readline()
         while len(line.strip()) != 0:
@@ -209,6 +401,19 @@ class t2ChemicalData(fixed_format_file):
         return all_values
 
     def get_minerals_to_write(self, minerals):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        minerals : list
+            list of all minerals in the CHEMICAL.INP
+
+        Returns
+        --------
+        all_values : list
+            all minerals
+
+        """
         all_values = []
         line = self.file.readline()
         while len(line.strip()) != 0:
@@ -219,6 +424,17 @@ class t2ChemicalData(fixed_format_file):
         return all_values
 
     def get_default_chemical_zones(self):
+        """ Get default chemical zones
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of default chemical zones
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         line = self.file.readline()
@@ -227,6 +443,17 @@ class t2ChemicalData(fixed_format_file):
         return liner
 
     def get_default_chemical_zone_to_nodes(self):
+        """ Get default chemical zone and map to nodes
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        all_values : list
+            all default chemical zone mapped to nodes
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         line = self.file.readline()
@@ -243,6 +470,21 @@ class t2ChemicalData(fixed_format_file):
         return all_values
 
     def find_primary_aqueous(self, primary_aqueous, name):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        primary_aqueous : list
+            list of all primary aqueous species in the CHEMICAL.INP
+        name: str
+            name of the species
+
+        Returns
+        --------
+        parameter : str
+            name and properties of the primary species
+
+        """
         startIndex = name.find('\'')
         if startIndex >= 0:
             name = name.replace("'", "")
@@ -251,6 +493,19 @@ class t2ChemicalData(fixed_format_file):
                 return primary_aqueous[i]
 
     def get_param_values_ib_waters(self, primary_aqueous, grid):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        primary_aqueous : list
+            list of all primary aqueous species in the CHEMICAL.INP
+
+        Returns
+        --------
+        initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping : list, list, dict, dict
+            properties of the initial and boundary water
+
+        """
         initial_waters_mapping = {}
         initial_waters_list = []
         boundary_waters_mapping = {}
@@ -315,6 +570,21 @@ class t2ChemicalData(fixed_format_file):
         return initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping
 
     def find_minerals(self, minerals, name):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        minerals : list
+            list of all minerals in the CHEMICAL.INP file
+        name: str
+            name of the mineral
+
+        Returns
+        --------
+        parameter : str
+            name and properties of the mineral
+
+        """
         startIndex = name.find('\'')
         if startIndex >= 0:
             name = name.replace("'", "")
@@ -323,6 +593,19 @@ class t2ChemicalData(fixed_format_file):
                 return minerals[i]
 
     def get_param_values_mineral_zones(self, minerals):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        minerals : list
+            list of all minerals in the CHEMICAL.INP file
+
+        Returns
+        --------
+        initial_minerals_list, initial_minerals_mapping : list, dict
+            properties of the initial minerals
+
+        """
         initial_minerals_mapping = {}
         initial_minerals_list = []
         line = self.file.readline()
@@ -359,6 +642,21 @@ class t2ChemicalData(fixed_format_file):
         return initial_minerals_list, initial_minerals_mapping
 
     def find_gas(self, gases, name):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        gases : list
+            list of all gases in the CHEMICAL.INP file
+        name: str
+            name of the as
+
+        Returns
+        --------
+        parameter : str
+            name and properties of the gas
+
+        """
         startIndex = name.find('\'')
         if startIndex >= 0:
             name = name.replace("'", "")
@@ -367,6 +665,19 @@ class t2ChemicalData(fixed_format_file):
                 return gases[i]
 
     def get_param_values_ij_gases(self, gases):
+        """ Get gas to write
+
+        Parameters
+        -----------
+        minerals : list
+            list of all gases in the CHEMICAL.INP file
+
+        Returns
+        --------
+        initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping : list, list, dict, dict
+            properties of the initial and boundary gases
+
+        """
         initial_gas_mapping = {}
         initial_gas_list = []
         injection_gas_mapping = {}
@@ -424,6 +735,17 @@ class t2ChemicalData(fixed_format_file):
         return initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping
 
     def get_param_values_perm_poro(self, minerals, grid):
+        """ Get permeability and porosity
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        initial_perm_poro_list, initial_perm_poro_mapping : list, dict
+            properties of the initial permeability and porosity zones
+
+        """
         initial_perm_poro_mapping = {}
         initial_perm_poro_list = []
         line = self.file.readline()
@@ -488,7 +810,17 @@ class t2chemical(t2data):
         super().__init__(filename, meshfilename, read_function)
 
     def getib_waters(self):
-        """ Get initial and boundary waters """
+        """ Get initial and boundary waters
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        ib_waters : list
+            list of initial and boundary waters
+
+        """
         ib_waters = [[], []]
         if len(self.t2grid.zonelist) == 0:
             return ib_waters
@@ -506,7 +838,17 @@ class t2chemical(t2data):
     # ib_waters = property(getib_waters)
 
     def getij_gas(self):
-        """ Get initial and injection gas """
+        """ Get initial and injection gas 
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        ib_waters : list
+            list of initial and boundary waters
+
+        """
         ij_gas = [[], []]
         if len(self.t2grid.zonelist) == 0:
             return ij_gas
@@ -527,7 +869,17 @@ class t2chemical(t2data):
     # ij_gas = property(getij_gas)
 
     def get_mineral_zones(self):
-        """ Get Mineral zones"""
+        """ Get Mineral zones
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        mineral_zone : list
+            list of mineral zones
+
+        """
         mineral_zone = []
         for zone in self.t2grid.zonelist:
             mineral_zone.append(zone.mineral_zone)
@@ -538,7 +890,17 @@ class t2chemical(t2data):
     mineral_zones = property(get_mineral_zones)
 
     def get_perm_poro_zones(self):
-        """ Get Porosity / Permeability zones"""
+        """ Get Porosity / Permeability zones
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        perm_poro_zone : list
+            list of perm poro zones
+
+        """
         perm_poro_zone = []
         for zone in self.t2grid.zonelist:
             perm_poro_zone.append(zone.permporo)
@@ -547,7 +909,17 @@ class t2chemical(t2data):
     perm_poro = property(get_perm_poro_zones)
 
     def map_mineral_to_zone(self):
-        """ Map Mineral to Zone"""
+        """ Map Mineral to Zone
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        zone : dict
+            list of perm poro zones
+
+        """
         zoning = {}
         index = 1
         for zone in self.t2grid.zonelist:
@@ -556,7 +928,15 @@ class t2chemical(t2data):
         return zoning
 
     def update_read_write_functions(self):
-        """Updates functions for reading and writing sections of data file."""
+        """ Updates functions for reading and writing sections of data file.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
+        """
 
         self.read_fn = dict(zip(
             t2chemical_sections,
@@ -597,8 +977,18 @@ class t2chemical(t2data):
              self.write_cation_exchange]))
 
     def get_present_sections(self):
-        """Returns a list of TOUGH2 section keywords for which there are
-        corresponding data in the t2bio object."""
+        """ Returns a list of TOUGH2 section keywords for which there are
+        corresponding data in the t2bio object.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            list of present sections
+
+        """
         data_present = dict(zip(
             t2chemical_sections,
             [self.title,
@@ -622,8 +1012,15 @@ class t2chemical(t2data):
     present_sections = property(get_present_sections)
 
     def section_insertion_index(self, section):
-        """Determines an appropriate position to insert the specified section
+        """ Determines an appropriate position to insert the specified section
         in the internal list of data file sections.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
         """
         try:
             listindex = t2chemical_sections.index(section)
@@ -651,12 +1048,34 @@ class t2chemical(t2data):
             return len(self._sections)
 
     def write_title(self, outfile):
-        """ Write Title od Chemical file (chemical.inp)"""
+        """  Write Title of Chemical file (chemical.inp)
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#Title' + '\n')
         outfile.write(self.title.strip() + '\n')
 
     def read_primary_aqueous(self, infile):
-        """ Read Primary Aqueous Species """
+        """ Read Primary Aqueous Species
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds parameters block to grid
+
+        """
         params = infile.get_param_values('primary_aqueous')
         all_species = []
         for parameter in params:
@@ -664,7 +1083,17 @@ class t2chemical(t2data):
         self.__dict__['primary_aqueous'] = all_species
 
     def write_primary_aqueous(self, outfile):
-        """ Write Primary Aqueous Species """
+        """ Writes Primary Aqueous
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('#DEFINITION OF THE GEOCHEMICAL SYSTEM\n')
         outfile.write('#PRIMARY AQUEOUS SPECIES\n')
@@ -674,7 +1103,19 @@ class t2chemical(t2data):
         outfile.write("'*'\n")
 
     def read_aqueous_kinetics(self, infile):
-        """ Read Aqueous Kinetic Species """
+        """ Read Aqueous Kinetic Species
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds aqueous kinetics to grid
+
+        """
         params = infile.get_param_values('aqueous_kinetics')
         if len(params) == 0:
             self.__dict__['aqueous_kinetics'] = [-1]
@@ -682,14 +1123,36 @@ class t2chemical(t2data):
             self.__dict__['aqueous_kinetics'] = params
 
     def write_aqueous_kinetics(self, outfile):
-        """ Write Aqueous Kinetic Species """
+        """ Write Aqueous Kinetic Species
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.aqueous_kinetics[0] == -1:
             outfile.write('# AQUEOUS KINETICS\n')
             outfile.write("'*'\n")
         pass
 
     def read_aqueous_complexes(self, infile):
-        """ Read Aqueous Complexes """
+        """ Read Aqueous Complexes
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds aqueous complexes
+
+        """
         params = infile.get_param_values('aqueous_complex')
         if len(params) == 0:
             self.__dict__['aqueous_complexes'] = [-1]
@@ -697,13 +1160,34 @@ class t2chemical(t2data):
             self.__dict__['aqueous_complexes'] = params
 
     def write_aqueous_complexes(self, outfile):
-        """ Write Aqueous Complexes """
+        """ Write Aqueous Complexes
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.aqueous_complexes[0] == -1:
             outfile.write('# AQUEOUS COMPLEXES\n')
             outfile.write("'*'\n")
 
     def read_minerals(self, infile):
-        """ Read Minerals """
+        """ Read Minerals
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds minerals
+        """
         params = infile.get_param_values_mineral()
         if len(params) == 0:
             self.__dict__['minerals'] = [-1]
@@ -711,7 +1195,21 @@ class t2chemical(t2data):
             self.__dict__['minerals'] = params
 
     def write_dissolution_precipitation(self, outfile, mineral, format):
-        """ Write Dissolution and Precipitation Parameters """
+        """ Write Dissolution and Precipitation Parameters
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+        mineral : Mineral
+            mineral class containing minerals
+        format : str
+            flag for dissolution or precipitation
+
+        Returns
+        --------
+
+        """
         if format.lower() == 'dissolution':
             try:
                 vals = mineral.getDissolutionParams()
@@ -743,12 +1241,34 @@ class t2chemical(t2data):
             outfile.write_values(vals2, 'minerals1.1.1a')
 
     def write_equilibrium(self, outfile, mineral):
-        """ Write Equilibirum Parameters """
+        """ Write Equilibirum Parameters
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+        mineral : Mineral
+            mineral class containing minerals
+
+        Returns
+        --------
+
+        """
         vals = mineral.getEquilibriumData()
         outfile.write_values(vals, 'minerals1.1.1a')
 
     def write_minerals(self, outfile):
-        """ Write Minerals to file """
+        """ Write Minerals to file
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#MINERALS\n')
         for mineral in self.minerals:
             vals = mineral.getFirstRow()
@@ -762,7 +1282,19 @@ class t2chemical(t2data):
         outfile.write("'*'\n")
 
     def read_gases(self, infile):
-        """ Read gases from file """
+        """ Read gases from file
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds gases to grid
+
+        """
         params = infile.get_param_values_gas()
         if len(params) == 0:
             # self.__dict__['gas_init'] = [-1]
@@ -772,7 +1304,17 @@ class t2chemical(t2data):
             self.__dict__['gases'] = params
 
     def write_gases(self, outfile):
-        """ Write gases to file """
+        """ Write gases to file
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# GASES\n')
         gas_name = []
         try:
@@ -791,7 +1333,19 @@ class t2chemical(t2data):
             outfile.write("'*'\n")
 
     def read_surface_complexes(self, infile):
-        """ Read surface complexes from file """
+        """ Read surface complexes from file
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds surface complexes to grid
+
+        """
         params = infile.get_param_values_surface_complex()
         if len(params) == 0:
             self.__dict__['surface_complexes'] = [-1]
@@ -799,13 +1353,35 @@ class t2chemical(t2data):
             self.__dict__['surface_complexes'] = params
 
     def write_surface_complexes(self, outfile):
-        """ Write surface complexes to file """
+        """ Write surface complexes to file
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.surface_complexes[0] == -1:
             outfile.write('# SURFACE COMPLEXES\n')
             outfile.write("'*'\n")
 
     def read_decay_species(self, infile):
-        """ Read decay species from file """
+        """ Read decay species from file
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds decay species to grid
+
+        """
         params = infile.get_param_values_decay_species()
         if len(params) == 0:
             self.__dict__['decay_species'] = [-1]
@@ -813,13 +1389,36 @@ class t2chemical(t2data):
             self.__dict__['decay_species'] = params
 
     def write_decay_species(self, outfile):
-        """ Write decay species to file """
+        """ Write decay species to file
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.decay_species[0] == -1:
             outfile.write('# SPECIES WITH Kd AND DECAY\n')
             outfile.write("'*'\n")
 
     def read_exchangeable_cations(self, infile):
-        """ Read Exchangeable Cations from file """
+        
+        """ Read Exchangeable Cations from file
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds Exchangeable Cations to grid
+
+        """
         params = infile.get_param_values_exchangeable_cations()
         if len(params) == 0:
             self.__dict__['exchangeable_cations'] = [-1]
@@ -827,14 +1426,35 @@ class t2chemical(t2data):
             self.__dict__['exchangeable_cations'] = params
 
     def write_exchangeable_cations(self, outfile):
-        """ Write Exchangeable Cations to file """
+        """ Write Exchangeable Cations to file
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.exchangeable_cations[0] == -1:
             outfile.write('# EXCHANGEABLE CATIONS\n')
             outfile.write("'*'\n")
-        pass
 
     def read_ib_waters(self, infile):
-        """ Read Initial and Boundary waters from file """
+        """ Reads Initial and Boundary waters from file
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds Initial and Boundary waters to grid
+
+        """
         initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping = infile.get_param_values_ib_waters(
             self.primary_aqueous, self.t2grid)
         if len(initial_waters_list) == 0:
@@ -865,7 +1485,17 @@ class t2chemical(t2data):
         #     print(all_waters[0][0]['boundary'])
 
     def write_ib_waters(self, outfile):
-        """ Write Initial and Boundary waters to file """
+        """ Write Initial and Boundary waters to file
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# # INITIAL AND BOUNDARY WATER TYPES\n')
         initial_waters = self.ib_waters[0]
@@ -924,7 +1554,16 @@ class t2chemical(t2data):
                     outfile.write("'*'\n")
 
     def getInitialWaterIndex(self):
-        """ Get Initial Water Index """
+        """ Get Initial Water Index
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        water_index : dict
+            get index of water in initial water
+        """
         water_index = {}
         initial_waters = self.ib_waters[0]
         for i in range(len(initial_waters)):
@@ -935,7 +1574,17 @@ class t2chemical(t2data):
     initial_water_index = property(getInitialWaterIndex)
 
     def getBoundaryWaterIndex(self):
-        """ Get Boundary Water Index """
+        """ Get Boundary Water Index
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        water_index : dict
+            get index of water in  boundary water
+        """
         water_index = {}
         boundary_water = self.ib_waters[1]
         for i in range(len(boundary_water)):
@@ -946,7 +1595,17 @@ class t2chemical(t2data):
     boundary_water_index = property(getBoundaryWaterIndex)
 
     def getMineralIndex(self):
-        """ Get Mineral Index """
+        """ Get Mineral Index
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        mineral_index : dict
+            get index of mineral in minerals
+        """
         mineral_index = {}
         all_mineral = self.mineral_zones
         if len(all_mineral) != len(set(all_mineral)):
@@ -958,7 +1617,17 @@ class t2chemical(t2data):
     mineral_index = property(getMineralIndex)
 
     def getInitialGasIndex(self):
-        """ Get Initial Gas Index """
+        """ Get Initial Gas Index
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        gas_index : dict
+            get index of gas in gases
+        """
         gas_index = {}
         initial_gas = self.ij_gas[0]
         for i in range(len(initial_gas)):
@@ -968,7 +1637,17 @@ class t2chemical(t2data):
     initial_gas_index = property(getInitialGasIndex)
 
     def getInjectionGasIndex(self):
-        """ Get Injection Gas Index """
+        """ Get Injection Gas Index
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        gas_index : dict
+            get index of injection gas in gases
+        """
         gas_index = {}
         initial_gas = self.ij_gas[1]
         for i in range(len(initial_gas)):
@@ -978,7 +1657,17 @@ class t2chemical(t2data):
     injection_gas_index = property(getInjectionGasIndex)
 
     def getPermPoroIndex(self):
-        """ Get Permeability Porosity Index"""
+        """ Get Permeability Porosity Index
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        perm_poro_index : dict
+            get index of perm poro in chemical.inp
+        """
         perm_poro_index = {}
         perm_poro = self.perm_poro
         perm_poro_all = []
@@ -991,7 +1680,19 @@ class t2chemical(t2data):
     perm_poro_index = property(getPermPoroIndex)
 
     def read_mineral_zones(self, infile):
-        " Read Mineral Zones "
+        """ Reads Mineral Zones
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds mineral zones to grid
+
+        """
         initial_minerals_list, initial_minerals_mapping = infile.get_param_values_mineral_zones(
             self.minerals)
         if len(initial_minerals_list) == 0:
@@ -1001,16 +1702,46 @@ class t2chemical(t2data):
             self.initial_minerals_mapping = initial_minerals_mapping
 
     def countZones(self):
-        " Count number of zones"
+        """ Count number of zones
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        count: int
+            number of zones
+
+        """
         count = len(self.mineral_zones)
         return count
 
     def countMineralZones(self):
-        " Count number of mineral zones"
+        """ Count number of mineral zones
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        count: int
+            number of mineral zones
+
+        """
         return len(set(self.mineral_zones))
 
     def write_mineral_zones(self, outfile):
-        " Write mineral zones"
+        """ Write mineral zones
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# INITIAL MINERAL ZONES\n')
         vals = [len(self.mineral_zones)]
@@ -1031,7 +1762,19 @@ class t2chemical(t2data):
             outfile.write("'*'\n")
 
     def read_ij_gas(self, infile):
-        """ Read Initial and Injection Gas"""
+        """ Read Initial and Injection Gas
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds injection gas to grid
+
+        """
         initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping = infile.get_param_values_ij_gases(
             self.gases)
         if len(initial_gas_list) == 0:
@@ -1045,7 +1788,17 @@ class t2chemical(t2data):
                 self.injection_gas_mapping = injection_gas_mapping
 
     def write_ij_gas(self, outfile):
-        """ Write Initial and Injection Gas"""
+        """ Writes Injection gas
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# INITIAL and Injection gas ZONES \n')
         initial_gas = self.ij_gas[0]
@@ -1087,7 +1840,19 @@ class t2chemical(t2data):
                 outfile.write("'*'\n")
 
     def read_perm_poro(self, infile):
-        """ Read Peremability and Porosity Regions"""
+        """ Read Permeability and Porosity Regions
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds perm poro to grid
+
+        """
         initial_perm_poro_list, initial_perm_poro_mapping = infile.get_param_values_perm_poro(
             self.minerals, self.t2grid)
         if len(initial_perm_poro_list) == 0:
@@ -1097,7 +1862,17 @@ class t2chemical(t2data):
             self.initial_perm_poro_mapping = initial_perm_poro_mapping
 
     def write_perm_poro(self, outfile):
-        """ Write Peremability and Porosity Regions"""
+        """ Write Peremability and Porosity Regions
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#----------------------------------------------------------------------------\n')
         outfile.write('# Permeability-Porosity Zones\n')
         all_perm_zones = []
@@ -1130,31 +1905,98 @@ class t2chemical(t2data):
                     outfile.write("'*'\n")
 
     def read_surface_adsorption(self, infile):
-        """ Read Surface adsorption """
+        """ Read Surface adsorption
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds surface adsorption to grid
+
+        """
         pass
 
     def write_surface_adsorption(self, outfile):
-        """ Write Surface adsorption """
+        """ Write Surface adsorption
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.surface_adsorption[0] == -1:
             outfile.write('# INITIAL SURFACE ADSORPTION ZONES\n')
             outfile.write("'*'\n")
 
     def read_linear_equilibrium(self, infile):
-        """ Read Linear Equilibrium """
+        """ Read Linear Equilibrium
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds Linear Equilibrium to grid
+
+        """
         pass
 
     def write_linear_equilibrium(self, outfile):
-        """ Write Linear Equilibrium """
+
+        """ Write Linear Equilibrium
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.linear_equilibrium[0] == -1:
             outfile.write('# INITIAL LINEAR EQUILIBRIUM Kd ZONE\n')
             outfile.write("'*'\n")
 
     def read_cation_exchange(self, infile):
-        """ Read Cation Exchange """
+        """  Read Cation Exchange
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        components: self
+            adds Cation Exchange to grid
+
+        """
         pass
 
     def write_cation_exchange(self, outfile):
-        """ Write Cation Exchange """
+        """ Write Cation Exchange
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.cation_exchange[0] == -1:
             outfile.write('# INITIAL ZONES OF CATION EXCHANGE\n')
             outfile.write("'*'\n")
@@ -1162,7 +2004,25 @@ class t2chemical(t2data):
 
     def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
-        """ Write to file (chemical.inp)"""
+        """ Write to file (chemical.inp)
+
+        Parameters
+        -----------
+        filename : str
+            filename 
+        meshfilename : str
+            MESH filename
+        run_location : str
+            path to Executable and required files
+        extra_precision: boolean
+            required or AUTOUGH
+        echo_extra_precision: boolean
+            required or AUTOUGH
+
+        Returns
+        --------
+
+        """
         if runlocation:
             if not os.path.isdir(runlocation):
                 os.mkdir(runlocation)
@@ -1179,7 +2039,19 @@ class t2chemical(t2data):
         outfile.close()
 
     def convert_to_t2chemical(self, keyword):
-        """ Get corresponding t2chemical keywords """
+        """ Get corresponding t2chemical keywords
+
+        Parameters
+        -----------
+        keyword : str
+            keyword to convert to t2chemical keyword
+
+        Returns
+        --------
+        parameter : str
+            converted t2chemical keyword
+
+        """
         if 'primary' in keyword.lower() and 'aqueous' in keyword.lower():
             return 'PRIMARY_AQUEOUS'
         elif 'kinetics' in keyword.lower() and 'aqueous' in keyword.lower():
@@ -1214,7 +2086,25 @@ class t2chemical(t2data):
             return 'false'
 
     def read(self, filename='', meshfilename='', runlocation='', extra_precision=None, echo_extra_precision=None):
-        """ Read from file """
+        """ Read from file (chemical.inp)
+
+        Parameters
+        -----------
+        filename : str
+            filename 
+        meshfilename : str
+            MESH filename
+        run_location : str
+            path to Executable and required files
+        extra_precision: boolean
+            required or AUTOUGH
+        echo_extra_precision: boolean
+            required or AUTOUGH
+
+        Returns
+        --------
+
+        """
         if runlocation:
             if not os.path.isdir(runlocation):
                 os.mkdir(runlocation)
