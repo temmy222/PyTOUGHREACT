@@ -343,8 +343,8 @@ class t2ChemicalData(fixed_format_file):
 
         Returns
         --------
-        liner : list
-            list of all printout options parameters
+        indexes : list
+            list of all search output
 
         """
         indexes = []
@@ -364,8 +364,8 @@ class t2ChemicalData(fixed_format_file):
 
         Returns
         --------
-        liner : list
-            list of all printout options parameters
+        output : list
+            list of all nodes
 
         """
         all_values = []
@@ -838,7 +838,7 @@ class t2chemical(t2data):
     # ib_waters = property(getib_waters)
 
     def getij_gas(self):
-        """ Get initial and injection gas 
+        """ Get initial and injection gas
 
         Parameters
         -----------
@@ -1405,7 +1405,7 @@ class t2chemical(t2data):
             outfile.write("'*'\n")
 
     def read_exchangeable_cations(self, infile):
-        
+
         """ Read Exchangeable Cations from file
 
         Parameters
@@ -2009,7 +2009,7 @@ class t2chemical(t2data):
         Parameters
         -----------
         filename : str
-            filename 
+            filename
         meshfilename : str
             MESH filename
         run_location : str
@@ -2091,7 +2091,7 @@ class t2chemical(t2data):
         Parameters
         -----------
         filename : str
-            filename 
+            filename
         meshfilename : str
             MESH filename
         run_location : str
