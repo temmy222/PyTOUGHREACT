@@ -43,18 +43,51 @@ class t2solute_parser(fixed_format_file):
                                               t2solute_format_specification, read_function)
 
     def get_reactive_options(self):
+        """ Get Reactive Options in SOLUTE.INP.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of reactive options
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_reactive_constraints(self):
+        """ Get Reactive Constraints in SOLUTE.INP.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of reactive constraints
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_readio(self):
+        """ Get Read Input Output Options in SOLUTE.INP.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        all_values : list
+            list of Read Input Output
+
+        """
         all_values = []
         for i in range(6):
             line = self.file.readline()
@@ -64,24 +97,72 @@ class t2solute_parser(fixed_format_file):
         return all_values
 
     def get_weight_diffusion(self):
+        """ Get Weight Diffusion in SOLUTE.INP.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of Weight Diffusion parameters
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_tolerance_values(self):
+        """ Get Tolerance values in SOLUTE.INP.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of tolerance parameters
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def get_printout_options(self):
+        """ Get Printout options in SOLUTE.INP.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of printout options parameters
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         liner = (line.split())
         return liner
 
     def search_for_node_index(self, blocks, nodes):
+        """ Search for node index
+
+        Parameters
+        -----------
+        blocks : list
+            list of all blocks in the simulation
+        nodes : list
+            list of all nodes in the simulation
+
+        Returns
+        --------
+        indexes : list
+            list of all nodes parameters
+
+        """
         indexes = []
         for i in range(len(nodes)):
             for j in range(len(blocks)):
@@ -90,6 +171,19 @@ class t2solute_parser(fixed_format_file):
         return indexes
 
     def get_nodes_to_read(self, grid):
+        """ Get nodes to read
+
+        Parameters
+        -----------
+        grid : list
+            list containing all grids in the simulatioj
+
+        Returns
+        --------
+        output : list
+            list of all nodes
+
+        """
         all_values = []
         line = self.file.readline()
         while len(line.strip()) != 0:
@@ -100,6 +194,19 @@ class t2solute_parser(fixed_format_file):
         return output
 
     def get_primary_species_to_read(self, primary_aqueous):
+        """ Get primary species to read
+
+        Parameters
+        -----------
+        primary aqueous : list
+            list of all primary aqueous species
+
+        Returns
+        --------
+        all_values : list
+            all primary species
+
+        """
         all_values = []
         line = self.file.readline()
         while len(line.strip()) != 0:
@@ -110,6 +217,19 @@ class t2solute_parser(fixed_format_file):
         return all_values
 
     def get_minerals_to_write(self, minerals):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        minerals : list
+            list of all minerals in the CHEMICAL.INP
+
+        Returns
+        --------
+        all_values : list
+            all minerals
+
+        """
         all_values = []
         line = self.file.readline()
         while len(line.strip()) != 0:
@@ -120,6 +240,17 @@ class t2solute_parser(fixed_format_file):
         return all_values
 
     def get_default_chemical_zones(self):
+        """ Get default chemical zones
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        liner : list
+            list of default chemical zones
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         line = self.file.readline()
@@ -128,6 +259,17 @@ class t2solute_parser(fixed_format_file):
         return liner
 
     def get_default_chemical_zone_to_nodes(self):
+        """ Get default chemical zone and map to nodes
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        all_values : list
+            all default chemical zone mapped to nodes
+
+        """
         line = self.file.readline()
         line = self.file.readline()
         line = self.file.readline()
@@ -144,6 +286,21 @@ class t2solute_parser(fixed_format_file):
         return all_values
 
     def find_primary_aqueous(self, primary_aqueous, name):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        primary_aqueous : list
+            list of all primary aqueous species in the CHEMICAL.INP
+        name: str
+            name of the species
+
+        Returns
+        --------
+        parameter : str
+            name and properties of the primary species
+
+        """
         startIndex = name.find('\'')
         if startIndex >= 0:
             name = name.replace("'", "")
@@ -152,6 +309,21 @@ class t2solute_parser(fixed_format_file):
                 return primary_aqueous[i]
 
     def find_minerals(self, minerals, name):
+        """ Get minerals to write
+
+        Parameters
+        -----------
+        minerals : list
+            list of all minerals in the CHEMICAL.INP file
+        name: str
+            name of the mineral
+
+        Returns
+        --------
+        parameter : str
+            name and properties of the mineral
+
+        """
         startIndex = name.find('\'')
         if startIndex >= 0:
             name = name.replace("'", "")
@@ -225,7 +397,21 @@ class t2solute(t2data):
         self.chemical_zones_to_nodes = self.getgrid_info()
 
     def getZoneValue(self, dict_to_check, value):
-        """ Get value of a particular zone"""
+        """ Get value of a particular zone
+
+        Parameters
+        -----------
+        dict_to_check : dict
+            dictionary that contains zones
+        value: str
+            zone to check for
+
+        Returns
+        --------
+        zone_number : int
+            zone number
+
+        """
         key_list = list(dict_to_check.keys())
         val_list = list(dict_to_check.values())
         position = key_list.index(value)
@@ -233,7 +419,17 @@ class t2solute(t2data):
         return zone_number
 
     def getgrid_info(self):
-        """ Get values for grid including gas, water, minerals, permeability"""
+        """ Get values for grid including gas, water, minerals, permeability
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            grid information
+
+        """
         output = []
         viewer = []
         try:
@@ -315,8 +511,18 @@ class t2solute(t2data):
              self.write_chemical_zones_to_nodes]))
 
     def get_present_sections(self):
-        """Returns a list of TOUGH2 section keywords for which there are
-        corresponding data in the t2bio object."""
+        """ Returns a list of TOUGH2 section keywords for which there are
+        corresponding data in the t2solute object.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            list of present sections
+
+        """
         data_present = dict(zip(
             t2solute_sections,
             [self.title,
@@ -339,50 +545,127 @@ class t2solute(t2data):
     present_sections = property(get_present_sections)
 
     def getGridBlocks(self):
-        """ Return name of grid blocks"""
+        """ Return name of grid blocks.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        blk : list
+            list of grid blocks
+
+        """
         blk = []
         for t2block in self.t2chemical.t2grid.blocklist:
             blk.append(t2block.name)
         return blk
 
     def getInitialWaterIndex(self):
-        """ Get Initial Water Index"""
+        """ Get Initial Water Index.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        key_list : list
+            list of all keys
+        value_list : list
+            list of all values
+
+        """
         water_dict = self.t2chemical.initial_water_index
         key_list = list(water_dict.keys())
         val_list = list(water_dict.values())
         return key_list, val_list
 
     def getInitialWater(self):
-        """ Get Initial Water Parameters"""
+        """ Get Initial Water Parameters.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        zone_water : list
+            list of all zone water
+
+        """
         zone_water = []
         for blk in self.t2chemical.t2grid.blocklist:
             zone_water.append(blk.zone.water[0])
         return zone_water
 
     def getBoundaryWaterIndex(self):
-        """ Get Boundary Water Index"""
+        """ Get Boundary Water Index.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        key_list : list
+            list of all keys
+        value_list : list
+            list of all values
+
+        """
         water_dict = self.t2chemical.boundary_water_index
         key_list = list(water_dict.keys())
         val_list = list(water_dict.values())
         return key_list, val_list
 
     def getBoundaryWater(self):
-        """ Get Boundary Water Parameters"""
+        """ Get Boundary Water Parameters.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        zone_water : list
+            list of all zone water
+
+        """
         zone_water = []
         for blk in self.t2chemical.t2grid.blocklist:
             zone_water.append(blk.zone.water[1])
         return zone_water
 
     def getMineral(self):
-        """ Get Mineral Parameters"""
+        """ Get Mineral Parameters.
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        mineral_zone : list
+            list of all mineral zone
+
+        """
         mineral_zone = []
         for blk in self.t2chemical.t2grid.blocklist:
             mineral_zone.append(blk.zone.mineral)
         return mineral_zone
 
     def section_insertion_index(self, section):
-        """Determines an appropriate position to insert the specified section
+        """ Determines an appropriate position to insert the specified section
         in the internal list of data file sections.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
         """
         try:
             listindex = t2solute_sections.index(section)
@@ -410,7 +693,19 @@ class t2solute(t2data):
             return len(self._sections)
 
     def convert_to_t2solute(self, keyword):
-        """ Get corresponding key parameters"""
+        """ Get corresponding t2solute keywords
+
+        Parameters
+        -----------
+        keyword : str
+            keyword to convert to t2chemical keyword
+
+        Returns
+        --------
+        parameter : str
+            converted t2chemical keyword
+
+        """
         if 'options' in keyword.lower() and 'reactive' in keyword.lower():
             return 'OPTIONS'
         elif 'constraints' in keyword.lower() and 'reactive' in keyword.lower():
@@ -443,14 +738,36 @@ class t2solute(t2data):
             return 'false'
 
     def write_title(self, outfile):
-        """ Write title of file"""
+        """  Write Title of Solute file (solute.inp)
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.t2chemical is not None:
             self.title = self.t2chemical.title
         outfile.write('#Title' + '\n')
         outfile.write(self.title.strip() + '\n')
 
     def read_options(self, infile):
-        """Reads reaction options"""
+        """ Read Reactive Options in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add reactive options to dict
+
+        """
         params = infile.get_reactive_options()
         if len(params) == 0:
             raise ReactiveOptionsError
@@ -466,7 +783,17 @@ class t2solute(t2data):
             self.__dict__['options']['itds_react'] = int(params[8])
 
     def write_options(self, outfile):
-        """Writes reaction options"""
+        """ Writes reaction options
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#options for reactive chemical transport ' + '\n')
         outfile.write('# ISPIA itersfa ISOLVC NGAMM NGAS1 ichdump kcpl Ico2h2o  iTDS_REACT' + '\n')
         vals = [self.options['iteration_scheme'], self.options['rsa_newton_raphson'],
@@ -477,7 +804,18 @@ class t2solute(t2data):
         outfile.write_values(vals, 'options')
 
     def read_constraints(self, infile):
-        """Reads simulation constraints"""
+        """ Reads simulation constraints in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add reactive options to dict
+        """
         params = infile.get_reactive_constraints()
         if len(params) == 0:
             raise ReactiveConstraintsError
@@ -488,7 +826,17 @@ class t2solute(t2data):
             self.__dict__['constraints']['weighting_factor'] = float(params[3])
 
     def write_constraints(self, outfile):
-        """Writes simulation constraints"""
+        """ Writes simulation constraints
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#constraints for reactive chemical transport ' + '\n')
         outfile.write('# SL1MIN        rcour     STIMAX    CNFACT(=1 fully implicit)' + '\n')
         vals = [self.constraints['skip_saturation'], self.constraints['courant_number'],
@@ -496,7 +844,18 @@ class t2solute(t2data):
         outfile.write_values(vals, 'constraints')
 
     def read_readio(self, infile):
-        """Reads names of files to write output to"""
+        """ Reads names of files to write output to in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add names of files to write output to dict
+        """
         params = infile.get_readio()
         if len(params) == 0:
             raise RequiredInputException
@@ -509,7 +868,17 @@ class t2solute(t2data):
             self.__dict__['readio']['time'] = params[5]
 
     def write_readio(self, outfile):
-        """Writes names of files to write output to"""
+        """ Writes names of files to write output to
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('#Read input and output file names' + '\n')
         outfile.write(self.readio['database'] + '\n')
         outfile.write(self.readio['iteration_info'] + '\n')
@@ -519,7 +888,18 @@ class t2solute(t2data):
         outfile.write(self.readio['time'] + '\n')
 
     def read_weight_diffu(self, infile):
-        """Reads weighting and diffusion parameters"""
+        """ Reads weighting and diffusion parameters in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add weighting and diffusion parameters to dict
+        """
         params = infile.get_weight_diffusion()
         if len(params) == 0:
             raise RequiredInputException
@@ -530,7 +910,17 @@ class t2solute(t2data):
             self.__dict__['weight_diffusion']['gas_diffusion_coefficient'] = float(params[3])
 
     def write_weight_diffu(self, outfile):
-        """Writes weighting and diffusion parameters"""
+        """ Writes weighting and diffusion parameters
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# Weighting space/time, aq. and gas diffusion coeffs' + '\n')
         outfile.write('# ITIME     WUPC   DFFUN     DFFUNG' + '\n')
         vals = [self.weight_diffusion['time_weighting'], self.weight_diffusion['upstream_weighting'],
@@ -539,7 +929,18 @@ class t2solute(t2data):
         outfile.write_values(vals, 'weight_diffu')
 
     def read_tolerance(self, infile):
-        """Reads tolerance values"""
+        """ Reads tolerance values in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add tolerance values to dict
+        """
         params = infile.get_tolerance_values()
         if len(params) == 0:
             raise RequiredInputException
@@ -554,7 +955,17 @@ class t2solute(t2data):
             self.__dict__['tolerance']['relative_kinetics_change'] = float(params[7])
 
     def write_tolerance(self, outfile):
-        """Writes tolerance values"""
+        """ Writes tolerance values
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# Convergence and tolerance parameters' + '\n')
         outfile.write('#  MAXITPTR  TOLTR    MAXITPCH  TOLCH    NOT-USED  NOT-USED    TOLDC    TOLDR' + '\n')
         vals = [self.tolerance['maximum_iterations_transport'], self.tolerance['transport_tolerance'],
@@ -564,7 +975,18 @@ class t2solute(t2data):
         outfile.write_values(vals, 'tolerance')
 
     def read_printout(self, infile):
-        """Reads printout_options"""
+        """ Reads printout_options in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add printout_options to dict
+        """
         params = infile.get_printout_options()
         if len(params) == 0:
             raise RequiredInputException
@@ -581,7 +1003,17 @@ class t2solute(t2data):
             self.__dict__['printout']['gas_unit'] = int(params[9])
 
     def write_printout(self, outfile):
-        """Writes printout_options"""
+        """ Writes printout_options
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# Printout control variables:' + '\n')
         outfile.write('# NWTI NWNOD NWCOM NWMIN NWAQ NWADS NWEXC iconflag minflag igasflag' + '\n')
         vals = [self.printout['printout_frequency'], self.printout['number_of_gridblocks'],
@@ -592,7 +1024,18 @@ class t2solute(t2data):
         outfile.write_values(vals, 'printout')
 
     def read_nodes(self, infile):
-        """Reads nodes to write to"""
+        """ Reads nodes to write to in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add nodes to write to dict
+        """
         params = infile.get_nodes_to_read(self.t2chemical.t2grid)
         if len(params) == 0:
             pass
@@ -600,7 +1043,17 @@ class t2solute(t2data):
             self.__dict__['nodes_to_write'] = params
 
     def write_nodes(self, outfile):
-        """Writes nodes to write to"""
+        """ Writes nodes to write to
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.nodes_to_write[0] == -1:
             outfile.write('# Nodes for which to output data in time file (15a5):' + '\n')
         else:
@@ -612,7 +1065,18 @@ class t2solute(t2data):
                 outfile.write(node + '\n')
 
     def read_primary_species(self, infile):
-        """Reads primary species to output concentrations in time and plot files"""
+        """ Reads primary species to output concentrations in time and plot files in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add primary species to output concentrations to dict
+        """
         params = infile.get_primary_species_to_read(self.t2chemical.primary_aqueous)
         if len(params) == 0:
             pass
@@ -620,7 +1084,17 @@ class t2solute(t2data):
             self.__dict__['primary_species'] = params
 
     def write_primary_species(self, outfile):
-        """Writes primary species to output concentrations in time and plot files"""
+        """ Writes primary species to output concentrations in time and plot files
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write(
             '# Primary (total) aqueous species for which to output concentrations in time and plot files:' + '\n')
         if self.t2chemical is not None:
@@ -635,7 +1109,18 @@ class t2solute(t2data):
                 outfile.write(val + '\n')
 
     def read_minerals(self, infile):
-        """Reads minerals for which to output data in time and plot files"""
+        """ Reads minerals for which to output data in time and plot files in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add minerals for which to output data in time and plot files to dict
+        """
         params = infile.get_minerals_to_write(self.t2chemical.minerals)
         if len(params) == 0:
             pass
@@ -643,7 +1128,17 @@ class t2solute(t2data):
             self.__dict__['minerals'] = params
 
     def write_minerals(self, outfile):
-        """Writes minerals for which to output data in time and plot files"""
+        """ Writes minerals for which to output data in time and plot files
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# Minerals for which to output data in time and plot files:' + '\n')
         if self.t2chemical is not None:
             vals = []
@@ -663,7 +1158,17 @@ class t2solute(t2data):
         pass
 
     def write_aqueous_species(self, outfile):
-        """Writes aqueous species for which to output concentrations in time and plot files"""
+        """ Writes aqueous species for which to output concentrations in time and plot files
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         # TODO find out why leaving a space doesnt run
         if self.aqueous_species[0] == -1:
             outfile.write("\n")
@@ -676,7 +1181,17 @@ class t2solute(t2data):
         pass
 
     def write_adsorption_species(self, outfile):
-        """Writes Adsorption species for which to output concentrations in time and plot files"""
+        """ Writes Adsorption species for which to output concentrations in time and plot files
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.adsorption_species[0] == -1:
             outfile.write('# Adsorption species for which to output concentrations in time and plot files:' + ' \n')
 
@@ -685,12 +1200,33 @@ class t2solute(t2data):
         pass
 
     def write_exchange_species(self, outfile):
-        """Writes Exchange species for which to output concentrations in time and plot files"""
+        """ Writes Exchange species for which to output concentrations in time and plot files
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         if self.exchange_species[0] == -1:
             outfile.write('# Exchange species for which to output concentrations in time and plot files:' + ' \n')
 
     def read_chemical_zones(self, infile):
-        """Reads default chemical zones"""
+        """ Reads default chemical zones in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add chemical zones to dict
+        """
         params = infile.get_default_chemical_zones()
         if len(params) == 0:
             raise RequiredInputException
@@ -706,7 +1242,17 @@ class t2solute(t2data):
             self.__dict__['chemical_zones']['IZBGDF'] = int(params[8])
 
     def write_chemical_zones(self, outfile):
-        """Writes default chemical zones"""
+        """ Writes default chemical zones
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# Default types of chemical zones' + '\n')
         outfile.write('# Initial  Boundary                                      Porosity/ ' + '\n')
         outfile.write(
@@ -720,7 +1266,17 @@ class t2solute(t2data):
         outfile.write_values(vals, 'chemical_zones')
 
     def map_zone_to_blocks(self, params):
-        """Accurately map zone to blocks in the simulation"""
+        """ Accurately map zone to blocks in the simulation.
+
+        Parameters
+        -----------
+        params : list
+            input parameters
+
+        Returns
+
+        --------
+        """
         for param in params:
             grid_name = param[0]
             zone = self.t2chemical.t2grid.block[grid_name].zone
@@ -754,7 +1310,18 @@ class t2solute(t2data):
                 pass
 
     def read_chemical_zones_to_nodes(self, infile):
-        """Reads chemical zones in each node/grid"""
+        """ Reads chemical zones in each node/grid in SOLUTE.INP.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        self : dict
+            add chemical zones to dict
+        """
         params = infile.get_default_chemical_zone_to_nodes()
         if len(params) == 0:
             block_data = self.generate_zone_to_blocks()
@@ -765,14 +1332,33 @@ class t2solute(t2data):
             self.__dict__['chemical_zones_to_nodes'] = params
 
     def generate_zone_to_blocks(self):
-        """Generate chemical zones in each node/grid"""
+        """ Generate chemical zones in each node/grid.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        all_blocks : list
+            All blocks mapped to zones
+        """
         all_blocks = []
         for block in self.t2chemical.t2grid.blocklist:
             all_blocks.append([block.name, 0, 0] + list(self.chemical_zones.values()))
         return all_blocks
 
     def write_chemical_zones_to_nodes(self, outfile):
-        """Write chemical zones in each node/grid"""
+        """ Write chemical zones in each node/grid
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('# Types of chemical zones for specific nodes (optional)' + '\n')
         outfile.write('# Gridblock  Gridblocks Increment   Water    Water     Minerals   Gases  Adsorption Exchange  '
                       'Permeab  Kd zones Injection Gas Zones' + '\n')
@@ -783,7 +1369,25 @@ class t2solute(t2data):
 
     def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
-        """Write to simulation file (solute.inp)"""
+        """ Write to simulation file (solute.inp).
+
+        Parameters
+        -----------
+        filename : str
+            file to read
+        meshfilename : str
+            Mesh file to read
+        runlocation : str
+            Path containing executables
+        extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+        echo_extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+
+        Returns
+        --------
+
+        """
         if runlocation:
             if not os.path.isdir(runlocation):
                 os.mkdir(runlocation)
@@ -801,7 +1405,25 @@ class t2solute(t2data):
         outfile.close()
 
     def read(self, filename='', meshfilename='', runlocation='', extra_precision=None, echo_extra_precision=None):
-        """Read from simulation file (solute.inp)"""
+        """ Read from simulation file (solute.inp)
+
+        Parameters
+        -----------
+        filename : str
+            file to read
+        meshfilename : str
+            Mesh file to read
+        runlocation : str
+            Path containing executables
+        extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+        echo_extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+
+        Returns
+        --------
+
+        """
         if runlocation:
             if not os.path.isdir(runlocation):
                 os.mkdir(runlocation)

@@ -53,7 +53,17 @@ class t2react_parser(fixed_format_file):
 
 
 class t2_extra_precision_data_parser(fixed_format_file):
-    """Class for parsing AUTOUGH2 extra-precision auxiliary data file."""
+    """ Class for parsing AUTOUGH2 extra-precision auxiliary data file.
+
+        Parameters
+        -----------
+        fixed_format_file : fixed_format_file
+            used fir file processing
+
+        Returns
+        --------
+
+        """
     def __init__(self, filename, mode, read_function=default_read_function):
         super(t2_extra_precision_data_parser,
               self).__init__(filename, mode,
@@ -104,7 +114,19 @@ class t2react(t2data):
         self.all_species = []
 
     def read_rocktypes(self, infile):
-        """Reads grid rock types"""
+        """ Reads grid rock types
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        rocktype: self
+            adds rocktype information to grid
+
+        """
         self.grid.rocktypelist = []
         self.grid.rocktype = {}
         line = padstring(infile.readline())
@@ -131,7 +153,19 @@ class t2react(t2data):
             self.grid.add_zone(zone)
 
     def read_blocks(self, infile):
-        """Reads grid blocks"""
+        """ Reads grid blocks
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        parameter: self
+            reads block information
+
+        """
         self.grid.block, self.grid.blocklist = {}, []
         line = padstring(infile.readline())
         while line.strip():
@@ -219,8 +253,18 @@ class t2react(t2data):
              self.write_indom]))
 
     def get_present_sections(self):
-        """Returns a list of TOUGH2 section keywords for which there are
-        corresponding data in the t2react object."""
+        """ Returns a list of TOUGH2 section keywords for which there are
+        corresponding data in the t2react object.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        parameters : list
+            list of present sections
+
+        """
         data_present = dict(zip(
             t2react_sections,
             [self.simulator,
@@ -251,8 +295,15 @@ class t2react(t2data):
     present_sections = property(get_present_sections)
 
     def section_insertion_index(self, section):
-        """Determines an appropriate position to insert the specified section
+        """ Determines an appropriate position to insert the specified section
         in the internal list of data file sections.
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
         """
         try:
             listindex = t2react_sections.index(section)
@@ -280,8 +331,20 @@ class t2react(t2data):
             return len(self._sections)
 
     def check_for_executable(self, executable_name, directory):
-        """
-        check if the executable exists in the folder
+        """ Check if the executable exists in the folder.
+
+        Parameters
+        -----------
+        executable_name : str
+            name of executable
+        directory : str
+            directory that contains executable
+
+        Returns
+        --------
+        exception : NotFoundError
+            returns error if executable not found
+
         """
         path = Path(directory + '/' + executable_name)
         output = path.is_file()
@@ -291,8 +354,20 @@ class t2react(t2data):
             raise NotFoundError('Tough React Executable', path.resolve())
 
     def check_for_thermodynamic_database(self, directory, t2solute):
-        """
-        check if the thermodynamic database exists in the folder
+        """ Check if the thermodynamic database exists in the folder.
+
+        Parameters
+        -----------
+        t2solute : t2solute
+            t2solute class
+        directory : str
+            directory that contains thermodynamic database
+
+        Returns
+        --------
+        exception : NotFoundError
+            returns error if executable not found
+
         """
         database_name = t2solute.readio['database']
         path = Path(directory + '/' + database_name)
@@ -304,14 +379,27 @@ class t2react(t2data):
 
     def run(self, t2solute, save_filename='', incon_filename='', runlocation='', simulator='AUTOUGH2_2',
             silent=False, output_filename=''):
-        """Runs simulation using TOUGH2 ,AUTOUGH2, TOUGHREACT, TMVOC or TMVOCBIO.  It's assumed that the
-        data object has been written to file using write().  For
-        AUTOUGH2, if the filenames for the save file or initial
-        conditions file are not specified, they are constructed by
-        changing the extensions of the data filename.  Set silent to
-        True to suppress screen output. The output_filename applies
-        only to TOUGH2, and specifies the name of the main output
-        listing file."""
+        """ Runs simulation using TOUGH2 ,AUTOUGH2, TOUGHREACT.
+
+        Parameters
+        -----------
+        save_filename : str
+            filename of SAVE file
+        incon_filename : str
+            filename of INCON file
+        run_location : str
+            path to Executable and required files
+        simulator : str
+            simulator executable name
+        silent: boolean
+            if screen messages should be written out
+        output_filename: str
+            name of output listing file (only TOUGH2)
+
+        Returns
+        --------
+
+        """
         if runlocation:
             os.chdir(os.path.dirname(os.path.realpath(__file__)))
             os.chdir(runlocation)
@@ -371,7 +459,19 @@ class t2react(t2data):
                 # print(status_2)
 
     def read_parameters(self, infile):
-        """Reads simulation parameters"""
+        """ Reads simulation parameters
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+        line: str
+            read parameters block to grid
+
+        """
         spec = ['param1', 'param1_autough2'][self.type == 'AUTOUGH2']
         infile.read_value_line(self.parameter, spec)
         mops = self.parameter['_option_str'].rstrip().ljust(24).replace(' ', '0')
@@ -404,14 +504,40 @@ class t2react(t2data):
         pass
 
     def write_react(self, outfile):
+        """ Writes React Parameters
+
+        Parameters
+        -----------
+        outfile : str
+            output file processor
+
+        Returns
+        --------
+
+        """
         outfile.write('REACT\n')
         vals = self.react
         outfile.write_values(vals, 'REACT')
 
     def read(self, filename='', meshfilename=''):
-        """Reads data from file.  Mesh data can optionally be read from an
+        """ Reads data from file.  Mesh data can optionally be read from an
         auxiliary file.  Extra precision data will also be read from
         an associated '.pdat' file, if it exists.
+
+        Reads data from file.  Mesh data can optionally be read from an
+        auxiliary file.  Extra precision data will also be read from
+        an associated '.pdat' file, if it exists.
+
+        Parameters
+        -----------
+        filename : str
+            file to read
+        meshfilename : str
+            Mesh file to read
+
+        Returns
+        --------
+
         """
         if filename:
             self.filename = filename
@@ -460,7 +586,7 @@ class t2react(t2data):
 
     def write(self, filename='', meshfilename='', runlocation='',
               extra_precision=None, echo_extra_precision=None):
-        """Writes data to file.  Mesh data can optionally be written to an
+        """ Writes data to file.  Mesh data can optionally be written to an
         auxiliary file.  For AUTOUGH2, if extra_precision is True or a
         list of section names, the corresponding data sections will be
         written to an extra precision file; otherwise, the same
@@ -468,6 +594,23 @@ class t2react(t2data):
         also be written out as extra precision.  If
         echo_extra_precision is True, the extra precision sections
         will also be written to the main data file.
+
+        Parameters
+        -----------
+        filename : str
+            file to read
+        meshfilename : str
+            Mesh file to read
+        runlocation : str
+            Path containing executables
+        extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+        echo_extra_precision: boolean
+            Required for AUTOUGH from PYTOUGH
+
+        Returns
+        --------
+
         """
         if runlocation:
             if not os.path.isdir(runlocation):
