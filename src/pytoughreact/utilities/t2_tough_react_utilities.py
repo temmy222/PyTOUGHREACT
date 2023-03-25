@@ -51,11 +51,17 @@ class t2UtilitiesToughReact(object):
         self.file2 = file2
 
     def copyfile(self, filename, destination):
+        """ This method copies single file from the location to the destination folder. it takes in a a single argument
 
-        """
-        This method copies single file from the location to the destination folder. it takes in a a single argument
+        Parameters
+        -----------
+        filename : str
+            the name of the file to be transferred
+        destination : str
+            the name of the file to receive it
 
-        filename -> the name of the file to be transferred
+        Returns
+        --------
         """
         # copy specific file
         src_files = os.listdir(self.location)
@@ -66,11 +72,16 @@ class t2UtilitiesToughReact(object):
                     shutil.copy(full_file_name, destination)
 
     def copyallfiles(self, filenames):
-
-        """
-        This method copies all files given in the instance of the class to the destination folder. It makes use
+        """This method copies all files given in the instance of the class to the destination folder. It makes use
         of the copyfile() method in achieving this
 
+        Parameters
+        -----------
+        filenames : list
+            list of all filename
+
+        Returns
+        --------
 
         """
         # copy all files
@@ -80,9 +91,16 @@ class t2UtilitiesToughReact(object):
         print('...copying files...')
 
     def findword(self):
+        """ This method finds the word where the truncation of the MESH file is to occur.
 
-        """
-        This method finds the word where the truncation of the MESH file is to occur
+        Parameters
+        -----------
+
+        Returns
+        --------
+        point : int
+            point where MESH word is found
+
         """
         # find the position of a word
         with open(self.file2) as myFile:
@@ -93,10 +111,18 @@ class t2UtilitiesToughReact(object):
         myFile.close()
 
     def sliceofffile(self):
+        """ This method slices off all parameters below the word stated in the instance of the class
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        point : int
+            point where MESH word is found
 
         """
-        This method slices off all parameters below the word stated in the instance of the class
-        """
+
         #        os.remove("test2.txt")
         f = open("test2.txt", "w+")
         f.close()
@@ -114,29 +140,46 @@ class t2UtilitiesToughReact(object):
         f1.close()
 
     def sliceoffline(self):
-        """
-        This method slices off all grid parameter such as the volume, distance betweeen grids as stated in
+        """ This method slices off all grid parameter such as the volume, distance betweeen grids as stated in
         the TOUGHREACT flow.inp file
 
         The aim of the findword(), sliceofffile() and this method is to provide us with a list of all gridblocks
         in the simulation
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : list
+            list of grids
+
         """
         self.sliceofffile()
         with open('test2.txt') as thefile:
             lines = thefile.readlines()
-            mes = []
+            output = []
             for i in range(0, len(lines)):
                 a = lines[i]
                 b = a[0:5]
-                mes.append(b)
+                output.append(b)
 
-        return mes
+        return output
         thefile.close()
 
     def writetofile(self):
-        """
-        This method writes all gridblocks to a separate file called 'test.txt' for easy location and onward
+        """ This method writes all gridblocks to a separate file called 'test.txt' for easy location and onward
         manipulations
+
+        The aim of the findword(), sliceofffile() and this method is to provide us with a list of all gridblocks
+        in the simulation
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
         """
         mesh = self.sliceoffline()
         with open("test.txt", "w") as f1:
