@@ -16,13 +16,13 @@ Welcome to PyTOUGHREACT's documentation!
 .. _Installation:
 .. toctree::
    :maxdepth: 2
-   :caption: Installation:
+   :caption: Installation
 
    installation.rst
 
 .. toctree::
    :maxdepth: 16
-   :caption: Repository Code:
+   :caption: Repository Code
 
    
    chemical.rst
@@ -35,8 +35,21 @@ Welcome to PyTOUGHREACT's documentation!
    wrapper.rst
    writers.rst
    modules.rst
-   dependencies.rst
+   
+
+.. Contributions
+.. toctree::
+   :maxdepth: 2
+   :caption: Contribute to the project
+
    contributing.rst
+
+.. Dependencies
+.. toctree::
+   :maxdepth: 2
+   :caption: Requirements
+
+   dependencies.rst
 
 Indices and tables
 ==================
