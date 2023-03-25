@@ -1,4 +1,4 @@
-.. _my-reference-label: installation.rst
+.. my-reference-label: installation.rst
 
 Getting Started
 ^^^^^^^^^^^^^^^^
