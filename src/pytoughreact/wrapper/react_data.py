@@ -11,7 +11,17 @@ class react_data(t2data):
                                      read_function=default_read_function)
 
     def read_blocks(self, infile):
-        """Reads grid blocks"""
+        """ Reads grid blocks.
+
+        Parameters
+        -----------
+        infile : str
+            Input file processor
+
+        Returns
+        --------
+
+        """
         self.grid.block, self.grid.blocklist = {}, []
         line = padstring(infile.readline())
         while line.strip():
