@@ -1,6 +1,8 @@
 Contributions
 ==============
 
+The project code is domicilied on GitHub https://github.com/temmy222/PyTOUGHREACT 
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Contributing to the code would involve you following the below procedures to quickly get started
