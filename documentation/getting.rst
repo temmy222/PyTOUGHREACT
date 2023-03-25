@@ -1,3 +1,5 @@
+.. _my-reference-label: installation.rst
+
 Getting Started
 ^^^^^^^^^^^^^^^^
 
@@ -18,5 +20,10 @@ Getting Started
   from https://docs.python.org/3/library/venv.html, https://docs.python.org/3/tutorial/venv.html
   Ensure to create and activate your virtual environment
 
-* After 
+* After creating and activating your virtual environment, open a new terminal and install pytoughreact
+  using the pip package manager. This can be done by following the instructions on the installation :ref:`my-reference-label`.
+  page
+
+* A sample simulation can be run using examples in the Example page for both biodegradation and reaction
+  simulations
 
