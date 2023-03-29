@@ -5,6 +5,7 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)
+  - [Documentation](#documentation)
   - [License](#license)
   - [Tests](#tests)
 
@@ -187,6 +188,8 @@ pytest
 ```
 5. Make a pull request after passing all tests
 
+## Documentation
+Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/ 
 
 
 ## License
