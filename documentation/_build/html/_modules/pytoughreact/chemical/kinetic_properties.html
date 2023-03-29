@@ -38,8 +38,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Functions:</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
 </ul>
 
@@ -93,6 +98,7 @@
 
 <span class="sd">&#39;&#39;&#39;</span>
 
+
 <div class="viewcode-block" id="Kinetic"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.kinetic_properties.Kinetic">[docs]</a><span class="k">class</span> <span class="nc">Kinetic</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rateConstant</span><span class="p">,</span> <span class="n">ratepH</span><span class="p">,</span> <span class="n">exponentN</span><span class="p">,</span> <span class="n">exponentTheta</span><span class="p">,</span> <span class="n">activationEnergy</span><span class="p">,</span> <span class="n">coefA</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">coefB</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">coefC</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">coefC</span> <span class="o">=</span> <span class="n">coefC</span>
@@ -111,6 +117,7 @@
                                           <span class="n">coefB</span><span class="p">,</span> <span class="n">coefC</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pHDependence</span> <span class="o">=</span> <span class="p">[]</span></div>
 
+
 <div class="viewcode-block" id="Precipitation"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.kinetic_properties.Precipitation">[docs]</a><span class="k">class</span> <span class="nc">Precipitation</span><span class="p">(</span><span class="n">Kinetic</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rateConstant</span><span class="p">,</span> <span class="n">ratepH</span><span class="p">,</span> <span class="n">exponentN</span><span class="p">,</span> <span class="n">exponentTheta</span><span class="p">,</span> <span class="n">activationEnergy</span><span class="p">,</span> <span class="n">coefA</span><span class="p">,</span> <span class="n">coefB</span><span class="p">,</span> <span class="n">coefC</span><span class="p">,</span>
                  <span class="n">initVolumeFraction</span><span class="p">,</span> <span class="n">prepLawIndex</span><span class="p">,</span> <span class="n">logQKgap</span><span class="p">,</span> <span class="n">tempGap1</span><span class="p">,</span> <span class="n">tempGap2</span><span class="p">):</span>
@@ -122,6 +129,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">prepLawIndex</span> <span class="o">=</span> <span class="n">prepLawIndex</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initVolumeFraction</span> <span class="o">=</span> <span class="n">initVolumeFraction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pHDependence</span> <span class="o">=</span> <span class="p">[]</span></div>
+
 
 <div class="viewcode-block" id="Equilibrium"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.kinetic_properties.Equilibrium">[docs]</a><span class="k">class</span> <span class="nc">Equilibrium</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">logQK</span><span class="p">,</span> <span class="n">tempGap1</span><span class="p">,</span> <span class="n">tempGap2</span><span class="p">):</span>

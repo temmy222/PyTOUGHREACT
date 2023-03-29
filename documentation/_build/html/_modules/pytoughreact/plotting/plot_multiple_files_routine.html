@@ -38,8 +38,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Functions:</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
 </ul>
 
@@ -95,17 +100,16 @@
 
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
 
 
-<span class="kn">from</span> <span class="nn">results.multi_result_tough_3</span> <span class="kn">import</span> <span class="n">MultiResultTough3</span>
-<span class="kn">from</span> <span class="nn">results.multi_result_tough_react</span> <span class="kn">import</span> <span class="n">MultiResultReact</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.results.multi_result_tough_3</span> <span class="kn">import</span> <span class="n">MultiResultTough3</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.results.multi_result_tough_react</span> <span class="kn">import</span> <span class="n">MultiResultReact</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">constants.generalconstants</span> <span class="k">as</span> <span class="nn">gc</span>
-<span class="kn">import</span> <span class="nn">constants.plotconstants</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="kn">import</span> <span class="nn">constants.reactionconstants</span> <span class="k">as</span> <span class="nn">rc</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.generalconstants</span> <span class="k">as</span> <span class="nn">gc</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.plotconstants</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.reactionconstants</span> <span class="k">as</span> <span class="nn">rc</span>
 
-<span class="kn">from</span> <span class="nn">utilities.synergy_general_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilities</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.synergy_general_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilities</span>
 
 
 <div class="viewcode-block" id="PlotMultiFiles"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles">[docs]</a><span class="k">class</span> <span class="nc">PlotMultiFiles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -125,7 +129,7 @@
 <div class="viewcode-block" id="PlotMultiFiles.validateInput"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.validateInput">[docs]</a>    <span class="k">def</span> <span class="nf">validateInput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TOUGHREACT</span><span class="p">:</span>
             <span class="n">multi_tough</span> <span class="o">=</span> <span class="n">MultiResultReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">,</span>
-                                          <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">)</span>
+                                           <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span><span class="p">:</span>
             <span class="n">multi_tough</span> <span class="o">=</span> <span class="n">MultiResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -200,7 +204,7 @@
         <span class="n">markers</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">ALL_MARKERS</span>
         <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-                <span class="n">trye</span> <span class="o">=</span> <span class="n">axs</span>
+                <span class="k">pass</span>
             <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">plot_counter</span><span class="p">)</span>
             <span class="n">legend_index</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)):</span>
@@ -229,7 +233,7 @@
 <div class="viewcode-block" id="PlotMultiFiles.plotRawMultiFilePanel"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePanel">[docs]</a>    <span class="k">def</span> <span class="nf">plotRawMultiFilePanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
         <span class="n">start_point</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">markers</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">ALL_MARKERS</span>
+        <span class="c1"># markers = pc.ALL_MARKERS</span>
         <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">length_of_prop</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">panels</span><span class="p">[</span><span class="n">number</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
@@ -243,7 +247,7 @@
             <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
                 <span class="k">pass</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">marker</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">((</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">))</span>
+                <span class="c1"># marker = itertools.cycle((&#39;,&#39;, &#39;+&#39;, &#39;.&#39;, &#39;o&#39;, &#39;*&#39;))</span>
                 <span class="n">axsa</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
                 <span class="n">axsa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">)</span>
                 <span class="n">yLabel</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">panels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -333,7 +337,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawSingle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawSingle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div>
 
@@ -343,7 +347,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div>
 
@@ -353,7 +357,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span></div>
 
@@ -374,7 +378,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePanel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePanel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span></div>
 
@@ -385,14 +389,14 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div></div>
 </pre></div>
