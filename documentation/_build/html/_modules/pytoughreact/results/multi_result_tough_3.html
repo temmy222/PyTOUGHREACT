@@ -38,8 +38,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Functions:</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
 </ul>
 
@@ -94,12 +99,11 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">utilities.synergy_general_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilities</span>
-<span class="kn">from</span> <span class="nn">results.result_tough_3</span> <span class="kn">import</span> <span class="n">ResultTough3</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.results.result_tough_3</span> <span class="kn">import</span> <span class="n">ResultTough3</span>
 
-<div class="viewcode-block" id="MultiResultTough3"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3">[docs]</a><span class="k">class</span> <span class="nc">MultiResultTough3</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<div class="viewcode-block" id="MultiResultTough3"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3">[docs]</a><span class="k">class</span> <span class="nc">MultiResultTough3</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Class for retrieving results from multiple files for Tough3 and TMVOC &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator_type</span><span class="p">,</span> <span class="n">file_location</span><span class="p">,</span> <span class="n">file_title</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_location</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
@@ -113,8 +117,21 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;Multiple Results from provided file locations and provided files for&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span>
 
-<div class="viewcode-block" id="MultiResultTough3.retrieve_data_multi_timeseries"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_data_multi_timeseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; DataFrame to retrieve time and timeseries results from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MultiResultTough3.retrieve_data_multi_timeseries"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_data_multi_timeseries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function retrieve time and timeseries results from file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number :  int</span>
+<span class="sd">            The grid block number for which to retireve the results</span>
+<span class="sd">        format_of_date : str</span>
+<span class="sd">            Provides information to the method on format of the date. For example. year, hour, min or seconds</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        data_table : pd.Dataframe</span>
+<span class="sd">            Dataframe with requested output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_location</span><span class="p">)):</span>
             <span class="n">tough_data</span> <span class="o">=</span> <span class="n">ResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_location</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_title</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -127,7 +144,7 @@
             <span class="n">data_table</span><span class="p">[</span><span class="n">result_data_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_table</span></div>
 
-<div class="viewcode-block" id="MultiResultTough3.retrieve_data_multi_file_fixed_time"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_data_multi_file_fixed_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiResultTough3.retrieve_data_multi_file_fixed_time"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_data_multi_file_fixed_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; DataFrame to retrieve time and coordinate results from file &quot;&quot;&quot;</span>
         <span class="n">data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_location</span><span class="p">)):</span>
@@ -142,7 +159,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">tough_data</span><span class="o">.</span><span class="n">getXDepthData</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prop</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">time</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">data_table</span></div>
 
-<div class="viewcode-block" id="MultiResultTough3.retrieve_data_multi_file_fixed_time_layer"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time_layer">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_data_multi_file_fixed_time_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiResultTough3.retrieve_data_multi_file_fixed_time_layer"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time_layer">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_data_multi_file_fixed_time_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; DataFrame to retrieve distance and results from file &quot;&quot;&quot;</span>
         <span class="n">data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_location</span><span class="p">)):</span>
@@ -156,7 +173,7 @@
             <span class="n">data_table</span><span class="p">[</span><span class="n">result_data_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_table</span></div>
 
-<div class="viewcode-block" id="MultiResultTough3.getMultiElementData"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementData">[docs]</a>    <span class="k">def</span> <span class="nf">getMultiElementData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiResultTough3.getMultiElementData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementData">[docs]</a>    <span class="k">def</span> <span class="nf">getMultiElementData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; DataFrame to retrieve multi element time and results from file &quot;&quot;&quot;</span>
         <span class="n">data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;float_format&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.9f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
@@ -174,7 +191,7 @@
         <span class="c1"># print(data_table.iloc[15][result_data_label])</span>
         <span class="k">return</span> <span class="n">data_table</span></div>
 
-<div class="viewcode-block" id="MultiResultTough3.getMultiElementDataPerPanel"><a class="viewcode-back" href="../../../pytoughreact.results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementDataPerPanel">[docs]</a>    <span class="k">def</span> <span class="nf">getMultiElementDataPerPanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiResultTough3.getMultiElementDataPerPanel"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementDataPerPanel">[docs]</a>    <span class="k">def</span> <span class="nf">getMultiElementDataPerPanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; DataFrame to retrieve multi element time and results from file per panel &quot;&quot;&quot;</span>
         <span class="n">data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
         <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;float_format&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">%.9f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
@@ -190,7 +207,6 @@
                 <span class="n">result_data_label</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;result&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
                 <span class="n">data_table</span><span class="p">[</span><span class="n">result_data_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_table</span></div></div>
-
 </pre></div>
 
            </div>
