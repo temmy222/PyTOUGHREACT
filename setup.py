@@ -23,58 +23,61 @@ SOFTWARE.
 '''
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
-from setuptools.command.install import install as _install
+from setuptools import setup
+# from setuptools.command.install import install as _install
 # To use a consistent encoding
-from codecs import open
-from os import path
+# from codecs import open
+# from os import path
 
-import pip
+# import pip
+
+if __name__ == "__main__":
+    setup()
 
 # The directory containing this file
-HERE = path.abspath(path.dirname(__file__))
+# HERE = path.abspath(path.dirname(__file__))
 
-# exec(open('pytoughreact/version.py').read())
+# # exec(open('pytoughreact/version.py').read())
 
-# Get the long description from the README file
-with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+# # Get the long description from the README file
+# with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+#     long_description = f.read()
 
-# This call to setup() does all the work
-setup(
-    #Package Name
-    name="pytoughreact",
+# # This call to setup() does all the work
+# setup(
+#     #Package Name
+#     name="pytoughreact",
 
-    # Version number (initial):
-    version='0.0.15',
+#     # Version number (initial):
+#     version='0.0.15',
 
-    #Package Description and Details
-    description="Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO",
-    url="https://github.com/temmy222/PyTOUGHREACT/tree/master",
+#     #Package Description and Details
+#     description="Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO",
+#     url="https://github.com/temmy222/PyTOUGHREACT/tree/master",
 
-    #Package Author
-    author="Temitope Ajayi",
-    author_email="ajayi_temmy@yahoo.com",
+#     #Package Author
+#     author="Temitope Ajayi",
+#     author_email="ajayi_temmy@yahoo.com",
 
-    #License
-    license="MIT",
+#     #License
+#     license="MIT",
 
 
-    packages=find_packages(include=['pytoughreact', 'pytoughreact.*']),
-    include_package_data=True,
-    python_requires='>=3.7',
+#     packages=find_packages(include=['pytoughreact', 'pytoughreact.*']),
+#     include_package_data=True,
+#     python_requires='>=3.7',
 
-    keywords=['python', 'reaction', 'TOUGHREACT', 'TMVOC-BIO', 'Uncertainty quantification', 'Sensitivity Analysis'],
-    install_requires=[
-    "numpy", 
-    "scipy", 
-    "vtk", 
-    "matplotlib",
-    "pandas"
-   ]
-)
+#     keywords=['python', 'reaction', 'TOUGHREACT', 'TMVOC-BIO', 'Uncertainty quantification', 'Sensitivity Analysis'],
+#     install_requires=[
+#     "numpy",
+#     "scipy",
+#     "vtk",
+#     "matplotlib",
+#     "pandas"
+#    ]
+# )
 
-#Other Details
+# Other Details
 # classifiers=[
 #     "Intended Audience :: Researchers",
 #     "License :: OSI Approved :: MIT License",
