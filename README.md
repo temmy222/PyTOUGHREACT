@@ -172,7 +172,7 @@ react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Contirbuting to the code would involve you following the below procedures to quickly get started
+Contributing to the code would involve you following the below procedures to quickly get started
 
 1. Clone the repo using preferred cloning method
 2. Install the library to enable you able to use the test example using
