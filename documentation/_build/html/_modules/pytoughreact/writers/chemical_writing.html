@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytoughreact.writers.chemical_writing &mdash; PyToughReact 0.0.15 documentation</title>
+  <title>pytoughreact.writers.chemical_writing &mdash; PyTOUGHREACT 0.0.15 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -28,7 +28,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            PyToughReact
+            PyTOUGHREACT
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -38,14 +38,34 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Functions:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
 </ul>
 
         </div>
@@ -54,7 +74,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyToughReact</a>
+          <a href="../../../index.html">PyTOUGHREACT</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -114,14 +134,28 @@
 <span class="kn">from</span> <span class="nn">pytoughreact.exceptions.custom_error</span> <span class="kn">import</span> <span class="n">MissingParameter</span>
 
 
-<div class="viewcode-block" id="SynergyChemical"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical">[docs]</a><span class="k">class</span> <span class="nc">SynergyChemical</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData">[docs]</a><span class="k">class</span> <span class="nc">t2ChemicalData</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for parsing CHEMICAL.INP data file.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SynergyChemical</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
-                                              <span class="n">t2chemical_format_specification</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">t2ChemicalData</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
+                                             <span class="n">t2chemical_format_specification</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linetype</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linetype</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        linetype: str</span>
+<span class="sd">            type of line to be read</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_lines : list</span>
+<span class="sd">            all parameters values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span>
         <span class="n">all_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&#39;*&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
@@ -131,7 +165,20 @@
                 <span class="n">all_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">particular_line</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">all_lines</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_mineral"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_mineral">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_mineral</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_mineral"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_mineral">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_mineral</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_lines : list</span>
+<span class="sd">            all parameter mineral values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span>
         <span class="n">all_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
@@ -181,7 +228,20 @@
             <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">all_lines</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_gas">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_gas">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_lines : list</span>
+<span class="sd">            all parameter gas values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;&#39;*&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
@@ -192,7 +252,20 @@
 
         <span class="k">return</span> <span class="n">all_lines</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_surface_complex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_surface_complex">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_surface_complex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_surface_complex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_surface_complex">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_surface_complex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_lines : list</span>
+<span class="sd">            all parameter gas values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># line = self.file.readline()</span>
         <span class="c1"># while line.startswith(&quot;&#39;*&quot;) is False:</span>
@@ -200,7 +273,20 @@
 
         <span class="k">return</span> <span class="n">all_lines</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_decay_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_decay_species">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_decay_species</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_decay_species"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_decay_species">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_decay_species</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_lines : list</span>
+<span class="sd">            all parameter decay species values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># line = self.file.readline()</span>
         <span class="c1"># while line.startswith(&quot;&#39;*&quot;) is False:</span>
@@ -208,7 +294,20 @@
 
         <span class="k">return</span> <span class="n">all_lines</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_exchangeable_cations"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_exchangeable_cations">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_exchangeable_cations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_exchangeable_cations"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_exchangeable_cations">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_exchangeable_cations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_lines : list</span>
+<span class="sd">            all parameter exchangeable cation values</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># line = self.file.readline()</span>
         <span class="c1"># while line.startswith(&quot;&#39;*&quot;) is False:</span>
@@ -216,19 +315,55 @@
 
         <span class="k">return</span> <span class="n">all_lines</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_reactive_options"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_reactive_options">[docs]</a>    <span class="k">def</span> <span class="nf">get_reactive_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_reactive_options"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_reactive_options">[docs]</a>    <span class="k">def</span> <span class="nf">get_reactive_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads reactive options from CHEMICAL.INP file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of all reactive options</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">liner</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">liner</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_reactive_constraints"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_reactive_constraints">[docs]</a>    <span class="k">def</span> <span class="nf">get_reactive_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_reactive_constraints"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_reactive_constraints">[docs]</a>    <span class="k">def</span> <span class="nf">get_reactive_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads reactive constraints from CHEMICAL.INP file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of all reactive constraints</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">liner</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">liner</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_readio"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_readio">[docs]</a>    <span class="k">def</span> <span class="nf">get_readio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_readio"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_readio">[docs]</a>    <span class="k">def</span> <span class="nf">get_readio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads reactive input output from CHEMICAL.INP file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of all reactive input output</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_values</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
             <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
@@ -237,25 +372,76 @@
 
         <span class="k">return</span> <span class="n">all_values</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_weight_diffusion"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_weight_diffusion">[docs]</a>    <span class="k">def</span> <span class="nf">get_weight_diffusion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_weight_diffusion"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_weight_diffusion">[docs]</a>    <span class="k">def</span> <span class="nf">get_weight_diffusion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads weight diffusion output from CHEMICAL.INP file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of all weight diffusion parameters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">liner</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">liner</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_tolerance_values"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_tolerance_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_tolerance_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_tolerance_values"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_tolerance_values">[docs]</a>    <span class="k">def</span> <span class="nf">get_tolerance_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads tolerance values from CHEMICAL.INP file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of all tolerance values parameters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">liner</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">liner</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_printout_options"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_printout_options">[docs]</a>    <span class="k">def</span> <span class="nf">get_printout_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_printout_options"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_printout_options">[docs]</a>    <span class="k">def</span> <span class="nf">get_printout_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads printout options output from CHEMICAL.INP file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of all printout options parameters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">liner</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">liner</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.search_for_node_index"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.search_for_node_index">[docs]</a>    <span class="k">def</span> <span class="nf">search_for_node_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocks</span><span class="p">,</span> <span class="n">nodes</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.search_for_node_index"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.search_for_node_index">[docs]</a>    <span class="k">def</span> <span class="nf">search_for_node_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blocks</span><span class="p">,</span> <span class="n">nodes</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Search for node index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        blocks : list</span>
+<span class="sd">            list of all blocks in the simulation</span>
+<span class="sd">        nodes : list</span>
+<span class="sd">            list of all nodes in the simulation</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        indexes : list</span>
+<span class="sd">            list of all search output</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">indexes</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">blocks</span><span class="p">)):</span>
@@ -263,7 +449,20 @@
                     <span class="n">indexes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">indexes</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_nodes_to_read"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_nodes_to_read">[docs]</a>    <span class="k">def</span> <span class="nf">get_nodes_to_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_nodes_to_read"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_nodes_to_read">[docs]</a>    <span class="k">def</span> <span class="nf">get_nodes_to_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get nodes to read</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid : list</span>
+<span class="sd">            list containing all grids in the simulatioj</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            list of all nodes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_values</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -273,7 +472,20 @@
         <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search_for_node_index</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">blocklist</span><span class="p">,</span> <span class="n">all_values</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_primary_species_to_read"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_primary_species_to_read">[docs]</a>    <span class="k">def</span> <span class="nf">get_primary_species_to_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_aqueous</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_primary_species_to_read"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_primary_species_to_read">[docs]</a>    <span class="k">def</span> <span class="nf">get_primary_species_to_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_aqueous</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get primary species to read</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        primary aqueous : list</span>
+<span class="sd">            list of all primary aqueous species</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_values : list</span>
+<span class="sd">            all primary species</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_values</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -283,7 +495,20 @@
 
         <span class="k">return</span> <span class="n">all_values</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_minerals_to_write"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_minerals_to_write">[docs]</a>    <span class="k">def</span> <span class="nf">get_minerals_to_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_minerals_to_write"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_minerals_to_write">[docs]</a>    <span class="k">def</span> <span class="nf">get_minerals_to_write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get minerals to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        minerals : list</span>
+<span class="sd">            list of all minerals in the CHEMICAL.INP</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_values : list</span>
+<span class="sd">            all minerals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_values</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -293,7 +518,18 @@
 
         <span class="k">return</span> <span class="n">all_values</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_default_chemical_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_default_chemical_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_chemical_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_default_chemical_zones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_default_chemical_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_chemical_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get default chemical zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        liner : list</span>
+<span class="sd">            list of default chemical zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
@@ -301,7 +537,18 @@
         <span class="n">liner</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">liner</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_default_chemical_zone_to_nodes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_default_chemical_zone_to_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_chemical_zone_to_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_default_chemical_zone_to_nodes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_default_chemical_zone_to_nodes">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_chemical_zone_to_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get default chemical zone and map to nodes</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        all_values : list</span>
+<span class="sd">            all default chemical zone mapped to nodes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
@@ -317,7 +564,22 @@
             <span class="n">all_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">all_values</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.find_primary_aqueous"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.find_primary_aqueous">[docs]</a>    <span class="k">def</span> <span class="nf">find_primary_aqueous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_aqueous</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.find_primary_aqueous"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.find_primary_aqueous">[docs]</a>    <span class="k">def</span> <span class="nf">find_primary_aqueous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_aqueous</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get minerals to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        primary_aqueous : list</span>
+<span class="sd">            list of all primary aqueous species in the CHEMICAL.INP</span>
+<span class="sd">        name: str</span>
+<span class="sd">            name of the species</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameter : str</span>
+<span class="sd">            name and properties of the primary species</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">startIndex</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">startIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -325,7 +587,20 @@
             <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">primary_aqueous</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">NAME</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
                 <span class="k">return</span> <span class="n">primary_aqueous</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_ib_waters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_ib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_ib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_aqueous</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_ib_waters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_ib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_ib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_aqueous</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get minerals to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        primary_aqueous : list</span>
+<span class="sd">            list of all primary aqueous species in the CHEMICAL.INP</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping : list, list, dict, dict</span>
+<span class="sd">            properties of the initial and boundary water</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_waters_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_waters_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">boundary_waters_mapping</span> <span class="o">=</span> <span class="p">{}</span>
@@ -389,7 +664,22 @@
 
         <span class="k">return</span> <span class="n">initial_waters_list</span><span class="p">,</span> <span class="n">boundary_waters_list</span><span class="p">,</span> <span class="n">initial_waters_mapping</span><span class="p">,</span> <span class="n">boundary_waters_mapping</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.find_minerals"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.find_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">find_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.find_minerals"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.find_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">find_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get minerals to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        minerals : list</span>
+<span class="sd">            list of all minerals in the CHEMICAL.INP file</span>
+<span class="sd">        name: str</span>
+<span class="sd">            name of the mineral</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameter : str</span>
+<span class="sd">            name and properties of the mineral</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">startIndex</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">startIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -397,7 +687,20 @@
             <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">minerals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
                 <span class="k">return</span> <span class="n">minerals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_mineral_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_mineral_zones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get minerals to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        minerals : list</span>
+<span class="sd">            list of all minerals in the CHEMICAL.INP file</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        initial_minerals_list, initial_minerals_mapping : list, dict</span>
+<span class="sd">            properties of the initial minerals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_minerals_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_minerals_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
@@ -433,7 +736,22 @@
 
         <span class="k">return</span> <span class="n">initial_minerals_list</span><span class="p">,</span> <span class="n">initial_minerals_mapping</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.find_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.find_gas">[docs]</a>    <span class="k">def</span> <span class="nf">find_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gases</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.find_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.find_gas">[docs]</a>    <span class="k">def</span> <span class="nf">find_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gases</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get minerals to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        gases : list</span>
+<span class="sd">            list of all gases in the CHEMICAL.INP file</span>
+<span class="sd">        name: str</span>
+<span class="sd">            name of the as</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameter : str</span>
+<span class="sd">            name and properties of the gas</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">startIndex</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">startIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
@@ -441,7 +759,20 @@
             <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gases</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
                 <span class="k">return</span> <span class="n">gases</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_ij_gases"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_ij_gases">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_ij_gases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gases</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_ij_gases"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_ij_gases">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_ij_gases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gases</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get gas to write</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        minerals : list</span>
+<span class="sd">            list of all gases in the CHEMICAL.INP file</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping : list, list, dict, dict</span>
+<span class="sd">            properties of the initial and boundary gases</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_gas_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_gas_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">injection_gas_mapping</span> <span class="o">=</span> <span class="p">{}</span>
@@ -498,7 +829,18 @@
 
         <span class="k">return</span> <span class="n">initial_gas_list</span><span class="p">,</span> <span class="n">injection_gas_list</span><span class="p">,</span> <span class="n">initial_gas_mapping</span><span class="p">,</span> <span class="n">injection_gas_mapping</span></div>
 
-<div class="viewcode-block" id="SynergyChemical.get_param_values_perm_poro"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.SynergyChemical.get_param_values_perm_poro">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_perm_poro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<div class="viewcode-block" id="t2ChemicalData.get_param_values_perm_poro"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2ChemicalData.get_param_values_perm_poro">[docs]</a>    <span class="k">def</span> <span class="nf">get_param_values_perm_poro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minerals</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get permeability and porosity</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        initial_perm_poro_list, initial_perm_poro_mapping : list, dict</span>
+<span class="sd">            properties of the initial permeability and porosity zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_perm_poro_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_perm_poro_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
@@ -534,7 +876,7 @@
         <span class="k">return</span> <span class="n">initial_perm_poro_list</span><span class="p">,</span> <span class="n">initial_perm_poro_mapping</span></div></div>
 
 
-<div class="viewcode-block" id="t2chemical"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical">[docs]</a><span class="k">class</span> <span class="nc">t2chemical</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
+<div class="viewcode-block" id="t2chemical"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical">[docs]</a><span class="k">class</span> <span class="nc">t2chemical</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Main class for structuring the writing , reading  of chemical parameters</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -562,8 +904,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">gases</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ij_gas</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">meshfilename</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.getib_waters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">getib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get initial and boundary waters &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getib_waters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">getib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get initial and boundary waters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        ib_waters : list</span>
+<span class="sd">            list of initial and boundary waters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ib_waters</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">zonelist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ib_waters</span>
@@ -580,8 +932,18 @@
 
     <span class="c1"># ib_waters = property(getib_waters)</span>
 
-<div class="viewcode-block" id="t2chemical.getij_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getij_gas">[docs]</a>    <span class="k">def</span> <span class="nf">getij_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get initial and injection gas &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getij_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getij_gas">[docs]</a>    <span class="k">def</span> <span class="nf">getij_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get initial and injection gas</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        ib_waters : list</span>
+<span class="sd">            list of initial and boundary waters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ij_gas</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">zonelist</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ij_gas</span>
@@ -601,8 +963,18 @@
 
     <span class="c1"># ij_gas = property(getij_gas)</span>
 
-<div class="viewcode-block" id="t2chemical.get_mineral_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.get_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Mineral zones&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.get_mineral_zones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.get_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Mineral zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        mineral_zone : list</span>
+<span class="sd">            list of mineral zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mineral_zone</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">zone</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">zonelist</span><span class="p">:</span>
             <span class="n">mineral_zone</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">zone</span><span class="o">.</span><span class="n">mineral_zone</span><span class="p">)</span>
@@ -612,8 +984,18 @@
 
     <span class="n">mineral_zones</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_mineral_zones</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.get_perm_poro_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.get_perm_poro_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_perm_poro_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Porosity / Permeability zones&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.get_perm_poro_zones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.get_perm_poro_zones">[docs]</a>    <span class="k">def</span> <span class="nf">get_perm_poro_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Porosity / Permeability zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        perm_poro_zone : list</span>
+<span class="sd">            list of perm poro zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">perm_poro_zone</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">zone</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">zonelist</span><span class="p">:</span>
             <span class="n">perm_poro_zone</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">zone</span><span class="o">.</span><span class="n">permporo</span><span class="p">)</span>
@@ -621,8 +1003,18 @@
 
     <span class="n">perm_poro</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_perm_poro_zones</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.map_mineral_to_zone"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.map_mineral_to_zone">[docs]</a>    <span class="k">def</span> <span class="nf">map_mineral_to_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Map Mineral to Zone&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.map_mineral_to_zone"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.map_mineral_to_zone">[docs]</a>    <span class="k">def</span> <span class="nf">map_mineral_to_zone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Map Mineral to Zone</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        zone : dict</span>
+<span class="sd">            list of perm poro zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">zoning</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">index</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">zone</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="o">.</span><span class="n">zonelist</span><span class="p">:</span>
@@ -630,8 +1022,16 @@
             <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">zoning</span></div>
 
-<div class="viewcode-block" id="t2chemical.update_read_write_functions"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates functions for reading and writing sections of data file.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.update_read_write_functions"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Updates functions for reading and writing sections of data file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
             <span class="n">t2chemical_sections</span><span class="p">,</span>
@@ -671,9 +1071,19 @@
              <span class="bp">self</span><span class="o">.</span><span class="n">write_linear_equilibrium</span><span class="p">,</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">write_cation_exchange</span><span class="p">]))</span></div>
 
-<div class="viewcode-block" id="t2chemical.get_present_sections"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of TOUGH2 section keywords for which there are</span>
-<span class="sd">        corresponding data in the t2bio object.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.get_present_sections"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a list of TOUGH2 section keywords for which there are</span>
+<span class="sd">        corresponding data in the t2bio object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameters : list</span>
+<span class="sd">            list of present sections</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_present</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
             <span class="n">t2chemical_sections</span><span class="p">,</span>
             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
@@ -696,9 +1106,16 @@
 
     <span class="n">present_sections</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_present_sections</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.section_insertion_index"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines an appropriate position to insert the specified section</span>
+<div class="viewcode-block" id="t2chemical.section_insertion_index"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Determines an appropriate position to insert the specified section</span>
 <span class="sd">        in the internal list of data file sections.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">listindex</span> <span class="o">=</span> <span class="n">t2chemical_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
@@ -725,21 +1142,53 @@
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_title"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_title">[docs]</a>    <span class="k">def</span> <span class="nf">write_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Title od Chemical file (chemical.inp)&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_title"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_title">[docs]</a>    <span class="k">def</span> <span class="nf">write_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;  Write Title of Chemical file (chemical.inp)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#Title&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_primary_aqueous"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_primary_aqueous">[docs]</a>    <span class="k">def</span> <span class="nf">read_primary_aqueous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Primary Aqueous Species &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_primary_aqueous"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_primary_aqueous">[docs]</a>    <span class="k">def</span> <span class="nf">read_primary_aqueous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Primary Aqueous Species</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds parameters block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(</span><span class="s1">&#39;primary_aqueous&#39;</span><span class="p">)</span>
         <span class="n">all_species</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
             <span class="n">all_species</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PrimarySpecies</span><span class="p">(</span><span class="n">parameter</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">parameter</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;primary_aqueous&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_species</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_primary_aqueous"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_primary_aqueous">[docs]</a>    <span class="k">def</span> <span class="nf">write_primary_aqueous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Primary Aqueous Species &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_primary_aqueous"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_primary_aqueous">[docs]</a>    <span class="k">def</span> <span class="nf">write_primary_aqueous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Primary Aqueous</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#----------------------------------------------------------------------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#DEFINITION OF THE GEOCHEMICAL SYSTEM</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#PRIMARY AQUEOUS SPECIES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -748,45 +1197,114 @@
             <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;primary_aqueous&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_aqueous_kinetics"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_aqueous_kinetics">[docs]</a>    <span class="k">def</span> <span class="nf">read_aqueous_kinetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Aqueous Kinetic Species &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_aqueous_kinetics"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_aqueous_kinetics">[docs]</a>    <span class="k">def</span> <span class="nf">read_aqueous_kinetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Aqueous Kinetic Species</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds aqueous kinetics to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(</span><span class="s1">&#39;aqueous_kinetics&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;aqueous_kinetics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;aqueous_kinetics&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_aqueous_kinetics"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_aqueous_kinetics">[docs]</a>    <span class="k">def</span> <span class="nf">write_aqueous_kinetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Aqueous Kinetic Species &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_aqueous_kinetics"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_aqueous_kinetics">[docs]</a>    <span class="k">def</span> <span class="nf">write_aqueous_kinetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Aqueous Kinetic Species</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aqueous_kinetics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# AQUEOUS KINETICS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_aqueous_complexes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_aqueous_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">read_aqueous_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Aqueous Complexes &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_aqueous_complexes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_aqueous_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">read_aqueous_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Aqueous Complexes</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds aqueous complexes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values</span><span class="p">(</span><span class="s1">&#39;aqueous_complex&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;aqueous_complexes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;aqueous_complexes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_aqueous_complexes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_aqueous_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">write_aqueous_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Aqueous Complexes &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_aqueous_complexes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_aqueous_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">write_aqueous_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Aqueous Complexes</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">aqueous_complexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# AQUEOUS COMPLEXES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_minerals"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">read_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Minerals &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_minerals"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">read_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Minerals</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds minerals</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_mineral</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;minerals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;minerals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_dissolution_precipitation"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_dissolution_precipitation">[docs]</a>    <span class="k">def</span> <span class="nf">write_dissolution_precipitation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">mineral</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Dissolution and Precipitation Parameters &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_dissolution_precipitation"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_dissolution_precipitation">[docs]</a>    <span class="k">def</span> <span class="nf">write_dissolution_precipitation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">mineral</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Dissolution and Precipitation Parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+<span class="sd">        mineral : Mineral</span>
+<span class="sd">            mineral class containing minerals</span>
+<span class="sd">        format : str</span>
+<span class="sd">            flag for dissolution or precipitation</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;dissolution&#39;</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">vals</span> <span class="o">=</span> <span class="n">mineral</span><span class="o">.</span><span class="n">getDissolutionParams</span><span class="p">()</span>
@@ -817,13 +1335,35 @@
         <span class="k">if</span> <span class="nb">format</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;precipitation&#39;</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals2</span><span class="p">,</span> <span class="s1">&#39;minerals1.1.1a&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_equilibrium"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_equilibrium">[docs]</a>    <span class="k">def</span> <span class="nf">write_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">mineral</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Equilibirum Parameters &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_equilibrium"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_equilibrium">[docs]</a>    <span class="k">def</span> <span class="nf">write_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">mineral</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Equilibirum Parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+<span class="sd">        mineral : Mineral</span>
+<span class="sd">            mineral class containing minerals</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="n">mineral</span><span class="o">.</span><span class="n">getEquilibriumData</span><span class="p">()</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;minerals1.1.1a&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_minerals"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">write_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Minerals to file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_minerals"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_minerals">[docs]</a>    <span class="k">def</span> <span class="nf">write_minerals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Minerals to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#MINERALS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">mineral</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span><span class="p">:</span>
             <span class="n">vals</span> <span class="o">=</span> <span class="n">mineral</span><span class="o">.</span><span class="n">getFirstRow</span><span class="p">()</span>
@@ -836,8 +1376,20 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">write_equilibrium</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">mineral</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_gases"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_gases">[docs]</a>    <span class="k">def</span> <span class="nf">read_gases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read gases from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_gases"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_gases">[docs]</a>    <span class="k">def</span> <span class="nf">read_gases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read gases from file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds gases to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_gas</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="c1"># self.__dict__[&#39;gas_init&#39;] = [-1]</span>
@@ -846,8 +1398,18 @@
             <span class="c1"># self.__dict__[&#39;gas_init&#39;] = params</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;gases&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_gases"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_gases">[docs]</a>    <span class="k">def</span> <span class="nf">write_gases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write gases to file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_gases"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_gases">[docs]</a>    <span class="k">def</span> <span class="nf">write_gases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write gases to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# GASES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">gas_name</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">try</span><span class="p">:</span>
@@ -865,51 +1427,129 @@
                 <span class="n">gas_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gas</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_surface_complexes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_surface_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">read_surface_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read surface complexes from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_surface_complexes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_surface_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">read_surface_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read surface complexes from file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds surface complexes to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_surface_complex</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;surface_complexes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;surface_complexes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_surface_complexes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_surface_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">write_surface_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write surface complexes to file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_surface_complexes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_surface_complexes">[docs]</a>    <span class="k">def</span> <span class="nf">write_surface_complexes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write surface complexes to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">surface_complexes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# SURFACE COMPLEXES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_decay_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_decay_species">[docs]</a>    <span class="k">def</span> <span class="nf">read_decay_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read decay species from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_decay_species"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_decay_species">[docs]</a>    <span class="k">def</span> <span class="nf">read_decay_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read decay species from file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds decay species to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_decay_species</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;decay_species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;decay_species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_decay_species"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_decay_species">[docs]</a>    <span class="k">def</span> <span class="nf">write_decay_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write decay species to file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_decay_species"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_decay_species">[docs]</a>    <span class="k">def</span> <span class="nf">write_decay_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write decay species to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_species</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# SPECIES WITH Kd AND DECAY</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_exchangeable_cations"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_exchangeable_cations">[docs]</a>    <span class="k">def</span> <span class="nf">read_exchangeable_cations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Exchangeable Cations from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_exchangeable_cations"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_exchangeable_cations">[docs]</a>    <span class="k">def</span> <span class="nf">read_exchangeable_cations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Exchangeable Cations from file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds Exchangeable Cations to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_exchangeable_cations</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;exchangeable_cations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;exchangeable_cations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_exchangeable_cations"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_exchangeable_cations">[docs]</a>    <span class="k">def</span> <span class="nf">write_exchangeable_cations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Exchangeable Cations to file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_exchangeable_cations"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_exchangeable_cations">[docs]</a>    <span class="k">def</span> <span class="nf">write_exchangeable_cations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Exchangeable Cations to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exchangeable_cations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# EXCHANGEABLE CATIONS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">pass</span></div>
+            <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_ib_waters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_ib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">read_ib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Initial and Boundary waters from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_ib_waters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_ib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">read_ib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Initial and Boundary waters from file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds Initial and Boundary waters to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_waters_list</span><span class="p">,</span> <span class="n">boundary_waters_list</span><span class="p">,</span> <span class="n">initial_waters_mapping</span><span class="p">,</span> <span class="n">boundary_waters_mapping</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_ib_waters</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">primary_aqueous</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_waters_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -939,8 +1579,18 @@
         <span class="c1"># for i in range(len(all_waters)):</span>
         <span class="c1">#     print(all_waters[0][0][&#39;boundary&#39;])</span>
 
-<div class="viewcode-block" id="t2chemical.write_ib_waters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_ib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">write_ib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Initial and Boundary waters to file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_ib_waters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_ib_waters">[docs]</a>    <span class="k">def</span> <span class="nf">write_ib_waters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Initial and Boundary waters to file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#----------------------------------------------------------------------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# # INITIAL AND BOUNDARY WATER TYPES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">initial_waters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ib_waters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -998,8 +1648,17 @@
                         <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;water_comp2&#39;</span><span class="p">)</span>
                     <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.getInitialWaterIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getInitialWaterIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInitialWaterIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Initial Water Index &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getInitialWaterIndex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getInitialWaterIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInitialWaterIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Initial Water Index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        water_index : dict</span>
+<span class="sd">            get index of water in initial water</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">water_index</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_waters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ib_waters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">initial_waters</span><span class="p">)):</span>
@@ -1009,8 +1668,18 @@
 
     <span class="n">initial_water_index</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getInitialWaterIndex</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.getBoundaryWaterIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getBoundaryWaterIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getBoundaryWaterIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Boundary Water Index &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getBoundaryWaterIndex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getBoundaryWaterIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getBoundaryWaterIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Boundary Water Index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        water_index : dict</span>
+<span class="sd">            get index of water in  boundary water</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">water_index</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">boundary_water</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ib_waters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">boundary_water</span><span class="p">)):</span>
@@ -1020,8 +1689,18 @@
 
     <span class="n">boundary_water_index</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getBoundaryWaterIndex</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.getMineralIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getMineralIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getMineralIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Mineral Index &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getMineralIndex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getMineralIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getMineralIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Mineral Index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        mineral_index : dict</span>
+<span class="sd">            get index of mineral in minerals</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mineral_index</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">all_mineral</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mineral_zones</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_mineral</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">all_mineral</span><span class="p">)):</span>
@@ -1032,8 +1711,18 @@
 
     <span class="n">mineral_index</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getMineralIndex</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.getInitialGasIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getInitialGasIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInitialGasIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Initial Gas Index &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getInitialGasIndex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getInitialGasIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInitialGasIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Initial Gas Index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        gas_index : dict</span>
+<span class="sd">            get index of gas in gases</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">gas_index</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_gas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ij_gas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">initial_gas</span><span class="p">)):</span>
@@ -1042,8 +1731,18 @@
 
     <span class="n">initial_gas_index</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getInitialGasIndex</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.getInjectionGasIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getInjectionGasIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInjectionGasIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Injection Gas Index &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getInjectionGasIndex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getInjectionGasIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getInjectionGasIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Injection Gas Index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        gas_index : dict</span>
+<span class="sd">            get index of injection gas in gases</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">gas_index</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">initial_gas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ij_gas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">initial_gas</span><span class="p">)):</span>
@@ -1052,8 +1751,18 @@
 
     <span class="n">injection_gas_index</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getInjectionGasIndex</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.getPermPoroIndex"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.getPermPoroIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getPermPoroIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Permeability Porosity Index&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.getPermPoroIndex"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.getPermPoroIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getPermPoroIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Permeability Porosity Index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        perm_poro_index : dict</span>
+<span class="sd">            get index of perm poro in chemical.inp</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">perm_poro_index</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">perm_poro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">perm_poro</span>
         <span class="n">perm_poro_all</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1065,8 +1774,20 @@
 
     <span class="n">perm_poro_index</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getPermPoroIndex</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2chemical.read_mineral_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">read_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-        <span class="s2">&quot; Read Mineral Zones &quot;</span>
+<div class="viewcode-block" id="t2chemical.read_mineral_zones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">read_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Mineral Zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds mineral zones to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_minerals_list</span><span class="p">,</span> <span class="n">initial_minerals_mapping</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_mineral_zones</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_minerals_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -1075,17 +1796,47 @@
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;mineral_zones&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial_minerals_list</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">initial_minerals_mapping</span> <span class="o">=</span> <span class="n">initial_minerals_mapping</span></div>
 
-<div class="viewcode-block" id="t2chemical.countZones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.countZones">[docs]</a>    <span class="k">def</span> <span class="nf">countZones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s2">&quot; Count number of zones&quot;</span>
+<div class="viewcode-block" id="t2chemical.countZones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.countZones">[docs]</a>    <span class="k">def</span> <span class="nf">countZones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Count number of zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        count: int</span>
+<span class="sd">            number of zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mineral_zones</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">count</span></div>
 
-<div class="viewcode-block" id="t2chemical.countMineralZones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.countMineralZones">[docs]</a>    <span class="k">def</span> <span class="nf">countMineralZones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s2">&quot; Count number of mineral zones&quot;</span>
+<div class="viewcode-block" id="t2chemical.countMineralZones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.countMineralZones">[docs]</a>    <span class="k">def</span> <span class="nf">countMineralZones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Count number of mineral zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        count: int</span>
+<span class="sd">            number of mineral zones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mineral_zones</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_mineral_zones"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">write_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-        <span class="s2">&quot; Write mineral zones&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_mineral_zones"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_mineral_zones">[docs]</a>    <span class="k">def</span> <span class="nf">write_mineral_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write mineral zones</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#----------------------------------------------------------------------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# INITIAL MINERAL ZONES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mineral_zones</span><span class="p">)]</span>
@@ -1105,8 +1856,20 @@
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_ij_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_ij_gas">[docs]</a>    <span class="k">def</span> <span class="nf">read_ij_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Initial and Injection Gas&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_ij_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_ij_gas">[docs]</a>    <span class="k">def</span> <span class="nf">read_ij_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Initial and Injection Gas</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds injection gas to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_gas_list</span><span class="p">,</span> <span class="n">injection_gas_list</span><span class="p">,</span> <span class="n">initial_gas_mapping</span><span class="p">,</span> <span class="n">injection_gas_mapping</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_ij_gases</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gases</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_gas_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -1119,8 +1882,18 @@
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">injection_gas_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">injection_gas_mapping</span> <span class="o">=</span> <span class="n">injection_gas_mapping</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_ij_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_ij_gas">[docs]</a>    <span class="k">def</span> <span class="nf">write_ij_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Initial and Injection Gas&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_ij_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_ij_gas">[docs]</a>    <span class="k">def</span> <span class="nf">write_ij_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Injection gas</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#----------------------------------------------------------------------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# INITIAL and Injection gas ZONES </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">initial_gas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ij_gas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1161,8 +1934,20 @@
                     <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;gas_zone2&#39;</span><span class="p">)</span>
                 <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_perm_poro"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_perm_poro">[docs]</a>    <span class="k">def</span> <span class="nf">read_perm_poro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Peremability and Porosity Regions&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_perm_poro"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_perm_poro">[docs]</a>    <span class="k">def</span> <span class="nf">read_perm_poro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Permeability and Porosity Regions</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds perm poro to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">initial_perm_poro_list</span><span class="p">,</span> <span class="n">initial_perm_poro_mapping</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">get_param_values_perm_poro</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">t2grid</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_perm_poro_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -1171,8 +1956,18 @@
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;perm_poro&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial_perm_poro_list</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">initial_perm_poro_mapping</span> <span class="o">=</span> <span class="n">initial_perm_poro_mapping</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_perm_poro"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_perm_poro">[docs]</a>    <span class="k">def</span> <span class="nf">write_perm_poro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Peremability and Porosity Regions&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_perm_poro"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_perm_poro">[docs]</a>    <span class="k">def</span> <span class="nf">write_perm_poro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Peremability and Porosity Regions</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;#----------------------------------------------------------------------------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# Permeability-Porosity Zones</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">all_perm_zones</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1204,40 +1999,125 @@
                     <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;perm_poro_zone&#39;</span><span class="p">)</span>
                     <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_surface_adsorption"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_surface_adsorption">[docs]</a>    <span class="k">def</span> <span class="nf">read_surface_adsorption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Surface adsorption &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_surface_adsorption"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_surface_adsorption">[docs]</a>    <span class="k">def</span> <span class="nf">read_surface_adsorption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Surface adsorption</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds surface adsorption to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_surface_adsorption"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_surface_adsorption">[docs]</a>    <span class="k">def</span> <span class="nf">write_surface_adsorption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Surface adsorption &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_surface_adsorption"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_surface_adsorption">[docs]</a>    <span class="k">def</span> <span class="nf">write_surface_adsorption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Surface adsorption</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">surface_adsorption</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# INITIAL SURFACE ADSORPTION ZONES</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_linear_equilibrium"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_linear_equilibrium">[docs]</a>    <span class="k">def</span> <span class="nf">read_linear_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Linear Equilibrium &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_linear_equilibrium"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_linear_equilibrium">[docs]</a>    <span class="k">def</span> <span class="nf">read_linear_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Linear Equilibrium</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds Linear Equilibrium to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_linear_equilibrium"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_linear_equilibrium">[docs]</a>    <span class="k">def</span> <span class="nf">write_linear_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Linear Equilibrium &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_linear_equilibrium"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_linear_equilibrium">[docs]</a>    <span class="k">def</span> <span class="nf">write_linear_equilibrium</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Linear Equilibrium</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_equilibrium</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# INITIAL LINEAR EQUILIBRIUM Kd ZONE</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2chemical.read_cation_exchange"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_cation_exchange">[docs]</a>    <span class="k">def</span> <span class="nf">read_cation_exchange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read Cation Exchange &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read_cation_exchange"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read_cation_exchange">[docs]</a>    <span class="k">def</span> <span class="nf">read_cation_exchange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;  Read Cation Exchange</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds Cation Exchange to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2chemical.write_cation_exchange"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_cation_exchange">[docs]</a>    <span class="k">def</span> <span class="nf">write_cation_exchange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Cation Exchange &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.write_cation_exchange"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write_cation_exchange">[docs]</a>    <span class="k">def</span> <span class="nf">write_cation_exchange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write Cation Exchange</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cation_exchange</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;# INITIAL ZONES OF CATION EXCHANGE</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&#39;*&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2chemical.write"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="t2chemical.write"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
               <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write to file (chemical.inp)&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Write to file (chemical.inp)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            filename</span>
+<span class="sd">        meshfilename : str</span>
+<span class="sd">            MESH filename</span>
+<span class="sd">        run_location : str</span>
+<span class="sd">            path to Executable and required files</span>
+<span class="sd">        extra_precision: boolean</span>
+<span class="sd">            required or AUTOUGH</span>
+<span class="sd">        echo_extra_precision: boolean</span>
+<span class="sd">            required or AUTOUGH</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
@@ -1246,15 +2126,27 @@
             <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;chemical.inp&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_sections</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span>
-        <span class="n">outfile</span> <span class="o">=</span> <span class="n">SynergyChemical</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">t2ChemicalData</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">](</span><span class="n">outfile</span><span class="p">)</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="t2chemical.convert_to_t2chemical"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.convert_to_t2chemical">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_t2chemical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get corresponding t2chemical keywords &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.convert_to_t2chemical"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.convert_to_t2chemical">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_t2chemical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keyword</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get corresponding t2chemical keywords</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        keyword : str</span>
+<span class="sd">            keyword to convert to t2chemical keyword</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameter : str</span>
+<span class="sd">            converted t2chemical keyword</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s1">&#39;primary&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;aqueous&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
             <span class="k">return</span> <span class="s1">&#39;PRIMARY_AQUEOUS&#39;</span>
         <span class="k">elif</span> <span class="s1">&#39;kinetics&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;aqueous&#39;</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
@@ -1288,8 +2180,26 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39;false&#39;</span></div>
 
-<div class="viewcode-block" id="t2chemical.read"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.chemical_writing.t2chemical.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read from file &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2chemical.read"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.chemical_writing.t2chemical.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Read from file (chemical.inp)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            filename</span>
+<span class="sd">        meshfilename : str</span>
+<span class="sd">            MESH filename</span>
+<span class="sd">        run_location : str</span>
+<span class="sd">            path to Executable and required files</span>
+<span class="sd">        extra_precision: boolean</span>
+<span class="sd">            required or AUTOUGH</span>
+<span class="sd">        echo_extra_precision: boolean</span>
+<span class="sd">            required or AUTOUGH</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
                 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
@@ -1297,7 +2207,7 @@
         <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
         <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">else</span> <span class="s1">&#39;rU&#39;</span>
-        <span class="n">infile</span> <span class="o">=</span> <span class="n">SynergyChemical</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
+        <span class="n">infile</span> <span class="o">=</span> <span class="n">t2ChemicalData</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">read_title</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span>

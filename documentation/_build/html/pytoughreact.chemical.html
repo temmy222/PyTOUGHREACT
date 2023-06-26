@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytoughreact.chemical package &mdash; PyToughReact 0.0.15 documentation</title>
+  <title>pytoughreact.chemical package &mdash; PyTOUGHREACT 0.0.15 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            PyToughReact
+            PyTOUGHREACT
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -41,14 +41,26 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="results.html">Functions:</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pytoughreact</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writers.html">Writers Class</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pytoughreact.html">pytoughreact package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pytoughreact.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="pytoughreact.assembler.html">pytoughreact.assembler package</a></li>
@@ -77,6 +89,14 @@
 </ul>
 </li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+</ul>
 
         </div>
       </div>
@@ -84,7 +104,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PyToughReact</a>
+          <a href="index.html">PyTOUGHREACT</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -92,7 +112,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">pytoughreact</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Source Code</a></li>
           <li class="breadcrumb-item"><a href="pytoughreact.html">pytoughreact package</a></li>
       <li class="breadcrumb-item active">pytoughreact.chemical package</li>
       <li class="wy-breadcrumbs-aside">
@@ -136,17 +156,47 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.BIODG.getBaseParameterAndIndex">
 <span class="sig-name descname"><span class="pre">getBaseParameterAndIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#BIODG.getBaseParameterAndIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.BIODG.getBaseParameterAndIndex" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves base parameter and index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bio.Process</em>) – the particular process of investigation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>index</strong> – Index and Base Parameter</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.BIODG.getFirstSet">
 <span class="sig-name descname"><span class="pre">getFirstSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#BIODG.getFirstSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.BIODG.getFirstSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the first line of information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bio_numerical_parameters</strong> – List of numerical parameters for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.BIODG.getNumberOfBiomasses">
 <span class="sig-name descname"><span class="pre">getNumberOfBiomasses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#BIODG.getNumberOfBiomasses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.BIODG.getNumberOfBiomasses" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the number of biomasses</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>biomass_number</strong> – Number of biomasses</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -158,32 +208,86 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.Process.getKc">
 <span class="sig-name descname"><span class="pre">getKc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#Process.getKc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.Process.getKc" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves competitive inhibition information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – list of competitive inhibition parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.Process.getKh">
 <span class="sig-name descname"><span class="pre">getKh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#Process.getKh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.Process.getKh" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves haldane inhibition information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – list of haldana inhibition parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.Process.getKnc">
 <span class="sig-name descname"><span class="pre">getKnc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#Process.getKnc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.Process.getKnc" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves non competitive inhibition information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – list of non competitive inhibition parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.Process.getKs">
 <span class="sig-name descname"><span class="pre">getKs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#Process.getKs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.Process.getKs" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves Ks information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – list of Ks parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.Process.getNumOfCompetiting">
 <span class="sig-name descname"><span class="pre">getNumOfCompetiting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#Process.getNumOfCompetiting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.Process.getNumOfCompetiting" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves number of competiting specie</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_of_competiting</strong> – Number of Competiting species</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.bio_process_description.Process.getUptake">
 <span class="sig-name descname"><span class="pre">getUptake</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/bio_process_description.html#Process.getUptake"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.bio_process_description.Process.getUptake" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves uptake information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> – list of uptake parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -215,72 +319,211 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.addToProcess">
 <span class="sig-name descname"><span class="pre">addToProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Uptake</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Knc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.addToProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.addToProcess" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add bio component to the process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process</strong> (<a class="reference internal" href="#pytoughreact.chemical.bio_process_description.Process" title="pytoughreact.chemical.bio_process_description.Process"><em>Process</em></a>) – This should be a Process class with all properties of the process</p></li>
+<li><p><strong>Uptake</strong> (<em>int</em>) – uptake coefficient of bio component in particular process with respect to 1 mole of
+degraded primary substrate (mole component / mole substrate).</p></li>
+<li><p><strong>Ks</strong> (<em>float</em>) – Substrate degradation rate</p></li>
+<li><p><strong>Kc</strong> (<em>float</em>) – Competitive inhibition rate</p></li>
+<li><p><strong>Knc</strong> (<em>float</em>) – Non Competitive inhibition rate</p></li>
+<li><p><strong>Kh</strong> (<em>float</em>) – Haldane inhibition rate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>output</strong> (<em>dict</em>) – Dicitionary of all parameters</p></li>
+<li><p><strong>process</strong> (<em>Process</em>) – Updated Process with new parameters</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.defaultBenzene">
 <span class="sig-name descname"><span class="pre">defaultBenzene</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.defaultBenzene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.defaultBenzene" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that provides default parameters for Benzene component (can be modified)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>benzene</strong> – List of default parameters for benzene for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pytoughreact.chemical.biomass_composition.BaseComponent" title="pytoughreact.chemical.biomass_composition.BaseComponent">BaseComponent</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.defaultNDecane">
 <span class="sig-name descname"><span class="pre">defaultNDecane</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.defaultNDecane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.defaultNDecane" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that provides default parameters for Decane component (can be modified)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>decane</strong> – List of default parameters for decane for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pytoughreact.chemical.biomass_composition.BaseComponent" title="pytoughreact.chemical.biomass_composition.BaseComponent">BaseComponent</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.defaultNPentane">
 <span class="sig-name descname"><span class="pre">defaultNPentane</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.defaultNPentane"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.defaultNPentane" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that provides default parameters for N Pentane component (can be modified)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – List of default parameters for N Pentane for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pytoughreact.chemical.biomass_composition.BaseComponent" title="pytoughreact.chemical.biomass_composition.BaseComponent">BaseComponent</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.defaultNPropylBenzene">
 <span class="sig-name descname"><span class="pre">defaultNPropylBenzene</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.defaultNPropylBenzene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.defaultNPropylBenzene" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that provides default parameters for N Propyl Benzene component (can be modified)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – List of default parameters for N Propyl Benzene for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pytoughreact.chemical.biomass_composition.BaseComponent" title="pytoughreact.chemical.biomass_composition.BaseComponent">BaseComponent</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.defaultPXylene">
 <span class="sig-name descname"><span class="pre">defaultPXylene</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.defaultPXylene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.defaultPXylene" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that provides default parameters for P-Xylene component (can be modified)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component</strong> – List of default parameters for pxylene for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pytoughreact.chemical.biomass_composition.BaseComponent" title="pytoughreact.chemical.biomass_composition.BaseComponent">BaseComponent</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.defaultToluene">
 <span class="sig-name descname"><span class="pre">defaultToluene</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.defaultToluene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.defaultToluene" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that provides default parameters for Toluene component (can be modified)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>toluene</strong> – List of default parameters for Toluene for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pytoughreact.chemical.biomass_composition.BaseComponent" title="pytoughreact.chemical.biomass_composition.BaseComponent">BaseComponent</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getFifthSet">
 <span class="sig-name descname"><span class="pre">getFifthSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getFifthSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getFifthSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the fifth line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Liquid Viscosity) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getFirstSet">
 <span class="sig-name descname"><span class="pre">getFirstSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getFirstSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getFirstSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the first line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Critical Temperature, Critical Pressure, Acentric Factor,
+Dipole Moment) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getFourthSet">
 <span class="sig-name descname"><span class="pre">getFourthSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getFourthSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getFourthSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the fourth line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Liquid density, Reference Temperature for density, Diffusion) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getSecondSet">
 <span class="sig-name descname"><span class="pre">getSecondSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getSecondSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getSecondSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the second line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Boiling Point, Vapor Pressure) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getSeventhSet">
 <span class="sig-name descname"><span class="pre">getSeventhSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getSeventhSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getSeventhSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the seventh line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (carbon Coefficient, Decay Constant) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getSixthSet">
 <span class="sig-name descname"><span class="pre">getSixthSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getSixthSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getSixthSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the sixth line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Liquid Chemical Solubility) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.BaseComponent.getThirdSet">
 <span class="sig-name descname"><span class="pre">getThirdSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#BaseComponent.getThirdSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.BaseComponent.getThirdSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the third line of information in INFILE Component Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Molecular Weight, heat Capacity Constant) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -310,7 +553,28 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.Gas.addToProcess">
 <span class="sig-name descname"><span class="pre">addToProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Uptake</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Knc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#Gas.addToProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.Gas.addToProcess" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add gas component to the process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process</strong> (<a class="reference internal" href="#pytoughreact.chemical.bio_process_description.Process" title="pytoughreact.chemical.bio_process_description.Process"><em>Process</em></a>) – This should be a Process class with all properties of the process</p></li>
+<li><p><strong>Uptake</strong> (<em>int</em>) – uptake coefficient of gas component in particular process with respect to 1 mole of
+degraded primary substrate (mole component / mole substrate).</p></li>
+<li><p><strong>Ks</strong> (<em>float</em>) – Substrate degradation rate</p></li>
+<li><p><strong>Kc</strong> (<em>float</em>) – Competitive inhibition rate</p></li>
+<li><p><strong>Knc</strong> (<em>float</em>) – Non Competitive inhibition rate</p></li>
+<li><p><strong>Kh</strong> (<em>float</em>) – Haldane inhibition rate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>output</strong> (<em>dict</em>) – Dicitionary of all parameters</p></li>
+<li><p><strong>process</strong> (<em>Process</em>) – Updated Process with new parameters</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -321,7 +585,16 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.Solids.getFirstSet">
 <span class="sig-name descname"><span class="pre">getFirstSet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#Solids.getFirstSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.Solids.getFirstSet" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the first line of information in INFILE Solids Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (Name, Molecular Weight, Decay Constant, Carbon Coefficient) for biodegradation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -333,7 +606,28 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.biomass_composition.Water_Bio.addToProcess">
 <span class="sig-name descname"><span class="pre">addToProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Uptake</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Knc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/biomass_composition.html#Water_Bio.addToProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.biomass_composition.Water_Bio.addToProcess" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add water component to the process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process</strong> (<a class="reference internal" href="#pytoughreact.chemical.bio_process_description.Process" title="pytoughreact.chemical.bio_process_description.Process"><em>Process</em></a>) – This should be a Process class with all properties of the process</p></li>
+<li><p><strong>Uptake</strong> (<em>int</em>) – uptake coefficient of water component in particular process with respect to 1 mole of
+degraded primary substrate (mole component / mole substrate).</p></li>
+<li><p><strong>Ks</strong> (<em>float</em>) – Substrate degradation rate</p></li>
+<li><p><strong>Kc</strong> (<em>float</em>) – Competitive inhibition rate</p></li>
+<li><p><strong>Knc</strong> (<em>float</em>) – Non Competitive inhibition rate</p></li>
+<li><p><strong>Kh</strong> (<em>float</em>) – Haldane inhibition rate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>output</strong> (<em>dict</em>) – Dicitionary of all parameters</p></li>
+<li><p><strong>process</strong> (<em>Process</em>) – Updated Process with new parameters</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -364,7 +658,16 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.chemical_composition.PrimarySpecies.getNameTrans">
 <span class="sig-name descname"><span class="pre">getNameTrans</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/chemical_composition.html#PrimarySpecies.getNameTrans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.chemical_composition.PrimarySpecies.getNameTrans" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that retrieves the name of primary species and flag for transport and surface complexation options</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> – List containing name of primary species and flag for transport and surface complexation options</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -500,32 +803,86 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getDissolutionParams">
 <span class="sig-name descname"><span class="pre">getDissolutionParams</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getDissolutionParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getDissolutionParams" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets Dissolution parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (rate constant, rate pH, activation energy) for dissolution</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getEquilibriumData">
 <span class="sig-name descname"><span class="pre">getEquilibriumData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getEquilibriumData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getEquilibriumData" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets Equilibrium parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters for equilibrium</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getFirstRow">
 <span class="sig-name descname"><span class="pre">getFirstRow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getFirstRow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getFirstRow" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets the first line of information in Minerals Section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (name, Mineral Type, Dry Grid) for mineral reactions</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getNumberOfpHDependence">
 <span class="sig-name descname"><span class="pre">getNumberOfpHDependence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getNumberOfpHDependence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getNumberOfpHDependence" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets number of pH dependencies</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameter</strong> – number of pH dependencies</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getPrecipitationParams">
 <span class="sig-name descname"><span class="pre">getPrecipitationParams</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getPrecipitationParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getPrecipitationParams" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets Precipitation parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (rate constant, rate pH, activation energy etc) for Precipitation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getPrecipitationParams2">
 <span class="sig-name descname"><span class="pre">getPrecipitationParams2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getPrecipitationParams2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getPrecipitationParams2" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets Precipitation parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters () for Precipitation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getpHDependency1">
@@ -535,7 +892,16 @@ SOFTWARE.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.chemical.mineral_description.Mineral.getpHDependency2">
 <span class="sig-name descname"><span class="pre">getpHDependency2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pHDep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/chemical/mineral_description.html#Mineral.getpHDependency2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.chemical.mineral_description.Mineral.getpHDependency2" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Function that gets pH Dependency parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – List of parameters (rate constant, activation Energy, number of Species) for pH Dependency</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

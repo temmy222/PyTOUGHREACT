@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytoughreact.plotting.plot_multiple_tough_routine &mdash; PyToughReact 0.0.15 documentation</title>
+  <title>pytoughreact.plotting.plot_multiple_tough_routine &mdash; PyTOUGHREACT 0.0.15 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -28,7 +28,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            PyToughReact
+            PyTOUGHREACT
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -38,14 +38,34 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Functions:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
 </ul>
 
         </div>
@@ -54,7 +74,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyToughReact</a>
+          <a href="../../../index.html">PyTOUGHREACT</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -99,7 +119,7 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">from</span> <span class="nn">pytoughreact.utilities.synergy_general_utilities</span> <span class="kn">import</span> <span class="n">SynergyUtilities</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_utilities</span> <span class="kn">import</span> <span class="n">t2Utilities</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -117,7 +137,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span> <span class="o">=</span> <span class="n">filelocations</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span> <span class="o">=</span> <span class="n">filetitles</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span> <span class="o">=</span> <span class="n">simulatortype</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">modifier</span> <span class="o">=</span> <span class="n">SynergyUtilities</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modifier</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">GENERATION</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">RESTART_FILES</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">expt</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">EXPERIMENT</span><span class="p">)</span>
@@ -188,7 +208,7 @@
         <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
             <span class="n">result_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataElement</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
-            <span class="n">parameters</span> <span class="o">=</span> <span class="n">SynergyUtilities</span><span class="p">()</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
             <span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">removeRepetiting</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">)</span>
             <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET</span><span class="p">,</span>
                         <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
@@ -363,7 +383,7 @@
         <span class="n">time_year_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
             <span class="n">result_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataElement</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
-            <span class="n">parameters</span> <span class="o">=</span> <span class="n">SynergyUtilities</span><span class="p">()</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
             <span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">removeRepetiting</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">)</span>
             <span class="n">result_array_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
             <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET_SYMBOL</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">SIMULATION</span><span class="p">)</span>

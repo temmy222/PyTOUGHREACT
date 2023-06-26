@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pytoughreact.writers.bio_writing &mdash; PyToughReact 0.0.15 documentation</title>
+  <title>pytoughreact.writers.bio_writing &mdash; PyTOUGHREACT 0.0.15 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -28,7 +28,7 @@
           
           
           <a href="../../../index.html" class="icon icon-home">
-            PyToughReact
+            PyTOUGHREACT
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -38,14 +38,34 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Functions:</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pytoughreact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
 </ul>
 
         </div>
@@ -54,7 +74,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyToughReact</a>
+          <a href="../../../index.html">PyTOUGHREACT</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -118,16 +138,28 @@
 <span class="kn">from</span> <span class="nn">pytoughreact.chemical.bio_process_description</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">BIODG</span>
 
 
-<div class="viewcode-block" id="t2bio_parser"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio_parser">[docs]</a><span class="k">class</span> <span class="nc">t2bio_parser</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
+<div class="viewcode-block" id="t2bio_parser"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio_parser">[docs]</a><span class="k">class</span> <span class="nc">t2bio_parser</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for parsing TMVOC data file.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">t2bio_parser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
                                            <span class="n">t2bio_format_specification</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2bio_parser.read_multi_value_line"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio_parser.read_multi_value_line">[docs]</a>    <span class="k">def</span> <span class="nf">read_multi_value_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">linetype</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads a line of parameter multi values from the file into a dictionary variable.</span>
-<span class="sd">        Null values are ignored.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio_parser.read_multi_value_line"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio_parser.read_multi_value_line">[docs]</a>    <span class="k">def</span> <span class="nf">read_multi_value_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">linetype</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter multi values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        variable :  str</span>
+<span class="sd">            variable to be read</span>
+<span class="sd">        linetype: str</span>
+<span class="sd">            type of line to be read</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specification</span><span class="p">[</span><span class="n">linetype</span><span class="p">]</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="n">linetype</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
@@ -137,7 +169,21 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">variable</span><span class="p">[</span><span class="n">linetype</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span></div>
 
-<div class="viewcode-block" id="t2bio_parser.read_params_value_line"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio_parser.read_params_value_line">[docs]</a>    <span class="k">def</span> <span class="nf">read_params_value_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">linetype</span><span class="p">):</span>
+<div class="viewcode-block" id="t2bio_parser.read_params_value_line"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio_parser.read_params_value_line">[docs]</a>    <span class="k">def</span> <span class="nf">read_params_value_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variable</span><span class="p">,</span> <span class="n">linetype</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads a line of parameter values from the file into a dictionary variable.</span>
+<span class="sd">        Null values are ignored.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        variable :  str</span>
+<span class="sd">            variable to be read</span>
+<span class="sd">        linetype: str</span>
+<span class="sd">            type of line to be read</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specification</span><span class="p">[</span><span class="n">linetype</span><span class="p">]</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="n">linetype</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
@@ -148,7 +194,7 @@
             <span class="n">variable</span><span class="p">[</span><span class="n">linetype</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span></div></div>
 
 
-<div class="viewcode-block" id="t2bio"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio">[docs]</a><span class="k">class</span> <span class="nc">t2bio</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
+<div class="viewcode-block" id="t2bio"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio">[docs]</a><span class="k">class</span> <span class="nc">t2bio</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for TMVOC data.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
@@ -204,7 +250,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_echo_extra_precision</span> <span class="o">=</span> <span class="n">value</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="t2bio.update_read_write_functions"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="t2bio.update_read_write_functions"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates functions for reading and writing sections of data file.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
@@ -267,9 +313,19 @@
              <span class="bp">self</span><span class="o">.</span><span class="n">write_incons</span><span class="p">,</span>
              <span class="bp">self</span><span class="o">.</span><span class="n">write_indom</span><span class="p">]))</span></div>
 
-<div class="viewcode-block" id="t2bio.get_present_sections"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of TOUGH2 section keywords for which there are</span>
-<span class="sd">        corresponding data in the t2bio object.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.get_present_sections"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a list of TOUGH2 section keywords for which there are</span>
+<span class="sd">        corresponding data in the t2bio object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        present_sections : list</span>
+<span class="sd">            Sections with corresponding data in the t2bio object</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_present</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
             <span class="n">t2bio_sections</span><span class="p">,</span>
             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="p">,</span>
@@ -303,9 +359,20 @@
 
     <span class="n">present_sections</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_present_sections</span><span class="p">)</span>
 
-<div class="viewcode-block" id="t2bio.section_insertion_index"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines an appropriate position to insert the specified section</span>
+<div class="viewcode-block" id="t2bio.section_insertion_index"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Determines an appropriate position to insert the specified section</span>
 <span class="sd">        in the internal list of data file sections.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        section :  list</span>
+<span class="sd">            list of sections</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameter : int</span>
+<span class="sd">            Appropriate position to insert the specified section in the internal list of data file sections.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">listindex</span> <span class="o">=</span> <span class="n">t2bio_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
@@ -332,9 +399,30 @@
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.run"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">incon_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="s1">&#39;AUTOUGH2_2&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="t2bio.run"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">incon_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="s1">&#39;AUTOUGH2_2&#39;</span><span class="p">,</span>
             <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Runs simulation using TMVOC &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Runs simulation using TMVOC</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        save_filename : str</span>
+<span class="sd">            filename of SAVE file</span>
+<span class="sd">        incon_filename : str</span>
+<span class="sd">            filename of INCON file</span>
+<span class="sd">        run_location : str</span>
+<span class="sd">            path to Executable and required files</span>
+<span class="sd">        simulator : str</span>
+<span class="sd">            simulator executable name</span>
+<span class="sd">        silent: boolean</span>
+<span class="sd">            if output messages should be written out</span>
+<span class="sd">        output_filename: str</span>
+<span class="sd">            name of output file</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
             <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
@@ -379,8 +467,20 @@
                     <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
                 <span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">outfile</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.read_rocktypes"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_rocktypes">[docs]</a>    <span class="k">def</span> <span class="nf">read_rocktypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads grid rock types&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_rocktypes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_rocktypes">[docs]</a>    <span class="k">def</span> <span class="nf">read_rocktypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads grid rock types</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        rocktype: self</span>
+<span class="sd">            adds rocktype information to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
@@ -404,8 +504,20 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">capillarity</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="t2bio.read_chem"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_chem">[docs]</a>    <span class="k">def</span> <span class="nf">read_chem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads chemical components &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_chem"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_chem">[docs]</a>    <span class="k">def</span> <span class="nf">read_chem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads chemical components</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds components to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;chemp&#39;</span><span class="p">)</span>
         <span class="n">all_comp</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
@@ -436,8 +548,19 @@
             <span class="n">all_comp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="n">all_comp</span></div>
 
-<div class="viewcode-block" id="t2bio.write_chem"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_chem">[docs]</a>    <span class="k">def</span> <span class="nf">write_chem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes chemical components &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.write_chem"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write_chem">[docs]</a>    <span class="k">def</span> <span class="nf">write_chem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes chemical components</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;CHEMP</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">)]</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;chemp&#39;</span><span class="p">)</span>
@@ -461,8 +584,20 @@
         <span class="c1"># outfile.write(str(comp_total) + &#39;\n&#39;)</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2bio.read_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_gas">[docs]</a>    <span class="k">def</span> <span class="nf">read_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Gases &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_gas">[docs]</a>    <span class="k">def</span> <span class="nf">read_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Gases</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds gases to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;ncgas&#39;</span><span class="p">)</span>
         <span class="n">all_comp</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
@@ -472,8 +607,18 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gas</span> <span class="o">=</span> <span class="n">all_comp</span></div>
 
-<div class="viewcode-block" id="t2bio.write_gas"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_gas">[docs]</a>    <span class="k">def</span> <span class="nf">write_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Gases &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.write_gas"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write_gas">[docs]</a>    <span class="k">def</span> <span class="nf">write_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Gases</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;NCGAS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="p">)]</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;ncgas&#39;</span><span class="p">)</span>
@@ -481,17 +626,41 @@
             <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">vals</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.reset_bio_dicta"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.reset_bio_dicta">[docs]</a>    <span class="k">def</span> <span class="nf">reset_bio_dicta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_components</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Resets the BIO dicitonary &quot;&quot;&quot;</span>
-        <span class="n">dicta_all</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="viewcode-block" id="t2bio.reset_bio_dicta"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.reset_bio_dicta">[docs]</a>    <span class="k">def</span> <span class="nf">reset_bio_dicta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_components</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Resets the BIO dicitonary</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        all_components : list</span>
+<span class="sd">            all components present</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        empty_list: list</span>
+<span class="sd">            empty list containing no parameters</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_components</span><span class="p">)):</span>
             <span class="n">dicta</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">dicta</span><span class="p">[</span><span class="n">all_components</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">dicta_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dicta</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">dicta_all</span></div>
+            <span class="n">empty_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dicta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">empty_list</span></div>
 
-<div class="viewcode-block" id="t2bio.read_biodg"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_biodg">[docs]</a>    <span class="k">def</span> <span class="nf">read_biodg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Biodegradation Block &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_biodg"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_biodg">[docs]</a>    <span class="k">def</span> <span class="nf">read_biodg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Biodegradation Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds biodegradation block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg&#39;</span><span class="p">)</span>
         <span class="n">number_of_processes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;biodg1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">process_details</span> <span class="o">=</span> <span class="p">[]</span>
@@ -548,8 +717,18 @@
                                <span class="n">processes</span><span class="o">=</span><span class="n">all_processes</span><span class="p">,</span> <span class="n">biomass</span><span class="o">=</span><span class="n">biomass_details</span><span class="p">,</span> <span class="n">icflag</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">biodg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">biodegradation</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.write_biodg"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_biodg">[docs]</a>    <span class="k">def</span> <span class="nf">write_biodg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Biodegradation Block &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.write_biodg"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write_biodg">[docs]</a>    <span class="k">def</span> <span class="nf">write_biodg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Biodegradation Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;BIODG</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">biodg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">vals</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">getFirstSet</span><span class="p">()</span>
@@ -614,11 +793,34 @@
                     <span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">death_rate</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">biomass</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">inhibition_constant</span><span class="p">]</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;biodg2.1&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.read_solids"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_solids">[docs]</a>    <span class="k">def</span> <span class="nf">read_solids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Solids Block &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_solids"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_solids">[docs]</a>    <span class="k">def</span> <span class="nf">read_solids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Solids Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds solid block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="t2bio.write_solids"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_solids">[docs]</a>    <span class="k">def</span> <span class="nf">write_solids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<div class="viewcode-block" id="t2bio.write_solids"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write_solids">[docs]</a>    <span class="k">def</span> <span class="nf">write_solids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Solid Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;SOLIDS</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solids</span><span class="p">),</span> <span class="s1">&#39;solids1&#39;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solids</span><span class="p">)):</span>
@@ -626,9 +828,21 @@
             <span class="n">vals</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">getFirstSet</span><span class="p">()</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;solids2&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.read_parameters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">read_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Parameters Block &quot;&quot;&quot;</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads simulation parameters&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_parameters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">read_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads Parameters Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds parameters block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param1_autough2&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">]</span>
         <span class="c1"># infile.read_value_line(self.parameter, spec)</span>
         <span class="n">infile</span><span class="o">.</span><span class="n">read_params_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
@@ -662,8 +876,18 @@
                 <span class="n">more</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">line</span></div>
 
-<div class="viewcode-block" id="t2bio.write_parameters"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">write_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Parameters Block &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.write_parameters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">write_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Parameters Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;PARAM</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
         <span class="n">paramw</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">)</span>
@@ -688,14 +912,38 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.read_more_options"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_more_options">[docs]</a>    <span class="k">def</span> <span class="nf">read_more_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads additional parameter options&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_more_options"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_more_options">[docs]</a>    <span class="k">def</span> <span class="nf">read_more_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads additional parameter options</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds more_options block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s1">&#39;_more_option_str&#39;</span><span class="p">)</span>
         <span class="n">momops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_more_option_str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">more_option</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mop</span><span class="p">)</span> <span class="k">for</span> <span class="n">mop</span> <span class="ow">in</span> <span class="n">momops</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.read_multi"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read_multi">[docs]</a>    <span class="k">def</span> <span class="nf">read_multi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads EOS parameters&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.read_multi"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read_multi">[docs]</a>    <span class="k">def</span> <span class="nf">read_multi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads EOS parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        components: self</span>
+<span class="sd">            adds multi block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;multi&#39;</span><span class="p">,</span> <span class="s1">&#39;multi_autough2&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">]</span>
         <span class="c1"># spec = self.specification[spec]</span>
         <span class="c1"># vals = infile.read_values(&#39;multi&#39;)</span>
@@ -705,15 +953,38 @@
         <span class="k">if</span> <span class="s1">&#39;eos&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">[</span><span class="s1">&#39;eos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">[</span><span class="s1">&#39;eos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="t2bio.write_start"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write_start">[docs]</a>    <span class="k">def</span> <span class="nf">write_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Start Block &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="t2bio.write_start"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write_start">[docs]</a>    <span class="k">def</span> <span class="nf">write_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes Start Block</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
             <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;START</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="t2bio.read"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads data from file.  Mesh data can optionally be read from an</span>
+<div class="viewcode-block" id="t2bio.read"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads data from file.  Mesh data can optionally be read from an</span>
 <span class="sd">        auxiliary file.  Extra precision data will also be read from</span>
 <span class="sd">        an associated &#39;.pdat&#39; file, if it exists.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            file to read</span>
+<span class="sd">        meshfilename : str</span>
+<span class="sd">            Mesh file to read</span>
+<span class="sd">        runlocation : str</span>
+<span class="sd">            Path containing executables</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
@@ -765,9 +1036,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;successful&#39;</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="t2bio.write"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.bio_writing.t2bio.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="t2bio.write"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.bio_writing.t2bio.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
               <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes data to file.  Mesh data can optionally be written to an</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes data to file.  Mesh data can optionally be written to an</span>
 <span class="sd">        auxiliary file.  For AUTOUGH2, if extra_precision is True or a</span>
 <span class="sd">        list of section names, the corresponding data sections will be</span>
 <span class="sd">        written to an extra precision file; otherwise, the same</span>
@@ -775,6 +1046,23 @@
 <span class="sd">        also be written out as extra precision.  If</span>
 <span class="sd">        echo_extra_precision is True, the extra precision sections</span>
 <span class="sd">        will also be written to the main data file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            file to read</span>
+<span class="sd">        meshfilename : str</span>
+<span class="sd">            Mesh file to read</span>
+<span class="sd">        runlocation : str</span>
+<span class="sd">            Path containing executables</span>
+<span class="sd">        extra_precision: boolean</span>
+<span class="sd">            Required for AUTOUGH from PYTOUGH</span>
+<span class="sd">        echo_extra_precision: boolean</span>
+<span class="sd">            Required for AUTOUGH from PYTOUGH</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
