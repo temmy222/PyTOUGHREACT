@@ -1,4 +1,4 @@
-pytoughreact
+Source Code
 ============
 
 .. toctree::
