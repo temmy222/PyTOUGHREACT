@@ -117,7 +117,8 @@ Chemical Reaction Model
 
 After the flow model is created, the chemical reaction model follows. This begins with the creation of 
 the primary species in the simulation. This is done using the `PrimarySpecies` class in PyTOUGHREACT.
-This class takes in two arguments for the name of the primary species and a NOTRANS argument.
+This class takes in two arguments for the name of the primary species and a NOTRANS argument. All species
+are then combined into a list
 
 .. code-block:: python
 
@@ -133,3 +134,33 @@ This class takes in two arguments for the name of the primary species and a NOTR
     al = PrimarySpecies('al+3', 0)
     fe = PrimarySpecies('fe+2', 0)
     hs = PrimarySpecies('hs-', 0)
+
+    all_species = [h2o, h, na, cl, hco3, ca, so4, mg, h4sio4, al, fe, hs]
+
+
+The composition of the water present in the simulation are initialized. This is done using the `WaterComp` class
+in PyTOUGHREACT. The class takes in arguments for the primary species, type of constraint controlling 
+the solute content, initial concentration guess and total dissolved component concentration.
+
+.. code-block:: python
+
+    h2o_comp1 = WaterComp(h2o, 1, 1.0000E+00, 1.000000E+00)
+    h_comp1 = WaterComp(h, 1, 1E-7, 1E-7)
+    na_comp1 = WaterComp(na, 1, 1E-10, 2.93E-2)
+    cl_comp1 = WaterComp(cl, 1, 1E-10, 1.08E-3)
+    hco3_comp1 = WaterComp(hco3, 1, 1E-10, 2.21E-08)
+    ca_comp1 = WaterComp(ca, 1, 1E-10, 5.9E-03)
+    so4_comp1 = WaterComp(so4, 1, 1E-10, 6.94E-3)
+    mg_comp1 = WaterComp(mg, 1, 1E-10, 2.54E-8)
+    h4sio4_comp1 = WaterComp(h4sio4, 1, 1E-10, 1E-10)
+    al_comp1 = WaterComp(al, 1, 1E-10, 9.96E-5)
+    fe_comp1 = WaterComp(fe, 1, 1E-10, 9.7E-9)
+    hs_comp1 = WaterComp(hs, 1, 1E-10, 1E-10)
+
+The water in a zone is then summarized using the `Water` class consisting of a list of the earlier 
+defined `WaterComp` classes and the temperature and pressure in that water zone.
+
+.. code-block:: python
+
+    initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1, h4sio4_comp1, al_comp1, fe_comp1, hs_comp1],
+                            25, 200)
