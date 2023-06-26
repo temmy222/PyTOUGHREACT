@@ -7,10 +7,11 @@ PyTOUGHREACT was borne out of the need to automatically undertake a lot of simul
 TOUGHREACT, TMVOC and TMVOC-BIO softwares developed by the Lawrence Berkeley National Laboratory (LBNL). It was noticed at 
 the time that to carry out multiple simulations for uncertainty quantifications involved storing multiple
 files on ones local system and attempting to name them descriptively. This was time consuming and importantly
-was subject to human errors and mistakes
+was subject to human errors and mistakes.
 
 A similar tool exists for TOUGH3 with PyTOUGH and PyTOUGHREACT extends its capability to TOUGHREACT with additional
-capabilities for plotting.
+capabilities for plotting. Details of how PyTOUGH works can be found here https://github.com/acroucher/PyTOUGH/blob/master/doc/PyTOUGH-guide.pdf
+and is essential to understand how it works before using PyTOUGHREACT.
 
 What is TOUGHREACT / TMVOC and TMVOC-BIO
 -----------------------------------------
