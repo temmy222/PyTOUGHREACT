@@ -4,7 +4,7 @@ Getting Started
 ^^^^^^^^^^^^^^^^
 
 * The first step to using Pytoughreact is to ensure python is installed on your local system.
-  While pytoughreact is compatible with versions 3.7 and above of python. It is recommended to download 
+  While pytoughreact is compatible with versions 3.7 and above of python, it is recommended to download 
   the latest version of python.
 
 * Python can be downloaded from https://www.python.org/downloads/ for any operating system
