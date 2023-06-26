@@ -6,8 +6,8 @@ Installation procedure for PyToughReact
 * Install pytoughreact from PyPI using **pip install pytoughreact**.
 * Because pytoughreact requires PyTOUGH and PyTOUGH is not uploaded to PyPI, it is required to download the zip folder of PyTOUGH from the GitHub repository https://github.com/acroucher/PyTOUGH.
 * Unzip the folder and place in your current working directory
-* Change directory into the PyTOUGH folder and run python setup.py install or pip install . [dot] on the command line
-* With PyTOUGH installed, PyTOUGHREACT is ready to be used as a package.
+* Change directory into the PyTOUGH folder and run **python setup.py install or pip install . [dot]** on the command line
+* With PyTOUGH and PyTOUGHREACT installed, PyTOUGHREACT is ready to be used as a package.
 
 ..
     * Write bullet points here.

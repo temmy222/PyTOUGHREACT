@@ -9,7 +9,7 @@ Welcome to PyTOUGHREACT's documentation!
 .. Getting started:
 .. toctree::
    :maxdepth: 2
-   :caption: Getting started:
+   :caption: Getting started
 
    getting.rst
 
@@ -19,6 +19,13 @@ Welcome to PyTOUGHREACT's documentation!
    :caption: Installation
 
    installation.rst
+
+.. Getting started:
+.. toctree::
+   :maxdepth: 2
+   :caption: Technical
+
+   technical.rst
 
 .. toctree::
    :maxdepth: 16
