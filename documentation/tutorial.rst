@@ -104,8 +104,32 @@ used to assign reaction zones to different parts of the model.
     for blk in react.grid.blocklist[0:]:
         blk.zone = react.grid.zone[zone1.name]
 
+The model is instructed to start and the file is saved to the `flow.inp` simulation file
+
+.. code-block:: python
+
+    react.start = True
+
+    react.write('flow.inp')
 
 Chemical Reaction Model
 ~~~~~~~~~~~~~~~~~~~~
 
-After the flow model is created, the chemical reaction model follows. This begins with  
+After the flow model is created, the chemical reaction model follows. This begins with the creation of 
+the primary species in the simulation. This is done using the `PrimarySpecies` class in PyTOUGHREACT.
+This class takes in two arguments for the name of the primary species and a NOTRANS argument.
+
+.. code-block:: python
+
+    h2o = PrimarySpecies('h2o', 0)
+    h = PrimarySpecies('h+', 0)
+    na = PrimarySpecies('na+', 0)
+    cl = PrimarySpecies('cl-', 0)
+    hco3 = PrimarySpecies('hco3-', 0)
+    ca = PrimarySpecies('ca+2', 0)
+    so4 = PrimarySpecies('so4-2', 0)
+    mg = PrimarySpecies('mg+2', 0)
+    h4sio4 = PrimarySpecies('h4sio4', 0)
+    al = PrimarySpecies('al+3', 0)
+    fe = PrimarySpecies('fe+2', 0)
+    hs = PrimarySpecies('hs-', 0)
