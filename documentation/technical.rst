@@ -2,7 +2,7 @@ Technical Details of PyTOUGHREACT
 ===================================
 
 Why PyTOUGHREACT
--------
+-----------------
 PyTOUGHREACT was borne out of the need to automatically undertake a lot of simulations with the 
 TOUGHREACT, TMVOC and TMVOC-BIO softwares developed by the Lawrence Berkeley National Laboratory (LBNL). It was noticed at 
 the time that to carry out multiple simulations for uncertainty quantifications involved storing multiple

@@ -20,12 +20,19 @@ Welcome to PyTOUGHREACT's documentation!
 
    installation.rst
 
-.. Getting started:
+.. Technical:
 .. toctree::
    :maxdepth: 2
    :caption: Technical
 
    technical.rst
+
+.. Tutorial:
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorial
+
+   tutorial.rst
 
 .. toctree::
    :maxdepth: 16
