@@ -32,6 +32,7 @@ created here consisting of one block in the X and Z directions. The mulgrid clas
 rectangular dimensions of the grid and stroed in the `geom.dat` file
 
 .. code-block:: python
+    
     length = 0.1
     nblks = 1
     dx = [length / nblks] * nblks
@@ -39,3 +40,6 @@ rectangular dimensions of the grid and stroed in the `geom.dat` file
     dz = [0.5] * 1
     geo = mulgrid().rectangular(dx, dy, dz)
     geo.write('geom.dat')
+
+
+After the 2D grid has been created, the 
