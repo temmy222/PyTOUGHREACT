@@ -32,7 +32,7 @@ created here consisting of one block in the X and Z directions. The mulgrid clas
 rectangular dimensions of the grid and stroed in the `geom.dat` file
 
 .. code-block:: python
-    
+
     length = 0.1
     nblks = 1
     dx = [length / nblks] * nblks
@@ -42,4 +42,16 @@ rectangular dimensions of the grid and stroed in the `geom.dat` file
     geo.write('geom.dat')
 
 
-After the 2D grid has been created, the 
+After the 2D grid has been created, the reaction model is then created. Unlike PyTOUGH, this is done with a t2react
+class which provides the functionality to assign different reaction model to different segments of the
+grid. The number of phases and components are also specified in this section
+
+.. code-block:: python
+
+    react = t2react()
+    react.title = 'Reaction example'
+
+    react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
+                'num_secondary_parameters': 6}
+
+    react.grid = t2reactgrid().fromgeo(geo)
