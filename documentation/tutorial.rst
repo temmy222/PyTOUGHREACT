@@ -285,8 +285,117 @@ The `t2solute` class takes care of writing to `solute.inp` file as shown below
     writeSolute.nodes_to_write = [0]
     writeSolute.write()
 
+Run Model
+~~~~~~~~~~~~~~~~~~~~
+
 The simulation can be run using the code below
 
 .. code-block:: python
 
     react.run(writeSolute, simulator='treacteos1.exe')
+
+The file containing this tutorial can be found in the example folder of the GitHub repo
+
+
+TMVOC-BIO Example Simulation
+------------------------------
+
+Flow Model
+~~~~~~~~~~~~~~~~~~~~
+
+As with the TOUGHREACT model, the first step is to import all essential libraries
+
+.. code-block:: python
+
+    import numpy as np
+    import os
+    from mulgrids import mulgrid
+    from pytoughreact.writers.bio_writing import t2bio
+    from pytoughreact.chemical.biomass_composition import Component, Biomass, Gas, Water_Bio
+    from pytoughreact.chemical.bio_process_description import BIODG, Process
+    from t2grids import t2grid
+    from t2data import rocktype, t2generator
+
+
+The next step is to create the grid. This is done as follows
+
+.. code-block:: python
+
+    length = 1000.
+    xblock = 10
+    yblock = 1
+    zblock = 5
+    dx = [length / xblock] * xblock
+    dy = [1.0]
+    dz = [5] * zblock
+    geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -95])
+    geo.write('geom.dat')
+
+
+The `t2bio` class is instantiated and the grid is attached to it
+
+.. code-block:: python
+
+    bio = t2bio()
+    bio.title = 'Biodegradation Runs'
+    bio.grid = t2grid().fromgeo(geo)
+
+The rocktype is defined next with properties for rock density, porosity, permeability as shown
+below
+
+.. code-block:: python
+
+    bio.grid.delete_rocktype('dfalt')
+    shale = rocktype('shale', 0, 2600, 0.27, [6.51e-19, 6.51e-19, 6.51e-19], 1.5, 900)
+    bio.grid.add_rocktype(shale)
+
+
+The rocktypes are then assigned to different grid blocks as shown below
+
+.. code-block:: python
+
+    for blk in bio.grid.blocklist[0:]:
+        blk.rocktype = bio.grid.rocktype[shale.name]
+
+
+The components for the simulation are specified 
+
+.. code-block:: python
+
+    bio.multi = {'num_components': 3, 'num_equations': 3, 'num_phases': 3,
+                'num_secondary_parameters': 8}
+
+            
+The parameters for the model including numerical and initial conditions are defined as below
+
+.. code-block:: python
+
+    bio.parameter.update(
+    {'print_level': 3,
+     'max_timesteps': 9999,
+     'tstop': simtime,
+     'const_timestep': 100.,
+     'print_interval': 1,
+     'gravity': 9.81,
+     'option': np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+     'relative_error': 1e-5,
+     'phase_index': 2,
+     'default_incons': [9.57e+06, 0, 1e-6, 30.]})
+
+    bio.start = True
+
+The biodegradation model is defined using a `Component` or `BaseComponent` class. Some default compounds
+exists in the package already and can be accessed as follows
+
+.. code-block:: python
+
+    toluene = Component(1).defaultToluene()
+    bio.components = [toluene]
+    O2_gas = Gas('O2', 2)
+    bio.gas = [O2_gas]
+
+The water class is defined specially using the `Water_Bio` class as shown below
+
+.. code-block:: python
+    
+    water = Water_Bio('H2O')

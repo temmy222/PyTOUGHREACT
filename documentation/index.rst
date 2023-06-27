@@ -36,7 +36,7 @@ Welcome to PyTOUGHREACT's documentation!
 
 .. toctree::
    :maxdepth: 16
-   :caption: Repository Code
+   :caption: Repository API Code
 
    
    chemical.rst
