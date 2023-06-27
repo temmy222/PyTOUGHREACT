@@ -164,3 +164,17 @@ defined `WaterComp` classes and the temperature and pressure in that water zone.
 
     initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1, h4sio4_comp1, al_comp1, fe_comp1, hs_comp1],
                             25, 200)
+
+
+The next step is to generate a mineral property. This process involves multiple steps. The first of which
+is to define the `Mineral` class. The mineral class is defined as follows. It takes in five arguments; the
+name of the mineral, a flag for the type of mineral, a flag for the kind of constraints provided, 
+an index for a solid solution mineral endmember and an index for a mineral that may be precipitated in a dry grid block. 
+
+.. code-block:: python
+
+    albite = Mineral('Albite(low)', 1, 3, 0, 0)
+
+
+To provide the dissolution and precipitation properties for the mineral, the `Dissolution` and `Precipitation`
+classes are used. These classes contain information for rate constants (in mol/:math:`.m2`/sec)
