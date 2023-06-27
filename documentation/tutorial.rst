@@ -177,4 +177,116 @@ an index for a solid solution mineral endmember and an index for a mineral that 
 
 
 To provide the dissolution and precipitation properties for the mineral, the `Dissolution` and `Precipitation`
-classes are used. These classes contain information for rate constants (in mol/:math:`.m2`/sec)
+classes are used. These classes contain information for rate constants (in mol/m2/sec), flag for
+rate dependence on pH, rate equation exponents, activation energy. If Precipitation is defined, parameters
+are also made for the initial volume fraction and precipitation law index. If ph dependence is specified,
+two pH dependence parameters law classes are made viz `pHDependenceType1` and `pHDependenceType2`. The pH
+dependence type 1 takes in parameters for pH1 and pH2 and slope 1 and slope 2 as in the TOUGHREACT manual.
+The second pH dependence type takes in parameters for activation energy, number of species involved in each
+mechanism, name of the species involved in the mechanism and the power term exponential. The dissolution, 
+precipitation and ph dependence types are added to the base mineral class as shown below
+
+.. code-block:: python
+
+    dissolution_albite = Dissolution(1.4454e-13, 2, 1, 1, 69.8, 0, 0, 0)
+    precipitation_albite = Precipitation(1.4454e-13, 0, 1, 1, 69.8, 0, 0, 0, 1.0E-6, 0, 0, 0, 0)
+    albite_ph = pHDependenceType2(2.1380e-11, 65, 1, 'h+', 0.457)
+    dissolution_albite.pHDependence = [albite_ph]
+    albite.dissolution = [dissolution_albite]
+    albite.precipitation = [precipitation_albite]
+
+
+All minerals used in the simulation are then saved in a list. Default mineral properties are 
+saved in the `default_minerals.py` script and can be accessed in a list using
+the `get_kinetics_minerals` function as below.
+
+.. code-block:: python
+
+    mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh', 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
+    all_minerals = get_kinetics_minerals(mineral_list)
+
+The minerals are then aggregated in a zone using the `MineralComp` class. This class takes in the 
+`Mineral` class, initial volume fraction for that zone, flag for if the mineral is at equilibrium 
+or under kinetic constraints. If the mineral is kinetic, additional parameters are added for radius 
+of mineral grain, specific reactive surface area, flag for surface area conversion
+
+
+.. code-block:: python
+
+    c3fh6_zone1 = MineralComp(get_specific_mineral(mineral_list[0]), 0.1, 0, 0.0E-00, 20000.0, 0)
+    tobermorite_zone1 = MineralComp(get_specific_mineral(mineral_list[1]), 0.05, 0, 0.0E-00, 20000.0, 0)
+    calcite_zone1 = MineralComp(get_specific_mineral(mineral_list[2]), 0.4, 1, 0.0E-00, 260.0, 0)
+    csh_zone1 = MineralComp(get_specific_mineral(mineral_list[3]), 0.1, 1, 0.0E-00, 20000.0, 0)
+    portlandite_zone1 = MineralComp(get_specific_mineral(mineral_list[4]), 0.1, 1, 0.0E-00, 1540.0, 0)
+    ettringite_zone1 = MineralComp(get_specific_mineral(mineral_list[5]), 0.1, 1, 0.0E-00, 20000.0, 0)
+    katoite_zone1 = MineralComp(get_specific_mineral(mineral_list[6]), 0.1, 1, 0.0E-00, 570.0, 0)
+    hydrotalcite_zone1 = MineralComp(get_specific_mineral(mineral_list[7]), 0.05, 1, 0.0E-00, 1000.0, 0)
+
+
+The information for gases to be added to the domain is done using the `ReactGas` class. It takes in
+three parameters, the name of the gaseous species, the fugacity flag and the partial pressure (in bar)
+as shown below
+
+.. code-block:: python
+
+    co2_gas = ReactGas('co2(g)', 0, 1.1)
+
+
+The initial and injection gas are then saved in a list as shown below
+
+.. code-block:: python
+
+    ijgas = [[initial_co2], []]
+
+The permeability porosity relation is modeled with the `PermPoro` class with the index for the permeability
+law, and parameters for the chosen law chosen as inputs to the simulation.
+
+.. code-block:: python
+
+    permporo = PermPoro(1, 0, 0)
+
+
+To be able to assign the permeability porosity to different zones in the domain, the `PermPoroZone`
+is created
+
+.. code-block:: python
+
+    permporozone = PermPoroZone([permporo])
+
+After the declaration of all parameters is completed, they are then assigned to different parts of the
+domain using the earlier defined zones as shown
+
+
+.. code-block:: python
+
+    zone1.water = [[initial_water_zone1], []]
+    zone1.gas = [[initial_co2], []]
+    mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1, katoite_zone1, hydrotalcite_zone1])
+    zone1.mineral_zone = mineral_zone1
+    zone1.permporo = permporozone
+
+
+The properties to be written in the `chemical.inp` file are then saved in a `t2chemical` class
+
+.. code-block:: python
+
+    writeChemical = t2chemical(t2reactgrid=react.grid)
+    writeChemical.minerals = all_minerals
+    writeChemical.title = 'Automating Tough react'
+    writeChemical.primary_aqueous = all_species
+    writeChemical.gases = initial_co2
+    writeChemical.write()
+
+The `t2solute` class takes care of writing to `solute.inp` file as shown below
+
+.. code-block:: python
+
+    writeSolute = t2solute(t2chemical=writeChemical)
+    writeSolute.nodes_to_write = [0]
+    writeSolute.write()
+
+The simulation can be run using the code below
+
+.. code-block:: python
+
+    react.run(writeSolute, simulator='treacteos1.exe')

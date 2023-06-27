@@ -151,7 +151,6 @@ writeChemical.write()
 # ____________________________________SOLUTE.INP________________________________________________________________
 writeSolute = t2solute(t2chemical=writeChemical)
 writeSolute.nodes_to_write = [0]
-masa = writeSolute.getgrid_info()
 writeSolute.write()
 
 # ___________________________________ RUN SIMULATION ___________________________________________________________
