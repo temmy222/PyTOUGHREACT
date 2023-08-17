@@ -358,7 +358,7 @@ The rocktypes are then assigned to different grid blocks as shown below
         blk.rocktype = bio.grid.rocktype[shale.name]
 
 
-The components for the simulation are specified 
+The components, equations and phases for the simulation are specified 
 
 .. code-block:: python
 
@@ -397,5 +397,7 @@ exists in the package already and can be accessed as follows
 The water class is defined specially using the `Water_Bio` class as shown below
 
 .. code-block:: python
-    
+
     water = Water_Bio('H2O')
+
+The biomass properties are defined using the `Biomass` class which takes in the 

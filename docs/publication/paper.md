@@ -13,7 +13,7 @@ authors:
   - name: Ipsita Gupta^[Corresponding author]
     affiliation: 1
 affiliations:
- - name: Louisiana State Univeristy, USA
+ - name: Louisiana State University, USA
    index: 1
 date: 19 February 2023
 bibliography: paper.bib
