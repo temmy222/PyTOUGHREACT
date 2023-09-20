@@ -400,4 +400,44 @@ The water class is defined specially using the `Water_Bio` class as shown below
 
     water = Water_Bio('H2O')
 
-The biomass properties are defined using the `Biomass` class which takes in the 
+The biomass properties are defined using the `Biomass` class which takes in the properties
+of the biomass. The properties which are defined include the index which is the serial 
+number of the biomass, name of the biomass,
+the death rate in (per second), max temperature in Celsius, 
+minimum concentration in kg biomass / kg aqueous phase, initial concentration in 
+kg biomass / kg aqueous phase. An example is shown below
+
+.. code-block:: python
+
+    biomass = Biomass(1, 'biom', 0.0153, 1.00e-6, 30, 2.3148e-07, 0.e-6)
+
+To model the degradation processes, the `Process` class is used. The process class has a biomass
+class as an input, number of components in the process, maximum specific substrate degradation rate 
+in process (kg substrate/ (s kg biomass), yield coefficient for the growth of biomass due to the 
+degradation of unit mass of substrate in the process (kg biomass / kg substrate), enthalpy in
+((J/kg substrate)
+
+.. code-block:: python
+
+    process1 = Process(biomass, 2, 1.6944e-04, 0.58, 0)
+
+The required components in the process are then added using the `addToProcess` method together with
+the any provided values such as the substrate degradation rate, compeititive inhibiton rate, non 
+competitive inhibition rate or haldane inhibition rate as shown below.
+
+.. code-block:: python
+
+    water.addToProcess(process1, water_uptake)
+    O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
+    toluene.addToProcess(process1, 1, 7.4625e-06)
+
+
+The defined processes are then merged into `BIODG` class to assign numerical values to the simulation.
+The first value is the type of Monod model with 0 for multiplicative Monod model and greater than 0
+for the minimum Monod model. The next value in the class is the reduction factor criterion for local 
+Newton-Raphson iteration. The lower and upper limit of aqueous phase saturation considered in the 
+saturation function. The weighting factor for the linear interpolation of electron acceptor / nutrients and
+substrate concentration concentrations to be used in the substrate degradation equation. The processes are 
+combined in a list and biomass defined earlier are also defined in a list.  
+
+
