@@ -118,7 +118,7 @@ Chemical Reaction Model
 After the flow model is created, the chemical reaction model follows. This begins with the creation of 
 the primary species in the simulation. This is done using the `PrimarySpecies` class in PyTOUGHREACT.
 This class takes in two arguments for the name of the primary species and a NOTRANS argument. All species
-are then combined into a list
+are then combined into a list.
 
 .. code-block:: python
 
@@ -184,7 +184,7 @@ two pH dependence parameters law classes are made viz `pHDependenceType1` and `p
 dependence type 1 takes in parameters for pH1 and pH2 and slope 1 and slope 2 as in the TOUGHREACT manual.
 The second pH dependence type takes in parameters for activation energy, number of species involved in each
 mechanism, name of the species involved in the mechanism and the power term exponential. The dissolution, 
-precipitation and ph dependence types are added to the base mineral class as shown below
+precipitation and ph dependence types are added to the base mineral class as shown below.
 
 .. code-block:: python
 
@@ -208,7 +208,7 @@ the `get_kinetics_minerals` function as below.
 The minerals are then aggregated in a zone using the `MineralComp` class. This class takes in the 
 `Mineral` class, initial volume fraction for that zone, flag for if the mineral is at equilibrium 
 or under kinetic constraints. If the mineral is kinetic, additional parameters are added for radius 
-of mineral grain, specific reactive surface area, flag for surface area conversion
+of mineral grain, specific reactive surface area, flag for surface area conversion.
 
 
 .. code-block:: python
@@ -225,7 +225,7 @@ of mineral grain, specific reactive surface area, flag for surface area conversi
 
 The information for gases to be added to the domain is done using the `ReactGas` class. It takes in
 three parameters, the name of the gaseous species, the fugacity flag and the partial pressure (in bar)
-as shown below
+as shown below.
 
 .. code-block:: python
 
