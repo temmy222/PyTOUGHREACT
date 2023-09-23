@@ -440,4 +440,18 @@ saturation function. The weighting factor for the linear interpolation of electr
 substrate concentration concentrations to be used in the substrate degradation equation. The processes are 
 combined in a list and biomass defined earlier are also defined in a list.  
 
+If diffusion is specified, the diffusion properties for each component is specified in a list of list.
+
+The process for generation of a well is the same as in PyTOUGH with a t2generator needed to create the well
+and its properties.
+
+Finally, with the model set-up, the executable is ready to be run, this can be done by writing the model to
+an INFILE and specifiying the location of the executable with the run location parameter. The model can then
+be run using the run function with the simulator as 'tmvoc'.
+
+.. code-block:: python
+
+    bio.write('INFILE', runlocation=os.getcwd())
+    bio.run(simulator='tmvoc', runlocation='')
+
 

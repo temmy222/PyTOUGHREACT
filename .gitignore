@@ -3,6 +3,7 @@ venv
 .venv
 .flake8
 .vscode/settings.json
+settings.json
 .gitignore
 pytoughreact/pytough_wrapper/pytough
 pytoughreact/results/results_factory.py
