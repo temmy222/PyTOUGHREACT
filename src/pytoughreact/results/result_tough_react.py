@@ -115,7 +115,10 @@ class ResultReact(object):
                     continue
             except Exception:
                 pass
-        output_data = ori_array[0:indices_array[0] + 1]
+        if len(indices_array) > 0:
+            output_data = ori_array[0:indices_array[0] + 1]
+        else:
+            output_data = ori_array
         return output_data
 
     def getXStartPoints(self, timer):
@@ -170,7 +173,6 @@ class ResultReact(object):
             end_index = x_start[layer_number - 1] + 1
         else:
             end_index = 50
-        z_data = self.get_element_data(timer, param)
         output = z_data[begin_index:end_index]
         return output
 

@@ -41,17 +41,17 @@ import pandas as pd
 
 
 class PlotTough(object):
-    def __init__(self, simulatortype, file_location, filetitle, **kwargs):
+    def __init__(self, simulator_type, file_location, file_title, **kwargs):
         self.file_location = file_location
         os.chdir(self.file_location)
-        self.filetitle = filetitle
-        self.simulatortype = simulatortype
+        self.filetitle = file_title
+        self.simulatortype = simulator_type
         self.modifier = t2Utilities()
         self.generation = kwargs.get(gc.GENERATION)
         self.args = kwargs.get(gc.RESTART_FILES)
         self.expt = kwargs.get(gc.EXPERIMENT)
 
-    def read_file(self):
+    def _read_file(self):
         if self.simulatortype.lower() == gc.TMVOC or self.simulatortype.lower() == gc.TOUGH3:
             fileReader = ResultTough3(self.simulatortype, self.file_location, self.filetitle,
                                       generation=self.generation)
@@ -59,19 +59,19 @@ class PlotTough(object):
             fileReader = ResultReact(self.simulatortype, self.file_location, self.filetitle)
         return fileReader
 
-    def _plotRaw(self, param, gridblocknumber, format_of_date, restart=False):
+    def _plotRaw(self, param, grid_block_number, format_of_date, restart=False):
         parameters = t2Utilities()
         if restart is True:
-            time_year = self.getRestartDataTime(format_of_date)
-            result_array = self.getRestartDataElement(param, gridblocknumber)
+            time_year = self._getRestartDataTime(format_of_date)
+            result_array = self._getRestartDataElement(param, grid_block_number)
             time_year, result_array = parameters.removeRepetiting(time_year, result_array)
         else:
-            fileReader = self.read_file()
+            fileReader = self._read_file()
             time_year = fileReader.convert_times(format_of_date)
             if self.generation is True:
                 result_array = fileReader.getGenerationData(param)
             else:
-                result_array = fileReader.get_timeseries_data(param, gridblocknumber)
+                result_array = fileReader.get_timeseries_data(param, grid_block_number)
         fig, axs = plt.subplots(1, 1)
         axs.plot(time_year, result_array, marker=pc.CARET_SYMBOL)
         if format_of_date.lower() == pc.YEAR:
@@ -96,15 +96,15 @@ class PlotTough(object):
         else:
             fig.savefig(param + ' ' + pc.VERSUS + ' ' + pc.TIME + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plotParamWithTime(self, param, gridblocknumber, format_of_date):
-        """ Plots a parameter in the results file as a function of time
+    def plotParamWithTime(self, param, grid_block_number, format_of_date):
+        """ Line Plots of a parameter in the results file as a function of time
 
         Parameters
         -----------
         param :  str
             The parameter to be plotted on the y-axis
-        gridblocknumber : int
-            the grid block in whihc its parameter evolution is to be observed.
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
         format_of_date: str
             The format of the date; could be minute, hour, day or year
         
@@ -115,26 +115,26 @@ class PlotTough(object):
         if self.expt:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self._plotRawWithExpt(param, gridblocknumber, format_of_date)
+                    self._plotRawWithExpt(param, grid_block_number, format_of_date)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self._plotRawWithExpt(param, gridblocknumber, format_of_date)
+                    self._plotRawWithExpt(param, grid_block_number, format_of_date)
         else:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self._plotRaw(param, gridblocknumber, format_of_date)
+                    self._plotRaw(param, grid_block_number, format_of_date)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self._plotRaw(param, gridblocknumber, format_of_date)
+                    self._plotRaw(param, grid_block_number, format_of_date)
 
-    def getRestartLocations(self):
+    def _getRestartLocations(self):
         restart_files = list()
         restart_files.append(self.file_location)
         restart_files = restart_files + self.args
         return restart_files
 
-    def getRestartDataTime(self, format_of_date):
-        locations = self.getRestartLocations()
+    def _getRestartDataTime(self, format_of_date):
+        locations = self._getRestartLocations()
         final_time = []
         for i in range(0, len(locations)):
             if self.simulatortype.lower() == gc.TMVOC or self.simulatortype.lower() == gc.TOUGH3:
@@ -151,37 +151,71 @@ class PlotTough(object):
         final_time = list(itertools.chain.from_iterable(final_time))
         return final_time
 
-    def getRestartDataElement(self, param, gridblocknumber):
-        locations = self.getRestartLocations()
-        final_result = []
+    def _getRestartDataElement(self, param, grid_block_number):
+        """ Get Restart Data
+
+        Parameters
+        -----------
+        param :  str
+            The parameter to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        
+        Returns
+        --------
+        restart_result : list
+            restart data in a list
+        
+        """
+        locations = self._getRestartLocations()
+        restart_result = []
         for i in range(0, len(locations)):
             if self.simulatortype.lower() == gc.TMVOC or self.simulatortype.lower() == gc.TOUGH3:
                 fileReader = ResultTough3(self.simulatortype, locations[i], self.filetitle)
             else:
                 fileReader = ResultReact(self.simulatortype, locations[i], self.filetitle)
             if i == 0:
-                result_array = fileReader.get_timeseries_data(param, gridblocknumber)
-                final_result.append(result_array)
+                result_array = fileReader.get_timeseries_data(param, grid_block_number)
+                restart_result.append(result_array)
             else:
-                result_array = fileReader.get_timeseries_data(param, gridblocknumber)
+                result_array = fileReader.get_timeseries_data(param, grid_block_number)
                 result_array = result_array[1:]
-                final_result.append(result_array)
-        final_result = list(itertools.chain.from_iterable(final_result))
-        return final_result
+                restart_result.append(result_array)
+        restart_result = list(itertools.chain.from_iterable(restart_result))
+        return restart_result
 
-    def _plotRawWithExpt(self, param, gridblocknumber, format_of_date, restart=False, data_file='data_file.csv'):
+    def _plotRawWithExpt(self, param, grid_block_number, format_of_date, restart=False, data_file='data_file.csv'):
+        """ Line Plots of a parameter in the results file as a function of time if restart and experiments was performed in the simulation
+
+        Parameters
+        -----------
+        param :  str
+            The parameter to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        restart: boolean
+            If restart was performed in the simulation or not
+        data_file: str
+            Data containing the experimental result in csv format
+        
+        Returns
+        --------
+        
+        """
         expt_test = Experiment(self.expt[0], data_file)
         time_year_expt = expt_test.get_times()
         result_array_expt = expt_test.get_timeseries_data(param)
         parameters = t2Utilities()
         if restart is True:
-            time_year = self.getRestartDataTime(format_of_date)
-            result_array = self.getRestartDataElement(param, gridblocknumber)
+            time_year = self._getRestartDataTime(format_of_date)
+            result_array = self._getRestartDataElement(param, grid_block_number)
             time_year, result_array = parameters.removeRepetiting(time_year, result_array)
         else:
-            fileReader = self.read_file()
+            fileReader = self._read_file()
             time_year = fileReader.convert_times(format_of_date)
-            result_array = fileReader.get_timeseries_data(param, gridblocknumber)
+            result_array = fileReader.get_timeseries_data(param, grid_block_number)
         fig, axs = plt.subplots(1, 1)
         if max(result_array_expt) <= 0:
             dy = 0.15 * abs(min(result_array_expt))
@@ -214,45 +248,79 @@ class PlotTough(object):
             os.chdir(self.file_location)
             fig.savefig(param + ' ' + pc.VERSUS + ' ' + pc.TIME + ' ' + pc.EXPERIMENT + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plotParamWithTimeRestart(self, param, gridblocknumber, format_of_date):
+    def plotParamWithTimeRestart(self, param, grid_block_number, format_of_date):
+        """ Line Plots of a parameter in the results file as a function of time if restart was performed in the simulation
+
+        Parameters
+        -----------
+        param :  str
+            The parameter to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
         if self.expt:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self._plotRawWithExpt(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRawWithExpt(param, grid_block_number, format_of_date, restart=True)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self._plotRawWithExpt(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRawWithExpt(param, grid_block_number, format_of_date, restart=True)
         else:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self._plotRaw(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRaw(param, grid_block_number, format_of_date, restart=True)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self._plotRaw(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRaw(param, grid_block_number, format_of_date, restart=True)
 
-    def plotRawLayer(self, directionXAxis, directionYAxis, param, layer_num, time):
-        fileReader = self.read_file()
+    def _plotRawLayer(self, direction_x_axis, direction_y_axis, param, layer_num, time):
+        """ Line Plots to show the evolution of a particular parameter across a layer at a particular time
+
+        Parameters
+        -----------
+        direction_x_axis :  str
+            The direction to be plotted on the x axis 
+        direction_y_axis :  str
+            The direction to be plotted on the y axis
+        param :  list[str]
+            List of parameters
+        layer_num :  int
+            The layer in the model to be plotted
+        time : int
+            the time at which the plot is to be made
+        
+        Returns
+        --------
+        
+        """
+        fileReader = self._read_file()
         if len(param) == 1:
-            y_data = fileReader.getLayerData(directionYAxis, layer_num, time, param)
-            x_data = fileReader.get_unique_coord_data(directionXAxis, time)
+            y_data = fileReader.getLayerData(direction_y_axis, layer_num, time, param[0])
+            x_data = fileReader.get_unique_coord_data(direction_x_axis, time)
             fig, axs = plt.subplots(1, 1)
             axs.plot(x_data, y_data, marker=pc.CARET_SYMBOL)
-            axs.set_xlabel(pc.DISTANCE_MSG + ' ' + directionXAxis + ' ' + pc.DIRECTION + ' ' + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET)
-            axs.set_ylabel(self.modifier.param_label_full(param.upper()))
+            axs.set_xlabel(pc.DISTANCE_MSG + ' ' + direction_x_axis + ' ' + pc.DIRECTION + ' ' + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET)
+            axs.set_ylabel(self.modifier.param_label_full(param[0].upper()))
             plt.tight_layout()
             plt.show()
             os.chdir(self.file_location)
-            fig.savefig(param + ' ' + pc.LAYER_FOR_LAYER + ' ' + str(layer_num) + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
+            fig.savefig(param[0] + ' ' + pc.LAYER_FOR_LAYER + ' ' + str(layer_num) + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
         else:
             fig = plt.figure(figsize=(10, 8))
             plot_counter = 1
             start_point = 0
-            x_data = fileReader.get_unique_coord_data(directionXAxis, time)
+            x_data = fileReader.get_unique_coord_data(direction_x_axis, time)
             for _ in range(1, len(param) + 1):
                 axs = plt.subplot(math.ceil(len(param) / 2) + 1, 2, plot_counter)
-                y_data = fileReader.getLayerData(directionYAxis, layer_num, time, param[start_point])
+                y_data = fileReader.getLayerData(direction_y_axis, layer_num, time, param[start_point])
                 axs.plot(x_data, y_data)
-                axs.set_xlabel(pc.DISTANCE_MSG + ' ' + directionXAxis + ' ' + pc.DIRECTION + ' ' + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=14)
+                axs.set_xlabel(pc.DISTANCE_MSG + ' ' + direction_x_axis + ' ' + pc.DIRECTION + ' ' + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=14)
                 axs.set_ylabel(self.modifier.param_label_full(param[start_point].upper()), fontsize=14)
                 plot_counter = plot_counter + 1
                 start_point = start_point + 1
@@ -261,33 +329,97 @@ class PlotTough(object):
             fig.tight_layout()
             plt.show()
 
-    def plotParamWithParam(self, param1, param2, gridblocknumber):
+    def plotParamWithParam(self, param1, param2, grid_block_number):
+        """ Line Plot of two parameters in the results file
 
-        with plt.style.context(pc.MY_STYLE):
-            fileReader = self.read_file()
-            result_array_x = fileReader.get_timeseries_data(param1, gridblocknumber)
-            result_array_y = fileReader.get_timeseries_data(param2, gridblocknumber)
-            fig, axs = plt.subplots(1, 1)
-            axs.plot(result_array_x, result_array_y, marker=pc.CARET_SYMBOL)
-            axs.set_xlabel(self.modifier.param_label_full(param1.upper()))
-            axs.set_ylabel(self.modifier.param_label_full(param2.upper()))
-            plt.tight_layout()
-            plt.show()
-            fig.savefig(param2 + ' ' + pc.VERSUS + ' ' + param1 + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
-
-    def plotParamWithLayer(self, directionXAxis, directionYAxis, param, layer_num, time):
+        Parameters
+        -----------
+        param1 :  str
+            The parameter to be plotted on the x-axis
+        param2 :  str
+            The parameter to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        
+        Returns
+        --------
+        
+        """
         try:
             with plt.style.context(pc.MY_STYLE):
-                self.plotRawLayer(directionXAxis, directionYAxis, param, layer_num, time)
+                fileReader = self._read_file()
+                result_array_x = fileReader.get_timeseries_data(param1, grid_block_number)
+                result_array_y = fileReader.get_timeseries_data(param2, grid_block_number)
+                fig, axs = plt.subplots(1, 1)
+                axs.plot(result_array_x, result_array_y, marker=pc.CARET_SYMBOL)
+                axs.set_xlabel(self.modifier.param_label_full(param1.upper()))
+                axs.set_ylabel(self.modifier.param_label_full(param2.upper()))
+                plt.tight_layout()
+                plt.show()
+                fig.savefig(param2 + ' ' + pc.VERSUS + ' ' + param1 + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self.plotRawLayer(directionXAxis, directionYAxis, param, layer_num, time)
+                fileReader = self._read_file()
+                result_array_x = fileReader.get_timeseries_data(param1, grid_block_number)
+                result_array_y = fileReader.get_timeseries_data(param2, grid_block_number)
+                fig, axs = plt.subplots(1, 1)
+                axs.plot(result_array_x, result_array_y, marker=pc.CARET_SYMBOL)
+                axs.set_xlabel(self.modifier.param_label_full(param1.upper()))
+                axs.set_ylabel(self.modifier.param_label_full(param2.upper()))
+                plt.tight_layout()
+                plt.show()
+                fig.savefig(param2 + ' ' + pc.VERSUS + ' ' + param1 + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plot2D_one(self, direction1, direction2, param, timer):
-        fileReader = self.read_file()
+
+    def plotParamWithLayer(self, direction_x_axis, direction_y_axis, param, layer_num, time):
+        """ Line Plots to show the evolution of a particular parameter across a layer at a particular time
+
+        Parameters
+        -----------
+        direction_x_axis :  str
+            The direction to be plotted on the x axis 
+        direction_y_axis :  str
+            The direction to be plotted on the y axis
+        param :  list[str]
+            List of parameters
+        layer_num :  int
+            The layer in the model to be plotted
+        time : int
+            the time at which the plot is to be made
+        
+        Returns
+        --------
+        
+        """
+        try:
+            with plt.style.context(pc.MY_STYLE):
+                self._plotRawLayer(direction_x_axis, direction_y_axis, param, layer_num, time)
+        except Exception:
+            with plt.style.context(pc.CLASSIC):
+                self._plotRawLayer(direction_x_axis, direction_y_axis, param, layer_num, time)
+
+    def plot2D_one(self, direction_y_axis, direction_x_axis, param, timer):
+        """ 2D mesh plot (ungridded) to show the evolution of a particular parameter across a the entire domain at a particular time
+
+        Parameters
+        -----------
+        direction_x_axis :  str
+            The direction to be plotted on the x axis 
+        direction_y_axis :  str
+            The direction to be plotted on the y axis
+        param :  str
+            parameter to be plotted
+        time : int
+            the time at which the plot is to be made
+        
+        Returns
+        --------
+        
+        """
+        fileReader = self._read_file()
         fig, ax = plt.subplots(1, 1)
-        X = fileReader.get_coord_data(direction1, timer)
-        Z = fileReader.get_coord_data(direction2, timer)
+        X = fileReader.get_coord_data(direction_y_axis, timer)
+        Z = fileReader.get_coord_data(direction_x_axis, timer)
         data = fileReader.get_element_data(timer, param)
         xi, yi = np.meshgrid(X, Z)
         data1 = griddata((X, Z), data, (xi, yi), method=pc.METHOD)
@@ -299,19 +431,39 @@ class PlotTough(object):
             cbar = fig.colorbar(cs2, pad=0.01)
         cbar.ax.set_ylabel(self.modifier.param_label_full(param.upper()), fontsize=12)
         ticklabs = cbar.ax.get_yticklabels()
-        cbar.ax.set_yticklabels(ticklabs, fontsize=12)
+        try:
+            cbar.ax.set_yticklabels(ticklabs, fontsize=12)
+        except ValueError:
+            pass
         plt.xlabel(pc.HORIZONTAL_ADDED.capitalize() + ' ' + pc.DISTANCE.capitalize() + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=12)
-        plt.ylabel(pc.VERTICAL_ADDED.capitalize() + pc.DEPTH.capitalize() + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=12)
+        plt.ylabel(pc.VERTICAL_ADDED.capitalize() + ' ' + pc.DEPTH.capitalize() + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=12)
         plt.tick_params(axis=pc.X, labelsize=12)
         plt.tick_params(axis=pc.Y, labelsize=12)
         plt.tight_layout()
         plt.show()
         fig.savefig('2D plain' + str(timer) + param + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plot2D_withgrid(self, direction1, direction2, param, timer):
-        fileReader = self.read_file()
-        X = fileReader.get_coord_data(direction1, timer)
-        Z = fileReader.get_coord_data(direction2, timer)
+    def plot2D_withgrid(self, direction_y_axis, direction_x_axis, param, timer):
+        """ 2D mesh plot (gridded) to show the evolution of a particular parameter across a the entire domain at a particular time
+
+        Parameters
+        -----------
+        direction_x_axis :  str
+            The direction to be plotted on the x axis 
+        direction_y_axis :  str
+            The direction to be plotted on the y axis
+        param :  str
+            parameter to be plotted
+        time : int
+            the time at which the plot is to be made
+        
+        Returns
+        --------
+        
+        """
+        fileReader = self._read_file()
+        X = fileReader.get_coord_data(direction_y_axis, timer)
+        Z = fileReader.get_coord_data(direction_x_axis, timer)
         df = pd.DataFrame(index=range(len(X)))
         df[pc.X_CAPS] = X
         df[pc.Z_CAPS] = Z
@@ -376,7 +528,7 @@ class PlotTough(object):
         cbar.ax.ticklabel_format(useOffset=False, style=pc.PLAIN_STYLE)
         plt.xticks(rotation=90)
         plt.xlabel(pc.HORIZONTAL_ADDED.capitalize() + ' ' + pc.DISTANCE.capitalize() + ' ' + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=12)
-        plt.ylabel(pc.VERTICAL_ADDED.capitalize() + pc.DEPTH.capitalize() + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=12)
+        plt.ylabel(pc.VERTICAL_ADDED.capitalize() + ' ' + pc.DEPTH.capitalize() + ' ' + pc.OPEN_BRACKET + pc.METER + pc.CLOSE_BRACKET, fontsize=12)
         plt.tight_layout()
         plt.show()
         fig.savefig(grc.GRID_NAME.capitalize() + str(timer) + param + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
