@@ -1,6 +1,7 @@
 import os
 from pytoughreact.results.result_tough_react import ResultReact
 from pytoughreact.results.t2result import t2result
+from pytoughreact.plotting.plot_tough_routine import PlotTough
 
 FILE_PATH = os.path.abspath(os.curdir)
 
@@ -9,8 +10,11 @@ time = results.get_times()
 parameter_result = results.get_time_series_data('pH', 0)
 print('yes')
 
+pt = PlotTough('toughreact', FILE_PATH, 'kdd_conc.tec')
+pt.plotParamWithTime('pH', 0, 'day')
 
-# results = ResultReact('toughreact', FILE_PATH, 'kdd_conc.tec')
+
+results = ResultReact('toughreact', FILE_PATH, 'kdd_conc.tec')
 # time = results.get_times()
 # parameter_result = results.get_timeseries_data('pH', 0)
 # time_length = len(time)

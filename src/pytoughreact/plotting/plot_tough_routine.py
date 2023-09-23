@@ -59,7 +59,7 @@ class PlotTough(object):
             fileReader = ResultReact(self.simulatortype, self.file_location, self.filetitle)
         return fileReader
 
-    def plotRaw(self, param, gridblocknumber, format_of_date, restart=False):
+    def _plotRaw(self, param, gridblocknumber, format_of_date, restart=False):
         parameters = t2Utilities()
         if restart is True:
             time_year = self.getRestartDataTime(format_of_date)
@@ -97,20 +97,35 @@ class PlotTough(object):
             fig.savefig(param + ' ' + pc.VERSUS + ' ' + pc.TIME + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def plotParamWithTime(self, param, gridblocknumber, format_of_date):
+        """ Plots a parameter in the results file as a function of time
+
+        Parameters
+        -----------
+        param :  str
+            The parameter to be plotted on the y-axis
+        gridblocknumber : int
+            the grid block in whihc its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
         if self.expt:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self.plotRawWithExpt(param, gridblocknumber, format_of_date)
+                    self._plotRawWithExpt(param, gridblocknumber, format_of_date)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self.plotRawWithExpt(param, gridblocknumber, format_of_date)
+                    self._plotRawWithExpt(param, gridblocknumber, format_of_date)
         else:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self.plotRaw(param, gridblocknumber, format_of_date)
+                    self._plotRaw(param, gridblocknumber, format_of_date)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self.plotRaw(param, gridblocknumber, format_of_date)
+                    self._plotRaw(param, gridblocknumber, format_of_date)
 
     def getRestartLocations(self):
         restart_files = list()
@@ -154,7 +169,7 @@ class PlotTough(object):
         final_result = list(itertools.chain.from_iterable(final_result))
         return final_result
 
-    def plotRawWithExpt(self, param, gridblocknumber, format_of_date, restart=False, data_file='data_file.csv'):
+    def _plotRawWithExpt(self, param, gridblocknumber, format_of_date, restart=False, data_file='data_file.csv'):
         expt_test = Experiment(self.expt[0], data_file)
         time_year_expt = expt_test.get_times()
         result_array_expt = expt_test.get_timeseries_data(param)
@@ -203,17 +218,17 @@ class PlotTough(object):
         if self.expt:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self.plotRawWithExpt(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRawWithExpt(param, gridblocknumber, format_of_date, restart=True)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self.plotRawWithExpt(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRawWithExpt(param, gridblocknumber, format_of_date, restart=True)
         else:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self.plotRaw(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRaw(param, gridblocknumber, format_of_date, restart=True)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self.plotRaw(param, gridblocknumber, format_of_date, restart=True)
+                    self._plotRaw(param, gridblocknumber, format_of_date, restart=True)
 
     def plotRawLayer(self, directionXAxis, directionYAxis, param, layer_num, time):
         fileReader = self.read_file()
