@@ -224,6 +224,7 @@ class ReactTestCase(unittest.TestCase):
         length = 9
         xblock = 3
         # yblock = 1
+        # yblock = 1
         zblock = 4
         dx = [length / xblock] * xblock
         dy = [0.1]
@@ -316,6 +317,8 @@ class ReactTestCase(unittest.TestCase):
         initial_co2 = ReactGas('co2(g)', 0, 0)
         # injection_co2 = ReactGas('co2(g)', 0, 0.01)
         # ijgas = [[initial_co2], [injection_co2]]
+        # injection_co2 = ReactGas('co2(g)', 0, 0.01)
+        # ijgas = [[initial_co2], [injection_co2]]
 
         permporo = PermPoro(1, 0, 0)
         permporozone = PermPoroZone([permporo])
@@ -370,6 +373,7 @@ class ReactTestCase(unittest.TestCase):
         time = results.get_times('second')
         parameter_result = results.get_time_series_data('pH', 0)
         time_length = len(time)
+        parameter_result_length = len(parameter_result)
         parameter_result_length = len(parameter_result)
         self.assertEqual(time_length, parameter_result_length)
 
