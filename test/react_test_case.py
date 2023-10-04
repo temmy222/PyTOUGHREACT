@@ -12,7 +12,7 @@ from pytoughreact.writers.chemical_writing import t2chemical
 from t2grids import rocktype
 from pytoughreact.wrapper.reactzone import t2zone
 from pytoughreact.wrapper.reactgrid import t2reactgrid
-from pytoughreact.results.result_single import FileReadSingle
+from pytoughreact.plotting.plot_single import PlotSingle
 
 
 class ReactTestCase(unittest.TestCase):
@@ -366,7 +366,7 @@ class ReactTestCase(unittest.TestCase):
         self.assertEqual(result, 'successful')
 
     def test_result_first(self):
-        results = FileReadSingle('toughreact', 'kdd_conc.tec')
+        results = PlotSingle('toughreact', 'kdd_conc.tec')
         time = results.get_times('second')
         parameter_result = results.get_time_series_data('pH', 0)
         time_length = len(time)
@@ -376,7 +376,7 @@ class ReactTestCase(unittest.TestCase):
     def test_result_second(self):
         react = t2react()
         react.read('flow.inp')
-        results = FileReadSingle('toughreact', 'kdd_conc.tec')
+        results = PlotSingle('toughreact', 'kdd_conc.tec')
         parameter_result = results.get_grid_data(5000, 'pH')
         parameter_result_length = len(parameter_result)
         self.assertEqual(len(react.grid.blocklist), parameter_result_length)

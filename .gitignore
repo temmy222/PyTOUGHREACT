@@ -2,7 +2,6 @@
 venv
 .venv
 .flake8
-.vscode/settings.json
 .gitignore
 pytoughreact/pytough_wrapper/pytough
 pytoughreact/results/results_factory.py
@@ -17,9 +16,7 @@ src/pytoughreact/treacteos1.exe
 test/geom.dat
 docs/user_guide.docx
 docs/user_guide.pdf
-src/pytoughreact/documentation/_build/html
-documentation/_build
-documentation/_build/html
+
 treacteos1.exe
 **/treacteos1.exe*
 setup.py
@@ -36,6 +33,7 @@ INCON
 iter.out
 kdd_gas.tec
 kdd_min.tec
+kdd_conc.tec
 kdd_tim.tec
 screen_info.out
 LINEQ
@@ -56,7 +54,11 @@ OUTPUT
 OUTPUT_CONNE.csv
 OUTPUT_ELEME.csv
 OUTPUT_GENER.csv
-.vscode
+example_files/folder_1/kdd_conc.tec
+example_files/folder_2/kdd_conc.tec 
+example_files/folder_3/kdd_conc.tec
+
+
 
 # Distribution / packaging
 bin/

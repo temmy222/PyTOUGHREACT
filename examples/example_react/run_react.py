@@ -26,9 +26,9 @@ SOFTWARE.
 import os
 from mulgrids import mulgrid
 from pytoughreact.writers.react_writing import t2react
+from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
 from pytoughreact.wrapper.reactgrid import t2reactgrid
 from pytoughreact.wrapper.reactzone import t2zone
-from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
@@ -151,7 +151,6 @@ writeChemical.write()
 # ____________________________________SOLUTE.INP________________________________________________________________
 writeSolute = t2solute(t2chemical=writeChemical)
 writeSolute.nodes_to_write = [0]
-masa = writeSolute.getgrid_info()
 writeSolute.write()
 
 # ___________________________________ RUN SIMULATION ___________________________________________________________

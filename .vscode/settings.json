@@ -13,13 +13,6 @@
     "license-header-manager.excludeExtensions": [
         ".py",
     ],
-    "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.lintOnSave": true,
-    "python.linting.flake8Args": [
-        "--ignore=E501",
-    ],
     "editor.formatOnSave": true,
-    "python.defaultInterpreterPath": "C:/Users/tajayi3/AppData/Local/Programs/Python/Python310",
-    "esbonio.sphinx.confDir": ""
+    "python.defaultInterpreterPath": "C:/Users/tajayi3/AppData/Local/Programs/Python/Python311",
 }

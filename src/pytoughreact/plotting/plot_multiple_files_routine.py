@@ -39,6 +39,34 @@ from pytoughreact.utilities.t2_utilities import t2Utilities
 
 class PlotMultiFiles(object):
     def __init__(self, simulator_type, file_locations, file_titles, props, **kwargs):
+        """
+        Class for processing multiple file results
+
+        Parameters
+        -----------
+        file_locations :  list[str]
+            specifies the location of the files on the syste
+        file_titles : list[str]
+            gives the title of the file e.g 'kdd.conc' or 'OUTPUT.csv'.
+        simulator_type: str
+            can either be toughreact, tmvoc or tough3
+        prop : list[str]
+            properties to be plotted
+
+        **kwargs
+
+        x_slice value : int
+            value at which the plot should be sliced at the  x axis
+        per_file : boolean
+            if the plot should be made per file and not per property
+        tile : str
+            title of each of the plots
+        
+        
+        Returns
+        --------
+
+        """
         assert isinstance(file_locations, list)
         assert isinstance(file_titles, list)
         assert isinstance(props, list)
@@ -51,7 +79,9 @@ class PlotMultiFiles(object):
         self.per_file = kwargs.get(gc.PER_FILE)
         self.title = kwargs.get(gc.TITLE)
 
-    def validateInput(self):
+    def _validateInput(self):
+        """ Validate Inputs
+        """
         if self.simulator_type.lower() == gc.TOUGHREACT:
             multi_tough = MultiResultReact(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                            x_slice_value=self.x_slice_value)
@@ -61,7 +91,19 @@ class PlotMultiFiles(object):
             print("Code only has capability for TOUGHREACT or TOUGH3 (by extension TMVOC)")
         return multi_tough
 
-    def plotRawSingle(self, data, legend):
+    def _plotRawSingle(self, data, legend):
+        """ Plot of Single File
+
+        Parameters
+        -----------
+        data :  pd.DataFrame
+            data for plot
+        legend :  list[str]
+            List of legend values
+        
+        Returns
+        --------
+        """
         prop_index = 0
         fig, axs = plt.subplots(1, 1)
         for i in range(0, len(data.columns), 2):
@@ -79,7 +121,20 @@ class PlotMultiFiles(object):
         plt.show()
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plotRawMulti(self, data, legend):
+    def _plotRawMulti(self, data, legend):
+        """ Plot of Multi File
+
+        Parameters
+        -----------
+        data :  pd.DataFrame
+            data for plot
+        legend :  list[str]
+            List of legend values
+        
+        Returns
+        --------
+        """
+        
         fig = plt.figure()
         plot_counter = 1
         start_point = 0
@@ -106,7 +161,20 @@ class PlotMultiFiles(object):
         plt.show()
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def setToughYLabel(self, value):
+    def _setToughYLabel(self, value):
+        """ Convert the value in tough results to understandable values
+
+        Parameters
+        -----------
+        value :  str
+            value to be converted (must be present in TOUGH data output)
+        
+        Returns
+        --------
+        value :  str
+            converted value
+        
+        """
         if rc.TOBERMORITE_TOUGHREACT in value:
             value = rc.TOBERMORITE_CONVERSION
         elif rc.MONOSULFOALUMINATE_TOUGHREACT in value:
@@ -121,7 +189,22 @@ class PlotMultiFiles(object):
             value = value.upper()
         return value
 
-    def plotRawMultiFile(self, data, legend, format_of_date):
+    def _plotRawMultiFile(self, data, legend, format_of_date):
+        """ Plot of Multi File
+
+        Parameters
+        -----------
+        data :  pd.DataFrame
+            data for plot
+        legend :  list[str]
+            List of legend values
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
         fig = plt.figure(figsize=(10, 10))
         plot_counter = 1
         start_point = 0
@@ -137,7 +220,7 @@ class PlotMultiFiles(object):
                 y_data = data.iloc[:, i + 1]
                 axs.plot(x_data, y_data, marker=markers[legend_index], label=legend[legend_index])
                 axs.set_xlabel('Time ' + '(' + format_of_date + ')', fontsize=14)
-                axs.set_ylabel(self.setToughYLabel(self.props[prop_index]), fontsize=14)
+                axs.set_ylabel(self._setToughYLabel(self.props[prop_index]), fontsize=14)
                 axs.ticklabel_format(useOffset=False)
                 legend_index = legend_index + 1
             plot_counter = plot_counter + 1
@@ -155,7 +238,22 @@ class PlotMultiFiles(object):
         os.chdir(self.file_locations[0])
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plotRawMultiFilePanel(self, data, panels, format_of_date):
+    def _plotRawMultiFilePanel(self, data, panels, format_of_date):
+        """ Plot of Multi File Per Panel
+
+        Parameters
+        -----------
+        data :  pd.DataFrame
+            data for plot
+        panels :  int
+            Number of panels
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
         fig = plt.figure(figsize=(10, 8))
         start_point = 0
         # markers = pc.ALL_MARKERS
@@ -208,7 +306,20 @@ class PlotMultiFiles(object):
         plt.show()
         fig.savefig(list(panels[0].values())[0][0][0] + pc.MULTI_PLOTS_PER_PANEL + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def plotRawMultiFilePerFile(self, data, legend):
+    def _plotRawMultiFilePerFile(self, data, legend):
+        """ Plot of Multi File Per File
+
+        Parameters
+        -----------
+        data :  pd.DataFrame
+            data for plot
+        legend :  list[str]
+            List of legend values
+        
+        Returns
+        --------
+        
+        """
         fig = plt.figure(figsize=(10, 8))
         plot_counter = 1
         start_point = 0
@@ -222,7 +333,7 @@ class PlotMultiFiles(object):
                 y_data = data.iloc[:, i + 1]
                 if gc.POROSITY in data.columns[i]:
                     axs.plot(x_data, y_data, marker=markers[legend_index],
-                             label=self.setToughYLabel(legend[legend_index]))
+                             label=self._setToughYLabel(legend[legend_index]))
                     axs.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=14)
                     if self.simulator_type.lower() == gc.TMVOC:
                         axs.set_ylabel(self.modifier.param_label_full(self.props[prop_index]), fontsize=14)
@@ -230,7 +341,7 @@ class PlotMultiFiles(object):
                         axs.set_ylabel(rc.CHANGE_IN_VOLUME_FRACTION, fontsize=14)
                 else:
                     axs.plot(x_data, y_data, marker=markers[legend_index],
-                             label=self.setToughYLabel(legend[legend_index]))
+                             label=self._setToughYLabel(legend[legend_index]))
                     axs.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=14)
                     if self.simulator_type.lower() == gc.TMVOC:
                         param_value = self.modifier.param_label_full(self.props[prop_index].upper())
@@ -257,70 +368,164 @@ class PlotMultiFiles(object):
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def multiFileSinglePlot(self, grid_block_number, legend):
-        multi_tough = self.validateInput()
+        """ Plot of  Multiple Files with a single plot
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number to be plotted 
+        legend :  list[str]
+            List of legend values
+        
+        Returns
+        --------
+        
+        """
+        multi_tough = self._validateInput()
         data = multi_tough.retrieve_data_multi_timeseries(grid_block_number)
         try:
             with plt.style.context(pc.MY_STYLE):
-                self.plotRawSingle(data, legend)
+                self._plotRawSingle(data, legend)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self.plotRawSingle(data, legend)
+                self._plotRawSingle(data, legend)
 
-    def plotMultiElementMultiFilePerFile(self, grid_block_number, legend, format_of_date):
-        multi_tough = self.validateInput()
+    def _plotMultiElementMultiFilePerFile(self, grid_block_number, legend, format_of_date):
+        """ Plot of Multi Elements and Multiple Files for File only
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number to be plotted 
+        legend :  list[str]
+            List of legend values
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
+        multi_tough = self._validateInput()
         data = multi_tough.getMultiElementData(grid_block_number, format_of_date)
         try:
             with plt.style.context(pc.MY_STYLE):
-                self.plotRawMultiFilePerFile(data, legend)
+                self._plotRawMultiFilePerFile(data, legend)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self.plotRawMultiFilePerFile(data, legend)
+                self._plotRawMultiFilePerFile(data, legend)
 
-    def plotMultiElementMultiFilePerProp(self, grid_block_number, legend, format_of_date):
-        multi_tough = self.validateInput()
+    def _plotMultiElementMultiFilePerProp(self, grid_block_number, legend, format_of_date):
+        """ Plot of Multi Elements and Multiple Files for Property only
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number to be plotted 
+        legend :  list[str]
+            List of legend values
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
+        multi_tough = self._validateInput()
         data = multi_tough.getMultiElementData(grid_block_number, format_of_date)
         try:
             with plt.style.context(pc.MY_STYLE):
-                self.plotRawMultiFile(data, legend, format_of_date)
+                self._plotRawMultiFile(data, legend, format_of_date)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self.plotRawMultiFile(data, legend, format_of_date)
+                self._plotRawMultiFile(data, legend, format_of_date)
 
     def plotMultiElementMultiFile(self, grid_block_number, legend, format_of_date, plot_kind=pc.PROPERTY):
+        """ Plot of Multi Elements and Multiple Files
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number to be plotted 
+        legend :  list[str]
+            List of legend values
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        plot_kind: str
+            The kind of plot to be used; could be 'property' or 'file'
+        
+        Returns
+        --------
+        
+        """
         if plot_kind.lower() == pc.PROPERTY:
-            self.plotMultiElementMultiFilePerProp(grid_block_number, legend, format_of_date)
+            self._plotMultiElementMultiFilePerProp(grid_block_number, legend, format_of_date)
         elif plot_kind.lower() == pc.FILE:
-            self.plotMultiElementMultiFilePerFile(grid_block_number, legend, format_of_date)
+            self._plotMultiElementMultiFilePerFile(grid_block_number, legend, format_of_date)
         else:
             print('Plot kind can either be property or file')
 
     def plotMultiPerPanel(self, grid_block_number, panels, format_of_date=pc.DAY):
-        multi_tough = self.validateInput()
+        """ Plot of Multi Properties Per Panel
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number to be plotted 
+        panels :  int
+            Number of panels
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
+        multi_tough = self._validateInput()
         data = multi_tough.getMultiElementDataPerPanel(grid_block_number, panels, format_of_date)
         if self.x_slice_value is not None:
             stringo = panels[0]['panel1'][0][0] + 'time00'
             data = data[data[stringo] <= self.x_slice_value]
         try:
             with plt.style.context(pc.MY_STYLE):
-                self.plotRawMultiFilePanel(data, panels, format_of_date)
+                self._plotRawMultiFilePanel(data, panels, format_of_date)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self.plotRawMultiFilePanel(data, panels, format_of_date)
+                self._plotRawMultiFilePanel(data, panels, format_of_date)
 
-    def plotMultiFileDistance(self, directionX, directionY, time, layer_num, legend):
-        multi_tough = self.validateInput()
-        data = multi_tough.getMultiFileDistance(directionX, directionY, time, layer_num)
+    def plotMultiFileDistance(self, direction_x, direction_y, time, layer_num, legend):
+        """ Plot of Parameter with Distance for Multiple Files
+
+        Parameters
+        -----------
+        direction_x :  str
+            The direction to be plotted on the x axis 
+        direction_y :  str
+            The direction to be plotted on the y axis
+        legend :  list[str]
+            List of legend values
+        layer_num :  int
+            The layer in the model to be plotted
+        time : int
+            the time at which the plot is to be made
+        
+        Returns
+        --------
+        
+        """
+        multi_tough = self._validateInput()
+        data = multi_tough.getMultiFileDistance(direction_x, direction_y, time, layer_num)
         if self.per_file is True:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self.plotRawMultiFilePerFile(data, legend)
+                    self._plotRawMultiFilePerFile(data, legend)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self.plotRawMultiFilePerFile(data, legend)
+                    self._plotRawMultiFilePerFile(data, legend)
         else:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self.plotRawMultiFile(data, legend)
+                    self._plotRawMultiFile(data, legend)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self.plotRawMultiFile(data, legend)
+                    self._plotRawMultiFile(data, legend)

@@ -39,6 +39,32 @@ from pytoughreact.exceptions.custom_error import ParameterLessThanThreeError
 
 class PlotMultiTough(object):
     def __init__(self, simulatortype, filelocations, filetitles, **kwargs):
+        """
+        Class for processing multiple file results
+
+        Parameters
+        -----------
+        file_location :  str
+            specifies the location of the file on the system
+        file_title : str
+            gives the title of the file e.g 'kdd.conc' or 'OUTPUT.csv'.
+        simulator_type: str
+            can either be toughreact, tmvoc or tough3
+
+        **kwargs
+
+        generation : str
+            generation file location
+        restart_files : str
+            restart file location
+        experiment : str
+            experimental file location
+        
+        
+        Returns
+        --------
+
+        """
         self.filelocations = filelocations
         self.filetitles = filetitles
         self.simulatortype = simulatortype
@@ -107,7 +133,23 @@ class PlotMultiTough(object):
         final_result = list(itertools.chain.from_iterable(final_result))
         return final_result
 
-    def raw_multi_plot_restart_horizontal(self, param, format_of_date, gridblocknumber):
+    def _raw_multi_plot_restart_horizontal(self, param, format_of_date, gridblocknumber):
+        """ Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation with restart
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        
+        Returns
+        --------
+        
+        """
         time_year = self.getRestartDataTime(format_of_date)
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
@@ -138,7 +180,23 @@ class PlotMultiTough(object):
         plt.show()
         fig.savefig(pc.MULTI_PLOT_DESCRIPTION_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def raw_multi_plot_restart_vertical(self, param, gridblocknumber, format_of_date):
+    def _raw_multi_plot_restart_vertical(self, param, gridblocknumber, format_of_date):
+        """ Line Plots of a multiple parameter in the results file as a function of time in vertical orientation with restart
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        
+        Returns
+        --------
+        
+        """
         time_year = self.getRestartDataTime(format_of_date)
         fig = plt.figure()
         for number in range(1, len(param) + 1):
@@ -168,25 +226,42 @@ class PlotMultiTough(object):
         fig.savefig(pc.MULTI_PLOT_DESCRIPTION_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def multi_time_plot_restart(self, param, gridblocknumber, format_of_date, style=pc.HORIZONTAL):
+        """ Line Plots of a multiple parameter in the results file as a function of time for restart files
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        
+        
+        Returns
+        --------
+        
+        """
         if style.lower() == pc.HORIZONTAL:
             if self.expt:
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_restart_horizontal_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_restart_horizontal_with_expt(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_restart_horizontal_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_restart_horizontal_with_expt(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
             else:
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
         elif style.lower() == pc.VERTICAL:
@@ -194,31 +269,46 @@ class PlotMultiTough(object):
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
             else:
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
 
-    def raw_multi_plot_horizontal(self, param, format_of_date, gridblocknumber):
+    def _raw_multi_plot_horizontal(self, param, format_of_date, gridblocknumber):
+        """ Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        Returns
+        --------
+        
+        """
         fileReader = self.read_file()
         time_year = fileReader.convert_times(format_of_date)
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
         for parameter in param:
             result_array = fileReader.get_timeseries_data(parameter, gridblocknumber)
-            axs[j].plot(time_year, result_array, marker=pc.CARET,
+            axs[j].plot(time_year, result_array, marker=pc.CARET_SYMBOL,
                         label=self.modifier.param_label_full(parameter.upper()))
             axs[j].set_ylabel(self.modifier.param_label_full(parameter.upper()), fontsize=12)
             axs[j].spines[pc.BOTTOM].set_linewidth(1.5)
@@ -241,7 +331,26 @@ class PlotMultiTough(object):
         plt.show()
         fig.savefig(pc.MULTI_PLOT_DESCRIPTION_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def raw_multi_plot_horizontal_with_expt(self, param, format_of_date, gridblocknumber, data_file='data_file.csv'):
+    def _raw_multi_plot_horizontal_with_expt(self, param, format_of_date, gridblocknumber, data_file='data_file.csv'):
+        """ Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation with experiment
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        data_file: str
+            The name of the data file containing the experimental data
+        
+        
+        
+        Returns
+        --------
+        
+        """
         fileReader = self.read_file()
         time_year = fileReader.convert_times(format_of_date)
         expt_test = Experiment(self.expt[0], data_file)
@@ -280,7 +389,26 @@ class PlotMultiTough(object):
         os.chdir(self.filelocations)
         fig.savefig(pc.MULTI_PLOT_DESCRIPTION_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def raw_multi_plot_restart_horizontal_with_expt(self, param, format_of_date, gridblocknumber, data_file='data_file.csv'):
+    def _raw_multi_plot_restart_horizontal_with_expt(self, param, format_of_date, gridblocknumber, data_file='data_file.csv'):
+        """ Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation for restart files
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        data_file: str
+            The name of the data file containing the experimental data
+        
+        
+        
+        Returns
+        --------
+        
+        """
         time_year = self.getRestartDataTime(format_of_date)
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
@@ -320,7 +448,23 @@ class PlotMultiTough(object):
         os.chdir(self.filelocations)
         fig.savefig(pc.MULTI_PLOT_EXPERIMENT_RESTART_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def raw_multi_plot_vertical(self, param, format_of_date, gridblocknumber):
+    def _raw_multi_plot_vertical(self, param, format_of_date, gridblocknumber):
+        """ Line Plots of a multiple parameter in the results file as a function of time in vertical orientation
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        
+        Returns
+        --------
+        
+        """
         fileReader = self.read_file()
         time_year = fileReader.convert_times(format_of_date)
         j = 0
@@ -351,7 +495,26 @@ class PlotMultiTough(object):
         plt.show()
         fig.savefig(pc.MULTI_PLOT_DESCRIPTION_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def raw_multi_plot_vertical_with_expt(self, param, format_of_date, gridblocknumber, data_file='data_file.csv'):
+    def _raw_multi_plot_vertical_with_expt(self, param, format_of_date, grid_block_number, data_file='data_file.csv'):
+        """ Line Plots of a multiple parameter in the results file as a function of time in vertical orientation
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        data_file: str
+            The name of the data file containing the experimental data
+        
+        
+        
+        Returns
+        --------
+        
+        """
         fileReader = self.read_file()
         time_year = fileReader.convert_times(format_of_date)
         expt_test = Experiment(self.expt[0], data_file)
@@ -361,7 +524,7 @@ class PlotMultiTough(object):
         for number in range(1, len(param) + 1):
             ax = fig.add_subplot(1, len(param), number)
             result_array_expt = expt_test.get_timeseries_data(param[number - 1])
-            result_array = fileReader.get_timeseries_data(param[number - 1], gridblocknumber)
+            result_array = fileReader.get_timeseries_data(param[number - 1], grid_block_number)
             ax.plot(time_year, result_array, marker=pc.CARET, label=gc.SIMULATION)
             ax.plot(time_year_expt, result_array_expt, '--', marker='o', color=pc.RED_COLOR, label=gc.EXPERIMENT)
             ax.set_ylabel(self.modifier.param_label_full(param[number - 1].upper()), fontsize=12)
@@ -387,25 +550,41 @@ class PlotMultiTough(object):
         fig.savefig(pc.MULTI_PLOT_DESCRIPTION_LABEL, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def multi_time_plot(self, param, gridblocknumber, format_of_date, style=pc.HORIZONTAL):
+        """ Line Plots of a multiple parameter in the results file as a function of time
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or yeart
+        
+        
+        Returns
+        --------
+        
+        """
         if style.lower() == pc.HORIZONTAL:
             if self.expt:
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_horizontal_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_horizontal_with_expt(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_horizontal_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_horizontal_with_expt(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
             else:
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_horizontal(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
         elif style.lower() == pc.VERTICAL:
@@ -413,24 +592,24 @@ class PlotMultiTough(object):
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical_with_expt(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
             else:
                 if isinstance(param, list) and len(param) < 3:
                     try:
                         with plt.style.context(pc.MY_STYLE):
-                            self.raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
                     except Exception:
                         with plt.style.context(pc.CLASSIC):
-                            self.raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
+                            self._raw_multi_plot_vertical(param, format_of_date, gridblocknumber)
                 else:
                     raise ParameterLessThanThreeError()
 
-    def retrieve_multi_data(self, param, gridblocknumber):
+    def _retrieve_multi_data(self, param, gridblocknumber):
         dataStorage = {}
         fileNames = []
         for parameter in param:
@@ -443,7 +622,23 @@ class PlotMultiTough(object):
                 fileNumber = fileNumber + 1
         return fileNames, dataStorage
 
-    def retrieve_multi_data_generation(self, param, format_of_date):
+    def _retrieve_multi_data_generation(self, param, format_of_date):
+        """ Retrieve multi data for plotting
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        
+        
+        Returns
+        --------
+        data_table: pd.Dataframe
+            returns the data in dataframe
+        
+        """
         data_table = pd.DataFrame()
         fileReader = self.read_file()
         for i in range(len(param)):
@@ -455,7 +650,7 @@ class PlotMultiTough(object):
             data_table[result_data_label] = pd.Series(result_data)
         return data_table
 
-    def slice_value(self, time, result):
+    def _slice_value(self, time, result):
         last_time = time[-1]
         last_result = result[-1]
         time_array = np.array(time)
@@ -463,16 +658,32 @@ class PlotMultiTough(object):
         time_array = time_array[0:len(time_array) + 8:10]
         result_array = result_array[0:len(result_array) + 8:10]
         if len(time_array) > 10:
-            return self.slice_value(time_array, result_array)
+            return self._slice_value(time_array, result_array)
         time_array = np.append(time_array, last_time)
         result_array = np.append(result_array, last_result)
         return time_array, result_array
 
     def plotMultiParamSinglePlot(self, param, gridblocknumber, format_of_date, labels=None):
+        """ Line Multiple parameters in a single Plot
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        labels: list[str]
+            labels of the different plots in the chart
+        Returns
+        --------
+        
+        """
         if self.generation is True:
             with plt.style.context(pc.CLASSIC):
                 fig, axs = plt.subplots(1, 1)
-                dataFile = self.retrieve_multi_data_generation(param, format_of_date)
+                dataFile = self._retrieve_multi_data_generation(param, format_of_date)
                 legend_index = 0
                 for i in range(0, len(dataFile.columns), 2):
                     if labels is None:
@@ -497,7 +708,7 @@ class PlotMultiTough(object):
                     time_year = fileReader.convert_times(format_of_date)
                     result_array = fileReader.get_timeseries_data(param[i], gridblocknumber)
                     if len(time_year) > 50:
-                        time_year, result_array = self.slice_value(time_year, result_array)
+                        time_year, result_array = self._slice_value(time_year, result_array)
                     if labels is None:
                         axs.plot(time_year, result_array, label=param[i], marker=markers[i])
                     else:
@@ -515,13 +726,37 @@ class PlotMultiTough(object):
 
     def multi_param_multi_file_plot(self, param, gridblocknumber, labels, format_of_date=pc.YEAR, style=pc.HORIZONTAL,
                                     width=12, height=8):
+        """ Line Plots of a multiple parameter in the results file as a function of time 
+
+        Parameters
+        -----------
+        param :  list[str]
+            The parameters to be plotted on the y-axis
+        grid_block_number : int
+            the grid block in which its parameter evolution is to be observed.
+        format_of_date: str
+            The format of the date; could be minute, hour, day or year
+        labels: list[str]
+            Labels for the plots
+        style : str
+            orientation for multiple plots; could be horizontal or vertical
+        width : int
+            width of plot
+        height : int
+            height of plot
+        
+        
+        Returns
+        --------
+        
+        """
         fig = plt.figure(figsize=(width, height))
         fileReader = self.read_file_multi(self.filelocations[0], self.filetitles[0])
         time_year = fileReader.convert_times(format_of_date)
-        lst, dictionary = self.retrieve_multi_data(param, gridblocknumber)
+        lst, dictionary = self._retrieve_multi_data(param, gridblocknumber)
         colors = pc.ALL_COLORS
         markers = pc.ALL_MARKERS
-        kpansa = 0
+        counter_2 = 0
         param_counter = 0
         subplot_i = 2
         k = 0
@@ -530,7 +765,7 @@ class PlotMultiTough(object):
         for number in range(subplot_i):
             for i in range(subplot_j):
                 for j in range(len(self.filelocations)):
-                    axs[number, i].plot(time_year, dictionary[lst[kpansa + j]], label=labels[k], linewidth=2,
+                    axs[number, i].plot(time_year, dictionary[lst[counter_2 + j]], label=labels[k], linewidth=2,
                                         color=colors[j], marker=markers[j])
                     axs[number, i].set_ylabel(self.modifier.strip_param(param[param_counter]))
                     axs[number, i].set_title(self.modifier.param_label_full(param[param_counter].upper()))
@@ -539,7 +774,7 @@ class PlotMultiTough(object):
                     axs[number, i].spines[pc.LEFT].set_linewidth(1.5)
                     axs[number, i].spines[pc.TOP].set_linewidth(0.0)
                     axs[number, i].spines[pc.RIGHT].set_linewidth(0.0)
-                kpansa = kpansa + len(self.filelocations)
+                counter_2 = counter_2 + len(self.filelocations)
                 param_counter = param_counter + 1
             k = k + 1
         plt.subplots_adjust(left=0.125, wspace=0.4, top=0.95)

@@ -24,10 +24,10 @@ SOFTWARE.
 '''
 
 import os
-from pytoughreact.results.result_single import FileReadSingle
+from pytoughreact.plotting.plot_single import PlotSingle
 
 filetype_tmvoc = "OUTPUT_ELEME.csv"
-read_file2 = FileReadSingle("tmvoc", os.path.dirname(os.path.realpath(__file__)), filetype_tmvoc)
+read_file2 = PlotSingle("tmvoc", os.path.dirname(os.path.realpath(__file__)), filetype_tmvoc)
 read_file2.plot2D('x', 'z', 'X_toluen_L', 2.59e+10, grid_type='grid')
 read_file2.plotTime(
     ['X_toluen_L', 'X_O2_L', 'BIO1'], 0,
