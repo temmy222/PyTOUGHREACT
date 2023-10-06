@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 
-# retructured text link - https://docutils.sourceforge.io/docs/user/rst/quickref.html
+# restructured text link - https://docutils.sourceforge.io/docs/user/rst/quickref.html
 
 import os
 import sys

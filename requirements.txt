@@ -3,4 +3,6 @@ scipy
 pandas
 matplotlib
 scipy
+sphinx
+sphinx_rtd_theme
 PYTOUGH @ git+https://git@github.com/acroucher/PYTOUGH.git
