@@ -10,10 +10,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f0357c94"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -38,7 +39,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
 </ul>
@@ -46,7 +47,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
@@ -124,7 +133,7 @@
 <span class="kn">import</span> <span class="nn">t2listing</span>
 
 
-<div class="viewcode-block" id="ResultReact"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact">[docs]</a><span class="k">class</span> <span class="nc">ResultReact</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ResultReact</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Class for processing results from TOUGHREACT &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulatortype</span><span class="p">,</span> <span class="n">filelocation</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">=</span> <span class="n">filelocation</span>
@@ -136,11 +145,11 @@
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;Results from &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">+</span> <span class="s1">&#39; in &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">+</span> <span class="s1">&#39; for &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span>
 
-<div class="viewcode-block" id="ResultReact.getParameters"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getParameters">[docs]</a>    <span class="k">def</span> <span class="nf">getParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Parameters &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">column_name</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">column_name</span>
 
-<div class="viewcode-block" id="ResultReact.get_elements"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_elements">[docs]</a>    <span class="k">def</span> <span class="nf">get_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get elements &quot;&quot;&quot;</span>
         <span class="n">find_connection</span> <span class="o">=</span> <span class="n">t2UtilitiesToughReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">)</span>
         <span class="n">find_connection</span><span class="o">.</span><span class="n">findword</span><span class="p">()</span>
@@ -148,9 +157,9 @@
         <span class="n">find_connection</span><span class="o">.</span><span class="n">writetofile</span><span class="p">()</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">grid_blocks</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">grid_blocks</span></div>
+        <span class="k">return</span> <span class="n">grid_blocks</span>
 
-<div class="viewcode-block" id="ResultReact.get_times"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_times">[docs]</a>    <span class="k">def</span> <span class="nf">get_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get times from data file &quot;&quot;&quot;</span>
         <span class="n">time_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">times</span>
         <span class="n">time_data2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">time_data</span><span class="p">)</span>
@@ -158,16 +167,16 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_data2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
             <span class="n">time_data</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">time_data2</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">time_data</span>
-        <span class="k">return</span> <span class="n">time_data2</span></div>
+        <span class="k">return</span> <span class="n">time_data2</span>
 
-<div class="viewcode-block" id="ResultReact.convert_times"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.convert_times">[docs]</a>    <span class="k">def</span> <span class="nf">convert_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">convert_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Convert time to required format &quot;&quot;&quot;</span>
         <span class="n">get_times</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
         <span class="n">utility_class</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
         <span class="n">timeyear</span> <span class="o">=</span> <span class="n">utility_class</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">get_times</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">timeyear</span></div>
+        <span class="k">return</span> <span class="n">timeyear</span>
 
-<div class="viewcode-block" id="ResultReact.get_timeseries_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_timeseries_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_timeseries_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get timeseries data &quot;&quot;&quot;</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span>
         <span class="n">grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()[</span><span class="n">gridblocknumber</span><span class="p">]</span>
@@ -178,27 +187,27 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">timeseries</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
             <span class="n">timeseries</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">timeseries</span>
-        <span class="k">return</span> <span class="n">timeseries</span></div>
+        <span class="k">return</span> <span class="n">timeseries</span>
 
-<div class="viewcode-block" id="ResultReact.get_element_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_element_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_element_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_element_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for elements &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
         <span class="n">final_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">final_data</span></div>
+        <span class="k">return</span> <span class="n">final_data</span>
 
-<div class="viewcode-block" id="ResultReact.get_X_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_X_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_X_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_X_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for X axis &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;X(m)&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;X(m)&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ResultReact.get_Y_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_Y_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_Y_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_Y_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for Y axis &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Y(m)&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Y(m)&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ResultReact.get_Z_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_Z_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_Z_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_Z_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for Z axis &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Z(m)&#39;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Z(m)&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ResultReact.getUniqueXData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData">[docs]</a>    <span class="k">def</span> <span class="nf">getUniqueXData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getUniqueXData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique X axis data &quot;&quot;&quot;</span>
         <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
         <span class="n">indices_array</span> <span class="o">=</span> <span class="p">[]</span>
@@ -210,10 +219,13 @@
                     <span class="k">continue</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">pass</span>
-        <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">output_data</span></div>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span>
+        <span class="k">return</span> <span class="n">output_data</span>
 
-<div class="viewcode-block" id="ResultReact.getXStartPoints"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints">[docs]</a>    <span class="k">def</span> <span class="nf">getXStartPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getXStartPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get X axis Start Points&quot;&quot;&quot;</span>
         <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
         <span class="n">indices_array</span> <span class="o">=</span> <span class="p">[]</span>
@@ -225,21 +237,21 @@
                     <span class="k">continue</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">pass</span>
-        <span class="k">return</span> <span class="n">indices_array</span></div>
+        <span class="k">return</span> <span class="n">indices_array</span>
 
-<div class="viewcode-block" id="ResultReact.getUniqueYData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData">[docs]</a>    <span class="k">def</span> <span class="nf">getUniqueYData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getUniqueYData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique Y axis data &quot;&quot;&quot;</span>
         <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
         <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ori_array</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">output</span></div>
+        <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="ResultReact.getUniqueZData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData">[docs]</a>    <span class="k">def</span> <span class="nf">getUniqueZData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getUniqueZData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique Z axis data &quot;&quot;&quot;</span>
         <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
         <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ori_array</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">output</span></div>
+        <span class="k">return</span> <span class="n">output</span>
 
-<div class="viewcode-block" id="ResultReact.getNumberOfLayers"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfLayers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getNumberOfLayers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Number of Layers &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
             <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueXData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -250,9 +262,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
         <span class="n">number</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">number</span></div>
+        <span class="k">return</span> <span class="n">number</span>
 
-<div class="viewcode-block" id="ResultReact.getZLayerData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getZLayerData">[docs]</a>    <span class="k">def</span> <span class="nf">getZLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getZLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for Z (depth) layer &quot;&quot;&quot;</span>
         <span class="n">x_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXStartPoints</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="n">z_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
@@ -265,12 +277,737 @@
             <span class="n">end_index</span> <span class="o">=</span> <span class="n">x_start</span><span class="p">[</span><span class="n">layer_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">end_index</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">z_data</span><span class="p">[</span><span class="n">begin_index</span><span class="p">:</span><span class="n">end_index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">getXDepthData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for X (depth) layer &quot;&quot;&quot;</span>
+        <span class="n">element_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">x_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">z_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+        <span class="n">data_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">z_layers</span><span class="p">):</span>
+            <span class="n">data_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element_data</span><span class="p">[</span><span class="n">line_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">line_number</span> <span class="o">=</span> <span class="n">line_number</span> <span class="o">+</span> <span class="n">x_layers</span>
+        <span class="k">return</span> <span class="n">data_array</span>
+
+    <span class="k">def</span> <span class="nf">getLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for Layers &quot;&quot;&quot;</span>
+        <span class="n">number_of_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&gt;</span> <span class="n">number_of_layers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The specified layer is more than the number of layers in the model&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+                <span class="n">data_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZLayerData</span><span class="p">(</span><span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+                <span class="n">data_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXDepthData</span><span class="p">(</span><span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data_array</span>
+
+    <span class="k">def</span> <span class="nf">get_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Coordinate data &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_X_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Y_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Z_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_unique_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique coordinate data &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueXData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueYData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueZData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_utilities</span> <span class="kn">import</span> <span class="n">t2Utilities</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_tough_react_utilities</span> <span class="kn">import</span> <span class="n">t2UtilitiesToughReact</span>
+<span class="kn">import</span> <span class="nn">t2listing</span>
+
+
+<span class="k">class</span> <span class="nc">ResultReact</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Class for processing results from TOUGHREACT &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulatortype</span><span class="p">,</span> <span class="n">filelocation</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">=</span> <span class="n">filelocation</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">=</span> <span class="n">filetitle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span> <span class="o">=</span> <span class="n">simulatortype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">t2listing</span><span class="o">.</span><span class="n">toughreact_tecplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Results from &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">+</span> <span class="s1">&#39; in &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">+</span> <span class="s1">&#39; for &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span>
+
+    <span class="k">def</span> <span class="nf">getParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Parameters &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">column_name</span>
+
+    <span class="k">def</span> <span class="nf">get_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get elements &quot;&quot;&quot;</span>
+        <span class="n">find_connection</span> <span class="o">=</span> <span class="n">t2UtilitiesToughReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">)</span>
+        <span class="n">find_connection</span><span class="o">.</span><span class="n">findword</span><span class="p">()</span>
+        <span class="n">find_connection</span><span class="o">.</span><span class="n">sliceoffline</span><span class="p">()</span>
+        <span class="n">find_connection</span><span class="o">.</span><span class="n">writetofile</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">grid_blocks</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">grid_blocks</span>
+
+    <span class="k">def</span> <span class="nf">get_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get times from data file &quot;&quot;&quot;</span>
+        <span class="n">time_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">times</span>
+        <span class="n">time_data2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">time_data</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_data2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="n">time_data</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">time_data2</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">time_data</span>
+        <span class="k">return</span> <span class="n">time_data2</span>
+
+    <span class="k">def</span> <span class="nf">convert_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Convert time to required format &quot;&quot;&quot;</span>
+        <span class="n">get_times</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
+        <span class="n">utility_class</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="n">timeyear</span> <span class="o">=</span> <span class="n">utility_class</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">get_times</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">timeyear</span>
+
+    <span class="k">def</span> <span class="nf">get_timeseries_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get timeseries data &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()[</span><span class="n">gridblocknumber</span><span class="p">]</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">history</span><span class="p">([(</span><span class="n">grid</span><span class="p">,</span> <span class="n">param</span><span class="p">)])</span>
+        <span class="n">timeseries</span> <span class="o">=</span> <span class="n">mf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">timeseries</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">timeseries</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">timeseries</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="n">timeseries</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">timeseries</span>
+        <span class="k">return</span> <span class="n">timeseries</span>
+
+    <span class="k">def</span> <span class="nf">get_element_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for elements &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">final_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">final_data</span>
+
+    <span class="k">def</span> <span class="nf">get_X_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for X axis &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;X(m)&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_Y_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for Y axis &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Y(m)&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_Z_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get data for Z axis &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Z(m)&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getUniqueXData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique X axis data &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">indices_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ori_array</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">indices_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span>
+        <span class="k">return</span> <span class="n">output_data</span>
+
+    <span class="k">def</span> <span class="nf">getXStartPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get X axis Start Points&quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">indices_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ori_array</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">indices_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">indices_array</span>
+
+    <span class="k">def</span> <span class="nf">getUniqueYData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique Y axis data &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ori_array</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">getUniqueZData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique Z axis data &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ori_array</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">getNumberOfLayers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Number of Layers &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueXData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueYData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueZData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">number</span>
+
+    <span class="k">def</span> <span class="nf">getZLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for Z (depth) layer &quot;&quot;&quot;</span>
+        <span class="n">x_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXStartPoints</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="n">z_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">total_grid_in_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">begin_index</span> <span class="o">=</span> <span class="n">x_start</span><span class="p">[</span><span class="n">layer_number</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">begin_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&lt;</span> <span class="n">total_grid_in_z</span><span class="p">:</span>
+            <span class="n">end_index</span> <span class="o">=</span> <span class="n">x_start</span><span class="p">[</span><span class="n">layer_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">end_index</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">z_data</span><span class="p">[</span><span class="n">begin_index</span><span class="p">:</span><span class="n">end_index</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">output</span>
+
+    <span class="k">def</span> <span class="nf">getXDepthData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for X (depth) layer &quot;&quot;&quot;</span>
+        <span class="n">element_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">x_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">z_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+        <span class="n">data_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">z_layers</span><span class="p">):</span>
+            <span class="n">data_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element_data</span><span class="p">[</span><span class="n">line_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">line_number</span> <span class="o">=</span> <span class="n">line_number</span> <span class="o">+</span> <span class="n">x_layers</span>
+        <span class="k">return</span> <span class="n">data_array</span>
+
+    <span class="k">def</span> <span class="nf">getLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for Layers &quot;&quot;&quot;</span>
+        <span class="n">number_of_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&gt;</span> <span class="n">number_of_layers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The specified layer is more than the number of layers in the model&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+                <span class="n">data_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getZLayerData</span><span class="p">(</span><span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+                <span class="n">data_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXDepthData</span><span class="p">(</span><span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data_array</span>
+
+    <span class="k">def</span> <span class="nf">get_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Coordinate data &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_X_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Y_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Z_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_unique_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique coordinate data &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueXData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueYData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueZData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_utilities</span> <span class="kn">import</span> <span class="n">t2Utilities</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_tough_react_utilities</span> <span class="kn">import</span> <span class="n">t2UtilitiesToughReact</span>
+<span class="kn">import</span> <span class="nn">t2listing</span>
+
+
+<div class="viewcode-block" id="ResultReact">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact">[docs]</a>
+<span class="k">class</span> <span class="nc">ResultReact</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulatortype</span><span class="p">,</span> <span class="n">filelocation</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class for processing results from TOUGHREACT</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        file_location :  str</span>
+<span class="sd">            specifies the location of the files on the syste</span>
+<span class="sd">        file_title : str</span>
+<span class="sd">            gives the title of the file e.g &#39;kdd.conc&#39;.</span>
+<span class="sd">        simulator_type: str</span>
+<span class="sd">            can either be toughreact</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">=</span> <span class="n">filelocation</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">=</span> <span class="n">filetitle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span> <span class="o">=</span> <span class="n">simulatortype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">t2listing</span><span class="o">.</span><span class="n">toughreact_tecplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elements</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Results from &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">+</span> <span class="s1">&#39; in &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">+</span> <span class="s1">&#39; for &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span>
+
+    <span class="k">def</span> <span class="nf">_getParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class for processing results from TOUGHREACT</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">column_name</span>
+
+    <span class="k">def</span> <span class="nf">_get_elements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get elements from the output file</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        grid_blocks: list[str]</span>
+<span class="sd">            list of all grid blocks</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">find_connection</span> <span class="o">=</span> <span class="n">t2UtilitiesToughReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">)</span>
+        <span class="n">find_connection</span><span class="o">.</span><span class="n">findword</span><span class="p">()</span>
+        <span class="n">find_connection</span><span class="o">.</span><span class="n">sliceoffline</span><span class="p">()</span>
+        <span class="n">find_connection</span><span class="o">.</span><span class="n">writetofile</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">grid_blocks</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">grid_blocks</span>
+
+<div class="viewcode-block" id="ResultReact.get_times">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_times">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get times from data file </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        time_data: list[int]</span>
+<span class="sd">            list of all time</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">times</span>
+        <span class="n">time_data2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">time_data</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_data2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="n">time_data</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">time_data2</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">time_data</span>
+        <span class="k">return</span> <span class="n">time_data2</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.convert_times">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.convert_times">[docs]</a>
+    <span class="k">def</span> <span class="nf">convert_times</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert time to required </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        timeyear: list[int]</span>
+<span class="sd">            list of all converted time</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">get_times</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
+        <span class="n">utility_class</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="n">timeyear</span> <span class="o">=</span> <span class="n">utility_class</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">get_times</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">timeyear</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.get_timeseries_data">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_timeseries_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get timeseries data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its data is to be gotten.</span>
+<span class="sd">        param :  str</span>
+<span class="sd">            The parameter in which the data is to be gotten</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        timeseries: list[int]</span>
+<span class="sd">            list of all time</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_elements</span><span class="p">()[</span><span class="n">grid_block_number</span><span class="p">]</span>
+        <span class="n">data_history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">history</span><span class="p">([(</span><span class="n">grid</span><span class="p">,</span> <span class="n">param</span><span class="p">)])</span>
+        <span class="n">timeseries</span> <span class="o">=</span> <span class="n">data_history</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">timeseries</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">timeseries</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">timeseries</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="n">timeseries</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">choplist</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">timeseries</span>
+        <span class="k">return</span> <span class="n">timeseries</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.get_element_data">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_element_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_element_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get data for elements</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        param :  str</span>
+<span class="sd">            The parameter in which the data is to be gotten</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        final_data: array[float]</span>
+<span class="sd">            array of all value of parameter at that time</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">set_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">final_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">element</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">final_data</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_get_X_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get data for X axis </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output: list[str]</span>
+<span class="sd">            list of all elements in X direction</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;X(m)&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_Y_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get data for Y axis</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output: list[str]</span>
+<span class="sd">            list of all elements in Y direction</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Y(m)&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_Z_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get data for Z axis</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output: list[str]</span>
+<span class="sd">            list of all elements in Z direction</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="s1">&#39;Z(m)&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ResultReact.getUniqueXData">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData">[docs]</a>
+    <span class="k">def</span> <span class="nf">getUniqueXData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Unique X axis data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output_data: list[str]</span>
+<span class="sd">            list of all unique elements in X direction</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">indices_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ori_array</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">indices_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indices_array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_data</span> <span class="o">=</span> <span class="n">ori_array</span>
+        <span class="k">return</span> <span class="n">output_data</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.getXStartPoints">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints">[docs]</a>
+    <span class="k">def</span> <span class="nf">getXStartPoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get X axis Start Points</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        indices_array: list[int]</span>
+<span class="sd">            list of all start points in X axis</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">indices_array</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ori_array</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">ori_array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                    <span class="n">indices_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">indices_array</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.getUniqueYData">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData">[docs]</a>
+    <span class="k">def</span> <span class="nf">getUniqueYData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Unique Y axis data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output: list[int]</span>
+<span class="sd">            list of all unique Y data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ori_array</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.getUniqueZData">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData">[docs]</a>
+    <span class="k">def</span> <span class="nf">getUniqueZData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Unique Z axis data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output: list[int]</span>
+<span class="sd">            list of all unique Z data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ori_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_coord_data</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ori_array</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.getNumberOfLayers">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers">[docs]</a>
+    <span class="k">def</span> <span class="nf">getNumberOfLayers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Number of Layers</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        direction : str</span>
+<span class="sd">            direction to which to retrieve the number of layers.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        number: int</span>
+<span class="sd">            number of layers</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueXData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueYData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueZData</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">number</span></div>
+
+
+<div class="viewcode-block" id="ResultReact.getZLayerData">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getZLayerData">[docs]</a>
+    <span class="k">def</span> <span class="nf">getZLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Data for Z (depth) layer</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        layer_number : int</span>
+<span class="sd">            the layer to retrieve Z layer data.</span>
+<span class="sd">        param : str</span>
+<span class="sd">            the parameter for which the parameter is to be retrieved.</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output: list[int]</span>
+<span class="sd">            list of Z Layer data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXStartPoints</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+        <span class="n">z_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">total_grid_in_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">begin_index</span> <span class="o">=</span> <span class="n">x_start</span><span class="p">[</span><span class="n">layer_number</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">begin_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&lt;</span> <span class="n">total_grid_in_z</span><span class="p">:</span>
+            <span class="n">end_index</span> <span class="o">=</span> <span class="n">x_start</span><span class="p">[</span><span class="n">layer_number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">end_index</span> <span class="o">=</span> <span class="mi">50</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">z_data</span><span class="p">[</span><span class="n">begin_index</span><span class="p">:</span><span class="n">end_index</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">output</span></div>
 
-<div class="viewcode-block" id="ResultReact.getXDepthData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getXDepthData">[docs]</a>    <span class="k">def</span> <span class="nf">getXDepthData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for X (depth) layer &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ResultReact.getXDepthData">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getXDepthData">[docs]</a>
+    <span class="k">def</span> <span class="nf">getXDepthData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Data for X (depth) layer</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        line_number : int</span>
+<span class="sd">            the line to retrieve X Depth data.</span>
+<span class="sd">        param : str</span>
+<span class="sd">            the parameter for which the data is to be retrieved.</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        data_array: list[int]</span>
+<span class="sd">            list of X Depth data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">element_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_data</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
         <span class="n">x_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
         <span class="n">z_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
@@ -280,8 +1017,31 @@
             <span class="n">line_number</span> <span class="o">=</span> <span class="n">line_number</span> <span class="o">+</span> <span class="n">x_layers</span>
         <span class="k">return</span> <span class="n">data_array</span></div>
 
-<div class="viewcode-block" id="ResultReact.getLayerData"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getLayerData">[docs]</a>    <span class="k">def</span> <span class="nf">getLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Data for Layers &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ResultReact.getLayerData">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.getLayerData">[docs]</a>
+    <span class="k">def</span> <span class="nf">getLayerData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">layer_number</span><span class="p">,</span> <span class="n">timer</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Data for Layers</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        direction : str</span>
+<span class="sd">            the direction to retrieve layer data.</span>
+<span class="sd">        layer_number : int</span>
+<span class="sd">            layer number to retrieve layer data.</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        param : str</span>
+<span class="sd">            the parameter for which the data is to be retrieved.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        data_array: list[int]</span>
+<span class="sd">            list of Layer data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">number_of_layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNumberOfLayers</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">layer_number</span> <span class="o">&gt;</span> <span class="n">number_of_layers</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The specified layer is more than the number of layers in the model&quot;</span><span class="p">)</span>
@@ -292,20 +1052,58 @@
                 <span class="n">data_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getXDepthData</span><span class="p">(</span><span class="n">layer_number</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data_array</span></div>
 
-<div class="viewcode-block" id="ResultReact.get_coord_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_coord_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Coordinate data &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ResultReact.get_coord_data">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_coord_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Coordinate data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        direction : str</span>
+<span class="sd">            the direction to retrieve layer data.</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        value: list[int]</span>
+<span class="sd">            list of coordinate data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_X_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_X_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Y_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_Y_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_Z_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_Z_data</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span></div>
 
-<div class="viewcode-block" id="ResultReact.get_unique_coord_data"><a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data">[docs]</a>    <span class="k">def</span> <span class="nf">get_unique_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Unique coordinate data &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ResultReact.get_unique_coord_data">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_unique_coord_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get Unique Coordinate data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        direction : str</span>
+<span class="sd">            the direction to retrieve layer data.</span>
+<span class="sd">        timer : int</span>
+<span class="sd">            time for which element data is to be gotten.</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        value: list[int]</span>
+<span class="sd">            list of unique coordinate data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueXData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
@@ -313,8 +1111,10 @@
         <span class="k">elif</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUniqueZData</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">value</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coordinates can either be X, Y or Z&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+</div>
+
 </pre></div>
 
            </div>

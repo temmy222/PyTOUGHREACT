@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f0357c94"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -41,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
 </ul>
@@ -49,7 +50,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants Class</a></li>
@@ -125,12 +134,12 @@
            <div itemprop="articleBody">
              
   <section id="pytoughreact-constants-package">
-<h1>pytoughreact.constants package<a class="headerlink" href="#pytoughreact-constants-package" title="Permalink to this heading"></a></h1>
+<h1>pytoughreact.constants package<a class="headerlink" href="#pytoughreact-constants-package" title="Link to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 </section>
 <section id="module-pytoughreact.constants.cap_pressure_constants">
-<span id="pytoughreact-constants-cap-pressure-constants-module"></span><h2>pytoughreact.constants.cap_pressure_constants module<a class="headerlink" href="#module-pytoughreact.constants.cap_pressure_constants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-cap-pressure-constants-module"></span><h2>pytoughreact.constants.cap_pressure_constants module<a class="headerlink" href="#module-pytoughreact.constants.cap_pressure_constants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -150,7 +159,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.default_minerals">
-<span id="pytoughreact-constants-default-minerals-module"></span><h2>pytoughreact.constants.default_minerals module<a class="headerlink" href="#module-pytoughreact.constants.default_minerals" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-default-minerals-module"></span><h2>pytoughreact.constants.default_minerals module<a class="headerlink" href="#module-pytoughreact.constants.default_minerals" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -170,17 +179,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pytoughreact.constants.default_minerals.get_kinetics_minerals">
-<span class="sig-prename descclassname"><span class="pre">pytoughreact.constants.default_minerals.</span></span><span class="sig-name descname"><span class="pre">get_kinetics_minerals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mineral_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/constants/default_minerals.html#get_kinetics_minerals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.constants.default_minerals.get_kinetics_minerals" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytoughreact.constants.default_minerals.</span></span><span class="sig-name descname"><span class="pre">get_kinetics_minerals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mineral_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/constants/default_minerals.html#get_kinetics_minerals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.constants.default_minerals.get_kinetics_minerals" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pytoughreact.constants.default_minerals.get_specific_mineral">
-<span class="sig-prename descclassname"><span class="pre">pytoughreact.constants.default_minerals.</span></span><span class="sig-name descname"><span class="pre">get_specific_mineral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mineral_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/constants/default_minerals.html#get_specific_mineral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.constants.default_minerals.get_specific_mineral" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">pytoughreact.constants.default_minerals.</span></span><span class="sig-name descname"><span class="pre">get_specific_mineral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mineral_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/constants/default_minerals.html#get_specific_mineral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.constants.default_minerals.get_specific_mineral" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="module-pytoughreact.constants.defaults_constants">
-<span id="pytoughreact-constants-defaults-constants-module"></span><h2>pytoughreact.constants.defaults_constants module<a class="headerlink" href="#module-pytoughreact.constants.defaults_constants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-defaults-constants-module"></span><h2>pytoughreact.constants.defaults_constants module<a class="headerlink" href="#module-pytoughreact.constants.defaults_constants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -200,7 +209,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.format_specifications">
-<span id="pytoughreact-constants-format-specifications-module"></span><h2>pytoughreact.constants.format_specifications module<a class="headerlink" href="#module-pytoughreact.constants.format_specifications" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-format-specifications-module"></span><h2>pytoughreact.constants.format_specifications module<a class="headerlink" href="#module-pytoughreact.constants.format_specifications" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -220,7 +229,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.generalconstants">
-<span id="pytoughreact-constants-generalconstants-module"></span><h2>pytoughreact.constants.generalconstants module<a class="headerlink" href="#module-pytoughreact.constants.generalconstants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-generalconstants-module"></span><h2>pytoughreact.constants.generalconstants module<a class="headerlink" href="#module-pytoughreact.constants.generalconstants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -240,7 +249,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.grid_constants">
-<span id="pytoughreact-constants-grid-constants-module"></span><h2>pytoughreact.constants.grid_constants module<a class="headerlink" href="#module-pytoughreact.constants.grid_constants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-grid-constants-module"></span><h2>pytoughreact.constants.grid_constants module<a class="headerlink" href="#module-pytoughreact.constants.grid_constants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -260,7 +269,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.plotconstants">
-<span id="pytoughreact-constants-plotconstants-module"></span><h2>pytoughreact.constants.plotconstants module<a class="headerlink" href="#module-pytoughreact.constants.plotconstants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-plotconstants-module"></span><h2>pytoughreact.constants.plotconstants module<a class="headerlink" href="#module-pytoughreact.constants.plotconstants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -280,7 +289,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.reactionconstants">
-<span id="pytoughreact-constants-reactionconstants-module"></span><h2>pytoughreact.constants.reactionconstants module<a class="headerlink" href="#module-pytoughreact.constants.reactionconstants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-reactionconstants-module"></span><h2>pytoughreact.constants.reactionconstants module<a class="headerlink" href="#module-pytoughreact.constants.reactionconstants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -300,7 +309,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.rel_perm_constants">
-<span id="pytoughreact-constants-rel-perm-constants-module"></span><h2>pytoughreact.constants.rel_perm_constants module<a class="headerlink" href="#module-pytoughreact.constants.rel_perm_constants" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-rel-perm-constants-module"></span><h2>pytoughreact.constants.rel_perm_constants module<a class="headerlink" href="#module-pytoughreact.constants.rel_perm_constants" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -320,7 +329,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants.sections">
-<span id="pytoughreact-constants-sections-module"></span><h2>pytoughreact.constants.sections module<a class="headerlink" href="#module-pytoughreact.constants.sections" title="Permalink to this heading"></a></h2>
+<span id="pytoughreact-constants-sections-module"></span><h2>pytoughreact.constants.sections module<a class="headerlink" href="#module-pytoughreact.constants.sections" title="Link to this heading"></a></h2>
 <p>MIT License</p>
 <p>Copyright (c) [2022] [Temitope Ajayi]</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -340,7 +349,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</p>
 </section>
 <section id="module-pytoughreact.constants">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytoughreact.constants" title="Permalink to this heading"></a></h2>
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytoughreact.constants" title="Link to this heading"></a></h2>
 </section>
 </section>
 

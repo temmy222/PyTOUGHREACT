@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f0357c94"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -40,7 +41,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
 </ul>
@@ -48,7 +49,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants Class</a></li>
@@ -95,9 +104,9 @@
            <div itemprop="articleBody">
              
   <section id="welcome-to-pytoughreact-s-documentation">
-<h1>Welcome to PyTOUGHREACT’s documentation!<a class="headerlink" href="#welcome-to-pytoughreact-s-documentation" title="Permalink to this heading"></a></h1>
+<h1>Welcome to PyTOUGHREACT’s documentation!<a class="headerlink" href="#welcome-to-pytoughreact-s-documentation" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
 </ul>
@@ -109,7 +118,28 @@
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Details of PyTOUGHREACT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#why-pytoughreact">Why PyTOUGHREACT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical.html#what-is-toughreact-tmvoc-and-tmvoc-bio">What is TOUGHREACT / TMVOC and TMVOC-BIO</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#toughreact-model-creation">TOUGHREACT Model Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#tmvoc-bio-example-simulation">TMVOC-BIO Example Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#results-and-plotting">Results and Plotting.</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="chemical.html#biodegradation-processes">Biodegradation Processes</a><ul>
@@ -265,9 +295,38 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting Class</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#multiple-files-plot">Multiple Files Plot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#multiple-tough">Multiple TOUGH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html#plot-tough">Plot TOUGH</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#multiple-files-plot">Multiple Files Plot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.multiFileSinglePlot"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.multiFileSinglePlot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFile"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiElementMultiFile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiFileDistance"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiFileDistance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiPerPanel"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiPerPanel()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#multiple-tough">Multiple TOUGH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_param_multi_file_plot"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.multi_param_multi_file_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.multi_time_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot_restart"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.multi_time_plot_restart()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.plotMultiParamSinglePlot"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.plotMultiParamSinglePlot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html#plot-tough">Plot TOUGH</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough"><code class="docutils literal notranslate"><span class="pre">PlotTough</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_one"><code class="docutils literal notranslate"><span class="pre">PlotTough.plot2D_one()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_withgrid"><code class="docutils literal notranslate"><span class="pre">PlotTough.plot2D_withgrid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithLayer"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithLayer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithParam"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithParam()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTime"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithTime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTimeRestart"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithTimeRestart()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="results.html">Results Class</a><ul>
@@ -308,19 +367,14 @@
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.convert_times"><code class="docutils literal notranslate"><span class="pre">ResultReact.convert_times()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getLayerData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getLayerData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers"><code class="docutils literal notranslate"><span class="pre">ResultReact.getNumberOfLayers()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getParameters"><code class="docutils literal notranslate"><span class="pre">ResultReact.getParameters()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueXData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueYData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueZData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getXDepthData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getXDepthData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints"><code class="docutils literal notranslate"><span class="pre">ResultReact.getXStartPoints()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.getZLayerData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getZLayerData()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_X_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_X_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_Y_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_Y_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_Z_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_Z_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_coord_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_coord_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_element_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_element_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_elements"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_elements()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_times"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_times()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_timeseries_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="results.html#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_unique_coord_data()</span></code></a></li>
@@ -838,17 +892,8 @@
 <li class="toctree-l6"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.multiFileSinglePlot"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.multiFileSinglePlot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFile"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiElementMultiFile()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerFile"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiElementMultiFilePerFile()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerProp"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiElementMultiFilePerProp()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiFileDistance"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiFileDistance()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiPerPanel"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotMultiPerPanel()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMulti"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotRawMulti()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFile"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotRawMultiFile()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePanel"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotRawMultiFilePanel()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePerFile"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotRawMultiFilePerFile()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawSingle"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.plotRawSingle()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.setToughYLabel"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.setToughYLabel()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.validateInput"><code class="docutils literal notranslate"><span class="pre">PlotMultiFiles.validateInput()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -862,37 +907,20 @@
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.multi_time_plot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot_restart"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.multi_time_plot_restart()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.plotMultiParamSinglePlot"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.plotMultiParamSinglePlot()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_horizontal"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_horizontal()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_horizontal_with_expt"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_horizontal_with_expt()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_horizontal"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_restart_horizontal()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_horizontal_with_expt"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_restart_horizontal_with_expt()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_restart_vertical"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_restart_vertical()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_vertical"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_vertical()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.raw_multi_plot_vertical_with_expt"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.raw_multi_plot_vertical_with_expt()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.read_file()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file_multi"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.read_file_multi()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.retrieve_multi_data"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.retrieve_multi_data()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.retrieve_multi_data_generation"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.retrieve_multi_data_generation()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.slice_value"><code class="docutils literal notranslate"><span class="pre">PlotMultiTough.slice_value()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="pytoughreact.plotting.html#module-pytoughreact.plotting.plot_tough_routine">pytoughreact.plotting.plot_tough_routine module</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough"><code class="docutils literal notranslate"><span class="pre">PlotTough</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartDataElement"><code class="docutils literal notranslate"><span class="pre">PlotTough.getRestartDataElement()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartDataTime"><code class="docutils literal notranslate"><span class="pre">PlotTough.getRestartDataTime()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.getRestartLocations"><code class="docutils literal notranslate"><span class="pre">PlotTough.getRestartLocations()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_one"><code class="docutils literal notranslate"><span class="pre">PlotTough.plot2D_one()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plot2D_withgrid"><code class="docutils literal notranslate"><span class="pre">PlotTough.plot2D_withgrid()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithLayer"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithLayer()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithParam"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithParam()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTime"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithTime()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotParamWithTimeRestart"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotParamWithTimeRestart()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotRaw"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotRaw()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotRawLayer"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotRawLayer()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.plotRawWithExpt"><code class="docutils literal notranslate"><span class="pre">PlotTough.plotRawWithExpt()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.plotting.html#pytoughreact.plotting.plot_tough_routine.PlotTough.read_file"><code class="docutils literal notranslate"><span class="pre">PlotTough.read_file()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -999,19 +1027,14 @@
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.convert_times"><code class="docutils literal notranslate"><span class="pre">ResultReact.convert_times()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getLayerData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getLayerData()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers"><code class="docutils literal notranslate"><span class="pre">ResultReact.getNumberOfLayers()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getParameters"><code class="docutils literal notranslate"><span class="pre">ResultReact.getParameters()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueXData()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueYData()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueZData()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getXDepthData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getXDepthData()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints"><code class="docutils literal notranslate"><span class="pre">ResultReact.getXStartPoints()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.getZLayerData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getZLayerData()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_X_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_X_data()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_Y_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_Y_data()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_Z_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_Z_data()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_coord_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_coord_data()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_element_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_element_data()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_elements"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_elements()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_times"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_times()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_timeseries_data()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="pytoughreact.results.html#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_unique_coord_data()</span></code></a></li>
@@ -1298,7 +1321,7 @@
 </div>
 </section>
 <section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>

@@ -10,10 +10,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f0357c94"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -38,7 +39,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
 </ul>
@@ -46,7 +47,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
@@ -132,8 +141,38 @@
 <span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_utilities</span> <span class="kn">import</span> <span class="n">t2Utilities</span>
 
 
-<div class="viewcode-block" id="PlotMultiFiles"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles">[docs]</a><span class="k">class</span> <span class="nc">PlotMultiFiles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotMultiFiles">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles">[docs]</a>
+<span class="k">class</span> <span class="nc">PlotMultiFiles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulator_type</span><span class="p">,</span> <span class="n">file_locations</span><span class="p">,</span> <span class="n">file_titles</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class for processing multiple file results</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        file_locations :  list[str]</span>
+<span class="sd">            specifies the location of the files on the syste</span>
+<span class="sd">        file_titles : list[str]</span>
+<span class="sd">            gives the title of the file e.g &#39;kdd.conc&#39; or &#39;OUTPUT.csv&#39;.</span>
+<span class="sd">        simulator_type: str</span>
+<span class="sd">            can either be toughreact, tmvoc or tough3</span>
+<span class="sd">        prop : list[str]</span>
+<span class="sd">            properties to be plotted</span>
+
+<span class="sd">        **kwargs</span>
+
+<span class="sd">        x_slice value : int</span>
+<span class="sd">            value at which the plot should be sliced at the  x axis</span>
+<span class="sd">        per_file : boolean</span>
+<span class="sd">            if the plot should be made per file and not per property</span>
+<span class="sd">        tile : str</span>
+<span class="sd">            title of each of the plots</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_locations</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_titles</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
@@ -146,7 +185,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">per_file</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">PER_FILE</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">TITLE</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.validateInput"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.validateInput">[docs]</a>    <span class="k">def</span> <span class="nf">validateInput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_validateInput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Validate Inputs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TOUGHREACT</span><span class="p">:</span>
             <span class="n">multi_tough</span> <span class="o">=</span> <span class="n">MultiResultReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">,</span>
                                            <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">)</span>
@@ -154,9 +195,21 @@
             <span class="n">multi_tough</span> <span class="o">=</span> <span class="n">MultiResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_titles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Code only has capability for TOUGHREACT or TOUGH3 (by extension TMVOC)&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">multi_tough</span></div>
+        <span class="k">return</span> <span class="n">multi_tough</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotRawSingle"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawSingle">[docs]</a>    <span class="k">def</span> <span class="nf">plotRawSingle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_plotRawSingle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Single File</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data :  pd.DataFrame</span>
+<span class="sd">            data for plot</span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">prop_index</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
@@ -172,9 +225,22 @@
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span></div>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotRawMulti"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMulti">[docs]</a>    <span class="k">def</span> <span class="nf">plotRawMulti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_plotRawMulti</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi File</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data :  pd.DataFrame</span>
+<span class="sd">            data for plot</span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="n">plot_counter</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">start_point</span> <span class="o">=</span> <span class="mi">0</span>
@@ -199,9 +265,22 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figlegend</span><span class="p">(</span><span class="n">handles</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">LOC_LOWER_CENTER</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">labelspacing</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span></div>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.setToughYLabel"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.setToughYLabel">[docs]</a>    <span class="k">def</span> <span class="nf">setToughYLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_setToughYLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Convert the value in tough results to understandable values</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        value :  str</span>
+<span class="sd">            value to be converted (must be present in TOUGH data output)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        value :  str</span>
+<span class="sd">            converted value</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">rc</span><span class="o">.</span><span class="n">TOBERMORITE_TOUGHREACT</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">TOBERMORITE_CONVERSION</span>
         <span class="k">elif</span> <span class="n">rc</span><span class="o">.</span><span class="n">MONOSULFOALUMINATE_TOUGHREACT</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
@@ -214,9 +293,24 @@
             <span class="n">value</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">C3FH6_CONVERSION</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">value</span></div>
+        <span class="k">return</span> <span class="n">value</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotRawMultiFile"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFile">[docs]</a>    <span class="k">def</span> <span class="nf">plotRawMultiFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_plotRawMultiFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi File</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data :  pd.DataFrame</span>
+<span class="sd">            data for plot</span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
         <span class="n">plot_counter</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">start_point</span> <span class="o">=</span> <span class="mi">0</span>
@@ -232,7 +326,7 @@
                 <span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">legend_index</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">legend</span><span class="p">[</span><span class="n">legend_index</span><span class="p">])</span>
                 <span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time &#39;</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="n">format_of_date</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-                <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">setToughYLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">prop_index</span><span class="p">]),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_setToughYLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">prop_index</span><span class="p">]),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
                 <span class="n">axs</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 <span class="n">legend_index</span> <span class="o">=</span> <span class="n">legend_index</span> <span class="o">+</span> <span class="mi">1</span>
             <span class="n">plot_counter</span> <span class="o">=</span> <span class="n">plot_counter</span> <span class="o">+</span> <span class="mi">1</span>
@@ -248,9 +342,24 @@
             <span class="n">plt</span><span class="o">.</span><span class="n">figlegend</span><span class="p">(</span><span class="n">handles</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">LOC_LOWER_CENTER</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">labelspacing</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span></div>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotRawMultiFilePanel"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePanel">[docs]</a>    <span class="k">def</span> <span class="nf">plotRawMultiFilePanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_plotRawMultiFilePanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi File Per Panel</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data :  pd.DataFrame</span>
+<span class="sd">            data for plot</span>
+<span class="sd">        panels :  int</span>
+<span class="sd">            Number of panels</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
         <span class="n">start_point</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="c1"># markers = pc.ALL_MARKERS</span>
@@ -301,9 +410,22 @@
                 <span class="n">axsa</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">panels</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">LOC_BEST</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">panels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOTS_PER_PANEL</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span></div>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">panels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOTS_PER_PANEL</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotRawMultiFilePerFile"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotRawMultiFilePerFile">[docs]</a>    <span class="k">def</span> <span class="nf">plotRawMultiFilePerFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_plotRawMultiFilePerFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi File Per File</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        data :  pd.DataFrame</span>
+<span class="sd">            data for plot</span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
         <span class="n">plot_counter</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">start_point</span> <span class="o">=</span> <span class="mi">0</span>
@@ -317,7 +439,7 @@
                 <span class="n">y_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">gc</span><span class="o">.</span><span class="n">POROSITY</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
                     <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">legend_index</span><span class="p">],</span>
-                             <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">setToughYLabel</span><span class="p">(</span><span class="n">legend</span><span class="p">[</span><span class="n">legend_index</span><span class="p">]))</span>
+                             <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_setToughYLabel</span><span class="p">(</span><span class="n">legend</span><span class="p">[</span><span class="n">legend_index</span><span class="p">]))</span>
                     <span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span><span class="p">:</span>
                         <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">prop_index</span><span class="p">]),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
@@ -325,7 +447,7 @@
                         <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">CHANGE_IN_VOLUME_FRACTION</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">legend_index</span><span class="p">],</span>
-                             <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">setToughYLabel</span><span class="p">(</span><span class="n">legend</span><span class="p">[</span><span class="n">legend_index</span><span class="p">]))</span>
+                             <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_setToughYLabel</span><span class="p">(</span><span class="n">legend</span><span class="p">[</span><span class="n">legend_index</span><span class="p">]))</span>
                     <span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulator_type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span><span class="p">:</span>
                         <span class="n">param_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="n">prop_index</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
@@ -349,76 +471,183 @@
         <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_locations</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span></div>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">props</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">DIFFERENT_FILES_TAG</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.multiFileSinglePlot"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.multiFileSinglePlot">[docs]</a>    <span class="k">def</span> <span class="nf">multiFileSinglePlot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
-        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validateInput</span><span class="p">()</span>
+<div class="viewcode-block" id="PlotMultiFiles.multiFileSinglePlot">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.multiFileSinglePlot">[docs]</a>
+    <span class="k">def</span> <span class="nf">multiFileSinglePlot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of  Multiple Files with a single plot</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number :  int</span>
+<span class="sd">            The grid block number to be plotted </span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validateInput</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">multi_tough</span><span class="o">.</span><span class="n">retrieve_data_multi_timeseries</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawSingle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawSingle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawSingle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawSingle</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotMultiElementMultiFilePerFile"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerFile">[docs]</a>    <span class="k">def</span> <span class="nf">plotMultiElementMultiFilePerFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
-        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validateInput</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_plotMultiElementMultiFilePerFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi Elements and Multiple Files for File only</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number :  int</span>
+<span class="sd">            The grid block number to be plotted </span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validateInput</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">multi_tough</span><span class="o">.</span><span class="n">getMultiElementData</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotMultiElementMultiFilePerProp"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFilePerProp">[docs]</a>    <span class="k">def</span> <span class="nf">plotMultiElementMultiFilePerProp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
-        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validateInput</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">_plotMultiElementMultiFilePerProp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi Elements and Multiple Files for Property only</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number :  int</span>
+<span class="sd">            The grid block number to be plotted </span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validateInput</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">multi_tough</span><span class="o">.</span><span class="n">getMultiElementData</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotMultiElementMultiFile"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFile">[docs]</a>    <span class="k">def</span> <span class="nf">plotMultiElementMultiFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">plot_kind</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">):</span>
+<div class="viewcode-block" id="PlotMultiFiles.plotMultiElementMultiFile">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiElementMultiFile">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotMultiElementMultiFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">plot_kind</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi Elements and Multiple Files</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number :  int</span>
+<span class="sd">            The grid block number to be plotted </span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        plot_kind: str</span>
+<span class="sd">            The kind of plot to be used; could be &#39;property&#39; or &#39;file&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">plot_kind</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">plotMultiElementMultiFilePerProp</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_plotMultiElementMultiFilePerProp</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">plot_kind</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">FILE</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">plotMultiElementMultiFilePerFile</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_plotMultiElementMultiFilePerFile</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Plot kind can either be property or file&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotMultiPerPanel"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiPerPanel">[docs]</a>    <span class="k">def</span> <span class="nf">plotMultiPerPanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">):</span>
-        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validateInput</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PlotMultiFiles.plotMultiPerPanel">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiPerPanel">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotMultiPerPanel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Multi Properties Per Panel</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        grid_block_number :  int</span>
+<span class="sd">            The grid block number to be plotted </span>
+<span class="sd">        panels :  int</span>
+<span class="sd">            Number of panels</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validateInput</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">multi_tough</span><span class="o">.</span><span class="n">getMultiElementDataPerPanel</span><span class="p">(</span><span class="n">grid_block_number</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">stringo</span> <span class="o">=</span> <span class="n">panels</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;panel1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;time00&#39;</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">stringo</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePanel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFilePanel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePanel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFilePanel</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">panels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PlotMultiFiles.plotMultiFileDistance"><a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiFileDistance">[docs]</a>    <span class="k">def</span> <span class="nf">plotMultiFileDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directionX</span><span class="p">,</span> <span class="n">directionY</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
-        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">validateInput</span><span class="p">()</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">multi_tough</span><span class="o">.</span><span class="n">getMultiFileDistance</span><span class="p">(</span><span class="n">directionX</span><span class="p">,</span> <span class="n">directionY</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PlotMultiFiles.plotMultiFileDistance">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_files_routine.PlotMultiFiles.plotMultiFileDistance">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotMultiFileDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction_x</span><span class="p">,</span> <span class="n">direction_y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">,</span> <span class="n">legend</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Plot of Parameter with Distance for Multiple Files</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        direction_x :  str</span>
+<span class="sd">            The direction to be plotted on the x axis </span>
+<span class="sd">        direction_y :  str</span>
+<span class="sd">            The direction to be plotted on the y axis</span>
+<span class="sd">        legend :  list[str]</span>
+<span class="sd">            List of legend values</span>
+<span class="sd">        layer_num :  int</span>
+<span class="sd">            The layer in the model to be plotted</span>
+<span class="sd">        time : int</span>
+<span class="sd">            the time at which the plot is to be made</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">multi_tough</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validateInput</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">multi_tough</span><span class="o">.</span><span class="n">getMultiFileDistance</span><span class="p">(</span><span class="n">direction_x</span><span class="p">,</span> <span class="n">direction_y</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">per_file</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFilePerFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div></div>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_plotRawMultiFile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">legend</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>

@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f0357c94"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -41,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
 </ul>
@@ -49,7 +50,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants Class</a></li>
@@ -131,15 +140,15 @@
            <div itemprop="articleBody">
              
   <section id="model-class">
-<h1>Model Class<a class="headerlink" href="#model-class" title="Permalink to this heading"></a></h1>
+<h1>Model Class<a class="headerlink" href="#model-class" title="Link to this heading"></a></h1>
 <section id="capillary-pressure">
-<h2>Capillary Pressure<a class="headerlink" href="#capillary-pressure" title="Permalink to this heading"></a></h2>
+<h2>Capillary Pressure<a class="headerlink" href="#capillary-pressure" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.capillary_pressure.</span></span><span class="sig-name descname"><span class="pre">CapillaryPressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_cap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.capillary_pressure.</span></span><span class="sig-name descname"><span class="pre">CapillaryPressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_cap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure" title="Link to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.cap_pres_converter">
-<span class="sig-name descname"><span class="pre">cap_pres_converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.cap_pres_converter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.cap_pres_converter" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">cap_pres_converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.cap_pres_converter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.cap_pres_converter" title="Link to this definition"></a></dt>
 <dd><p>Function that converts capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -153,7 +162,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_cap_press">
-<span class="sig-name descname"><span class="pre">validate_cap_press</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_cap_press"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_cap_press" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_cap_press</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_cap_press"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_cap_press" title="Link to this definition"></a></dt>
 <dd><p>Function that validates capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -167,7 +176,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_leverett">
-<span class="sig-name descname"><span class="pre">validate_leverett</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_leverett"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_leverett" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_leverett</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_leverett"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_leverett" title="Link to this definition"></a></dt>
 <dd><p>Function that validates Leverett capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -181,7 +190,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_linear">
-<span class="sig-name descname"><span class="pre">validate_linear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_linear" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_linear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_linear" title="Link to this definition"></a></dt>
 <dd><p>Function that validates linear capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -195,7 +204,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_milly">
-<span class="sig-name descname"><span class="pre">validate_milly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_milly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_milly" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_milly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_milly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_milly" title="Link to this definition"></a></dt>
 <dd><p>Function that validates Milly capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -209,7 +218,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_pickens">
-<span class="sig-name descname"><span class="pre">validate_pickens</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_pickens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_pickens" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_pickens</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_pickens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_pickens" title="Link to this definition"></a></dt>
 <dd><p>Function that validates Pickens capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -223,7 +232,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_trust">
-<span class="sig-name descname"><span class="pre">validate_trust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_trust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_trust" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_trust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_trust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_trust" title="Link to this definition"></a></dt>
 <dd><p>Function that validates Trust capillary pressure inputs</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -239,13 +248,13 @@
 
 </section>
 <section id="grid">
-<h2>Grid<a class="headerlink" href="#grid" title="Permalink to this heading"></a></h2>
+<h2>Grid<a class="headerlink" href="#grid" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.model.grid.Grid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.grid.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit_system</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_top</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.grid.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit_system</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_top</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid" title="Link to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.grid.Grid.add_x_dimension">
-<span class="sig-name descname"><span class="pre">add_x_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_x_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_x_dimension" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_x_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_x_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_x_dimension" title="Link to this definition"></a></dt>
 <dd><p>Adds x dimensions to grid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -262,7 +271,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.grid.Grid.add_y_dimension">
-<span class="sig-name descname"><span class="pre">add_y_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_y_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_y_dimension" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_y_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_y_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_y_dimension" title="Link to this definition"></a></dt>
 <dd><p>Adds y dimensions to grid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -279,7 +288,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.grid.Grid.add_z_dimension">
-<span class="sig-name descname"><span class="pre">add_z_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_z_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_z_dimension" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_z_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_z_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_z_dimension" title="Link to this definition"></a></dt>
 <dd><p>Adds z dimensions to grid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -298,13 +307,13 @@
 
 </section>
 <section id="physical-model">
-<h2>Physical Model<a class="headerlink" href="#physical-model" title="Permalink to this heading"></a></h2>
+<h2>Physical Model<a class="headerlink" href="#physical-model" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.physical_model.</span></span><span class="sig-name descname"><span class="pre">PhysicalModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.physical_model.</span></span><span class="sig-name descname"><span class="pre">PhysicalModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel" title="Link to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.createGrid">
-<span class="sig-name descname"><span class="pre">createGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.createGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.createGrid" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">createGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.createGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.createGrid" title="Link to this definition"></a></dt>
 <dd><p>Creates Grid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -323,10 +332,10 @@
 
 </section>
 <section id="relative-permeability">
-<h2>Relative Permeability<a class="headerlink" href="#relative-permeability" title="Permalink to this heading"></a></h2>
+<h2>Relative Permeability<a class="headerlink" href="#relative-permeability" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.relative_permeability.</span></span><span class="sig-name descname"><span class="pre">RelativePermeability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_rel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.relative_permeability.</span></span><span class="sig-name descname"><span class="pre">RelativePermeability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_rel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

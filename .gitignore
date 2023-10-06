@@ -16,7 +16,9 @@ src/pytoughreact/treacteos1.exe
 test/geom.dat
 docs/user_guide.docx
 docs/user_guide.pdf
-
+src/pytoughreact/documentation/_build/html
+documentation/_build
+documentation/_build/html
 treacteos1.exe
 **/treacteos1.exe*
 setup.py

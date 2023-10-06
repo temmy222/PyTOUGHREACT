@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f0357c94"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -41,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
 </ul>
@@ -49,7 +50,15 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constants.html">Constants Class</a></li>
@@ -94,19 +103,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.convert_times"><code class="docutils literal notranslate"><span class="pre">ResultReact.convert_times()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getLayerData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getLayerData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers"><code class="docutils literal notranslate"><span class="pre">ResultReact.getNumberOfLayers()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getParameters"><code class="docutils literal notranslate"><span class="pre">ResultReact.getParameters()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueXData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueYData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getUniqueZData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getXDepthData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getXDepthData()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints"><code class="docutils literal notranslate"><span class="pre">ResultReact.getXStartPoints()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.getZLayerData"><code class="docutils literal notranslate"><span class="pre">ResultReact.getZLayerData()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_X_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_X_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_Y_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_Y_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_Z_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_Z_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_coord_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_coord_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_element_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_element_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_elements"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_elements()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_times"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_times()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_timeseries_data()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data"><code class="docutils literal notranslate"><span class="pre">ResultReact.get_unique_coord_data()</span></code></a></li>
@@ -207,22 +211,22 @@
            <div itemprop="articleBody">
              
   <section id="results-class">
-<h1>Results Class<a class="headerlink" href="#results-class" title="Permalink to this heading"></a></h1>
+<h1>Results Class<a class="headerlink" href="#results-class" title="Link to this heading"></a></h1>
 <section id="results-for-tough-3">
-<h2>Results for Tough 3<a class="headerlink" href="#results-for-tough-3" title="Permalink to this heading"></a></h2>
+<h2>Results for Tough 3<a class="headerlink" href="#results-for-tough-3" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_tough_3.</span></span><span class="sig-name descname"><span class="pre">ResultTough3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_tough_3.</span></span><span class="sig-name descname"><span class="pre">ResultTough3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3" title="Link to this definition"></a></dt>
 <dd><p>Class for processing results from Tough3</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.check_strictly_increasing">
-<span class="sig-name descname"><span class="pre">check_strictly_increasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.check_strictly_increasing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.check_strictly_increasing" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_strictly_increasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.check_strictly_increasing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.check_strictly_increasing" title="Link to this definition"></a></dt>
 <dd><p>Check for only strictly increasing data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.convert_times">
-<span class="sig-name descname"><span class="pre">convert_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.convert_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.convert_times" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">convert_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.convert_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.convert_times" title="Link to this definition"></a></dt>
 <dd><p>convert time to desirable time e.g day, month, year
 :param format_of_date: string of type ‘day’, ‘month’, ‘year’
 :return: a list of the time</p>
@@ -230,146 +234,146 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.del_index">
-<span class="sig-name descname"><span class="pre">del_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.del_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.del_index" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">del_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.del_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.del_index" title="Link to this definition"></a></dt>
 <dd><p>Delete index</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.duplicate_index">
-<span class="sig-name descname"><span class="pre">duplicate_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.duplicate_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.duplicate_index" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">duplicate_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.duplicate_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.duplicate_index" title="Link to this definition"></a></dt>
 <dd><p>Duplicate index</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getGenerationData">
-<span class="sig-name descname"><span class="pre">getGenerationData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getGenerationData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getGenerationData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getGenerationData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getGenerationData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getGenerationData" title="Link to this definition"></a></dt>
 <dd><p>Get Data from GENER file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getLayerData">
-<span class="sig-name descname"><span class="pre">getLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getLayerData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getLayerData" title="Link to this definition"></a></dt>
 <dd><p>Get Layer Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getNumberOfLayers">
-<span class="sig-name descname"><span class="pre">getNumberOfLayers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getNumberOfLayers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getNumberOfLayers" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getNumberOfLayers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getNumberOfLayers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getNumberOfLayers" title="Link to this definition"></a></dt>
 <dd><p>Get Number of Layers</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getParameters">
-<span class="sig-name descname"><span class="pre">getParameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getParameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getParameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getParameters" title="Link to this definition"></a></dt>
 <dd><p>Remove space from parameters</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getUniqueXData">
-<span class="sig-name descname"><span class="pre">getUniqueXData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getUniqueXData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getUniqueXData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getUniqueXData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getUniqueXData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getUniqueXData" title="Link to this definition"></a></dt>
 <dd><p>Get Unique X Axis Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getUniqueYData">
-<span class="sig-name descname"><span class="pre">getUniqueYData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getUniqueYData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getUniqueYData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getUniqueYData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getUniqueYData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getUniqueYData" title="Link to this definition"></a></dt>
 <dd><p>Get Unique Y Axis Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getUniqueZData">
-<span class="sig-name descname"><span class="pre">getUniqueZData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getUniqueZData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getUniqueZData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getUniqueZData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getUniqueZData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getUniqueZData" title="Link to this definition"></a></dt>
 <dd><p>Get Unique Z Axis Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getXDepthData">
-<span class="sig-name descname"><span class="pre">getXDepthData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getXDepthData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getXDepthData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getXDepthData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getXDepthData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getXDepthData" title="Link to this definition"></a></dt>
 <dd><p>Get X Axis And Depth Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getXStartPoints">
-<span class="sig-name descname"><span class="pre">getXStartPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getXStartPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getXStartPoints" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getXStartPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getXStartPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getXStartPoints" title="Link to this definition"></a></dt>
 <dd><p>Get X Axis Start Point Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.getZLayerData">
-<span class="sig-name descname"><span class="pre">getZLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getZLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getZLayerData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getZLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.getZLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.getZLayerData" title="Link to this definition"></a></dt>
 <dd><p>Get Z Layer Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_X_data">
-<span class="sig-name descname"><span class="pre">get_X_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_X_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_X_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_X_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_X_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_X_data" title="Link to this definition"></a></dt>
 <dd><p>Get X Axis Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_Y_data">
-<span class="sig-name descname"><span class="pre">get_Y_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_Y_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_Y_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_Y_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_Y_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_Y_data" title="Link to this definition"></a></dt>
 <dd><p>Get Y Axis Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_Z_data">
-<span class="sig-name descname"><span class="pre">get_Z_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_Z_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_Z_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_Z_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_Z_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_Z_data" title="Link to this definition"></a></dt>
 <dd><p>Get Z Axis Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_coord_data">
-<span class="sig-name descname"><span class="pre">get_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_coord_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_coord_data" title="Link to this definition"></a></dt>
 <dd><p>Get Coordinate Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_element_data">
-<span class="sig-name descname"><span class="pre">get_element_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_element_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_element_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_element_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_element_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_element_data" title="Link to this definition"></a></dt>
 <dd><p>Get Data for elements</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_elements">
-<span class="sig-name descname"><span class="pre">get_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_elements" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_elements" title="Link to this definition"></a></dt>
 <dd><p>Get elements from the simulation</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_time_index">
-<span class="sig-name descname"><span class="pre">get_time_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_time_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_time_index" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_time_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_time_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_time_index" title="Link to this definition"></a></dt>
 <dd><p>Get Index of Time</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_times">
-<span class="sig-name descname"><span class="pre">get_times</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_times" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_times</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_times" title="Link to this definition"></a></dt>
 <dd><p>get times stored for duration of the simulation
 :return: a list of all times</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_timeseries_data">
-<span class="sig-name descname"><span class="pre">get_timeseries_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_timeseries_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_timeseries_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_timeseries_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_timeseries_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_timeseries_data" title="Link to this definition"></a></dt>
 <dd><p>Get Time series data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.get_unique_coord_data">
-<span class="sig-name descname"><span class="pre">get_unique_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_unique_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_unique_coord_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_unique_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.get_unique_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.get_unique_coord_data" title="Link to this definition"></a></dt>
 <dd><p>Get Unique Coordinate Data</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.read_file">
-<span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.read_file" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.read_file" title="Link to this definition"></a></dt>
 <dd><p>Read file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_3.ResultTough3.remove_non_increasing">
-<span class="sig-name descname"><span class="pre">remove_non_increasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seqA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seqB</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.remove_non_increasing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.remove_non_increasing" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">remove_non_increasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seqA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seqB</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_3.html#ResultTough3.remove_non_increasing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_3.ResultTough3.remove_non_increasing" title="Link to this definition"></a></dt>
 <dd><p>Remove Non Increasing Data</p>
 </dd></dl>
 
@@ -377,161 +381,303 @@
 
 </section>
 <section id="results-for-tough-react">
-<h2>Results for Tough React<a class="headerlink" href="#results-for-tough-react" title="Permalink to this heading"></a></h2>
+<h2>Results for Tough React<a class="headerlink" href="#results-for-tough-react" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_tough_react.</span></span><span class="sig-name descname"><span class="pre">ResultReact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact" title="Permalink to this definition"></a></dt>
-<dd><p>Class for processing results from TOUGHREACT</p>
-<dl class="py method">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_tough_react.</span></span><span class="sig-name descname"><span class="pre">ResultReact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.convert_times">
-<span class="sig-name descname"><span class="pre">convert_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.convert_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.convert_times" title="Permalink to this definition"></a></dt>
-<dd><p>Convert time to required format</p>
+<span class="sig-name descname"><span class="pre">convert_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.convert_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.convert_times" title="Link to this definition"></a></dt>
+<dd><p>Convert time to required</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeyear</strong> – list of all converted time</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getLayerData">
-<span class="sig-name descname"><span class="pre">getLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getLayerData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getLayerData" title="Link to this definition"></a></dt>
 <dd><p>Get Data for Layers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>str</em>) – the direction to retrieve layer data.</p></li>
+<li><p><strong>layer_number</strong> (<em>int</em>) – layer number to retrieve layer data.</p></li>
+<li><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p></li>
+<li><p><strong>param</strong> (<em>str</em>) – the parameter for which the data is to be retrieved.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data_array</strong> – list of Layer data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers">
-<span class="sig-name descname"><span class="pre">getNumberOfLayers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getNumberOfLayers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getNumberOfLayers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getNumberOfLayers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getNumberOfLayers" title="Link to this definition"></a></dt>
 <dd><p>Get Number of Layers</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getParameters">
-<span class="sig-name descname"><span class="pre">getParameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getParameters" title="Permalink to this definition"></a></dt>
-<dd><p>Get Parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>direction</strong> (<em>str</em>) – direction to which to retrieve the number of layers.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>number</strong> – number of layers</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getUniqueXData">
-<span class="sig-name descname"><span class="pre">getUniqueXData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getUniqueXData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getUniqueXData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getUniqueXData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueXData" title="Link to this definition"></a></dt>
 <dd><p>Get Unique X axis data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output_data</strong> – list of all unique elements in X direction</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getUniqueYData">
-<span class="sig-name descname"><span class="pre">getUniqueYData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getUniqueYData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getUniqueYData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getUniqueYData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueYData" title="Link to this definition"></a></dt>
 <dd><p>Get Unique Y axis data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – list of all unique Y data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getUniqueZData">
-<span class="sig-name descname"><span class="pre">getUniqueZData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getUniqueZData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getUniqueZData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getUniqueZData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getUniqueZData" title="Link to this definition"></a></dt>
 <dd><p>Get Unique Z axis data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – list of all unique Z data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getXDepthData">
-<span class="sig-name descname"><span class="pre">getXDepthData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getXDepthData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getXDepthData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getXDepthData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getXDepthData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getXDepthData" title="Link to this definition"></a></dt>
 <dd><p>Get Data for X (depth) layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line_number</strong> (<em>int</em>) – the line to retrieve X Depth data.</p></li>
+<li><p><strong>param</strong> (<em>str</em>) – the parameter for which the data is to be retrieved.</p></li>
+<li><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data_array</strong> – list of X Depth data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getXStartPoints">
-<span class="sig-name descname"><span class="pre">getXStartPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getXStartPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getXStartPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getXStartPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getXStartPoints" title="Link to this definition"></a></dt>
 <dd><p>Get X axis Start Points</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>indices_array</strong> – list of all start points in X axis</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.getZLayerData">
-<span class="sig-name descname"><span class="pre">getZLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getZLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getZLayerData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getZLayerData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.getZLayerData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.getZLayerData" title="Link to this definition"></a></dt>
 <dd><p>Get Data for Z (depth) layer</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_X_data">
-<span class="sig-name descname"><span class="pre">get_X_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_X_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_X_data" title="Permalink to this definition"></a></dt>
-<dd><p>Get data for X axis</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_Y_data">
-<span class="sig-name descname"><span class="pre">get_Y_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_Y_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_Y_data" title="Permalink to this definition"></a></dt>
-<dd><p>Get data for Y axis</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_Z_data">
-<span class="sig-name descname"><span class="pre">get_Z_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_Z_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_Z_data" title="Permalink to this definition"></a></dt>
-<dd><p>Get data for Z axis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_number</strong> (<em>int</em>) – the layer to retrieve Z layer data.</p></li>
+<li><p><strong>param</strong> (<em>str</em>) – the parameter for which the parameter is to be retrieved.</p></li>
+<li><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>output</strong> – list of Z Layer data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_coord_data">
-<span class="sig-name descname"><span class="pre">get_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_coord_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_coord_data" title="Link to this definition"></a></dt>
 <dd><p>Get Coordinate data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>str</em>) – the direction to retrieve layer data.</p></li>
+<li><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>value</strong> – list of coordinate data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_element_data">
-<span class="sig-name descname"><span class="pre">get_element_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_element_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_element_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_element_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_element_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_element_data" title="Link to this definition"></a></dt>
 <dd><p>Get data for elements</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_elements">
-<span class="sig-name descname"><span class="pre">get_elements</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_elements" title="Permalink to this definition"></a></dt>
-<dd><p>Get elements</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time</strong> (<em>int</em>) – time for which element data is to be gotten.</p></li>
+<li><p><strong>param</strong> (<em>str</em>) – The parameter in which the data is to be gotten</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>final_data</strong> – array of all value of parameter at that time</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array[float]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_times">
-<span class="sig-name descname"><span class="pre">get_times</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_times" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_times</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_times" title="Link to this definition"></a></dt>
 <dd><p>Get times from data file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_data</strong> – list of all time</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data">
-<span class="sig-name descname"><span class="pre">get_timeseries_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_timeseries_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_timeseries_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_timeseries_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_timeseries_data" title="Link to this definition"></a></dt>
 <dd><p>Get timeseries data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grid_block_number</strong> (<em>int</em>) – the grid block in which its data is to be gotten.</p></li>
+<li><p><strong>param</strong> (<em>str</em>) – The parameter in which the data is to be gotten</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>timeseries</strong> – list of all time</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data">
-<span class="sig-name descname"><span class="pre">get_unique_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_unique_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data" title="Permalink to this definition"></a></dt>
-<dd><p>Get Unique coordinate data</p>
+<span class="sig-name descname"><span class="pre">get_unique_coord_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_tough_react.html#ResultReact.get_unique_coord_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_tough_react.ResultReact.get_unique_coord_data" title="Link to this definition"></a></dt>
+<dd><p>Get Unique Coordinate data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>str</em>) – the direction to retrieve layer data.</p></li>
+<li><p><strong>timer</strong> (<em>int</em>) – time for which element data is to be gotten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>value</strong> – list of unique coordinate data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="results-for-multiple-files-tough-3">
-<h2>Results for Multiple Files Tough 3<a class="headerlink" href="#results-for-multiple-files-tough-3" title="Permalink to this heading"></a></h2>
+<h2>Results for Multiple Files Tough 3<a class="headerlink" href="#results-for-multiple-files-tough-3" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.multi_result_tough_3.</span></span><span class="sig-name descname"><span class="pre">MultiResultTough3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.multi_result_tough_3.</span></span><span class="sig-name descname"><span class="pre">MultiResultTough3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3" title="Link to this definition"></a></dt>
 <dd><p>Class for retrieving results from multiple files for Tough3 and TMVOC</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementData">
-<span class="sig-name descname"><span class="pre">getMultiElementData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.getMultiElementData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getMultiElementData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.getMultiElementData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementData" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve multi element time and results from file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementDataPerPanel">
-<span class="sig-name descname"><span class="pre">getMultiElementDataPerPanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.getMultiElementDataPerPanel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementDataPerPanel" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getMultiElementDataPerPanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.getMultiElementDataPerPanel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.getMultiElementDataPerPanel" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve multi element time and results from file per panel</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time">
-<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_file_fixed_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_file_fixed_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve time and coordinate results from file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time_layer">
-<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_file_fixed_time_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time_layer" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_file_fixed_time_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_file_fixed_time_layer" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve distance and results from file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries">
-<span class="sig-name descname"><span class="pre">retrieve_data_multi_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_data_multi_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_3.html#MultiResultTough3.retrieve_data_multi_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_3.MultiResultTough3.retrieve_data_multi_timeseries" title="Link to this definition"></a></dt>
 <dd><p>Function that retrieves time and timeseries results from file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -553,44 +699,44 @@
 
 </section>
 <section id="results-for-multiple-files-tough-react">
-<h2>Results for Multiple Files Tough React<a class="headerlink" href="#results-for-multiple-files-tough-react" title="Permalink to this heading"></a></h2>
+<h2>Results for Multiple Files Tough React<a class="headerlink" href="#results-for-multiple-files-tough-react" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.multi_result_tough_react.</span></span><span class="sig-name descname"><span class="pre">MultiResultReact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.multi_result_tough_react.</span></span><span class="sig-name descname"><span class="pre">MultiResultReact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact" title="Link to this definition"></a></dt>
 <dd><p>Class for retrieving results from multiple files for TOUGHREACT</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiElementData">
-<span class="sig-name descname"><span class="pre">getMultiElementData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.getMultiElementData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiElementData" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getMultiElementData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.getMultiElementData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiElementData" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve multi element time and results.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiFileDistance">
-<span class="sig-name descname"><span class="pre">getMultiFileDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.getMultiFileDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiFileDistance" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getMultiFileDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.getMultiFileDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiFileDistance" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve multi element time and results from multiple files</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiPropDistance">
-<span class="sig-name descname"><span class="pre">getMultiPropDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.getMultiPropDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiPropDistance" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getMultiPropDistance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.getMultiPropDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.getMultiPropDistance" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve multi element time and results from file for properties</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_file_fixed_time">
-<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.retrieve_data_multi_file_fixed_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_file_fixed_time" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.retrieve_data_multi_file_fixed_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_file_fixed_time" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve time and coordinate results from file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_file_fixed_time_layer">
-<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.retrieve_data_multi_file_fixed_time_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_file_fixed_time_layer" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_data_multi_file_fixed_time_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.retrieve_data_multi_file_fixed_time_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_file_fixed_time_layer" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve distance and results from file</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_timeseries">
-<span class="sig-name descname"><span class="pre">retrieve_data_multi_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.retrieve_data_multi_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_timeseries" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_data_multi_timeseries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/multi_result_tough_react.html#MultiResultReact.retrieve_data_multi_timeseries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.multi_result_tough_react.MultiResultReact.retrieve_data_multi_timeseries" title="Link to this definition"></a></dt>
 <dd><p>DataFrame to retrieve time and timeseries results from file</p>
 </dd></dl>
 
@@ -598,43 +744,43 @@
 
 </section>
 <section id="results-for-single-files">
-<h2>Results for Single Files<a class="headerlink" href="#results-for-single-files" title="Permalink to this heading"></a></h2>
+<h2>Results for Single Files<a class="headerlink" href="#results-for-single-files" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_single.</span></span><span class="sig-name descname"><span class="pre">FileReadSingle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_single.</span></span><span class="sig-name descname"><span class="pre">FileReadSingle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle" title="Link to this definition"></a></dt>
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle.getSimulatorType">
-<span class="sig-name descname"><span class="pre">getSimulatorType</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.getSimulatorType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.getSimulatorType" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">getSimulatorType</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.getSimulatorType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.getSimulatorType" title="Link to this definition"></a></dt>
 <dd><p>Get Simulator Type</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle.plot2D">
-<span class="sig-name descname"><span class="pre">plot2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plain'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plot2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plot2D" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plain'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plot2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plot2D" title="Link to this definition"></a></dt>
 <dd><p>Make 2D plot either gridded or not gridded</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle.plotParamWithLayer">
-<span class="sig-name descname"><span class="pre">plotParamWithLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionXAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionYAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plotParamWithLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plotParamWithLayer" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotParamWithLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionXAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionYAxis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plotParamWithLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plotParamWithLayer" title="Link to this definition"></a></dt>
 <dd><p>Make Plot of parameter with layer</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle.plotParamWithParam">
-<span class="sig-name descname"><span class="pre">plotParamWithParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plotParamWithParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plotParamWithParam" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotParamWithParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plotParamWithParam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plotParamWithParam" title="Link to this definition"></a></dt>
 <dd><p>Make Plot of parameter with parameter</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle.plotTime">
-<span class="sig-name descname"><span class="pre">plotTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlePlot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plotTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plotTime" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridblocknumber</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'year'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">singlePlot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.plotTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.plotTime" title="Link to this definition"></a></dt>
 <dd><p>Make Plot of parameter with time</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_single.FileReadSingle.validateFile">
-<span class="sig-name descname"><span class="pre">validateFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.validateFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.validateFile" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validateFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_single.html#FileReadSingle.validateFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_single.FileReadSingle.validateFile" title="Link to this definition"></a></dt>
 <dd><p>Validate File</p>
 </dd></dl>
 
@@ -642,10 +788,10 @@
 
 </section>
 <section id="results-for-multiple-files">
-<h2>Results for Multiple Files<a class="headerlink" href="#results-for-multiple-files" title="Permalink to this heading"></a></h2>
+<h2>Results for Multiple Files<a class="headerlink" href="#results-for-multiple-files" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.result_multiple.FileReadMultiple">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_multiple.</span></span><span class="sig-name descname"><span class="pre">FileReadMultiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_locations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_titles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">props</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.result_multiple.</span></span><span class="sig-name descname"><span class="pre">FileReadMultiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulator_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_locations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_titles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">props</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple" title="Link to this definition"></a></dt>
 <dd><p>Class for processing multiple file results
 file_locations (list of strings) - specifies the location of the files on the system
 file_titles (list of strings) - gives the title of the file e.g ‘kdd.conc’ or ‘OUTPUT.csv
@@ -657,13 +803,13 @@ per_file -  (boolean) - if the plot should be made per file and not per property
 title (list of strings) - title of each of the plots</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_multiple.FileReadMultiple.plotParamWithLayer">
-<span class="sig-name descname"><span class="pre">plotParamWithLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple.plotParamWithLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple.plotParamWithLayer" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotParamWithLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directionX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directionY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple.plotParamWithLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple.plotParamWithLayer" title="Link to this definition"></a></dt>
 <dd><p>Plot of Parameter with Layer</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_multiple.FileReadMultiple.plotTime">
-<span class="sig-name descname"><span class="pre">plotTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'property'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'day'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple.plotTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple.plotTime" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'property'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'day'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple.plotTime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple.plotTime" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -678,7 +824,7 @@ title (list of strings) - title of each of the plots</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pytoughreact.results.result_multiple.FileReadMultiple.plotTimePerPanel">
-<span class="sig-name descname"><span class="pre">plotTimePerPanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'day'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple.plotTimePerPanel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple.plotTimePerPanel" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plotTimePerPanel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_block_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_of_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'day'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/result_multiple.html#FileReadMultiple.plotTimePerPanel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.result_multiple.FileReadMultiple.plotTimePerPanel" title="Link to this definition"></a></dt>
 <dd><p>Plot Multiple plots in a panel</p>
 </dd></dl>
 
@@ -686,18 +832,18 @@ title (list of strings) - title of each of the plots</p>
 
 </section>
 <section id="results-for-experimental-data">
-<h2>Results for Experimental Data<a class="headerlink" href="#results-for-experimental-data" title="Permalink to this heading"></a></h2>
+<h2>Results for Experimental Data<a class="headerlink" href="#results-for-experimental-data" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.simple_experiment_data.Experiment">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.simple_experiment_data.</span></span><span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/simple_experiment_data.html#Experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.simple_experiment_data.Experiment" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.simple_experiment_data.</span></span><span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filelocation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/simple_experiment_data.html#Experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.simple_experiment_data.Experiment" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
 <section id="results-for-t2result">
-<h2>Results for t2result<a class="headerlink" href="#results-for-t2result" title="Permalink to this heading"></a></h2>
+<h2>Results for t2result<a class="headerlink" href="#results-for-t2result" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="pytoughreact.results.t2result.t2result">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.t2result.</span></span><span class="sig-name descname"><span class="pre">t2result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/t2result.html#t2result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.t2result.t2result" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.results.t2result.</span></span><span class="sig-name descname"><span class="pre">t2result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulatortype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetitle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filelocation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/results/t2result.html#t2result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.results.t2result.t2result" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
