@@ -25,5 +25,20 @@ for the project. Important folders and files and their uses are shown below::
     The root document of the project, which serves as welcome page and contains the root of the “table of contents tree” (or toctree).
 
 A new page to the documentation is added as a .rst file to the documentation folder and also 
-added to the 
+added to the index.rst file. Examples can be found in the index.rst file for how to add a new file
+to it.
+
+Updates to documentation are automatically upladed to https://pytoughreact.readthedocs.io/en/latest/developer.html
+
+Important links
+~~~~~~~~~~~~~~~~~~~~
+1. https://www.sphinx-doc.org/en/master/tutorial/automatic-doc-generation.html
+2. https://www.sphinx-doc.org/en/master/tutorial/getting-started.html#creating-the-documentation-layout
+3. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#literal-blocks
+4. https://sphinx-rtd-theme.readthedocs.io/en/stable/installing.html 
+5. https://sphinx-tutorial.readthedocs.io/step-3/
+6. https://docutils.sourceforge.io/docs/user/rst/quickref.html#block-quotes 
+7. https://www.youtube.com/watch?v=BWIrhgCAae0&ab_channel=LearnProgrammingwithJoel
+8. https://www.sphinx-doc.org/en/master/usage/restructuredtext/roles.html#cross-referencing-arbitrary-locations
+
 
