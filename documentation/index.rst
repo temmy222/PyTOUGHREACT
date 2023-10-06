@@ -65,6 +65,13 @@ Welcome to PyTOUGHREACT's documentation!
 
    dependencies.rst
 
+.. Developer Notes
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Notes
+
+   developer.rst
+
 Indices and tables
 ==================
 
