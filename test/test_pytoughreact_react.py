@@ -13,7 +13,7 @@ from pytoughreact.wrapper.reactzone import t2zone
 from pytoughreact.wrapper.reactgrid import t2reactgrid
 from pytoughreact.results.t2result import t2result
 from t2data import rocktype
-FILE_PATH = os.path.abspath(os.curdir)
+
 
 
 class ReactTestCase():
@@ -365,6 +365,7 @@ def test_read_react():
 
 
 def test_result_first():
+    FILE_PATH = os.path.abspath(os.curdir)
     results = t2result('toughreact', 'kdd_conc.tec', FILE_PATH)
     time = results.get_times()
     parameter_result = results.get_time_series_data('pH', 0)
@@ -374,6 +375,7 @@ def test_result_first():
 
 
 def test_result_second():
+    FILE_PATH = os.path.dirname(os.path.realpath(__file__))
     react = t2react()
     react.read('flow.inp')
     results = t2result('toughreact', 'kdd_conc.tec', FILE_PATH)
