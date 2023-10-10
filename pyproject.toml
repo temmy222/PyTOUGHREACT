@@ -8,6 +8,22 @@ testpaths = [
     "test",
 ]
 
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+
+[tool.coverage.run]
+omit = [
+    # omit anything in a .local directory anywhere
+    "*/model/*",
+    "*/constants/*",
+    "*/exceptions/*",
+    # omit everything in /usr
+    "/usr/*",
+    # omit this single file
+    "utils/tirefire.py",
+    ]
+
 [tool.mypy]
 mypy_path = "src"
 check_untyped_defs = true

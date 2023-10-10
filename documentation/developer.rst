@@ -46,5 +46,5 @@ Test
 ------------------------------
 Testing for the software was done using pytest. Before test can be run, pytest has to be
 installed using `pip install pytest`. The tests can be run by navigating to
-the root folder and running pytest. The results are then shown together with the 
-coverage of the tests
+the root folder and running `pytest`. The results are then shown together with the 
+coverage of the tests. The settings for the tests can be modified through pyproject.toml
