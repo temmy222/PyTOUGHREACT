@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.writers.react_writing &mdash; PyTOUGHREACT 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyTOUGHREACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyTOUGHREACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.writers.react_writing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.writers.react_writing</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">pytoughreact.constants.format_specifications</span> <span class="kn">import</span> <span class="n">t2react_format_specification</span><span class="p">,</span> <span class="n">t2react_extra_precision_format_specification</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.constants.defaults_constants</span> <span class="kn">import</span> <span class="n">DEFAULT_REACT</span> <span class="k">as</span> <span class="n">default_react</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.constants.defaults_constants</span> <span class="kn">import</span> <span class="n">DEFAULT_PARAMETERS</span> <span class="k">as</span> <span class="n">default_parameters</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.constants.sections</span> <span class="kn">import</span> <span class="n">t2react_sections</span>
+<span class="kn">from</span> <span class="nn">fixed_format_file</span> <span class="kn">import</span> <span class="n">default_read_function</span><span class="p">,</span> <span class="n">fixed_format_file</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.wrapper.reactgrid</span> <span class="kn">import</span> <span class="n">t2reactgrid</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.wrapper.reactblock</span> <span class="kn">import</span> <span class="n">t2block</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.exceptions.custom_error</span> <span class="kn">import</span> <span class="n">NotFoundError</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.wrapper.reactzone</span> <span class="kn">import</span> <span class="n">t2zone</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">t2data</span><span class="p">,</span> <span class="n">fix_blockname</span><span class="p">,</span> <span class="n">rocktype</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">splitext</span><span class="p">,</span> <span class="n">basename</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">devnull</span><span class="p">,</span> <span class="n">remove</span>
+<span class="kn">from</span> <span class="nn">t2data</span> <span class="kn">import</span> <span class="n">trim_trailing_nones</span>
+<span class="kn">from</span> <span class="nn">mulgrids</span> <span class="kn">import</span> <span class="n">padstring</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
+
+
+<div class="viewcode-block" id="t2react_parser"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react_parser">[docs]</a><span class="k">class</span> <span class="nc">t2react_parser</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for parsing REACTION data file.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">t2react_parser</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
+                                             <span class="n">t2react_format_specification</span><span class="p">,</span> <span class="n">read_function</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="t2_extra_precision_data_parser"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2_extra_precision_data_parser">[docs]</a><span class="k">class</span> <span class="nc">t2_extra_precision_data_parser</span><span class="p">(</span><span class="n">fixed_format_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Class for parsing AUTOUGH2 extra-precision auxiliary data file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        fixed_format_file : fixed_format_file</span>
+<span class="sd">            used fir file processing</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">t2_extra_precision_data_parser</span><span class="p">,</span>
+              <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
+                             <span class="n">t2react_extra_precision_format_specification</span><span class="p">,</span>
+                             <span class="n">read_function</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="t2react"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react">[docs]</a><span class="k">class</span> <span class="nc">t2react</span><span class="p">(</span><span class="n">t2data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main class for structuring the writing , reading and running of reaction simulations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="n">default_read_function</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">react</span> <span class="o">=</span> <span class="n">default_react</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">t2reactgrid</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">default_parameters</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_more_option_str</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="o">*</span> <span class="mi">21</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">more_option</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multi</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relative_permeability</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">capillarity</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineq</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_times</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generatorlist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generator</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">short_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incon</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_block</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_connection</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history_generator</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indom</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noversion</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffusion</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">selection</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">meshmaker</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">=</span> <span class="s1">&#39;ENDCY&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_extra_precision</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_echo_extra_precision</span> <span class="o">=</span> <span class="p">[],</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_read_write_functions</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_function</span> <span class="o">=</span> <span class="n">read_function</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">meshfilename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minerals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_species</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="t2react.read_rocktypes"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.read_rocktypes">[docs]</a>    <span class="k">def</span> <span class="nf">read_rocktypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads grid rock types</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        rocktype: self</span>
+<span class="sd">            adds rocktype information to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+        <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">nad</span><span class="p">,</span> <span class="n">density</span><span class="p">,</span> <span class="n">porosity</span><span class="p">,</span>
+             <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">,</span> <span class="n">conductivity</span><span class="p">,</span> <span class="n">specific_heat</span><span class="p">]</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;rocks1&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">add_rocktype</span><span class="p">(</span><span class="n">rocktype</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">nad</span><span class="p">,</span>
+                                            <span class="n">density</span><span class="p">,</span> <span class="n">porosity</span><span class="p">,</span>
+                                            <span class="p">[</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">k3</span><span class="p">],</span>
+                                            <span class="n">conductivity</span><span class="p">,</span> <span class="n">specific_heat</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">nad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">nad</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">nad</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># additional lines:</span>
+                <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s1">&#39;rocks1.1&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">nad</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;rocks1.2&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">relative_permeability</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">relative_permeability</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;rocks1.3&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">capillarity</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">capillarity</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+            <span class="n">zone</span> <span class="o">=</span> <span class="n">t2zone</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">add_zone</span><span class="p">(</span><span class="n">zone</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2react.read_blocks"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.read_blocks">[docs]</a>    <span class="k">def</span> <span class="nf">read_blocks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads grid blocks</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameter: self</span>
+<span class="sd">            reads block information</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">block</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">blocklist</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">[]</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+        <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">nseq</span><span class="p">,</span> <span class="n">nadd</span><span class="p">,</span> <span class="n">rockname</span><span class="p">,</span>
+             <span class="n">volume</span><span class="p">,</span> <span class="n">ahtx</span><span class="p">,</span> <span class="n">pmx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;blocks&#39;</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">fix_blockname</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rockname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">:</span>
+                <span class="n">rocktype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktype</span><span class="p">[</span><span class="n">rockname</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rockname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">zone</span><span class="p">:</span>
+                <span class="n">zonename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">zone</span><span class="p">[</span><span class="n">rockname</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">rockname</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">num_rocktypes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">rocktype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># default</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>  <span class="c1"># check if rocktype index specified:</span>
+                    <span class="n">rockindex</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rockname</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+                    <span class="n">rocktype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span><span class="p">[</span><span class="n">rockindex</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unknown rocktype &quot;</span> <span class="o">+</span> <span class="n">rockname</span> <span class="o">+</span> <span class="s2">&quot; in block &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">z</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">centre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">centre</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">nseq</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">nseq</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">nadd</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">nadd</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">add_block</span><span class="p">(</span><span class="n">t2block</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">rocktype</span><span class="p">,</span> <span class="n">blockzone</span><span class="o">=</span><span class="n">zonename</span><span class="p">,</span>
+                                        <span class="n">centre</span><span class="o">=</span><span class="n">centre</span><span class="p">,</span> <span class="n">ahtx</span><span class="o">=</span><span class="n">ahtx</span><span class="p">,</span>
+                                        <span class="n">pmx</span><span class="o">=</span><span class="n">pmx</span><span class="p">,</span> <span class="n">nseq</span><span class="o">=</span><span class="n">nseq</span><span class="p">,</span> <span class="n">nadd</span><span class="o">=</span><span class="n">nadd</span><span class="p">))</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="t2react.update_read_write_functions"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.update_read_write_functions">[docs]</a>    <span class="k">def</span> <span class="nf">update_read_write_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates functions for reading and writing sections of data file.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2react_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">read_simulator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_rocktypes</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_parameters</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_react</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_more_options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_noversion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_rpcap</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_lineq</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_solver</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_multi</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_times</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_selection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_meshmaker</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_short_output</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_history_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_history_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_history_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_incons</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">read_indom</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2react_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">write_simulator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_rocktypes</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_parameters</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_react</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_more_options</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_noversion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_rpcap</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_lineq</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_solver</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_multi</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_times</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_selection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_meshmaker</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_short_output</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_history_blocks</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_history_connections</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_history_generators</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_incons</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">write_indom</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="t2react.get_present_sections"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.get_present_sections">[docs]</a>    <span class="k">def</span> <span class="nf">get_present_sections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Returns a list of TOUGH2 section keywords for which there are</span>
+<span class="sd">        corresponding data in the t2react object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        parameters : list</span>
+<span class="sd">            list of present sections</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_present</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">t2react_sections</span><span class="p">,</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">simulator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rocktypelist</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">react</span><span class="p">,</span>
+             <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">more_option</span><span class="p">),</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">noversion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">relative_permeability</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">capillarity</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">lineq</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">solver</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">multi</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">output_times</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">selection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">diffusion</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">meshmaker</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">generatorlist</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">short_output</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">history_block</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">history_connection</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">history_generator</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">incon</span><span class="p">,</span>
+             <span class="bp">self</span><span class="o">.</span><span class="n">indom</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">keyword</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2react_sections</span> <span class="k">if</span> <span class="n">data_present</span><span class="p">[</span><span class="n">keyword</span><span class="p">]]</span></div>
+    <span class="n">present_sections</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_present_sections</span><span class="p">)</span>
+
+<div class="viewcode-block" id="t2react.section_insertion_index"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.section_insertion_index">[docs]</a>    <span class="k">def</span> <span class="nf">section_insertion_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">section</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Determines an appropriate position to insert the specified section</span>
+<span class="sd">        in the internal list of data file sections.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">listindex</span> <span class="o">=</span> <span class="n">t2react_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">listindex</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># SIMUL section</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># first look for sections above the one specified,</span>
+                <span class="c1"># and put new one just after the last found:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">listindex</span><span class="p">)):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">section_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t2react_sections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">return</span> <span class="n">section_index</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="c1"># look for sections below the one specified,</span>
+                <span class="c1"># and put new one just before the first found:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">listindex</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t2react_sections</span><span class="p">)):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">section_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t2react_sections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">return</span> <span class="n">section_index</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2react.check_for_executable"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.check_for_executable">[docs]</a>    <span class="k">def</span> <span class="nf">check_for_executable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable_name</span><span class="p">,</span> <span class="n">directory</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Check if the executable exists in the folder.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        executable_name : str</span>
+<span class="sd">            name of executable</span>
+<span class="sd">        directory : str</span>
+<span class="sd">            directory that contains executable</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        exception : NotFoundError</span>
+<span class="sd">            returns error if executable not found</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">executable_name</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="s1">&#39;Tough React Executable&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="t2react.check_for_thermodynamic_database"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.check_for_thermodynamic_database">[docs]</a>    <span class="k">def</span> <span class="nf">check_for_thermodynamic_database</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">t2solute</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Check if the thermodynamic database exists in the folder.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        t2solute : t2solute</span>
+<span class="sd">            t2solute class</span>
+<span class="sd">        directory : str</span>
+<span class="sd">            directory that contains thermodynamic database</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        exception : NotFoundError</span>
+<span class="sd">            returns error if executable not found</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">database_name</span> <span class="o">=</span> <span class="n">t2solute</span><span class="o">.</span><span class="n">readio</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">directory</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">database_name</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFoundError</span><span class="p">(</span><span class="s1">&#39;Thermodynamic Database&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="t2react.run"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t2solute</span><span class="p">,</span> <span class="n">save_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">incon_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="s1">&#39;AUTOUGH2_2&#39;</span><span class="p">,</span>
+            <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Runs simulation using TOUGH2 ,AUTOUGH2, TOUGHREACT.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        save_filename : str</span>
+<span class="sd">            filename of SAVE file</span>
+<span class="sd">        incon_filename : str</span>
+<span class="sd">            filename of INCON file</span>
+<span class="sd">        run_location : str</span>
+<span class="sd">            path to Executable and required files</span>
+<span class="sd">        simulator : str</span>
+<span class="sd">            simulator executable name</span>
+<span class="sd">        silent: boolean</span>
+<span class="sd">            if screen messages should be written out</span>
+<span class="sd">        output_filename: str</span>
+<span class="sd">            name of output listing file (only TOUGH2)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_for_thermodynamic_database</span><span class="p">(</span><span class="n">runlocation</span><span class="p">,</span> <span class="n">t2solute</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_for_executable</span><span class="p">(</span><span class="n">simulator</span><span class="p">,</span> <span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
+            <span class="n">ROOT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">curdir</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_for_executable</span><span class="p">(</span><span class="n">simulator</span><span class="p">,</span> <span class="n">ROOT_DIR</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_for_thermodynamic_database</span><span class="p">(</span><span class="n">ROOT_DIR</span><span class="p">,</span> <span class="n">t2solute</span><span class="p">)</span>
+            <span class="n">datbase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">save_filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                    <span class="n">save_filename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;.save&#39;</span>
+                <span class="k">if</span> <span class="n">incon_filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                    <span class="n">incon_filename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;.incon&#39;</span>
+                <span class="n">savebase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="n">save_filename</span><span class="p">)</span>
+                <span class="n">inconbase</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">splitext</span><span class="p">(</span><span class="n">incon_filename</span><span class="p">)</span>
+                <span class="n">runfilename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">basename</span><span class="p">(</span><span class="n">simulator</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.in&#39;</span>
+                <span class="nb">open</span><span class="p">(</span><span class="n">runfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">savebase</span><span class="p">,</span> <span class="n">inconbase</span><span class="p">,</span> <span class="n">datbase</span><span class="p">]))</span>
+                <span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">runfilename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulator</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">silent</span><span class="p">:</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="c1"># run AUTOUGH2:</span>
+                <span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">outfile</span><span class="p">)</span>
+                <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">remove</span><span class="p">(</span><span class="n">runfilename</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># run TOUGH2 (need to specify simulator executable name)</span>
+                <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;GENER&quot;</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;GENER&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;OUTPUT_ELEME.csv&quot;</span><span class="p">):</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;OUTPUT_ELEME.csv&quot;</span><span class="p">)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulator</span><span class="p">]</span>
+                <span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">silent</span><span class="p">:</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">output_filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                        <span class="n">datbase</span> <span class="o">=</span> <span class="s1">&#39;screen_info&#39;</span>
+                        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">datbase</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">outfilename</span> <span class="o">=</span> <span class="n">output_filename</span>
+                    <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+                <span class="c1"># p = Popen(os.path.join(current_dir,&quot;&gt;treacteos1&lt;flow.inp&quot;),cwd=current_dir)</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">infile</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">outfile</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+                <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+                <span class="c1"># status_2 = run([&quot;treacteos1.exe&quot;],</span>
+                <span class="c1">#                stdin=infile,</span>
+                <span class="c1">#                stdout=PIPE,</span>
+                <span class="c1">#                text=True)</span>
+                <span class="c1"># print(status_2)</span>
+
+<div class="viewcode-block" id="t2react.read_parameters"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.read_parameters">[docs]</a>    <span class="k">def</span> <span class="nf">read_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads simulation parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        infile : str</span>
+<span class="sd">            Input file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        line: str</span>
+<span class="sd">            read parameters block to grid</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spec</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="s1">&#39;param1_autough2&#39;</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">]</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
+        <span class="n">mops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;_option_str&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;option&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mop</span><span class="p">)</span> <span class="k">for</span> <span class="n">mop</span> <span class="ow">in</span> <span class="n">mops</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param2&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;print_block&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_timesteps</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">read_value_line</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">&#39;param3&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">infile</span><span class="o">.</span><span class="n">read_values</span><span class="p">(</span><span class="s1">&#39;default_incons&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trim_trailing_nones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">])</span>
+        <span class="c1"># read any additional lines of default incons:</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">while</span> <span class="n">more</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">padstring</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+                <span class="n">section</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span> <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2react_sections</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">section</span><span class="p">:</span>
+                    <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">more_incons</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">parse_string</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;default_incons&#39;</span><span class="p">)</span>
+                    <span class="n">more_incons</span> <span class="o">=</span> <span class="n">trim_trailing_nones</span><span class="p">(</span><span class="n">more_incons</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">parameter</span><span class="p">[</span><span class="s1">&#39;default_incons&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">more_incons</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">more</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">line</span></div>
+
+<div class="viewcode-block" id="t2react.read_react"><a class="viewcode-back" href="../../../pytoughreact.writers.html#pytoughreact.writers.react_writing.t2react.read_react">[docs]</a>    <span class="k">def</span> <span class="nf">read_react</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infile</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="t2react.write_react"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.write_react">[docs]</a>    <span class="k">def</span> <span class="nf">write_react</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes React Parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        outfile : str</span>
+<span class="sd">            output file processor</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;REACT</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">react</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write_values</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="s1">&#39;REACT&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="t2react.read"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Reads data from file.  Mesh data can optionally be read from an</span>
+<span class="sd">        auxiliary file.  Extra precision data will also be read from</span>
+<span class="sd">        an associated &#39;.pdat&#39; file, if it exists.</span>
+
+<span class="sd">        Reads data from file.  Mesh data can optionally be read from an</span>
+<span class="sd">        auxiliary file.  Extra precision data will also be read from</span>
+<span class="sd">        an associated &#39;.pdat&#39; file, if it exists.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            file to read</span>
+<span class="sd">        meshfilename : str</span>
+<span class="sd">            Mesh file to read</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">else</span> <span class="s1">&#39;rU&#39;</span>
+        <span class="n">infile</span> <span class="o">=</span> <span class="n">t2react_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">read_title</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">next_line</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="n">more</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">next_line</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">next_line</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">keyword</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ENDCY&#39;</span><span class="p">,</span> <span class="s1">&#39;ENDFI&#39;</span><span class="p">]:</span>
+                    <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">=</span> <span class="n">keyword</span>
+                <span class="k">elif</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">t2react_sections</span><span class="p">:</span>
+                    <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">]</span>
+                    <span class="n">next_line</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="n">keyword</span> <span class="o">==</span> <span class="s1">&#39;SHORT&#39;</span><span class="p">:</span>
+                        <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">keyword</span> <span class="o">==</span> <span class="s1">&#39;PARAM&#39;</span><span class="p">:</span>
+                        <span class="n">next_line</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fn</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">more</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">meshfilename</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">num_blocks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span> <span class="o">=</span> <span class="n">meshfilename</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meshfilename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="k">else</span> <span class="s1">&#39;rU&#39;</span>
+                <span class="n">meshfile</span> <span class="o">=</span> <span class="n">t2react_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">read_function</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">read_function</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_meshfile</span><span class="p">(</span><span class="n">meshfile</span><span class="p">)</span>
+                <span class="n">meshfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meshfilename</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">meshfilename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">read_binary_meshfiles</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mesh filename must be either a string or a two-element tuple or list.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="t2react.write"><a class="viewcode-back" href="../../../writers.html#pytoughreact.writers.react_writing.t2react.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">meshfilename</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">runlocation</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+              <span class="n">extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Writes data to file.  Mesh data can optionally be written to an</span>
+<span class="sd">        auxiliary file.  For AUTOUGH2, if extra_precision is True or a</span>
+<span class="sd">        list of section names, the corresponding data sections will be</span>
+<span class="sd">        written to an extra precision file; otherwise, the same</span>
+<span class="sd">        sections (if any) that were read in as extra precision will</span>
+<span class="sd">        also be written out as extra precision.  If</span>
+<span class="sd">        echo_extra_precision is True, the extra precision sections</span>
+<span class="sd">        will also be written to the main data file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            file to read</span>
+<span class="sd">        meshfilename : str</span>
+<span class="sd">            Mesh file to read</span>
+<span class="sd">        runlocation : str</span>
+<span class="sd">            Path containing executables</span>
+<span class="sd">        extra_precision: boolean</span>
+<span class="sd">            Required for AUTOUGH from PYTOUGH</span>
+<span class="sd">        echo_extra_precision: boolean</span>
+<span class="sd">            Required for AUTOUGH from PYTOUGH</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">runlocation</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">runlocation</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;t2react.dat&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_sections</span><span class="p">()</span>
+        <span class="n">mesh_sections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">meshfilename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span> <span class="o">=</span> <span class="n">meshfilename</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">meshfile</span> <span class="o">=</span> <span class="n">t2react_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_blocks</span><span class="p">(</span><span class="n">meshfile</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_connections</span><span class="p">(</span><span class="n">meshfile</span><span class="p">)</span>
+                <span class="n">meshfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">mesh_sections</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ELEME&#39;</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meshfilename</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">write_binary_meshfiles</span><span class="p">()</span>
+                    <span class="n">mesh_sections</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ELEME&#39;</span><span class="p">,</span> <span class="s1">&#39;CONNE&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;AUTOUGH2&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_extra_precision</span><span class="p">(</span><span class="n">extra_precision</span><span class="p">,</span> <span class="n">echo_extra_precision</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">=</span> <span class="n">t2react_parser</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_title</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">keyword</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mesh_sections</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">keyword</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_precision</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">keyword</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_precision</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">echo_extra_precision</span><span class="p">)):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">write_fn</span><span class="p">[</span><span class="n">keyword</span><span class="p">](</span><span class="n">outfile</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_keyword</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

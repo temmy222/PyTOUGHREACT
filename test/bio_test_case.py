@@ -1,15 +1,10 @@
 import unittest
 import numpy as np
-import os
-import pathlib
-
-
-
-
 from mulgrids import mulgrid
 from context import pytoughreact
 from t2grids import t2grid
 from t2data import rocktype
+
 
 class BioTestCase(unittest.TestCase):
 
@@ -26,7 +21,7 @@ class BioTestCase(unittest.TestCase):
 
         length = 9
         xblock = 3
-        yblock = 1
+        # yblock = 1
         zblock = 4
         dx = [length / xblock] * xblock
         dy = [0.1]
@@ -81,9 +76,7 @@ class BioTestCase(unittest.TestCase):
         O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
         toluene.addToProcess(process1, 1, 7.4625e-06)
 
-        biodegradation = pytoughreact.BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9,
-                               [process1],
-                               [biomass])
+        biodegradation = pytoughreact.BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9, [process1], [biomass])
         bio.biodg = [biodegradation]
 
         bio.diffusion = [
@@ -116,13 +109,9 @@ class BioTestCase(unittest.TestCase):
         time = results.get_times('second')
         parameter_result = results.get_time_series_data('X_toluen_L', 0)
         time_length = len(time)
-        parameter_result_length =len(parameter_result)
+        parameter_result_length = len(parameter_result)
         self.assertEqual(time_length, parameter_result_length)
-
 
 
 if __name__ == "__main__":
     unittest.main()
-
-
-

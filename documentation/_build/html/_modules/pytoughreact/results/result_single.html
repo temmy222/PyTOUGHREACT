@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.results.result_single &mdash; PyTOUGHREACT 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f0357c94"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyTOUGHREACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyTOUGHREACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.results.result_single</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.results.result_single</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.plotting.plot_tough_routine</span> <span class="kn">import</span> <span class="n">PlotTough</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.plotting.plot_multiple_tough_routine</span> <span class="kn">import</span> <span class="n">PlotMultiTough</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.generalconstants</span> <span class="k">as</span> <span class="nn">gc</span>
+
+
+<div class="viewcode-block" id="FileReadSingle">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle">[docs]</a>
+<span class="k">class</span> <span class="nc">FileReadSingle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulatortype</span><span class="p">,</span> <span class="n">filelocation</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class for processing single file results</span>
+<span class="sd">        :type simulatortype: object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">=</span> <span class="n">filelocation</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">=</span> <span class="n">filetitle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span> <span class="o">=</span> <span class="n">simulatortype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">GENERATION</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_args</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">RESTART_FILES</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expt</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">EXPERIMENT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">X_SLICE_VALUE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Results from &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span> <span class="o">+</span> <span class="s1">&#39; in &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span> <span class="o">+</span> <span class="s1">&#39; for &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span>
+
+<div class="viewcode-block" id="FileReadSingle.validateFile">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle.validateFile">[docs]</a>
+    <span class="k">def</span> <span class="nf">validateFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Validate File &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Values can either be strings or lists&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FileReadSingle.getSimulatorType">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle.getSimulatorType">[docs]</a>
+    <span class="k">def</span> <span class="nf">getSimulatorType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Get Simulator Type &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span></div>
+
+
+<div class="viewcode-block" id="FileReadSingle.plotTime">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle.plotTime">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">singlePlot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                 <span class="n">height</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Make Plot of parameter with time &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotTough</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">,</span> <span class="n">generation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generation</span><span class="p">,</span>
+                                 <span class="n">restart_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">full_args</span><span class="p">,</span>
+                                 <span class="n">experiment</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">plottest</span><span class="o">.</span><span class="n">plotParamWithTime</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">plottest</span><span class="o">.</span><span class="n">plotParamWithTimeRestart</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">singlePlot</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotMultiTough</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">,</span> <span class="n">generation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generation</span><span class="p">,</span>
+                                      <span class="n">restart_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">full_args</span><span class="p">,</span>
+                                      <span class="n">experiment</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">plottest</span><span class="o">.</span><span class="n">multi_time_plot</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">plottest</span><span class="o">.</span><span class="n">multi_time_plot_restart</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">singlePlot</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotMultiTough</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">,</span> <span class="n">generation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generation</span><span class="p">,</span>
+                                      <span class="n">restart_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">full_args</span><span class="p">,</span>
+                                      <span class="n">experiment</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">,</span>
+                                      <span class="n">x_slice_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_args</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">plottest</span><span class="o">.</span><span class="n">plotMultiParamSinglePlot</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FileReadSingle.plotParamWithParam">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle.plotParamWithParam">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotParamWithParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Make Plot of parameter with parameter &quot;&quot;&quot;</span>
+        <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotTough</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">)</span>
+        <span class="n">plottest</span><span class="o">.</span><span class="n">plotParamWithParam</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FileReadSingle.plotParamWithLayer">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle.plotParamWithLayer">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotParamWithLayer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directionXAxis</span><span class="p">,</span> <span class="n">directionYAxis</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Make Plot of parameter with layer &quot;&quot;&quot;</span>
+        <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotTough</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">)</span>
+        <span class="n">plottest</span><span class="o">.</span><span class="n">plotParamWithLayer</span><span class="p">(</span><span class="n">directionXAxis</span><span class="p">,</span> <span class="n">directionYAxis</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FileReadSingle.plot2D">
+<a class="viewcode-back" href="../../../results.html#pytoughreact.results.result_single.FileReadSingle.plot2D">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot2D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction1</span><span class="p">,</span> <span class="n">direction2</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">,</span> <span class="n">grid_type</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Make 2D plot either gridded or not gridded &quot;&quot;&quot;</span>
+        <span class="n">plottest</span> <span class="o">=</span> <span class="n">PlotTough</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">grid_type</span> <span class="o">==</span> <span class="s1">&#39;plain&#39;</span><span class="p">:</span>
+            <span class="n">plottest</span><span class="o">.</span><span class="n">plot2D_one</span><span class="p">(</span><span class="n">direction1</span><span class="p">,</span> <span class="n">direction2</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">grid_type</span> <span class="o">==</span> <span class="s1">&#39;grid&#39;</span><span class="p">:</span>
+            <span class="n">plottest</span><span class="o">.</span><span class="n">plot2D_withgrid</span><span class="p">(</span><span class="n">direction1</span><span class="p">,</span> <span class="n">direction2</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">timer</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Type can either be plain or grid&#39;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
