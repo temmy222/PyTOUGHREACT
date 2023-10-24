@@ -198,3 +198,4 @@ Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/
 ## Tests
 
 ![Tests](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/tests.yml/badge.svg)
+![Static Badge](https://img.shields.io/badge/:badgeContent)
