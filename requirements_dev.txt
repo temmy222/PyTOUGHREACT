@@ -1,13 +1,8 @@
-flake8==6.1.0
-tox==4.11.3
-pytest==7.4.2
-pytest-cov==4.1.0
-mypy==0.910
-numpy==1.26.0
-scipy==1.11.2
-pandas==2.1.1
-matplotlib==3.8.0
-Sphinx==7.2.6
-sphinx-rtd-theme
-PyTOUGH==1.5.6
--e git+https://github.com/temmy222/PyTOUGHREACT.git@8220e88f9372a4136faaab106141f7398a95be68#egg=pytoughreact
+numpy
+scipy
+pandas
+matplotlib
+scipy
+sphinx
+sphinx_rtd_theme
+PYTOUGH @ git+https://git@github.com/acroucher/PYTOUGH.git
