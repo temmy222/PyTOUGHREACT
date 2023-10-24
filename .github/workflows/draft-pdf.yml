@@ -1,3 +1,5 @@
+name: JOSS Article
+
 on: [push]
 
 jobs:

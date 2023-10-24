@@ -200,3 +200,6 @@ Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/
 ![Tests](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/tests.yml/badge.svg)
 ![JOSS Article](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/draft-pdf.yml/badge.svg)
 ![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
+![GitHub contributors](https://img.shields.io/github/contributors/temmy222/PyTOUGHREACT)
+![PyPI - Version](https://img.shields.io/pypi/v/PyTOUGHREACT)
+![PyPI - License](https://img.shields.io/pypi/l/pytoughreact)
