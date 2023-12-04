@@ -1,4 +1,0 @@
-numpy==1.22.0
-PyTOUGH==1.5.6
-scipy==1.10.0
-pandas==1.5.2

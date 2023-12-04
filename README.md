@@ -1,21 +1,37 @@
 # PyTOUGHREACT
 
+
+- [PyTOUGHREACT](#pytoughreact)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Documentation](#documentation)
+  - [License](#license)
+  - [Tests](#tests)
+
+
 PyTOUGHREACT is a Python package for automating reactive transport simulations including biodegradation reactions.
 It makes use of TOUGHREACT, TMVOC and TMVOCBIO executables for running the simulations. These executables are interfaced
 with python to automate the runs. It will be particularly useful for uncertainty quantifications, sensitivity 
-analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which 
-only processes for the TOUGH2 software.
+analysis without the need to have a lot of files stored on your local computer. It builds on the PyTOUGH software which processes for the TOUGH2 executables.
 
 ## Installation
 
-PyTOUGHREACT is available on PyPI which is a repository for softwares built with the Python Programming Language. Before 
-installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. 
+PyTOUGHREACT is available on PyPI which is a repository of softwares built with the Python Programming Language. Before installing PyTOUGHREACT, it is required to have Python >=3.7 installed on your local computer. Python can be downloaded from the [python.org](python.org) website and installing it by following the instructions. Windows users should ensure that the path to the python is set in the environment variable to ensure availability everywhere.
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install PyTOUGHREACT.
 
 ```bash
 pip install pytoughreact
 ```
+
+The package can also be forked from this GitHub page and installation performed using
+
+```bash
+python setup.py install  or py setup.py install
+```
+
+Because pytoughreact requires PyTOUGH and PyTOUGH is not uploaded to PyPI, it is required to download the zip folder of PyTOUGH from the GitHub repository https://github.com/acroucher/PyTOUGH. Unzip the folder and place in your current working directory. Change directory into the PyTOUGH folder and run python setup.py install or pip install on the command line. With PyTOUGH installed, PyTOUGHREACT is ready to be used as a package.
 
 ## Usage
 
@@ -156,7 +172,34 @@ react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Contributing to the code would involve you following the below procedures to quickly get started
+
+1. Clone the repo using preferred cloning method
+2. Install the library to enable you able to use the test example using
+
+```python
+pip install -e .
+```
+3. Modify the code 
+4. Run tests: Tests are conducted with pytest. Flake8 is also used to ensure code readability
+
+```python
+pytest
+```
+5. Make a pull request after passing all tests
+
+## Documentation
+Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/ 
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Tests
+
+![Tests](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/tests.yml/badge.svg)
+![JOSS Article](https://github.com/temmy222/PyTOUGHREACT/actions/workflows/draft-pdf.yml/badge.svg)
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
+![GitHub contributors](https://img.shields.io/github/contributors/temmy222/PyTOUGHREACT)
+![PyPI - Version](https://img.shields.io/pypi/v/PyTOUGHREACT)
+![PyPI - License](https://img.shields.io/pypi/l/pytoughreact)

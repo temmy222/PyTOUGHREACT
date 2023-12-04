@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.chemical.bio_process_description &mdash; PyTOUGHREACT 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyTOUGHREACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyTOUGHREACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.chemical.bio_process_description</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.chemical.bio_process_description</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<div class="viewcode-block" id="BIODG"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.BIODG">[docs]</a><span class="k">class</span> <span class="nc">BIODG</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process specification&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imonod</span><span class="p">,</span> <span class="n">bfac</span><span class="p">,</span> <span class="n">sw1</span><span class="p">,</span> <span class="n">sw2</span><span class="p">,</span> <span class="n">wea</span><span class="p">,</span> <span class="n">wsub</span><span class="p">,</span> <span class="n">processes</span><span class="p">,</span> <span class="n">biomass</span><span class="p">,</span> <span class="n">icflag</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">biomass</span> <span class="o">=</span> <span class="n">biomass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">icflag</span> <span class="o">=</span> <span class="n">icflag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imonod</span> <span class="o">=</span> <span class="n">imonod</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processes</span> <span class="o">=</span> <span class="n">processes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wsub</span> <span class="o">=</span> <span class="n">wsub</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wea</span> <span class="o">=</span> <span class="n">wea</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw2</span> <span class="o">=</span> <span class="n">sw2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw1</span> <span class="o">=</span> <span class="n">sw1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bfac</span> <span class="o">=</span> <span class="n">bfac</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">null</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span>
+
+<div class="viewcode-block" id="BIODG.getFirstSet"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.BIODG.getFirstSet">[docs]</a>    <span class="k">def</span> <span class="nf">getFirstSet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that gets the first line of information</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        bio_numerical_parameters : list</span>
+<span class="sd">            List of numerical parameters for biodegradation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bio_numerical_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">imonod</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">icflag</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bfac</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wea</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wsub</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">bio_numerical_parameters</span></div>
+
+<div class="viewcode-block" id="BIODG.getNumberOfBiomasses"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.BIODG.getNumberOfBiomasses">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfBiomasses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that gets the number of biomasses</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        biomass_number : int</span>
+<span class="sd">            Number of biomasses</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">biomasses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+            <span class="n">biomasses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">biomass</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">biomasses</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BIODG.getBaseParameterAndIndex"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.BIODG.getBaseParameterAndIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getBaseParameterAndIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves base parameter and index</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        process :  bio.Process</span>
+<span class="sd">            the particular process of investigation</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        index : int</span>
+<span class="sd">            Index and Base Parameter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">)):</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Process"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process">[docs]</a><span class="k">class</span> <span class="nc">Process</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process specification&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">biomass</span><span class="p">,</span> <span class="n">numberOfComponents</span><span class="p">,</span> <span class="n">mumax</span><span class="p">,</span> <span class="n">yield_mass</span><span class="p">,</span> <span class="n">enthalpy</span><span class="p">,</span> <span class="n">totalComp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">NumOfHaldane</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">NumOfNonCompetiting</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">NumOfCompetiting</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">componentParams</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gasParams</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">waterParams</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Initialization of Parameters</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        biomass :  Biomass</span>
+<span class="sd">            This should be a Biomass class with all properties of the biomass</span>
+<span class="sd">        numberOfComponents : int</span>
+<span class="sd">            Number of Components present in the simulation</span>
+<span class="sd">        mumax: float</span>
+<span class="sd">            Maximum specific substrate degradation rate</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        num_of_competiting : int</span>
+<span class="sd">            Number of Competiting species</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enthalpy</span> <span class="o">=</span> <span class="n">enthalpy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numberOfComponents</span> <span class="o">=</span> <span class="n">numberOfComponents</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">yield_mass</span> <span class="o">=</span> <span class="n">yield_mass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mumax</span> <span class="o">=</span> <span class="n">mumax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">biomass</span> <span class="o">=</span> <span class="n">biomass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">waterParams</span> <span class="o">=</span> <span class="n">waterParams</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gasParams</span> <span class="o">=</span> <span class="n">gasParams</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">componentParams</span> <span class="o">=</span> <span class="n">componentParams</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NumOfCompetiting</span> <span class="o">=</span> <span class="n">NumOfCompetiting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NumOfNonCompetiting</span> <span class="o">=</span> <span class="n">NumOfNonCompetiting</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NumOfHaldane</span> <span class="o">=</span> <span class="n">NumOfHaldane</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totalComp</span> <span class="o">=</span> <span class="n">totalComp</span>
+
+<div class="viewcode-block" id="Process.getNumOfCompetiting"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process.getNumOfCompetiting">[docs]</a>    <span class="k">def</span> <span class="nf">getNumOfCompetiting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves number of competiting specie</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        num_of_competiting : int</span>
+<span class="sd">            Number of Competiting species</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">componentParams</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Process.getUptake"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process.getUptake">[docs]</a>    <span class="k">def</span> <span class="nf">getUptake</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves uptake information</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            list of uptake parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">:</span>
+            <span class="n">uptake_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uptake_values</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="Process.getKs"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process.getKs">[docs]</a>    <span class="k">def</span> <span class="nf">getKs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves Ks information</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            list of Ks parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">))):</span>
+            <span class="n">uptake_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">dict_output</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">uptake_values</span>
+            <span class="k">if</span> <span class="n">uptake_values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dict_output</span><span class="p">)</span>
+            <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="Process.getKc"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process.getKc">[docs]</a>    <span class="k">def</span> <span class="nf">getKc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves competitive inhibition information</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            list of competitive inhibition parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">)):</span>
+            <span class="n">uptake_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">dict_output</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">uptake_values</span>
+            <span class="k">if</span> <span class="n">uptake_values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dict_output</span><span class="p">)</span>
+            <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="Process.getKnc"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process.getKnc">[docs]</a>    <span class="k">def</span> <span class="nf">getKnc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves non competitive inhibition information</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            list of non competitive inhibition parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">)):</span>
+            <span class="n">uptake_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">dict_output</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">uptake_values</span>
+            <span class="k">if</span> <span class="n">uptake_values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dict_output</span><span class="p">)</span>
+            <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="Process.getKh"><a class="viewcode-back" href="../../../pytoughreact.chemical.html#pytoughreact.chemical.bio_process_description.Process.getKh">[docs]</a>    <span class="k">def</span> <span class="nf">getKh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Function that retrieves haldane inhibition information</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        output : list</span>
+<span class="sd">            list of haldana inhibition parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">)):</span>
+            <span class="n">uptake_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">allProcesses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">dict_output</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">uptake_values</span>
+            <span class="k">if</span> <span class="n">uptake_values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dict_output</span><span class="p">)</span>
+            <span class="n">dict_output</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">output</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

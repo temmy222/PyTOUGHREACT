@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=42.0", "wheel", "pip"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+addopts = "--cov=pytoughreact"
+testpaths = [
+    "test",
+]
+
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+
+[tool.coverage.run]
+omit = [
+    # omit anything in a .local directory anywhere
+    "*/model/*",
+    "*/constants/*",
+    "*/exceptions/*",
+    # omit everything in /usr
+    "/usr/*",
+    # omit this single file
+    "utils/tirefire.py",
+    ]
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true

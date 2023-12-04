@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.plotting.plot_multiple_tough_routine &mdash; PyTOUGHREACT 0.0.15 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=f0357c94"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            PyTOUGHREACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writers.html">Writers Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source Code</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dependencies.html">Dependencies</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyTOUGHREACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pytoughreact.plotting.plot_multiple_tough_routine</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pytoughreact.plotting.plot_multiple_tough_routine</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">MIT License</span>
+
+<span class="sd">Copyright (c) [2022] [Temitope Ajayi]</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.utilities.t2_utilities</span> <span class="kn">import</span> <span class="n">t2Utilities</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.results.result_tough_3</span> <span class="kn">import</span> <span class="n">ResultTough3</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.results.result_tough_react</span> <span class="kn">import</span> <span class="n">ResultReact</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.results.simple_experiment_data</span> <span class="kn">import</span> <span class="n">Experiment</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.generalconstants</span> <span class="k">as</span> <span class="nn">gc</span>
+<span class="kn">import</span> <span class="nn">pytoughreact.constants.plotconstants</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="kn">from</span> <span class="nn">pytoughreact.exceptions.custom_error</span> <span class="kn">import</span> <span class="n">ParameterLessThanThreeError</span>
+
+
+<div class="viewcode-block" id="PlotMultiTough">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough">[docs]</a>
+<span class="k">class</span> <span class="nc">PlotMultiTough</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">simulatortype</span><span class="p">,</span> <span class="n">filelocations</span><span class="p">,</span> <span class="n">filetitles</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class for processing multiple file results</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        file_location :  str</span>
+<span class="sd">            specifies the location of the file on the system</span>
+<span class="sd">        file_title : str</span>
+<span class="sd">            gives the title of the file e.g &#39;kdd.conc&#39; or &#39;OUTPUT.csv&#39;.</span>
+<span class="sd">        simulator_type: str</span>
+<span class="sd">            can either be toughreact, tmvoc or tough3</span>
+
+<span class="sd">        **kwargs</span>
+
+<span class="sd">        generation : str</span>
+<span class="sd">            generation file location</span>
+<span class="sd">        restart_files : str</span>
+<span class="sd">            restart file location</span>
+<span class="sd">        experiment : str</span>
+<span class="sd">            experimental file location</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span> <span class="o">=</span> <span class="n">filelocations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span> <span class="o">=</span> <span class="n">filetitles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span> <span class="o">=</span> <span class="n">simulatortype</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modifier</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">GENERATION</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">RESTART_FILES</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expt</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">EXPERIMENT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_slice_value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">gc</span><span class="o">.</span><span class="n">X_SLICE_VALUE</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PlotMultiTough.read_file">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file">[docs]</a>
+    <span class="k">def</span> <span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TOUGH3</span><span class="p">:</span>
+            <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">,</span>
+                                      <span class="n">generation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generation</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fileReader</span></div>
+
+
+<div class="viewcode-block" id="PlotMultiTough.read_file_multi">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.read_file_multi">[docs]</a>
+    <span class="k">def</span> <span class="nf">read_file_multi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TOUGH3</span><span class="p">:</span>
+            <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">filetitle</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fileReader</span></div>
+
+
+<div class="viewcode-block" id="PlotMultiTough.getRestartLocations">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartLocations">[docs]</a>
+    <span class="k">def</span> <span class="nf">getRestartLocations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">restart_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">restart_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">)</span>
+        <span class="n">restart_files</span> <span class="o">=</span> <span class="n">restart_files</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span>
+        <span class="k">return</span> <span class="n">restart_files</span></div>
+
+
+<div class="viewcode-block" id="PlotMultiTough.getRestartDataTime">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartDataTime">[docs]</a>
+    <span class="k">def</span> <span class="nf">getRestartDataTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+        <span class="n">locations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartLocations</span><span class="p">()</span>
+        <span class="n">final_time</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">locations</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TOUGH3</span><span class="p">:</span>
+                <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="n">locations</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitle</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="n">locations</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+                <span class="n">final_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_year</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+                <span class="n">time_year</span> <span class="o">=</span> <span class="n">time_year</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+                <span class="n">final_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_year</span><span class="p">)</span>
+        <span class="n">final_time</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">final_time</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">final_time</span></div>
+
+
+<div class="viewcode-block" id="PlotMultiTough.getRestartDataElement">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.getRestartDataElement">[docs]</a>
+    <span class="k">def</span> <span class="nf">getRestartDataElement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+        <span class="n">locations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartLocations</span><span class="p">()</span>
+        <span class="n">final_result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">locations</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TMVOC</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">gc</span><span class="o">.</span><span class="n">TOUGH3</span><span class="p">:</span>
+                <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultTough3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="n">locations</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fileReader</span> <span class="o">=</span> <span class="n">ResultReact</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">simulatortype</span><span class="p">,</span> <span class="n">locations</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="n">final_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_array</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="n">result_array</span> <span class="o">=</span> <span class="n">result_array</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+                <span class="n">final_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_array</span><span class="p">)</span>
+        <span class="n">final_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">final_result</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">final_result</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_restart_horizontal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation with restart</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataTime</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataElement</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+            <span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">removeRepetiting</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MINUTE</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MINUTE</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_DESCRIPTION_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_restart_vertical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in vertical orientation with restart</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataTime</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">number</span><span class="p">)</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataElement</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET_SYMBOL</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="c1"># ax.legend(loc=pc.LOC_BEST,borderpad=0.1)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MINUTE</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MINUTE</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_DESCRIPTION_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PlotMultiTough.multi_time_plot_restart">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot_restart">[docs]</a>
+    <span class="k">def</span> <span class="nf">multi_time_plot_restart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time for restart files</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">style</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_restart_horizontal_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_restart_horizontal_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_horizontal</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_horizontal</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">style</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_horizontal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">()</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET_SYMBOL</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MINUTE</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MINUTE</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_DESCRIPTION_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_horizontal_with_expt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">data_file</span><span class="o">=</span><span class="s1">&#39;data_file.csv&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation with experiment</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        data_file: str</span>
+<span class="sd">            The name of the data file containing the experimental data</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">()</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">expt_test</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_file</span><span class="p">)</span>
+        <span class="n">time_year_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+            <span class="n">result_array_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET_SYMBOL</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">SIMULATION</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">result_array_expt</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">result_array_expt</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">result_array_expt</span><span class="p">))</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">time_year_expt</span><span class="p">,</span> <span class="n">result_array_expt</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">COLOR_FORMAT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">RED_SYMBOL</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">EXPERIMENT</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MINUTE</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MINUTE</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">LOC_BEST</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_DESCRIPTION_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_restart_horizontal_with_expt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">data_file</span><span class="o">=</span><span class="s1">&#39;data_file.csv&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in horizontal orientation for restart files</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        data_file: str</span>
+<span class="sd">            The name of the data file containing the experimental data</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataTime</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">expt_test</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_file</span><span class="p">)</span>
+        <span class="n">time_year_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRestartDataElement</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="n">t2Utilities</span><span class="p">()</span>
+            <span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">removeRepetiting</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">)</span>
+            <span class="n">result_array_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET_SYMBOL</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">SIMULATION</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">result_array_expt</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">result_array_expt</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">result_array_expt</span><span class="p">))</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">time_year_expt</span><span class="p">,</span> <span class="n">result_array_expt</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">COLOR_FORMAT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">RED_SYMBOL</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">EXPERIMENT</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">parameter</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MINUTE</span><span class="p">:</span>
+                <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MINUTE</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">axs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_EXPERIMENT_RESTART_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_vertical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in vertical orientation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">()</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">number</span><span class="p">)</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET_SYMBOL</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MIN</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MIN</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_DESCRIPTION_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_raw_multi_plot_vertical_with_expt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">grid_block_number</span><span class="p">,</span> <span class="n">data_file</span><span class="o">=</span><span class="s1">&#39;data_file.csv&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time in vertical orientation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        data_file: str</span>
+<span class="sd">            The name of the data file containing the experimental data</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">()</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">expt_test</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_file</span><span class="p">)</span>
+        <span class="n">time_year_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_times</span><span class="p">()</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">),</span> <span class="n">number</span><span class="p">)</span>
+            <span class="n">result_array_expt</span> <span class="o">=</span> <span class="n">expt_test</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">grid_block_number</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">CARET</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">SIMULATION</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year_expt</span><span class="p">,</span> <span class="n">result_array_expt</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">RED_COLOR</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">gc</span><span class="o">.</span><span class="n">EXPERIMENT</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">LOC_BEST</span><span class="p">,</span> <span class="n">borderpad</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">DAY</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_DAY</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HOUR</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_HOUR</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">format_of_date</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">MIN</span><span class="p">:</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_MIN</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTI_PLOT_DESCRIPTION_LABEL</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PlotMultiTough.multi_time_plot">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_time_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">multi_time_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or yeart</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">style</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_horizontal_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_horizontal_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_horizontal</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_horizontal</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">style</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">pc</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">expt</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical_with_expt</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MY_STYLE</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_multi_plot_vertical</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ParameterLessThanThreeError</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_retrieve_multi_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">):</span>
+        <span class="n">dataStorage</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">fileNames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+            <span class="n">fileNumber</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">:</span>
+                <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file_multi</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">[</span><span class="n">fileNumber</span><span class="p">])</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">parameter</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fileNumber</span><span class="p">)</span>
+                <span class="n">dataStorage</span><span class="p">[</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                <span class="n">fileNames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+                <span class="n">fileNumber</span> <span class="o">=</span> <span class="n">fileNumber</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">fileNames</span><span class="p">,</span> <span class="n">dataStorage</span>
+
+    <span class="k">def</span> <span class="nf">_retrieve_multi_data_generation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Retrieve multi data for plotting</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        data_table: pd.Dataframe</span>
+<span class="sd">            returns the data in dataframe</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)):</span>
+            <span class="n">time_data_label</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">TIME</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">result_data_label</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">RESULT</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">time_data</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="o">=</span><span class="n">format_of_date</span><span class="p">)</span>
+            <span class="n">result_data</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">getGenerationData</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">data_table</span><span class="p">[</span><span class="n">time_data_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">time_data</span><span class="p">)</span>
+            <span class="n">data_table</span><span class="p">[</span><span class="n">result_data_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data_table</span>
+
+    <span class="k">def</span> <span class="nf">_slice_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="n">last_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">last_result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">result_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="n">time_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">time_array</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">result_array</span> <span class="o">=</span> <span class="n">result_array</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">result_array</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slice_value</span><span class="p">(</span><span class="n">time_array</span><span class="p">,</span> <span class="n">result_array</span><span class="p">)</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_array</span><span class="p">,</span> <span class="n">last_time</span><span class="p">)</span>
+        <span class="n">result_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_array</span><span class="p">,</span> <span class="n">last_result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">time_array</span><span class="p">,</span> <span class="n">result_array</span>
+
+<div class="viewcode-block" id="PlotMultiTough.plotMultiParamSinglePlot">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.plotMultiParamSinglePlot">[docs]</a>
+    <span class="k">def</span> <span class="nf">plotMultiParamSinglePlot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Multiple parameters in a single Plot</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        labels: list[str]</span>
+<span class="sd">            labels of the different plots in the chart</span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">generation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">dataFile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_multi_data_generation</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">format_of_date</span><span class="p">)</span>
+                <span class="n">legend_index</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataFile</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataFile</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">dataFile</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="n">legend_index</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dataFile</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">dataFile</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">legend_index</span><span class="p">])</span>
+                    <span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">TIME_CAPS</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">OPEN_BRACKET</span> <span class="o">+</span> <span class="n">format_of_date</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">CLOSE_BRACKET</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">Mass_Fraction</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                    <span class="n">legend_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MULTIPLE_PARAM</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">VERSUS</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">TIME</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">CLASSIC</span><span class="p">):</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">markers</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">ALL_MARKERS</span>
+                <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">param</span><span class="p">)):</span>
+                    <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+                    <span class="n">result_array</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">get_timeseries_data</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_year</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+                        <span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_slice_value</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">param</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">result_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">TIME_CAPS</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">OPEN_BRACKET</span> <span class="o">+</span> <span class="n">format_of_date</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">CLOSE_BRACKET</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">MASS_FRACTION</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">useOffset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">PLAIN_STYLE</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTH</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">axs</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">LOC_BEST</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">MAJOR</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">MULTIPLE_PARAM_OUTPUT</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">VERSUS</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">TIME</span> <span class="o">+</span> <span class="n">pc</span><span class="o">.</span><span class="n">IMAGE_TYPE</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">TIGHT_BBOX</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PlotMultiTough.multi_param_multi_file_plot">
+<a class="viewcode-back" href="../../../pytoughreact.plotting.html#pytoughreact.plotting.plot_multiple_tough_routine.PlotMultiTough.multi_param_multi_file_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">multi_param_multi_file_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">format_of_date</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">YEAR</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">pc</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">,</span>
+                                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Line Plots of a multiple parameter in the results file as a function of time </span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        param :  list[str]</span>
+<span class="sd">            The parameters to be plotted on the y-axis</span>
+<span class="sd">        grid_block_number : int</span>
+<span class="sd">            the grid block in which its parameter evolution is to be observed.</span>
+<span class="sd">        format_of_date: str</span>
+<span class="sd">            The format of the date; could be minute, hour, day or year</span>
+<span class="sd">        labels: list[str]</span>
+<span class="sd">            Labels for the plots</span>
+<span class="sd">        style : str</span>
+<span class="sd">            orientation for multiple plots; could be horizontal or vertical</span>
+<span class="sd">        width : int</span>
+<span class="sd">            width of plot</span>
+<span class="sd">        height : int</span>
+<span class="sd">            height of plot</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+        <span class="n">fileReader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file_multi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">filetitles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">time_year</span> <span class="o">=</span> <span class="n">fileReader</span><span class="o">.</span><span class="n">convert_times</span><span class="p">(</span><span class="n">format_of_date</span><span class="p">)</span>
+        <span class="n">lst</span><span class="p">,</span> <span class="n">dictionary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_multi_data</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">gridblocknumber</span><span class="p">)</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">ALL_COLORS</span>
+        <span class="n">markers</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">ALL_MARKERS</span>
+        <span class="n">counter_2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">param_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">subplot_i</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">subplot_j</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_i</span><span class="p">,</span> <span class="n">subplot_j</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">subplot_i</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">subplot_j</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">)):</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_year</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">lst</span><span class="p">[</span><span class="n">counter_2</span> <span class="o">+</span> <span class="n">j</span><span class="p">]],</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                        <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">strip_param</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">param_counter</span><span class="p">]))</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier</span><span class="o">.</span><span class="n">param_label_full</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="n">param_counter</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pc</span><span class="o">.</span><span class="n">X_LABEL_TIME_YEAR</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">LEFT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">TOP</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+                    <span class="n">axs</span><span class="p">[</span><span class="n">number</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">pc</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">]</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+                <span class="n">counter_2</span> <span class="o">=</span> <span class="n">counter_2</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filelocations</span><span class="p">)</span>
+                <span class="n">param_counter</span> <span class="o">=</span> <span class="n">param_counter</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytoughreact.model package &mdash; PyTOUGHREACT 0.0.15 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f0357c94"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytoughreact.numerical package" href="pytoughreact.numerical.html" />
+    <link rel="prev" title="pytoughreact.exceptions package" href="pytoughreact.exceptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyTOUGHREACT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical.html">Technical Details of PyTOUGHREACT</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Repository API Code</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chemical.html">Chemical Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Constants Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Model Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utilities Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wrapper.html">Wrapper Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="writers.html">Writers Class</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source Code</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pytoughreact.html">pytoughreact package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pytoughreact.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.assembler.html">pytoughreact.assembler package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.chemical.html">pytoughreact.chemical package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.constants.html">pytoughreact.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.exceptions.html">pytoughreact.exceptions package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pytoughreact.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.numerical.html">pytoughreact.numerical package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.plotting.html">pytoughreact.plotting package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.pytough_wrapper.html">pytoughreact.pytough_wrapper package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.results.html">pytoughreact.results package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.utilities.html">pytoughreact.utilities package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytoughreact.writers.html">pytoughreact.writers package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-result-bio-module">pytoughreact.result_bio module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-module">pytoughreact.run module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-bio-module">pytoughreact.run_bio module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-react-module">pytoughreact.run_react module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#pytoughreact-run-result-module">pytoughreact.run_result module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#module-pytoughreact.version">pytoughreact.version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pytoughreact.html#module-pytoughreact">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyTOUGHREACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Source Code</a></li>
+          <li class="breadcrumb-item"><a href="pytoughreact.html">pytoughreact package</a></li>
+      <li class="breadcrumb-item active">pytoughreact.model package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pytoughreact.model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytoughreact-model-package">
+<h1>pytoughreact.model package<a class="headerlink" href="#pytoughreact-model-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-pytoughreact.model.capillary_pressure">
+<span id="pytoughreact-model-capillary-pressure-module"></span><h2>pytoughreact.model.capillary_pressure module<a class="headerlink" href="#module-pytoughreact.model.capillary_pressure" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.capillary_pressure.</span></span><span class="sig-name descname"><span class="pre">CapillaryPressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_cap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.cap_pres_converter">
+<span class="sig-name descname"><span class="pre">cap_pres_converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.cap_pres_converter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.cap_pres_converter" title="Link to this definition"></a></dt>
+<dd><p>Function that converts capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cap_pres</strong> – Dictionary of all capillary pressure parameters</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_cap_press">
+<span class="sig-name descname"><span class="pre">validate_cap_press</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_cap_press"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_cap_press" title="Link to this definition"></a></dt>
+<dd><p>Function that validates capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – Exception depending on what is violated</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Exception</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_leverett">
+<span class="sig-name descname"><span class="pre">validate_leverett</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_leverett"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_leverett" title="Link to this definition"></a></dt>
+<dd><p>Function that validates Leverett capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – RestrictionError</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pytoughreact.exceptions.html#pytoughreact.exceptions.custom_error.RestrictionError" title="pytoughreact.exceptions.custom_error.RestrictionError">RestrictionError</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_linear">
+<span class="sig-name descname"><span class="pre">validate_linear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_linear" title="Link to this definition"></a></dt>
+<dd><p>Function that validates linear capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – RestrictionError</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pytoughreact.exceptions.html#pytoughreact.exceptions.custom_error.RestrictionError" title="pytoughreact.exceptions.custom_error.RestrictionError">RestrictionError</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_milly">
+<span class="sig-name descname"><span class="pre">validate_milly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_milly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_milly" title="Link to this definition"></a></dt>
+<dd><p>Function that validates Milly capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – RestrictionError</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pytoughreact.exceptions.html#pytoughreact.exceptions.custom_error.RestrictionError" title="pytoughreact.exceptions.custom_error.RestrictionError">RestrictionError</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_pickens">
+<span class="sig-name descname"><span class="pre">validate_pickens</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_pickens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_pickens" title="Link to this definition"></a></dt>
+<dd><p>Function that validates Pickens capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – RestrictionError</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pytoughreact.exceptions.html#pytoughreact.exceptions.custom_error.RestrictionError" title="pytoughreact.exceptions.custom_error.RestrictionError">RestrictionError</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.capillary_pressure.CapillaryPressure.validate_trust">
+<span class="sig-name descname"><span class="pre">validate_trust</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/capillary_pressure.html#CapillaryPressure.validate_trust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.capillary_pressure.CapillaryPressure.validate_trust" title="Link to this definition"></a></dt>
+<dd><p>Function that validates Trust capillary pressure inputs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parameters</strong> – RestrictionError</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pytoughreact.exceptions.html#pytoughreact.exceptions.custom_error.RestrictionError" title="pytoughreact.exceptions.custom_error.RestrictionError">RestrictionError</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.model.grid">
+<span id="pytoughreact-model-grid-module"></span><h2>pytoughreact.model.grid module<a class="headerlink" href="#module-pytoughreact.model.grid" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.model.grid.Grid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.grid.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit_system</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_top</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.grid.Grid.add_x_dimension">
+<span class="sig-name descname"><span class="pre">add_x_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_x_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_x_dimension" title="Link to this definition"></a></dt>
+<dd><p>Adds x dimensions to grid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x_array</strong> (<em>Array</em>) – Array of x parameters</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>grid</strong> – Grid with x-array parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pytoughreact.model.grid.Grid" title="pytoughreact.model.grid.Grid">Grid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.grid.Grid.add_y_dimension">
+<span class="sig-name descname"><span class="pre">add_y_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_y_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_y_dimension" title="Link to this definition"></a></dt>
+<dd><p>Adds y dimensions to grid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y_array</strong> (<em>Array</em>) – Array of y parameters</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>grid</strong> – Grid with y-array parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pytoughreact.model.grid.Grid" title="pytoughreact.model.grid.Grid">Grid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.grid.Grid.add_z_dimension">
+<span class="sig-name descname"><span class="pre">add_z_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/grid.html#Grid.add_z_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.grid.Grid.add_z_dimension" title="Link to this definition"></a></dt>
+<dd><p>Adds z dimensions to grid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>z_array</strong> (<em>Array</em>) – Array of z parameters</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>grid</strong> – Grid with z-array parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pytoughreact.model.grid.Grid" title="pytoughreact.model.grid.Grid">Grid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.model.physical_model">
+<span id="pytoughreact-model-physical-model-module"></span><h2>pytoughreact.model.physical_model module<a class="headerlink" href="#module-pytoughreact.model.physical_model" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.physical_model.</span></span><span class="sig-name descname"><span class="pre">PhysicalModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.convertGrid">
+<span class="sig-name descname"><span class="pre">convertGrid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.convertGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.convertGrid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.createGrid">
+<span class="sig-name descname"><span class="pre">createGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.createGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.createGrid" title="Link to this definition"></a></dt>
+<dd><p>Creates Grid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>grid</strong> (<a class="reference internal" href="#pytoughreact.model.grid.Grid" title="pytoughreact.model.grid.Grid"><em>Grid</em></a>) – Grid object containing grid parameters</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>geo</strong> – mulgrid parameter with all grid parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>mulgrid</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.defineNumericals">
+<span class="sig-name descname"><span class="pre">defineNumericals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.defineNumericals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.defineNumericals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.domain_parameters">
+<span class="sig-name descname"><span class="pre">domain_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rock_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porosity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_pressure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conductivity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_heat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.domain_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.domain_parameters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.initialConditions">
+<span class="sig-name descname"><span class="pre">initialConditions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pressure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.initialConditions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.initialConditions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.relative_permeability">
+<span class="sig-name descname"><span class="pre">relative_permeability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_rel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.relative_permeability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.relative_permeability" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.specifyGravity">
+<span class="sig-name descname"><span class="pre">specifyGravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gravity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9.81</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.specifyGravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.specifyGravity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.physical_model.PhysicalModel.storeGridData">
+<span class="sig-name descname"><span class="pre">storeGridData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/physical_model.html#PhysicalModel.storeGridData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.physical_model.PhysicalModel.storeGridData" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.model.relative_permeability">
+<span id="pytoughreact-model-relative-permeability-module"></span><h2>pytoughreact.model.relative_permeability module<a class="headerlink" href="#module-pytoughreact.model.relative_permeability" title="Link to this heading"></a></h2>
+<p>MIT License</p>
+<p>Copyright (c) [2022] [Temitope Ajayi]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pytoughreact.model.relative_permeability.</span></span><span class="sig-name descname"><span class="pre">RelativePermeability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_rel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability.rel_perm_converter">
+<span class="sig-name descname"><span class="pre">rel_perm_converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability.rel_perm_converter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability.rel_perm_converter" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability.validate_corey">
+<span class="sig-name descname"><span class="pre">validate_corey</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability.validate_corey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability.validate_corey" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability.validate_fat_klikoff">
+<span class="sig-name descname"><span class="pre">validate_fat_klikoff</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability.validate_fat_klikoff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability.validate_fat_klikoff" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability.validate_grant">
+<span class="sig-name descname"><span class="pre">validate_grant</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability.validate_grant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability.validate_grant" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability.validate_linear">
+<span class="sig-name descname"><span class="pre">validate_linear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability.validate_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability.validate_linear" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pytoughreact.model.relative_permeability.RelativePermeability.validate_rel_perm">
+<span class="sig-name descname"><span class="pre">validate_rel_perm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pytoughreact/model/relative_permeability.html#RelativePermeability.validate_rel_perm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pytoughreact.model.relative_permeability.RelativePermeability.validate_rel_perm" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pytoughreact.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pytoughreact.model" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pytoughreact.exceptions.html" class="btn btn-neutral float-left" title="pytoughreact.exceptions package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pytoughreact.numerical.html" class="btn btn-neutral float-right" title="pytoughreact.numerical package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Temitope Ajayi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

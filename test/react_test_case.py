@@ -1,10 +1,18 @@
 import unittest
-import math
-
-import numpy as np
-from pytoughreact.writers.bio_writing import t2bio
-
-
+from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation
+from pytoughreact.chemical.mineral_description import Mineral
+from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
+from pytoughreact.chemical.mineral_composition import MineralComp
+from pytoughreact.chemical.mineral_zone import MineralZone
+from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
+from mulgrids import mulgrid
+from pytoughreact.writers.react_writing import t2react
+from pytoughreact.writers.solute_writing import t2solute
+from pytoughreact.writers.chemical_writing import t2chemical
+from t2grids import rocktype
+from pytoughreact.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactgrid import t2reactgrid
+from pytoughreact.plotting.plot_single import PlotSingle
 
 
 class ReactTestCase(unittest.TestCase):
@@ -215,7 +223,8 @@ class ReactTestCase(unittest.TestCase):
 
         length = 9
         xblock = 3
-        yblock = 1
+        # yblock = 1
+        # yblock = 1
         zblock = 4
         dx = [length / xblock] * xblock
         dy = [0.1]
@@ -250,7 +259,6 @@ class ReactTestCase(unittest.TestCase):
 
         for blk in react.grid.blocklist[0:]:
             blk.rocktype = react.grid.rocktype[shale.name]
-
 
         shale_zone = t2zone('shale_zone')
 
@@ -307,8 +315,10 @@ class ReactTestCase(unittest.TestCase):
         calcite_zone2 = MineralComp(self.get_specific_mineral('calcite'), 0.054, 1, 0.0E-00, 260, 0)
 
         initial_co2 = ReactGas('co2(g)', 0, 0)
-        injection_co2 = ReactGas('co2(g)', 0, 0.01)
-        ijgas = [[initial_co2], [injection_co2]]
+        # injection_co2 = ReactGas('co2(g)', 0, 0.01)
+        # ijgas = [[initial_co2], [injection_co2]]
+        # injection_co2 = ReactGas('co2(g)', 0, 0.01)
+        # ijgas = [[initial_co2], [injection_co2]]
 
         permporo = PermPoro(1, 0, 0)
         permporozone = PermPoroZone([permporo])
@@ -348,7 +358,6 @@ class ReactTestCase(unittest.TestCase):
 
         return writeSolute
 
-
     def test_write(self):
         write_output = self.set_up_write()
         result = write_output.status
@@ -360,20 +369,18 @@ class ReactTestCase(unittest.TestCase):
         self.assertEqual(result, 'successful')
 
     def test_result_first(self):
-        results = t2result('toughreact', 'kdd_conc.tec')
+        results = PlotSingle('toughreact', 'kdd_conc.tec')
         time = results.get_times('second')
         parameter_result = results.get_time_series_data('pH', 0)
         time_length = len(time)
-        parameter_result_length =len(parameter_result)
+        parameter_result_length = len(parameter_result)
+        parameter_result_length = len(parameter_result)
         self.assertEqual(time_length, parameter_result_length)
 
     def test_result_second(self):
         react = t2react()
         react.read('flow.inp')
-        results = t2result('toughreact', 'kdd_conc.tec')
+        results = PlotSingle('toughreact', 'kdd_conc.tec')
         parameter_result = results.get_grid_data(5000, 'pH')
         parameter_result_length = len(parameter_result)
         self.assertEqual(len(react.grid.blocklist), parameter_result_length)
-
-
-
