@@ -33,3 +33,9 @@ TMVOC-BIO
 ~~~~~~~~~~
 TMVOC-BIO possess exact features as the TMVOC with an additional capbility for the modeling of biodegradation
 reactions. Details can be found here https://www.osti.gov/servlets/purl/1377850 
+
+What is  PyTOUGHREACT
+-----------------------
+Simply put, PyTOUGHREACT is a python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO.
+In addition to this capability, it also posesses the ability to make different kinds of 2D line and surface plots for different kinds of 
+visualizations.
