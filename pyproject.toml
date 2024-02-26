@@ -13,13 +13,27 @@ name = "pytoughreact"
 version = "1.0.3"
 dependencies = [
   "numpy>=1",
-  "scipy>"=1,
+  "scipy>=1",
   "vtk>=1",
   "matplotlib>=3",
   "pandas>=1",
-  "PYTOUGH @ git+https://git@github.com/acroucher/PYTOUGH.git",
+  "PyTOUGH"
 ]
+
+classifiers = [
+  "Programming Language :: Python :: 2",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+  "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+  "Operating System :: OS Independent"
+]
+
 requires-python = ">= 3.7"
+readme = "README.md"
 authors = [
   {name = "Temitope Ajayi", email = "ajayi_temmy@yahoo.com"},
 ]
@@ -27,10 +41,11 @@ maintainers = [
   {name = "Temitope Ajayi", email = "ajayi_temmy@yahoo.com"}
 ]
 description = "Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO"
-readme = "README.md"
 license = {file = "LICENSE"}
 keywords = ["biodegradation", "reactive transport", "automation", "uncertainty quantification"]
 
+[project.urls]
+repository = "https://github.com/temmy222/PyTOUGHREACT"
 
 
 [tool.coverage.html]
