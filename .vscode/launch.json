@@ -58,6 +58,14 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": false
+        },
+        {
+            "name": "Python: Build Package",
+            "type": "python",
+            "request": "launch",
+            "program": "${cwd}/upload_package.py",
+            "console": "integratedTerminal",
+            "justMyCode": false
         }
     ]
 }
