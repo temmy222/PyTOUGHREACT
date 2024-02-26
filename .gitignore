@@ -78,6 +78,7 @@ var/
 *.egg
 upload_package.py
 .mypy_cache
+.pypirc
 
 
 # documentation

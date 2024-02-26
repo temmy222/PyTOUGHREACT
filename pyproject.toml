@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=42.0", "wheel", "pip"]
+requires = ["setuptools>=61.0", "wheel", "pip"]
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
@@ -7,6 +7,30 @@ addopts = "--cov=pytoughreact"
 testpaths = [
     "test",
 ]
+
+[project]
+name = "pytoughreact"
+version = "1.0.3"
+dependencies = [
+  "numpy>=1",
+  "scipy>"=1,
+  "vtk>=1",
+  "matplotlib>=3",
+  "pandas>=1",
+  "PYTOUGH @ git+https://git@github.com/acroucher/PYTOUGH.git",
+]
+requires-python = ">= 3.7"
+authors = [
+  {name = "Temitope Ajayi", email = "ajayi_temmy@yahoo.com"},
+]
+maintainers = [
+  {name = "Temitope Ajayi", email = "ajayi_temmy@yahoo.com"}
+]
+description = "Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["biodegradation", "reactive transport", "automation", "uncertainty quantification"]
+
 
 
 [tool.coverage.html]
