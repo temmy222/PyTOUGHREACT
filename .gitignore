@@ -59,7 +59,10 @@ OUTPUT_GENER.csv
 example_files/folder_1/kdd_conc.tec
 example_files/folder_2/kdd_conc.tec 
 example_files/folder_3/kdd_conc.tec
-
+test.txt
+test2.txt
+thddem.dat
+geom.dat
 
 
 # Distribution / packaging
