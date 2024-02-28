@@ -26,7 +26,7 @@ chdump.out
 chemical.inp
 chemical.out
 FIXPT
-flow.inp
+/flow.inp
 flow.out
 flowdata.tec
 flowvector.tec
