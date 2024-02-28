@@ -1,4 +1,5 @@
 import os
+import sys
 from mulgrids import mulgrid
 from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation
 from pytoughreact.chemical.mineral_description import Mineral
@@ -366,6 +367,7 @@ def test_read_react():
 
 def test_result_first():
     FILE_PATH = os.path.abspath(os.curdir)
+    FILE_PATH = os.path.dirname(os.path.realpath(__file__))
     results = t2result('toughreact', 'kdd_conc.tec', FILE_PATH)
     time = results.get_times()
     parameter_result = results.get_time_series_data('pH', 0)
