@@ -31,7 +31,14 @@ The package can also be forked from this GitHub page and installation performed 
 python setup.py install  or py setup.py install
 ```
 
-Because pytoughreact requires PyTOUGH and PyTOUGH is not uploaded to PyPI, it is required to download the zip folder of PyTOUGH from the GitHub repository https://github.com/acroucher/PyTOUGH. Unzip the folder and place in your current working directory. Change directory into the PyTOUGH folder and run python setup.py install or pip install on the command line. With PyTOUGH installed, PyTOUGHREACT is ready to be used as a package.
+<!-- Because pytoughreact requires PyTOUGH and PyTOUGH is not uploaded to PyPI, it is required to download the zip folder of PyTOUGH from the GitHub repository https://github.com/acroucher/PyTOUGH. Unzip the folder and place in your current working directory. Change directory into the PyTOUGH folder and run python setup.py install or pip install on the command line. With PyTOUGH installed, PyTOUGHREACT is ready to be used as a package. -->
+
+Because pyToughreact requires PyTOUGH, this library also needs to be installed.
+PyTOUGH can be installed by running the command below
+
+```bash
+pip install PyTOUGH
+```
 
 ## Usage
 
