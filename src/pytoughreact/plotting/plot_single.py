@@ -45,7 +45,8 @@ class PlotSingle(object):
         self.x_slice_value = kwargs.get(gc.X_SLICE_VALUE)
 
     def __repr__(self):
-        return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
+        return 'Results from ' + self.filelocation + ' in ' + self.filetitle \
+            + ' for ' + self.simulatortype
 
     def _validateFile(self):
         """ Validate File """
@@ -56,9 +57,9 @@ class PlotSingle(object):
         """ Get Simulator Type """
         return self.simulatortype
 
-    def plotTime(self, param, grid_block_number, format_of_date='year', labels=None, singlePlot=False, style='horizontal',
-                 width=12,
-                 height=8):
+    def plotTime(self, param, grid_block_number, format_of_date='year',
+                 labels=None, singlePlot=False, style='horizontal',
+                 width=12, height=8):
         """ General function for making line plot of parameter with time
 
         Parameters
@@ -86,28 +87,38 @@ class PlotSingle(object):
         
         """
         if isinstance(param, str):
-            plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
+            plottest = PlotTough(self.simulatortype, self.filelocation, 
+                                 self.filetitle, generation=self.generation,
                                  restart_files=self.full_args,
                                  experiment=self.expt)
             if self.full_args is None:
-                plottest.plotParamWithTime(param, grid_block_number, format_of_date)
+                plottest.plotParamWithTime(param, grid_block_number,
+                                           format_of_date)
             else:
-                plottest.plotParamWithTimeRestart(param, grid_block_number, format_of_date)
+                plottest.plotParamWithTimeRestart(param, grid_block_number,
+                                                  format_of_date)
         elif isinstance(param, list) and isinstance(self.filelocation, str) and singlePlot is False:
-            plottest = PlotMultiTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
+            plottest = PlotMultiTough(self.simulatortype, self.filelocation,
+                                      self.filetitle, 
+                                      generation=self.generation,
                                       restart_files=self.full_args,
                                       experiment=self.expt)
             if self.full_args is None:
-                plottest.multi_time_plot(param, grid_block_number, format_of_date, style)
+                plottest.multi_time_plot(param, grid_block_number,
+                                         format_of_date, style)
             else:
-                plottest.multi_time_plot_restart(param, grid_block_number, format_of_date, style)
+                plottest.multi_time_plot_restart(param, grid_block_number,
+                                                 format_of_date, style)
         elif isinstance(param, list) and isinstance(self.filelocation, str) and singlePlot is True:
-            plottest = PlotMultiTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
+            plottest = PlotMultiTough(self.simulatortype, self.filelocation,
+                                      self.filetitle,
+                                      generation=self.generation,
                                       restart_files=self.full_args,
                                       experiment=self.expt,
                                       x_slice_value=self.x_slice_value)
             if self.full_args is None:
-                plottest.plotMultiParamSinglePlot(param, grid_block_number, format_of_date, labels)
+                plottest.plotMultiParamSinglePlot(param, grid_block_number,
+                                                  format_of_date, labels)
 
     def plotParamWithParam(self, param1, param2, gridblocknumber):
         """ Line Plot of two parameters in the results file
@@ -126,11 +137,14 @@ class PlotSingle(object):
         
         """
         """ Make Plot of parameter with parameter """
-        plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
+        plottest = PlotTough(self.simulatortype, self.filelocation,
+                             self.filetitle)
         plottest.plotParamWithParam(param1, param2, gridblocknumber)
 
-    def plotParamWithLayer(self, direction_x, direction_y, param, layer_num, time):
-        """ Make line plot of parameter at a particular time at a particular layer
+    def plotParamWithLayer(self, direction_x, direction_y, param, layer_num,
+                           time):
+        """ Make line plot of parameter at a particular time at a particular
+        layer
 
         Parameters
         -----------
@@ -149,11 +163,15 @@ class PlotSingle(object):
         --------
         
         """
-        plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
-        plottest.plotParamWithLayer(direction_x, direction_y, param, layer_num, time)
+        plottest = PlotTough(self.simulatortype, self.filelocation,
+                             self.filetitle)
+        plottest.plotParamWithLayer(direction_x, direction_y, param, layer_num,
+                                    time)
 
-    def plot2D(self, direction_x, direction_y, param, timer, grid_type='plain'):
-        """ Make 2D plot of parameter at a particular time across the whole domain
+    def plot2D(self, direction_x, direction_y, param, timer,
+               grid_type='plain'):
+        """ Make 2D plot of parameter at a particular time across the whole
+        domain
 
         Parameters
         -----------
@@ -164,7 +182,8 @@ class PlotSingle(object):
         param :  str
             parameter to be plotted
         grid_type :  str
-            Specifies if plot should be gridded or not (options are 'plain' or 'grid')
+            Specifies if plot should be gridded or not (options are 'plain' or
+            'grid')
         timer : int
             the time at which the plot is to be made
         
