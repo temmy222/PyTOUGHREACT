@@ -17,7 +17,8 @@ dependencies = [
   "vtk>=1",
   "matplotlib>=3",
   "pandas>=1",
-  "PyTOUGH"
+  "PyTOUGH",
+  "flake8"
 ]
 
 classifiers = [
@@ -47,9 +48,6 @@ keywords = ["biodegradation", "reactive transport", "automation", "uncertainty q
 [project.urls]
 repository = "https://github.com/temmy222/PyTOUGHREACT"
 
-[tool.flake8]
-# Check that this is aligned with your other tools like Black
-max-line-length = 120
 
 
 [tool.coverage.html]
