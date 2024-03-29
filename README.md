@@ -206,14 +206,14 @@ pytest
 6. Flake8 is also used to ensure code readability. Install flake8 using 
    
 ```python
-pip install flake
+pip install flake8
 ```
 and run flake8 using
 
 ```python
 flake8 src
 ```
-8. Make a pull request after passing all tests
+7. Make a pull request after passing all tests
 
 ## Documentation
 Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/ 
