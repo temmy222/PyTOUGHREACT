@@ -81,13 +81,13 @@ class PlotSingle(object):
         height : int
             height of plot
 
-        
+
         Returns
         --------
-        
+
         """
         if isinstance(param, str):
-            plottest = PlotTough(self.simulatortype, self.filelocation, 
+            plottest = PlotTough(self.simulatortype, self.filelocation,
                                  self.filetitle, generation=self.generation,
                                  restart_files=self.full_args,
                                  experiment=self.expt)
@@ -97,9 +97,10 @@ class PlotSingle(object):
             else:
                 plottest.plotParamWithTimeRestart(param, grid_block_number,
                                                   format_of_date)
-        elif isinstance(param, list) and isinstance(self.filelocation, str) and singlePlot is False:
+        elif (isinstance(param, list) and isinstance(self.filelocation, str)
+              and singlePlot is False):
             plottest = PlotMultiTough(self.simulatortype, self.filelocation,
-                                      self.filetitle, 
+                                      self.filetitle,
                                       generation=self.generation,
                                       restart_files=self.full_args,
                                       experiment=self.expt)
@@ -109,7 +110,8 @@ class PlotSingle(object):
             else:
                 plottest.multi_time_plot_restart(param, grid_block_number,
                                                  format_of_date, style)
-        elif isinstance(param, list) and isinstance(self.filelocation, str) and singlePlot is True:
+        elif (isinstance(param, list) and isinstance(self.filelocation, str)
+              and singlePlot is True):
             plottest = PlotMultiTough(self.simulatortype, self.filelocation,
                                       self.filetitle,
                                       generation=self.generation,
@@ -131,10 +133,10 @@ class PlotSingle(object):
             The parameter to be plotted on the y-axis
         grid_block_number : int
             the grid block in which its parameter evolution is to be observed.
-        
+
         Returns
         --------
-        
+
         """
         """ Make Plot of parameter with parameter """
         plottest = PlotTough(self.simulatortype, self.filelocation,
@@ -149,7 +151,7 @@ class PlotSingle(object):
         Parameters
         -----------
         direction_x :  str
-            The direction to be plotted on the x axis 
+            The direction to be plotted on the x axis
         direction_y :  str
             The direction to be plotted on the y axis
         param :  str
@@ -158,10 +160,10 @@ class PlotSingle(object):
             layer number to be plotted
         time : int
             the time at which the plot is to be made
-        
+
         Returns
         --------
-        
+
         """
         plottest = PlotTough(self.simulatortype, self.filelocation,
                              self.filetitle)
@@ -176,7 +178,7 @@ class PlotSingle(object):
         Parameters
         -----------
         direction_x :  str
-            The direction to be plotted on the x axis 
+            The direction to be plotted on the x axis
         direction_y :  str
             The direction to be plotted on the y axis
         param :  str
@@ -186,12 +188,13 @@ class PlotSingle(object):
             'grid')
         timer : int
             the time at which the plot is to be made
-        
+
         Returns
         --------
-        
+
         """
-        plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
+        plottest = PlotTough(self.simulatortype, self.filelocation,
+                             self.filetitle)
         if grid_type == 'plain':
             plottest.plot2D_one(direction_x, direction_y, param, timer)
         elif grid_type == 'grid':

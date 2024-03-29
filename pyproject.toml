@@ -47,6 +47,10 @@ keywords = ["biodegradation", "reactive transport", "automation", "uncertainty q
 [project.urls]
 repository = "https://github.com/temmy222/PyTOUGHREACT"
 
+[tool.flake8]
+# Check that this is aligned with your other tools like Black
+max-line-length = 120
+
 
 [tool.coverage.html]
 directory = "coverage_html_report"

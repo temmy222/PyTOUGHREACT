@@ -38,7 +38,8 @@ from pytoughreact.utilities.t2_utilities import t2Utilities
 
 
 class PlotMultiFiles(object):
-    def __init__(self, simulator_type, file_locations, file_titles, props, **kwargs):
+    def __init__(self, simulator_type, file_locations, file_titles, props,
+                 **kwargs):
         """
         Class for processing multiple file results
 
@@ -61,8 +62,8 @@ class PlotMultiFiles(object):
             if the plot should be made per file and not per property
         tile : str
             title of each of the plots
-        
-        
+
+
         Returns
         --------
 
@@ -83,12 +84,19 @@ class PlotMultiFiles(object):
         """ Validate Inputs
         """
         if self.simulator_type.lower() == gc.TOUGHREACT:
-            multi_tough = MultiResultReact(self.simulator_type, self.file_locations, self.file_titles, self.props,
+            multi_tough = MultiResultReact(self.simulator_type,
+                                           self.file_locations,
+                                           self.file_titles,
+                                           self.props,
                                            x_slice_value=self.x_slice_value)
         elif self.simulator_type.lower() == gc.TMVOC:
-            multi_tough = MultiResultTough3(self.simulator_type, self.file_locations, self.file_titles, self.props)
+            multi_tough = MultiResultTough3(self.simulator_type,
+                                            self.file_locations,
+                                            self.file_titles,
+                                            self.props)
         else:
-            print("Code only has capability for TOUGHREACT or TOUGH3 (by extension TMVOC)")
+            print("Code only has capability for TOUGHREACT or TOUGH3 \
+                  (by extension TMVOC)")
         return multi_tough
 
     def _plotRawSingle(self, data, legend):
@@ -100,7 +108,7 @@ class PlotMultiFiles(object):
             data for plot
         legend :  list[str]
             List of legend values
-        
+
         Returns
         --------
         """
@@ -119,7 +127,8 @@ class PlotMultiFiles(object):
         os.chdir(self.file_locations[0])
         plt.tight_layout()
         plt.show()
-        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
+        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' +
+                    pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def _plotRawMulti(self, data, legend):
         """ Plot of Multi File
@@ -130,11 +139,11 @@ class PlotMultiFiles(object):
             data for plot
         legend :  list[str]
             List of legend values
-        
+
         Returns
         --------
         """
-        
+
         fig = plt.figure()
         plot_counter = 1
         start_point = 0
@@ -146,7 +155,8 @@ class PlotMultiFiles(object):
             for i in range(start_point, initial_length, 2):
                 x_data = data.iloc[:, i]
                 y_data = data.iloc[:, i + 1]
-                axs.plot(x_data, y_data, marker=pc.CARET_SYMBOL, label=legend[legend_index])
+                axs.plot(x_data, y_data, marker=pc.CARET_SYMBOL,
+                         label=legend[legend_index])
                 axs.set_xlabel(pc.X_LABEL_TIME_YEAR)
                 axs.set_ylabel(self.props[prop_index])
                 legend_index = legend_index + 1
@@ -157,9 +167,11 @@ class PlotMultiFiles(object):
         handles, labels = axs.get_legend_handles_labels()
         plt.setp(axs.get_xticklabels(), fontsize=14)
         plt.setp(axs.get_yticklabels(), fontsize=14)
-        plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=5, labelspacing=0.)
+        plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=5,
+                      labelspacing=0.)
         plt.show()
-        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
+        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' +
+                    pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def _setToughYLabel(self, value):
         """ Convert the value in tough results to understandable values
@@ -168,12 +180,12 @@ class PlotMultiFiles(object):
         -----------
         value :  str
             value to be converted (must be present in TOUGH data output)
-        
+
         Returns
         --------
         value :  str
             converted value
-        
+
         """
         if rc.TOBERMORITE_TOUGHREACT in value:
             value = rc.TOBERMORITE_CONVERSION
@@ -200,10 +212,10 @@ class PlotMultiFiles(object):
             List of legend values
         format_of_date: str
             The format of the date; could be minute, hour, day or year
-        
+
         Returns
         --------
-        
+
         """
         fig = plt.figure(figsize=(10, 10))
         plot_counter = 1
@@ -213,14 +225,19 @@ class PlotMultiFiles(object):
         for number in range(1, len(self.props) + 1):
             if number == 4:
                 pass
-            axs = plt.subplot(math.ceil(len(self.props) / 2) + 1, 2, plot_counter)
+            axs = plt.subplot(math.ceil(len(self.props) / 2) + 1, 2,
+                              plot_counter)
             legend_index = 0
-            for i in range(start_point, len(data.columns), (len(self.props) * 2)):
+            for i in range(start_point, len(data.columns),
+                           (len(self.props) * 2)):
                 x_data = data.iloc[:, i]
                 y_data = data.iloc[:, i + 1]
-                axs.plot(x_data, y_data, marker=markers[legend_index], label=legend[legend_index])
-                axs.set_xlabel('Time ' + '(' + format_of_date + ')', fontsize=14)
-                axs.set_ylabel(self._setToughYLabel(self.props[prop_index]), fontsize=14)
+                axs.plot(x_data, y_data, marker=markers[legend_index],
+                         label=legend[legend_index])
+                axs.set_xlabel('Time ' + '(' + format_of_date + ')',
+                               fontsize=14)
+                axs.set_ylabel(self._setToughYLabel(self.props[prop_index]),
+                               fontsize=14)
                 axs.ticklabel_format(useOffset=False)
                 legend_index = legend_index + 1
             plot_counter = plot_counter + 1
@@ -231,12 +248,15 @@ class PlotMultiFiles(object):
         handles, labels = axs.get_legend_handles_labels()
         fig.tight_layout()
         if len(self.props) > 3:
-            plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=4, labelspacing=0.)
+            plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=4,
+                          labelspacing=0.)
         else:
-            plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=4, labelspacing=0.)
+            plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=4,
+                          labelspacing=0.)
         plt.show()
         os.chdir(self.file_locations[0])
-        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
+        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' +
+                    pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def _plotRawMultiFilePanel(self, data, panels, format_of_date):
         """ Plot of Multi File Per Panel
@@ -249,10 +269,10 @@ class PlotMultiFiles(object):
             Number of panels
         format_of_date: str
             The format of the date; could be minute, hour, day or year
-        
+
         Returns
         --------
-        
+
         """
         fig = plt.figure(figsize=(10, 8))
         start_point = 0
@@ -262,7 +282,8 @@ class PlotMultiFiles(object):
         length_of_prop = len(list(panels[number].values())[0][0])
         for i in range(0, len(panels)):
             x_data = data.iloc[:, start_point]
-            y_data = data.iloc[:, start_point + 1:start_point + length_of_prop + 1]
+            y_data = data.iloc[:, start_point + 1:start_point + length_of_prop
+                               + 1]
             number += 1
             start_point = start_point + length_of_prop + 1
             try:
@@ -277,7 +298,8 @@ class PlotMultiFiles(object):
                 axsa.set_xlabel('Time ' + format_of_date, fontsize=12)
                 axsa.set_ylabel(yLabel, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
-                axsa.legend(list(panels[0].values())[0][1], fontsize=12, loc=pc.LOC_BEST, shadow=True, fancybox=True)
+                axsa.legend(list(panels[0].values())[0][1], fontsize=12,
+                            loc=pc.LOC_BEST, shadow=True, fancybox=True)
             elif i == 1:
                 axsa = axs[0, 1]
                 axsa.plot(x_data, y_data)
@@ -285,7 +307,8 @@ class PlotMultiFiles(object):
                 axsa.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=12)
                 axsa.set_ylabel(yLabel, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
-                axsa.legend(list(panels[1].values())[0][1], fontsize=12, loc=pc.LOC_BEST, shadow=True, fancybox=True)
+                axsa.legend(list(panels[1].values())[0][1], fontsize=12,
+                            loc=pc.LOC_BEST, shadow=True, fancybox=True)
             elif i == 2:
                 axsa = axs[1, 0]
                 axsa.plot(x_data, y_data)
@@ -293,7 +316,8 @@ class PlotMultiFiles(object):
                 axsa.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=12)
                 axsa.set_ylabel(yLabel, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
-                axsa.legend(list(panels[2].values())[0][1], fontsize=12, loc=pc.LOC_BEST, shadow=True, fancybox=True)
+                axsa.legend(list(panels[2].values())[0][1], fontsize=12,
+                            loc=pc.LOC_BEST, shadow=True, fancybox=True)
             elif i == 3:
                 axsa = axs[1, 1]
                 axsa.plot(x_data, y_data)
@@ -301,10 +325,13 @@ class PlotMultiFiles(object):
                 axsa.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=12)
                 axsa.set_ylabel(yLabel, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
-                axsa.legend(list(panels[3].values())[0][1], fontsize=10, loc=pc.LOC_BEST, shadow=True, fancybox=True)
+                axsa.legend(list(panels[3].values())[0][1], fontsize=10,
+                            loc=pc.LOC_BEST, shadow=True, fancybox=True)
         fig.tight_layout()
         plt.show()
-        fig.savefig(list(panels[0].values())[0][0][0] + pc.MULTI_PLOTS_PER_PANEL + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
+        fig.savefig(list(panels[0].values())[0][0][0] +
+                    pc.MULTI_PLOTS_PER_PANEL + pc.IMAGE_TYPE,
+                    bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def _plotRawMultiFilePerFile(self, data, legend):
         """ Plot of Multi File Per File
@@ -315,10 +342,10 @@ class PlotMultiFiles(object):
             data for plot
         legend :  list[str]
             List of legend values
-        
+
         Returns
         --------
-        
+
         """
         fig = plt.figure(figsize=(10, 8))
         plot_counter = 1
@@ -328,7 +355,8 @@ class PlotMultiFiles(object):
         for number in range(1, len(self.props) + 1):
             axs = plt.subplot(3, 2, plot_counter)
             legend_index = 0
-            for i in range(start_point, len(data.columns), (len(self.props) * 2)):
+            for i in range(start_point, len(data.columns), (len(self.props)
+                                                            * 2)):
                 x_data = data.iloc[:, i]
                 y_data = data.iloc[:, i + 1]
                 if gc.POROSITY in data.columns[i]:
@@ -336,18 +364,23 @@ class PlotMultiFiles(object):
                              label=self._setToughYLabel(legend[legend_index]))
                     axs.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=14)
                     if self.simulator_type.lower() == gc.TMVOC:
-                        axs.set_ylabel(self.modifier.param_label_full(self.props[prop_index]), fontsize=14)
+                        axs.set_ylabel(
+                            self.modifier.param_label_full(
+                                self.props[prop_index]), fontsize=14)
                     else:
-                        axs.set_ylabel(rc.CHANGE_IN_VOLUME_FRACTION, fontsize=14)
+                        axs.set_ylabel(rc.CHANGE_IN_VOLUME_FRACTION,
+                                       fontsize=14)
                 else:
                     axs.plot(x_data, y_data, marker=markers[legend_index],
                              label=self._setToughYLabel(legend[legend_index]))
                     axs.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=14)
                     if self.simulator_type.lower() == gc.TMVOC:
-                        param_value = self.modifier.param_label_full(self.props[prop_index].upper())
+                        param_value = self.modifier.param_label_full(
+                            self.props[prop_index].upper())
                         axs.set_ylabel(param_value, fontsize=14)
                     else:
-                        axs.set_ylabel(rc.CHANGE_IN_VOLUME_FRACTION, fontsize=14)
+                        axs.set_ylabel(rc.CHANGE_IN_VOLUME_FRACTION,
+                                       fontsize=14)
                 axs.ticklabel_format(useOffset=False)
                 plt.setp(axs.get_xticklabels(), fontsize=14)
                 plt.setp(axs.get_yticklabels(), fontsize=14)
@@ -361,11 +394,13 @@ class PlotMultiFiles(object):
         # handles2, labels2 = ax2s.get_legend_handles_labels()
         # handles.append(handles2[0])
         # labels.append(labels2[0])
-        plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=4, labelspacing=0.)
+        plt.figlegend(handles, labels, loc=pc.LOC_LOWER_CENTER, ncol=4,
+                      labelspacing=0.)
         fig.tight_layout()
         plt.show()
         os.chdir(self.file_locations[0])
-        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
+        fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' '
+                    + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
     def multiFileSinglePlot(self, grid_block_number, legend):
         """ Plot of  Multiple Files with a single plot
@@ -373,13 +408,13 @@ class PlotMultiFiles(object):
         Parameters
         -----------
         grid_block_number :  int
-            The grid block number to be plotted 
+            The grid block number to be plotted
         legend :  list[str]
             List of legend values
-        
+
         Returns
         --------
-        
+
         """
         multi_tough = self._validateInput()
         data = multi_tough.retrieve_data_multi_timeseries(grid_block_number)
@@ -390,24 +425,26 @@ class PlotMultiFiles(object):
             with plt.style.context(pc.CLASSIC):
                 self._plotRawSingle(data, legend)
 
-    def _plotMultiElementMultiFilePerFile(self, grid_block_number, legend, format_of_date):
+    def _plotMultiElementMultiFilePerFile(self, grid_block_number, legend,
+                                          format_of_date):
         """ Plot of Multi Elements and Multiple Files for File only
 
         Parameters
         -----------
         grid_block_number :  int
-            The grid block number to be plotted 
+            The grid block number to be plotted
         legend :  list[str]
             List of legend values
         format_of_date: str
             The format of the date; could be minute, hour, day or year
-        
+
         Returns
         --------
-        
+
         """
         multi_tough = self._validateInput()
-        data = multi_tough.getMultiElementData(grid_block_number, format_of_date)
+        data = multi_tough.getMultiElementData(grid_block_number,
+                                               format_of_date)
         try:
             with plt.style.context(pc.MY_STYLE):
                 self._plotRawMultiFilePerFile(data, legend)
@@ -415,24 +452,26 @@ class PlotMultiFiles(object):
             with plt.style.context(pc.CLASSIC):
                 self._plotRawMultiFilePerFile(data, legend)
 
-    def _plotMultiElementMultiFilePerProp(self, grid_block_number, legend, format_of_date):
+    def _plotMultiElementMultiFilePerProp(self, grid_block_number, legend,
+                                          format_of_date):
         """ Plot of Multi Elements and Multiple Files for Property only
 
         Parameters
         -----------
         grid_block_number :  int
-            The grid block number to be plotted 
+            The grid block number to be plotted
         legend :  list[str]
             List of legend values
         format_of_date: str
             The format of the date; could be minute, hour, day or year
-        
+
         Returns
         --------
-        
+
         """
         multi_tough = self._validateInput()
-        data = multi_tough.getMultiElementData(grid_block_number, format_of_date)
+        data = multi_tough.getMultiElementData(grid_block_number,
+                                               format_of_date)
         try:
             with plt.style.context(pc.MY_STYLE):
                 self._plotRawMultiFile(data, legend, format_of_date)
@@ -440,49 +479,54 @@ class PlotMultiFiles(object):
             with plt.style.context(pc.CLASSIC):
                 self._plotRawMultiFile(data, legend, format_of_date)
 
-    def plotMultiElementMultiFile(self, grid_block_number, legend, format_of_date, plot_kind=pc.PROPERTY):
+    def plotMultiElementMultiFile(self, grid_block_number, legend,
+                                  format_of_date, plot_kind=pc.PROPERTY):
         """ Plot of Multi Elements and Multiple Files
 
         Parameters
         -----------
         grid_block_number :  int
-            The grid block number to be plotted 
+            The grid block number to be plotted
         legend :  list[str]
             List of legend values
         format_of_date: str
             The format of the date; could be minute, hour, day or year
         plot_kind: str
             The kind of plot to be used; could be 'property' or 'file'
-        
+
         Returns
         --------
-        
+
         """
         if plot_kind.lower() == pc.PROPERTY:
-            self._plotMultiElementMultiFilePerProp(grid_block_number, legend, format_of_date)
+            self._plotMultiElementMultiFilePerProp(grid_block_number, legend,
+                                                   format_of_date)
         elif plot_kind.lower() == pc.FILE:
-            self._plotMultiElementMultiFilePerFile(grid_block_number, legend, format_of_date)
+            self._plotMultiElementMultiFilePerFile(grid_block_number, legend,
+                                                   format_of_date)
         else:
             print('Plot kind can either be property or file')
 
-    def plotMultiPerPanel(self, grid_block_number, panels, format_of_date=pc.DAY):
+    def plotMultiPerPanel(self, grid_block_number, panels,
+                          format_of_date=pc.DAY):
         """ Plot of Multi Properties Per Panel
 
         Parameters
         -----------
         grid_block_number :  int
-            The grid block number to be plotted 
+            The grid block number to be plotted
         panels :  int
             Number of panels
         format_of_date: str
             The format of the date; could be minute, hour, day or year
-        
+
         Returns
         --------
-        
+
         """
         multi_tough = self._validateInput()
-        data = multi_tough.getMultiElementDataPerPanel(grid_block_number, panels, format_of_date)
+        data = multi_tough.getMultiElementDataPerPanel(grid_block_number,
+                                                       panels, format_of_date)
         if self.x_slice_value is not None:
             stringo = panels[0]['panel1'][0][0] + 'time00'
             data = data[data[stringo] <= self.x_slice_value]
@@ -493,13 +537,14 @@ class PlotMultiFiles(object):
             with plt.style.context(pc.CLASSIC):
                 self._plotRawMultiFilePanel(data, panels, format_of_date)
 
-    def plotMultiFileDistance(self, direction_x, direction_y, time, layer_num, legend):
+    def plotMultiFileDistance(self, direction_x, direction_y, time, layer_num,
+                              legend):
         """ Plot of Parameter with Distance for Multiple Files
 
         Parameters
         -----------
         direction_x :  str
-            The direction to be plotted on the x axis 
+            The direction to be plotted on the x axis
         direction_y :  str
             The direction to be plotted on the y axis
         legend :  list[str]
@@ -508,13 +553,14 @@ class PlotMultiFiles(object):
             The layer in the model to be plotted
         time : int
             the time at which the plot is to be made
-        
+
         Returns
         --------
-        
+
         """
         multi_tough = self._validateInput()
-        data = multi_tough.getMultiFileDistance(direction_x, direction_y, time, layer_num)
+        data = multi_tough.getMultiFileDistance(direction_x, direction_y, time,
+                                                layer_num)
         if self.per_file is True:
             try:
                 with plt.style.context(pc.MY_STYLE):

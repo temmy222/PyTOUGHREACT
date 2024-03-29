@@ -27,7 +27,8 @@ from pytoughreact.plotting.plot_multiple_files_routine import PlotMultiFiles
 
 
 class PlotMultiple(object):
-    def __init__(self, simulator_type, file_locations, file_titles, props, **kwargs):
+    def __init__(self, simulator_type, file_locations, file_titles, props,
+                 **kwargs):
         """
         Class for processing multiple file results
 
@@ -50,8 +51,8 @@ class PlotMultiple(object):
             if the plot should be made per file and not per property
         tile : str
             title of each of the plots
-        
-        
+
+
         Returns
         --------
 
@@ -66,7 +67,8 @@ class PlotMultiple(object):
         self.per_file = kwargs.get('per_file')
         self.title = kwargs.get('title')
 
-    def plotTime(self, grid_block_number, legend, plot_kind='property', format_of_date='day'):
+    def plotTime(self, grid_block_number, legend, plot_kind='property',
+                 format_of_date='day'):
         """ Line Plots of a parameter in the results file as a function of time
 
         Parameters
@@ -79,20 +81,24 @@ class PlotMultiple(object):
             List of all legend values
         plot_kind: str
             if plot should be structured by property or file
-        
-        
+
+
         Returns
         --------
-        
+
         """
-        plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
-                                  x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
+        plottest = PlotMultiFiles(self.simulator_type, self.file_locations,
+                                  self.file_titles, self.props,
+                                  x_slice_value=self.x_slice_value,
+                                  per_file=self.per_file, title=self.title)
         if len(self.props) == 1:
             plottest.multiFileSinglePlot(grid_block_number, legend)
         else:
-            plottest.plotMultiElementMultiFile(grid_block_number, legend, format_of_date, plot_kind)
+            plottest.plotMultiElementMultiFile(grid_block_number, legend,
+                                               format_of_date, plot_kind)
 
-    def plotTimePerPanel(self, grid_block_number, panels, format_of_date='day'):
+    def plotTimePerPanel(self, grid_block_number, panels,
+                         format_of_date='day'):
         """ Plot Multiple plots in a panel
 
         Parameters
@@ -103,23 +109,26 @@ class PlotMultiple(object):
             The format of the date; could be minute, hour, day or year
         panels: list[str]
             List of all panels
-        
-        
+
+
         Returns
         --------
-        
+
         """
-        plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
-                                  x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
+        plottest = PlotMultiFiles(self.simulator_type, self.file_locations,
+                                  self.file_titles, self.props,
+                                  x_slice_value=self.x_slice_value,
+                                  per_file=self.per_file, title=self.title)
         plottest.plotMultiPerPanel(grid_block_number, panels, format_of_date)
 
-    def plotParamWithLayer(self, direction_x, direction_y, layer_num, time, legend):
+    def plotParamWithLayer(self, direction_x, direction_y, layer_num, time,
+                           legend):
         """ Plot of Parameter with Layer
 
         Parameters
         -----------
         direction_x :  str
-            The direction to be plotted on the x axis 
+            The direction to be plotted on the x axis
         direction_y :  str
             The direction to be plotted on the y axis
         legend :  list[str]
@@ -128,14 +137,17 @@ class PlotMultiple(object):
             The layer in the model to be plotted
         time : int
             the time at which the plot is to be made
-        
+
         Returns
         --------
-        
+
         """
-        plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
-                                  x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
+        plottest = PlotMultiFiles(self.simulator_type, self.file_locations,
+                                  self.file_titles, self.props,
+                                  x_slice_value=self.x_slice_value,
+                                  per_file=self.per_file, title=self.title)
         if len(self.props) == 1:
             pass
         else:
-            plottest.plotMultiFileDistance(direction_x, direction_y, time, layer_num, legend)
+            plottest.plotMultiFileDistance(direction_x, direction_y, time,
+                                           layer_num, legend)
