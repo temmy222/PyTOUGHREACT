@@ -49,7 +49,8 @@ class BIODG(object):
         bio_numerical_parameters : list
             List of numerical parameters for biodegradation
         """
-        bio_numerical_parameters = [self.imonod, self.icflag, self.bfac, self.null, self.sw1, self.sw2, self.wea, self.wsub]
+        bio_numerical_parameters = [self.imonod, self.icflag, self.bfac, self.null, self.sw1, self.sw2,
+                                    self.wea, self.wsub]
         return bio_numerical_parameters
 
     def getNumberOfBiomasses(self):
@@ -93,7 +94,8 @@ class BIODG(object):
 class Process(object):
     """Process specification"""
 
-    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0, NumOfHaldane=0, NumOfNonCompetiting=0,
+    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0,
+                 NumOfHaldane=0, NumOfNonCompetiting=0,
                  NumOfCompetiting=0, componentParams=None, gasParams=None, waterParams=None):
         """ Initialization of Parameters
 

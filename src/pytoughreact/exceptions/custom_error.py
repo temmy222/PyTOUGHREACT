@@ -43,7 +43,8 @@ class RelativePermeabilityTypeError(Exception):
     def __init__(self, input_value, all_rel_perm_types):
         self.input_value = input_value
         self.all_rel_perm_types = all_rel_perm_types
-        self.message = '{0} is not one of the in-built relative permeability types. Please choose one of {1}'.format(self.input_value, self.all_rel_perm_types)
+        self.message = '{0} is not one of the in-built relative permeability types. \
+        Please choose one of {1}'.format(self.input_value, self.all_rel_perm_types)
         super().__init__(self.message)
 
 
@@ -61,7 +62,8 @@ class CapillaryPressureTypeError(Exception):
     def __init__(self, input_value, all_cap_pres_types):
         self.input_value = input_value
         self.all_cap_pres_types = all_cap_pres_types
-        self.message = '{0} is not one of the in-built capillary pressure types. Please choose one of {1}'.format(self.input_value, self.all_cap_pres_types)
+        self.message = '{0} is not one of the in-built capillary pressure types. \
+            Please choose one of {1}'.format(self.input_value, self.all_cap_pres_types)
         super().__init__(self.message)
 
 

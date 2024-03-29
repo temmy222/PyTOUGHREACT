@@ -30,7 +30,8 @@ from t2data import t2data
 from pytoughreact.constants.format_specifications import t2solute_format_specification
 from pytoughreact.constants.sections import t2solute_sections
 from pytoughreact.constants.defaults_constants import (DEFAULT_OPTIONS, DEFAULT_CONSTRAINTS, DEFAULT_READIO,
-                                                       DEFAULT_WEIGHT_DIFFUSION, DEFAULT_TOLERANCE, DEFAULT_PRINTOUT, DEFAULT_ZONE)
+                                                       DEFAULT_WEIGHT_DIFFUSION, DEFAULT_TOLERANCE, DEFAULT_PRINTOUT,
+                                                       DEFAULT_ZONE)
 from pytoughreact.exceptions.custom_error import ReactiveOptionsError, RequiredInputException, ReactiveConstraintsError
 from copy import deepcopy
 
@@ -337,7 +338,8 @@ class t2solute(t2data):
         Main class for structuring the writing , reading  of solute parameters
     """
     def __init__(self, filename='', meshfilename='', options=None, chemical_zones=None, constraints=None, readio=None,
-                 weight_diffusion=None, tolerance=None, printout=None, t2chemical=None, read_function=default_read_function):
+                 weight_diffusion=None, tolerance=None, printout=None, t2chemical=None,
+                 read_function=default_read_function):
         super().__init__(filename, meshfilename, read_function)
         self.t2chemical = t2chemical
         self._sections = []
@@ -460,7 +462,8 @@ class t2solute(t2data):
                     boundary_water_zone = 1
                     injection_gas_zone = 1
                     initial_gas_zone = 1
-                appender = [block.name, 0, 0, initial_water_zone, boundary_water_zone, mineral_zone, initial_gas_zone, 0, 0,
+                appender = [block.name, 0, 0, initial_water_zone, boundary_water_zone, mineral_zone, initial_gas_zone,
+                            0, 0,
                             perm_poro_zone, 0, injection_gas_zone]
                 output.append(appender)
                 viewer.append(block)
@@ -1172,7 +1175,8 @@ class t2solute(t2data):
         # TODO find out why leaving a space doesnt run
         if self.aqueous_species[0] == -1:
             outfile.write("\n")
-            # outfile.write('# Individual aqueous species for which to output concentrations in time and plot files:' + ' \n tr' )
+            # outfile.write('# Individual aqueous species for which to output concentrations in time and plot files:'
+            # + ' \n tr' )
             outfile.write(
                 '# Individual aqueous species for which to output concentrations in time and plot files:' + '\n')
 

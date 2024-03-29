@@ -95,7 +95,8 @@ class t2ChemicalData(fixed_format_file):
                 mineral = Mineral(liner[0], int(liner[1]), int(liner[2]), int(liner[3]), int(liner[4]))
                 line = self.file.readline()
                 liner = (line.split())
-                read_dissolution = Dissolution(float(liner[0]), int(liner[1]), float(liner[2]), float(liner[3]), float(liner[4]),
+                read_dissolution = Dissolution(float(liner[0]), int(liner[1]), float(liner[2]),
+                                               float(liner[3]), float(liner[4]),
                                                float(liner[5]), float(liner[6]), float(liner[7]))
                 type_of_pH = liner[1]
                 if int(type_of_pH) == 0:
@@ -110,9 +111,11 @@ class t2ChemicalData(fixed_format_file):
                             line = self.file.readline()
                             liner = (line.split())
                             if type_of_pH == '2':
-                                ph_dep = pHDependenceType2(float(liner[0]), float(liner[1]), int(liner[2]), liner[3], float(liner[4]))
+                                ph_dep = pHDependenceType2(float(liner[0]), float(liner[1]), int(liner[2]),
+                                                           liner[3], float(liner[4]))
                             elif type_of_pH == '1':
-                                ph_dep = pHDependenceType1(float(liner[0]), int(liner[1]), float(liner[2]), int(liner[3]))
+                                ph_dep = pHDependenceType1(float(liner[0]), int(liner[1]),
+                                                           float(liner[2]), int(liner[3]))
                             ph_deps.append(ph_dep)
                         read_dissolution.pHDependence = ph_deps
                         mineral.dissolution = [read_dissolution]
@@ -126,7 +129,8 @@ class t2ChemicalData(fixed_format_file):
                     liner = init_line + liner
                     read_precipitation = Precipitation(float(liner[0]), int(liner[1]), float(liner[2]), float(liner[3]),
                                                        float(liner[4]), float(liner[5]), float(liner[6]),
-                                                       float(liner[7]), float(liner[8]), int(liner[9]), float(liner[10]),
+                                                       float(liner[7]), float(liner[8]), int(liner[9]),
+                                                       float(liner[10]),
                                                        float(liner[11]), float(liner[12]))
                     mineral.precipitation = [read_precipitation]
             all_lines.append(mineral)
@@ -502,7 +506,8 @@ class t2ChemicalData(fixed_format_file):
 
         Returns
         --------
-        initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping : list, list, dict, dict
+        initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping :
+        list, list, dict, dict
             properties of the initial and boundary water
 
         """
@@ -529,7 +534,8 @@ class t2ChemicalData(fixed_format_file):
             while line.startswith("'*") is False:
                 liner = (line.split())
                 specie = self.find_primary_aqueous(primary_aqueous, liner[0])
-                all_comp.append(WaterComp(specie, int(liner[1]), float(liner[2]), float(liner[3]), liner[4], float(liner[5])))
+                all_comp.append(WaterComp(specie, int(liner[1]), float(liner[2]), float(liner[3]), liner[4],
+                                          float(liner[5])))
                 line = self.file.readline()
             line = self.file.readline()
             line = self.file.readline()
@@ -554,7 +560,8 @@ class t2ChemicalData(fixed_format_file):
             while line.startswith("'*") is False:
                 liner = (line.split())
                 specie = self.find_primary_aqueous(primary_aqueous, liner[0])
-                all_comp.append(WaterComp(specie, int(liner[1]), float(liner[2]), float(liner[3]), liner[4], float(liner[5])))
+                all_comp.append(WaterComp(specie, int(liner[1]), float(liner[2]), float(liner[3]), liner[4],
+                                          float(liner[5])))
                 line = self.file.readline()
             line = self.file.readline()
             line = self.file.readline()
@@ -626,8 +633,10 @@ class t2ChemicalData(fixed_format_file):
                 line = self.file.readline()
                 liner = (line.split())
                 initial_mineral_value = initial_mineral_value + liner
-                spec_mineral = MineralComp(mineral_found, float(initial_mineral_value[1]), int(initial_mineral_value[2]),
-                                           float(initial_mineral_value[3]), float(initial_mineral_value[4]), int(initial_mineral_value[5]))
+                spec_mineral = MineralComp(mineral_found, float(initial_mineral_value[1]),
+                                           int(initial_mineral_value[2]),
+                                           float(initial_mineral_value[3]), float(initial_mineral_value[4]),
+                                           int(initial_mineral_value[5]))
                 all_comp.append(spec_mineral)
                 line = self.file.readline()
             line = self.file.readline()
@@ -765,7 +774,8 @@ class t2ChemicalData(fixed_format_file):
                 liner = (line.split())
                 initial_perm_poro_value = liner
                 liner = (line.split())
-                spec_perm_poro = PermPoro(initial_perm_poro_value[0], initial_perm_poro_value[1], initial_perm_poro_value[2])
+                spec_perm_poro = PermPoro(initial_perm_poro_value[0], initial_perm_poro_value[1],
+                                          initial_perm_poro_value[2])
                 spec_perm_poro_zone = PermPoroZone([spec_perm_poro])
                 all_comp.append(spec_perm_poro_zone)
                 initial_perm_poro_mapping[perm_poro_num] = PermPoroZone(all_comp)
@@ -1455,8 +1465,9 @@ class t2chemical(t2data):
             adds Initial and Boundary waters to grid
 
         """
-        initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping = infile.get_param_values_ib_waters(
-            self.primary_aqueous, self.t2grid)
+        initial_waters_list, boundary_waters_list, initial_waters_mapping, boundary_waters_mapping \
+            = infile.get_param_values_ib_waters(
+                self.primary_aqueous, self.t2grid)
         if len(initial_waters_list) == 0:
             self.__dict__['ib_waters'] = [-1]
         else:
@@ -1536,7 +1547,8 @@ class t2chemical(t2data):
                     species = boundary_water[i][0].primary_species
                     outfile.write('#        icon       NRguess(molal)  ctot (molal)   \n')
                     for specie in species:
-                        vals = [specie.primary_species.NAME.strip(), specie.icon, specie.nrguess, specie.ctot, specie.nameq,
+                        vals = [specie.primary_species.NAME.strip(), specie.icon, specie.nrguess, specie.ctot,
+                                specie.nameq,
                                 specie.qksat]
                         outfile.write_values(vals, 'water_comp2')
                     outfile.write("'*'\n")
@@ -1548,7 +1560,8 @@ class t2chemical(t2data):
                     species = boundary_water[i].primary_species
                     outfile.write('#        icon       NRguess(molal)  ctot (molal)   \n')
                     for specie in species:
-                        vals = [specie.primary_species.NAME.strip(), specie.icon, specie.nrguess, specie.ctot, specie.nameq,
+                        vals = [specie.primary_species.NAME.strip(), specie.icon, specie.nrguess, specie.ctot,
+                                specie.nameq,
                                 specie.qksat]
                         outfile.write_values(vals, 'water_comp2')
                     outfile.write("'*'\n")
@@ -1755,7 +1768,8 @@ class t2chemical(t2data):
             for mineralcomp in zone.minerals:
                 vals = [mineralcomp.mineral.name, mineralcomp.init_volume_fraction, mineralcomp.reaction_type]
                 outfile.write_values(vals, 'mineral_zone2')
-                if mineralcomp.radius is not None and mineralcomp.reactive_surface_area is not None and mineralcomp.unit is not None:
+                if (mineralcomp.radius is not None and mineralcomp.reactive_surface_area is not None and
+                        mineralcomp.unit is not None):
                     vals = [mineralcomp.radius, mineralcomp.reactive_surface_area, mineralcomp.unit]
                     outfile.write_values(vals, 'mineral_zone2.1')
             index += 1
@@ -1775,8 +1789,8 @@ class t2chemical(t2data):
             adds injection gas to grid
 
         """
-        initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping = infile.get_param_values_ij_gases(
-            self.gases)
+        initial_gas_list, injection_gas_list, initial_gas_mapping, injection_gas_mapping \
+            = infile.get_param_values_ij_gases(self.gases)
         if len(initial_gas_list) == 0:
             self.__dict__['ij_gas'] = [[], []]
         else:

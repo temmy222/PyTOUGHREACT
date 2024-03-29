@@ -87,7 +87,8 @@ LAYER_FOR_LAYER = 'layer plot for layer'
 
 # Symbols
 COLOR_FORMAT = '--or'
-ALL_MARKERS = ["o", "v", "^", "<", ">", "1", "2", "3", "4", "8", "s", "p", "P", "*", "h", "H", "+", "x", "X", "D", "d", "|", "_"]
+ALL_MARKERS = ["o", "v", "^", "<", ">", "1", "2", "3", "4", "8", "s", "p", "P", "*",
+               "h", "H", "+", "x", "X", "D", "d", "|", "_"]
 ALL_COLORS = ['r', 'royalblue', 'g', 'k', 'c', 'm', 'y']
 X = 'x'
 Y = 'y'

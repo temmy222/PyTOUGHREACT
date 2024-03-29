@@ -23,7 +23,8 @@ SOFTWARE.
 
 '''
 
-from pytoughreact.constants.format_specifications import t2react_format_specification, t2react_extra_precision_format_specification
+from pytoughreact.constants.format_specifications import t2react_format_specification, \
+    t2react_extra_precision_format_specification
 from pytoughreact.constants.defaults_constants import DEFAULT_REACT as default_react
 from pytoughreact.constants.defaults_constants import DEFAULT_PARAMETERS as default_parameters
 from pytoughreact.constants.sections import t2react_sections
@@ -640,7 +641,8 @@ class t2react(t2data):
         outfile = t2react_parser(self.filename, 'w')
         self.write_title(outfile)
         for keyword in self._sections:
-            if (keyword not in mesh_sections) and ((keyword not in self.extra_precision) or (keyword in self.extra_precision and self.echo_extra_precision)):
+            if (keyword not in mesh_sections) and ((keyword not in self.extra_precision) or
+                                                   (keyword in self.extra_precision and self.echo_extra_precision)):
                 self.write_fn[keyword](outfile)
         outfile.write(self.end_keyword + '\n')
         outfile.close()

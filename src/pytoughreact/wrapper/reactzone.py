@@ -25,7 +25,8 @@ SOFTWARE.
 
 
 class t2zone(object):
-    def __init__(self, name='default', water=None, mineral=None, gas=None, permporo=None, adsorption=None, decay=None, cation=None):
+    def __init__(self, name='default', water=None, mineral=None, gas=None, permporo=None, adsorption=None,
+                 decay=None, cation=None):
         self.name = name
         self.cation = cation
         self.decay = decay

@@ -661,7 +661,7 @@ class PlotTough(object):
                 min(X), max(X), tick_x / (num_tick_x - 1)), 2), fontsize=12)
             ax.set_yticklabels(np.round(self.modifier.crange(
                 min(Z_array), max(Z_array), tick_z / (num_tick_z - 1)), 2),
-                               fontsize=12)
+                fontsize=12)
         # Minor ticks
         ax.set_xticks(np.arange(-.5, Xtotal, 1), minor=True)
         ax.set_yticks(np.arange(-.5, Ztotal, 1), minor=True)

@@ -81,7 +81,8 @@ class PhysicalModel(object):
         rel_perm = rel_perm_def.rel_perm_converter()
         self.rel_perm = rel_perm
 
-    def domain_parameters(self, rock_type, perm, porosity, initial_pressure, initial_temp, density, conductivity=None, specific_heat=None):
+    def domain_parameters(self, rock_type, perm, porosity, initial_pressure, initial_temp, density,
+                          conductivity=None, specific_heat=None):
         self.density = density
         self.initial_pressure = initial_pressure
         self.initial_temp = initial_temp

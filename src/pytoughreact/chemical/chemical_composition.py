@@ -42,7 +42,8 @@ class ReactGas(object):
 
 
 class WaterComp(object):
-    def __init__(self, primary_species, icon, nrguess, ctot, nameq='*', qksat=0.0, naads_min=None, sdens=None, imod=None, capac=None):
+    def __init__(self, primary_species, icon, nrguess, ctot, nameq='*', qksat=0.0, naads_min=None,
+                 sdens=None, imod=None, capac=None):
         self.primary_species = primary_species
         self.icon = icon
         self.nrguess = nrguess

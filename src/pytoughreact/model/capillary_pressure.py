@@ -44,8 +44,10 @@ class CapillaryPressure(object):
         parameters : Exception
             Exception depending on what is violated
         """
-        cap_pres_aggregates = [cap_pres_constants.CAP_PRESS_LINEAR, cap_pres_constants.CAP_PRESS_LEVERETT, cap_pres_constants.CAP_PRESS_MILLY,
-                               cap_pres_constants.CAP_PRESS_NONE, cap_pres_constants.CAP_PRESS_PICKENS, cap_pres_constants.CAP_PRESS_TRUST,
+        cap_pres_aggregates = [cap_pres_constants.CAP_PRESS_LINEAR, cap_pres_constants.CAP_PRESS_LEVERETT,
+                               cap_pres_constants.CAP_PRESS_MILLY,
+                               cap_pres_constants.CAP_PRESS_NONE, cap_pres_constants.CAP_PRESS_PICKENS,
+                               cap_pres_constants.CAP_PRESS_TRUST,
                                cap_pres_constants.CAP_PRESS_VAN_GENUCHTEN]
         if self.type_cap.upper() not in cap_pres_aggregates:
             raise CapillaryPressureTypeError(self.type_cap, cap_pres_aggregates)

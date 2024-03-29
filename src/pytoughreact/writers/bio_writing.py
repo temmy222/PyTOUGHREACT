@@ -595,7 +595,8 @@ class t2bio(t2data):
         all_processes = []
         for i in range(len(process_details)):
             dicta_all = self.reset_bio_dicta(all_components)
-            process = Process(biomass=biomass_details[process_details[i][0][1] - 1], numberOfComponents=process_details[i][0][0],
+            process = Process(biomass=biomass_details[process_details[i][0][1] - 1],
+                              numberOfComponents=process_details[i][0][0],
                               mumax=process_details[i][0][2], yield_mass=process_details[i][0][3],
                               NumOfCompetiting=process_details[i][0][4], NumOfNonCompetiting=process_details[i][0][5],
                               NumOfHaldane=process_details[i][0][6], enthalpy=process_details[i][0][7])
@@ -607,18 +608,26 @@ class t2bio(t2data):
                 if len(dicta_all[j][all_components[j]]) == 1:
                     all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0])
                 elif len(dicta_all[j][all_components[j]]) == 2:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1])
+                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
+                                                   dicta_all[j][all_components[j]][1])
                 elif len(dicta_all[j][all_components[j]]) == 3:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1],
+                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
+                                                   dicta_all[j][all_components[j]][1],
                                                    dicta_all[j][all_components[j]][2])
                 elif len(dicta_all[j][all_components[j]]) == 4:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1],
-                                                   dicta_all[j][all_components[j]][2], dicta_all[j][all_components[j]][3])
+                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
+                                                   dicta_all[j][all_components[j]][1],
+                                                   dicta_all[j][all_components[j]][2],
+                                                   dicta_all[j][all_components[j]][3])
                 elif len(dicta_all[j][all_components[j]]) == 5:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0], dicta_all[j][all_components[j]][1],
-                                                   dicta_all[j][all_components[j]][2], dicta_all[j][all_components[j]][3], dicta_all[j][all_components[j]][4])
+                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
+                                                   [j][all_components[j]][1],
+                                                   dicta_all[j][all_components[j]][2],
+                                                   dicta_all[j][all_components[j]][3],
+                                                   dicta_all[j][all_components[j]][4])
             all_processes.append(process)
-        biodegradation = BIODG(imonod=params[0], bfac=params[2], sw1=params[4], sw2=params[5], wea=params[6], wsub=params[7],
+        biodegradation = BIODG(imonod=params[0], bfac=params[2], sw1=params[4], sw2=params[5], wea=params[6],
+                               wsub=params[7],
                                processes=all_processes, biomass=biomass_details, icflag=params[1])
         self.biodg.append(biodegradation)
 
@@ -999,7 +1008,8 @@ class t2bio(t2data):
         self.write_title(outfile)
         for keyword in self._sections:
             if (keyword not in mesh_sections) and \
-                    ((keyword not in self.extra_precision) or (keyword in self.extra_precision and self.echo_extra_precision)):
+                    ((keyword not in self.extra_precision) or (keyword in self.extra_precision and
+                                                               self.echo_extra_precision)):
                 self.write_fn[keyword](outfile)
         outfile.write(self.end_keyword + '\n')
         self.status = 'successful'

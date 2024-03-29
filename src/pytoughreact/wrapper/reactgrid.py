@@ -94,4 +94,5 @@ class t2reactgrid(t2grid):
         self.zone[newzone.name] = newzone
 
     def __repr__(self):
-        return str(self.num_rocktypes) + ' rock types; ' + str(self.num_zones) + ' zones; ' + str(self.num_blocks) + ' blocks; ' + str(self.num_connections) + ' connections'
+        return str(self.num_rocktypes) + ' rock types; ' + str(self.num_zones) + \
+            ' zones; ' + str(self.num_blocks) + ' blocks; ' + str(self.num_connections) + ' connections'

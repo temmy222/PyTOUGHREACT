@@ -69,7 +69,8 @@ class Mineral(object):
         """
         dissolution_data = self.dissolution[0]
         dissolution_data_list = [dissolution_data.rateConstant, dissolution_data.ratepH, dissolution_data.exponentN,
-                                 dissolution_data.exponentTheta, dissolution_data.activationEnergy, dissolution_data.coefA,
+                                 dissolution_data.exponentTheta, dissolution_data.activationEnergy,
+                                 dissolution_data.coefA,
                                  dissolution_data.coefB, dissolution_data.coefC]
         return dissolution_data_list
 
@@ -88,9 +89,12 @@ class Mineral(object):
             List of parameters (rate constant, rate pH, activation energy etc) for Precipitation
         """
         precipitation_data = self.precipitation[0]
-        precipitation_data_list = [precipitation_data.rateConstant, precipitation_data.ratepH, precipitation_data.exponentN,
-                                   precipitation_data.exponentTheta, precipitation_data.activationEnergy, precipitation_data.coefA,
-                                   precipitation_data.coefB, precipitation_data.coefC, precipitation_data.initVolumeFraction,
+        precipitation_data_list = [precipitation_data.rateConstant, precipitation_data.ratepH,
+                                   precipitation_data.exponentN,
+                                   precipitation_data.exponentTheta, precipitation_data.activationEnergy,
+                                   precipitation_data.coefA,
+                                   precipitation_data.coefB, precipitation_data.coefC,
+                                   precipitation_data.initVolumeFraction,
                                    precipitation_data.prepLawIndex]
         return precipitation_data_list
 
@@ -106,7 +110,8 @@ class Mineral(object):
             List of parameters () for Precipitation
         """
         precipitation_data_2 = self.precipitation[0]
-        precipitation_data_list_2 = [precipitation_data_2.logQKgap, precipitation_data_2.tempGap1, precipitation_data_2.tempGap2]
+        precipitation_data_list_2 = [precipitation_data_2.logQKgap, precipitation_data_2.tempGap1,
+                                     precipitation_data_2.tempGap2]
         return precipitation_data_list_2
 
     def getNumberOfpHDependence(self):
