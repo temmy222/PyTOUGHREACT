@@ -1,7 +1,6 @@
 
 venv
 .venv
-.flake8
 .gitignore
 pytoughreact/pytough_wrapper/pytough
 pytoughreact/results/results_factory.py

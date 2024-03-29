@@ -188,12 +188,26 @@ Contributing to the code would involve you following the below procedures to qui
 pip install -e .
 ```
 3. Modify the code 
-4. Run tests: Tests are conducted with pytest. Flake8 is also used to ensure code readability
-
+4. Tests are conducted with pytest and coverage reports are performed using pytest-cov. Install pytest and pytest-cov using the commands below
+   ```python
+pip install pytest
+```
+```python
+pip install pytest-cov
+```
+5. Run tests:  Run the below command from the root folder to run the tests
 ```python
 pytest
 ```
-5. Make a pull request after passing all tests
+6. Flake8 is also used to ensure code readability. Install flake8 using 
+```python
+pip install flake
+```
+and run flake8 using
+```python
+flake8 src
+```
+7. Make a pull request after passing all tests
 
 ## Documentation
 Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/ 

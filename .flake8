@@ -1,0 +1,8 @@
+[flake8]
+max-line-length=120
+per-file-ignores =
+    */__init__.py: F401, E402, 
+    */results/result_tough_3.py: E731
+    */results/result_single.py: E721  
+ignore = E721, W504
+extend-ignore = W504, W503
