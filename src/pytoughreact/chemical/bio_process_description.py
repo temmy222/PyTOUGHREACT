@@ -27,6 +27,44 @@ SOFTWARE.
 class BIODG(object):
     """Process specification"""
     def __init__(self, imonod, bfac, sw1, sw2, wea, wsub, processes, biomass, icflag=0):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        imonod :  int
+            Selects between multiplicative and minimum Monod model for the substrate
+            degradation rate equation
+        bfac : float
+            Reduction factor criterion for local Newton-Raphson iteration in BIOREACT
+            subroutine to reduce substrate residual
+        sw1 : float
+            Lower limit of aqueous phase saturation considered in the saturation inhibition
+            function (if =0, the default value is 0.02)
+        sw2 : float
+            Upper limit of aqueous phase saturation considered in the saturation inhibition
+            function (SW1 < SW2 ≤ 1)
+        wea : float
+            Weighting factor for the linear interpolation of electron acceptor and nutrients
+            concentrations to be used in the substrate degradation rate equation (0 < WEA ≤
+            1). Default value is WEA = 0.5. WEA = 1 corresponds to using the concentration
+            evaluated at the end of the time step
+        wsub : float
+            weighting factor for the linear interpolation of substrate concentration to be used
+            in the substrate degradation rate equation (0 < WSUB ≤ 1). Default value is
+            WSUB = 0.5. WSUB=1 corresponds to using the concentration evaluated at the
+            end of the time step
+        processes: Process
+            List of Processes making use of this biodegradation configuration
+        biomass: Biomass
+            Biomass class list with all properties of the biomass
+        icflag: int
+            Selects how to consider the competitive and Haldane inhibition terms in the
+            Monod model
+
+        Returns
+        --------
+
+        """
         self.biomass = biomass
         self.icflag = icflag
         self.imonod = imonod
@@ -102,19 +140,32 @@ class Process(object):
         Parameters
         -----------
         biomass :  Biomass
-            This should be a Biomass class with all properties of the biomass
+            Biomass class with all properties of the biomass
         numberOfComponents : int
-            Number of Components present in the simulation
+            Number of mass components responsible for competitive inhibition in process 
         mumax: float
             Maximum specific substrate degradation rate
         yield_max: float
             Yield coefficient for the growth of biomass due to the degradation of unit mass of
             substrate in process IP (kg biomass / kg substrate)
+        enthalpy: float
+            Heat of reaction for the degradation of substrate in process (J/kg substrate)
+        totalComp: int
+            Number of mass components controlling the substrate degradation rate in process
+        NumOfHaldane: int
+            Number of mass components responsible for Haldane inhibition in process
+        NumOfNonCompetiting: int
+            Number of mass components responsible for non-competitive inhibition in process
+        componentParams : list
+            List of chemical components involved in the process
+        waterParams : list
+            List of water components involved in the process
+        gasParams : list
+            List of gas components involved in the process
 
         Returns
         --------
-        num_of_competiting : int
-            Number of Competiting species
+
         """
         self.enthalpy = enthalpy
         self.numberOfComponents = numberOfComponents

@@ -111,7 +111,7 @@ class Water_Bio(object):
         Returns
         --------
         output : dict
-            Dicitionary of all parameters
+            Dictionary of all parameters
         process : Process
             Updated Process with new parameters
         """
