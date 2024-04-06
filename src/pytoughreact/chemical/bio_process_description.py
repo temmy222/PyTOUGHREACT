@@ -94,10 +94,7 @@ class BIODG(object):
 class Process(object):
     """Process specification"""
 
-    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0,
-                 NumOfHaldane=0, NumOfNonCompetiting=0,
-                 NumOfCompetiting=0, componentParams=None, gasParams=None, waterParams=None):
-        """ Initialization of Parameters
+    """ Initialization of Parameters
 
         Parameters
         -----------
@@ -113,6 +110,10 @@ class Process(object):
         num_of_competiting : int
             Number of Competiting species
         """
+
+    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0, 
+                 NumOfHaldane=0, NumOfNonCompetiting=0,
+                 NumOfCompetiting=0, componentParams=None, gasParams=None, waterParams=None):
         self.enthalpy = enthalpy
         self.numberOfComponents = numberOfComponents
         self.yield_mass = yield_mass
