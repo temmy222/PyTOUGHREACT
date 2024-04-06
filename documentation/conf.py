@@ -22,7 +22,8 @@ release = '0.0.15'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "sphinx.ext.autosummary", "sphinx.ext.mathjax",
+extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "sphinx.ext.autosummary",
+              "sphinx.ext.mathjax",
               "sphinx.ext.napoleon", "sphinx.ext.intersphinx", "sphinx.ext.extlinks", 'sphinx_rtd_theme']
 
 templates_path = ['_templates']

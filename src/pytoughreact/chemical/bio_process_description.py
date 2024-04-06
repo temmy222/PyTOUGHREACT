@@ -92,9 +92,9 @@ class BIODG(object):
 
 
 class Process(object):
-    """Process specification"""
+    """Process specification
 
-    """ Initialization of Parameters
+     Initialization of Parameters
 
         Parameters
         -----------
