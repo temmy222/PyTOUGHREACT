@@ -107,6 +107,9 @@ class Process(object):
             Number of Components present in the simulation
         mumax: float
             Maximum specific substrate degradation rate
+        yield_max: float
+            Yield coefficient for the growth of biomass due to the degradation of unit mass of
+            substrate in process IP (kg biomass / kg substrate)
 
         Returns
         --------

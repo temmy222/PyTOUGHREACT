@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath("../src/pytoughreact"))
 project = 'PyTOUGHREACT'
 copyright = '2023, Temitope Ajayi'
 author = 'Temitope Ajayi'
-release = '0.0.15'
+release = '1.0.3'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
