@@ -94,22 +94,22 @@ class BIODG(object):
 class Process(object):
     """Process specification
 
-     Initialization of Parameters
+    Initialization of Parameters
 
-        Parameters
-        -----------
-        biomass :  Biomass
-            This should be a Biomass class with all properties of the biomass
-        numberOfComponents : int
-            Number of Components present in the simulation
-        mumax: float
-            Maximum specific substrate degradation rate
+    Parameters
+    -----------
+    biomass :  Biomass
+        This should be a Biomass class with all properties of the biomass
+    numberOfComponents : int
+        Number of Components present in the simulation
+    mumax: float
+        Maximum specific substrate degradation rate
 
-        Returns
-        --------
-        num_of_competiting : int
-            Number of Competiting species
-        """
+    Returns
+    --------
+    num_of_competiting : int
+        Number of Competiting species
+    """
 
     def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0,
                  NumOfHaldane=0, NumOfNonCompetiting=0,
