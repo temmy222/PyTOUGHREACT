@@ -10,7 +10,7 @@ files on ones local system and attempting to name them descriptively. This was t
 was subject to human errors and mistakes.
 
 A similar tool exists for TOUGH3 with PyTOUGH and PyTOUGHREACT extends its capability to TOUGHREACT with additional
-capabilities for plotting. Details of how PyTOUGH works can be found here https://github.com/acroucher/PyTOUGH/blob/master/doc/PyTOUGH-guide.pdf
+capabilities for plotting. Details of how PyTOUGH works can be found here https://pytough.readthedocs.io/_/downloads/en/latest/pdf/
 and is essential to understand how it works before using PyTOUGHREACT.
 
 What is TOUGHREACT / TMVOC and TMVOC-BIO
