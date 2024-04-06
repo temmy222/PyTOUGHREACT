@@ -111,7 +111,7 @@ class Process(object):
             Number of Competiting species
         """
 
-    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0, 
+    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0,
                  NumOfHaldane=0, NumOfNonCompetiting=0,
                  NumOfCompetiting=0, componentParams=None, gasParams=None, waterParams=None):
         self.enthalpy = enthalpy
