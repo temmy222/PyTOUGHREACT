@@ -5,8 +5,10 @@ Biodegradation Processes
 ++++++++++++++++++++++
 .. autoclass:: pytoughreact.chemical.bio_process_description.BIODG
     :members:
+    :special-members:
 .. autoclass:: pytoughreact.chemical.bio_process_description.Process
     :members:
+    :special-members:
 ++++++++++++++++++++++
 Biomass Composition
 ++++++++++++++++++++++
