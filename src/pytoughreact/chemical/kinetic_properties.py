@@ -26,6 +26,35 @@ SOFTWARE.
 
 class Kinetic(object):
     def __init__(self, rateConstant, ratepH, exponentN, exponentTheta, activationEnergy, coefA=0, coefB=0, coefC=0):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        rateConstant :  float
+            Rate constant (in mol/m2/sec) at 25°C
+        ratepH : int
+            Flag for rate constant dependence on pH
+        exponentN : float
+            exponent eta in rate equation
+        exponentTheta : float
+            exponent theta in rate equation
+        activationEnergy : float
+            Activation energy in kJ/mol
+        coefA : float
+            Coefficient that shows the rate constant dependence on temperature. Defaulted to zero
+            unless a different form of rate constant dependence with temperature is desired
+        coefB : float
+            Coefficient that shows the rate constant dependence on temperature. Defaulted to zero
+            unless a different form of rate constant dependence with temperature is desire
+        coefC : float
+            Coefficient that shows the rate constant dependence on temperature. Defaulted to zero
+            unless a different form of rate constant dependence with temperature is desire
+
+
+        Returns
+        --------
+
+        """
         self.coefC = coefC
         self.coefB = coefB
         self.coefA = coefA
@@ -38,6 +67,35 @@ class Kinetic(object):
 
 class Dissolution(Kinetic):
     def __init__(self, rateConstant, ratepH, exponentN, exponentTheta, activationEnergy, coefA=0, coefB=0, coefC=0):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        rateConstant :  float
+            Rate constant (in mol/m2/sec) at 25°C
+        ratepH : int
+            Flag for rate constant dependence on pH
+        exponentN : float
+            exponent eta in rate equation
+        exponentTheta : float
+            exponent theta in rate equation
+        activationEnergy : float
+            Activation energy in kJ/mol
+        coefA : float
+            Coefficient that shows the rate constant dependence on temperature. Defaulted to zero
+            unless a different form of rate constant dependence with temperature is desired
+        coefB : float
+            Coefficient that shows the rate constant dependence on temperature. Defaulted to zero
+            unless a different form of rate constant dependence with temperature is desire
+        coefC : float
+            Coefficient that shows the rate constant dependence on temperature. Defaulted to zero
+            unless a different form of rate constant dependence with temperature is desire
+
+
+        Returns
+        --------
+
+        """
         super(Dissolution, self).__init__(rateConstant, ratepH, exponentN, exponentTheta, activationEnergy, coefA,
                                           coefB, coefC)
         self.pHDependence = []

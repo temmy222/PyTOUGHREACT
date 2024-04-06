@@ -142,7 +142,7 @@ class Process(object):
         biomass :  Biomass
             Biomass class with all properties of the biomass
         numberOfComponents : int
-            Number of mass components responsible for competitive inhibition in process 
+            Number of mass components responsible for competitive inhibition in process
         mumax: float
             Maximum specific substrate degradation rate
         yield_max: float

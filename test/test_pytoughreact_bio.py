@@ -116,7 +116,7 @@ class BioTestCase():
                         bio.add_generator(gen)
                     j = j + 1
 
-        # ____________________________________RUN SIMULATION_______________________________________________________________
+        # ____________________________________RUN SIMULATION____________________________________________________________
         bio.write('INFILE', runlocation=os.getcwd())
         # bio.run(simulator='tmvoc', runlocation='')
         return bio
