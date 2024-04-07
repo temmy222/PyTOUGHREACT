@@ -31,6 +31,25 @@ from pytoughreact.results.result_tough_3 import ResultTough3
 class MultiResultTough3(object):
     """ Class for retrieving results from multiple files for Tough3 and TMVOC """
     def __init__(self, simulator_type, file_location, file_title, prop):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        simulator_type :  list[string]
+            List of type of simulator being run. Can either be 'tmvoc', 'toughreact' or 'tough3'.
+            Should be tough3 for this class
+        file_location : list[string]
+            List of location of results file on system
+        file_title : list[string]
+            List of title or name of the file. Example is 'kddconc.tec'
+        prop : string
+            Prperty to be plotted. Example could be 'portlandite'
+
+
+        Returns
+        --------
+
+        """
         assert isinstance(file_location, list)
         assert isinstance(file_title, list)
         assert isinstance(prop, list)
@@ -70,7 +89,20 @@ class MultiResultTough3(object):
         return data_table
 
     def retrieve_data_multi_file_fixed_time(self, direction, time):
-        """ DataFrame to retrieve time and coordinate results from file """
+        """ DataFrame to retrieve time and coordinate results from file
+
+        Parameters
+        -----------
+        direction :  string
+            Direction of retrieval. Can be 'X', 'Y' or 'Z'
+        time : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+        """
         data_table = pd.DataFrame()
         for i in range(0, len(self.file_location)):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
@@ -85,7 +117,22 @@ class MultiResultTough3(object):
         return data_table
 
     def retrieve_data_multi_file_fixed_time_layer(self, direction, time, layer_num):
-        """ DataFrame to retrieve distance and results from file """
+        """ DataFrame to retrieve distance and results from file
+
+        Parameters
+        -----------
+        direction :  string
+            Direction of retrieval. Can be 'X', 'Y' or 'Z'
+        time : float
+            Time in which the data should be retrieved.
+        layer_num: int
+            Layer number in which to retrieve data
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+        """
         data_table = pd.DataFrame()
         for i in range(0, len(self.file_location)):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
@@ -99,10 +146,22 @@ class MultiResultTough3(object):
         return data_table
 
     def getMultiElementData(self, grid_block_number, format_of_date):
-        """ DataFrame to retrieve multi element time and results from file """
+        """ DataFrame to retrieve multi element time and results from file
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number for which to retrieve the results
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+        """
         data_table = pd.DataFrame()
         pd.set_option('float_format', lambda x: '%.9f' % x)
-        # pd.set_option('display.chop_threshold', 0.00000001)
         for i in range(0, len(self.file_location)):
             for j in range(0, len(self.prop)):
                 os.chdir(self.file_location[i])
@@ -113,11 +172,25 @@ class MultiResultTough3(object):
                 result_data_label = self.prop[j] + 'result' + str(i) + str(j)
                 data_table[time_data_label] = pd.Series(time_data)
                 data_table[result_data_label] = pd.Series(result_data)
-        # print(data_table.iloc[15][result_data_label])
         return data_table
 
     def getMultiElementDataPerPanel(self, grid_block_number, panels, format_of_date):
-        """ DataFrame to retrieve multi element time and results from file per panel """
+        """ DataFrame to retrieve multi element time and results from file per panel
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number for which to retrieve the results
+        panels: list[string]
+            Date to be retrieved for each of the panel in the canvas
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+        """
         data_table = pd.DataFrame()
         pd.set_option('float_format', lambda x: '%.9f' % x)
         for i in range(0, len(panels)):
