@@ -47,7 +47,7 @@ class MultiResultReact(object):
             Prperty to be plotted. Example could be 'portlandite'
         kwargs: dict
             Extra property for processing. Takes in x_slice_value as a float to know at what
-            point to slice the data on the x axis.  
+            point to slice the data on the x axis.
 
 
         Returns

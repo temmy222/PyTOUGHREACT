@@ -79,6 +79,25 @@ class FileReadMultiple(object):
         :param plot_kind:
         :type plot_kind: string
         """
+
+        """ Plot selected parameter on y axis and time on x axis
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number in mesh for which to retrieve the results
+        legend : list[string]
+            List of titles for the legend of the plot
+        plot_kind : string
+            If the plot should be made based on property or based on files
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+        """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
         if len(self.props) == 1:
