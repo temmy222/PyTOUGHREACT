@@ -41,7 +41,6 @@ Welcome to PyTOUGHREACT's documentation!
    
    chemical.rst
    exceptions.rst
-   model.rst
    plotting.rst
    results.rst
    utilities.rst
