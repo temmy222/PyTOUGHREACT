@@ -27,7 +27,7 @@ extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "s
               "sphinx.ext.napoleon", "sphinx.ext.intersphinx", "sphinx.ext.extlinks", 'sphinx_rtd_theme']
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'documentation/constants.rst']
 
 
 # -- Options for HTML output -------------------------------------------------
