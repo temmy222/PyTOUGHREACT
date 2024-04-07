@@ -40,7 +40,6 @@ Welcome to PyTOUGHREACT's documentation!
 
    
    chemical.rst
-   constants.rst
    exceptions.rst
    model.rst
    plotting.rst

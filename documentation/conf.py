@@ -37,6 +37,7 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 
+# Add __init__ to documentation
 def skip(app, what, name, obj, would_skip, options):
     if name == "__init__":
         return False
