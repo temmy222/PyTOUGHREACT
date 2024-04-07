@@ -26,11 +26,54 @@ SOFTWARE.
 
 class PermPoroZone(object):
     def __init__(self, permporo):
+        """Initialization of Parameters (Permeability Porosity)
+
+        Parameters
+        -----------
+        permporo :  PermPoro
+            List of permeability porosity equations
+
+        Returns
+        --------
+
+        """
         self.permporo = permporo
 
 
 class PermPoro(object):
     def __init__(self, law_type, a_param, b_param):
+        """Initialization of Parameters (Permeability Porosity)
+
+        Parameters
+        -----------
+        law_type :  int
+            Index for the permeability law.
+            0: no change in permeability. Can be used to turn off permeability changes in specific
+            zones
+            1: simplified Carman-Kozeny (See user guide for more). The parameter values (a_param and
+            b_param) are not used and may be set to 0.0 or any real number.
+            2: Modified Hagen-Poiseulle Model. Permeability calculated from pore throat diameter,
+            number of throats per pore, and number of pores per area using the Hagen-Poiseulle
+            equation. The parameters are: a_param - number of effective throats per pore (typically
+            about 2 to 3). b_param -  number of pores per m2 area
+            3: cubic law (See user guide for more). The parameter values a_param and b_param are not used and may
+            be set to 0.0 or any real number.
+            4: modified Cubic Law (See user guide for more). The parameters are: a_param - fracture porosity /
+            fracture-matrix area (analogous to fracture aperture) (m3/m2) and b_param - fracture spacing (m).
+            5: Verma-Pruess permeability-porosity relation (See user guide for more). The parameters are: a_param - the
+            value of “critical” porosity at which permeability goes to zero and b_param - a power law
+            exponent.
+        a_param : float
+            Parameter A based on the permeability law selected
+        b_param : float
+            Parameter B based on the permeability law selected
+
+
+
+        Returns
+        --------
+
+        """
         self.law_type = law_type
         self.a_param = a_param
         self.b_param = b_param

@@ -16,7 +16,6 @@ from pytoughreact.results.t2result import t2result
 from t2data import rocktype
 
 
-
 class ReactTestCase():
     def get_specific_mineral(self, mineral_name):
 
@@ -299,7 +298,8 @@ class ReactTestCase():
         initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1,
                                      h4sio4_comp1, al_comp1, fe_comp1, hs_comp1], 25, 200)
 
-        mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh', 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
+        mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh', 'portlandite', 'ettringite', 'katoite',
+                        'hydrotalcite']
         all_minerals = self.get_kinetics_minerals(mineral_list)
 
         c3fh6_zone1 = MineralComp(self.get_specific_mineral(mineral_list[0]), 0.1, 0, 0.0E-00, 20000.0, 0)
@@ -319,7 +319,8 @@ class ReactTestCase():
 
         zone1.water = [[initial_water_zone1], []]
         zone1.gas = [[initial_co2], []]
-        mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1,
+        mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1,
+                                     ettringite_zone1,
                                      katoite_zone1, hydrotalcite_zone1])
         zone1.mineral_zone = mineral_zone1
         zone1.permporo = permporozone

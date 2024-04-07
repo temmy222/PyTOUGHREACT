@@ -29,6 +29,31 @@ from pytoughreact.constants.defaults_constants import DEFAULT_MINERAL_INCON
 
 class Mineral(object):
     def __init__(self, name, typeOfMineral, typeOfKC, indexSS, dryGridBlock):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        name :  string
+            Name of the mineral phase,
+        typeOfMineral : int
+            Flag for the type of mineral: 0 for minerals at equilibrium, and 1 for those under kinetic
+            constraints
+        typeOfKC : int
+            Flag for the type of kinetic constraint: 1 for dissolution only, 2 for precipitation only, and 3
+            for both (mineral can either precipitate or dissolve
+        indexSS : int
+            Index for a solid solution mineral endmember. All endmembers for a specified phase are given the
+            same ISS value: ISS = 1 for each endmember of the first solid solution, ISS = 2 for each
+            endmember of the second solid solution
+        dryGridBlock : int
+            Flag to indicate that the mineral may precipitate in a dry grid block as a result of complete
+            evaporation (See user guide for more)
+
+
+        Returns
+        --------
+
+        """
         self.dryGridBlock = dryGridBlock
         self.indexSS = indexSS
         self.typeOfKC = typeOfKC

@@ -27,6 +27,34 @@ SOFTWARE.
 class MineralComp(object):
     def __init__(self, mineral, init_volume_fraction, reaction_type, radius=None,
                  reactive_surface_area=None, unit=None):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        mineral :  Mineral
+            Mineral phase with all its properties,
+        init_volume_fraction : float
+            initial volume fraction of the mineral, excluding liquid (mineral volume divided by total volume
+            of solids). The sum of VOL's need not add up to 1. If the sum is less than 1, the remaining solid
+            volume fraction is considered nonreactive.
+        reaction_type : int
+            Flag for the mineral type ; 0 for minerals at equilibrium,  for minerals under kinetic constraints
+            and 2 to suppress reaction for either kinetic and/or equilibrium minerals
+        radius : float
+            Radius of mineral grain (in m) used to calculate surface area
+        reactive_surface_area : float
+            Specific reactive surface area (See user guide for more)
+        unit : int
+            Flag to specify the units of input reactive_surface_area values. 0 for cm2mineral/gmineral,
+            1 for m2mineral/m3mineral, 2 for m2rock/m3medium (total), 3 for m2rock/m3medium (solids),
+            3 and radius=0, the input surface area will remain constant,
+            4 (constant rate is input in mol/sec; surface area is not used)
+
+
+        Returns
+        --------
+
+        """
         self.mineral = mineral
         self.init_volume_fraction = init_volume_fraction
         self.reaction_type = reaction_type

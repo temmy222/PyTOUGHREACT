@@ -796,6 +796,21 @@ class t2chemical(t2data):
         Main class for structuring the writing , reading  of chemical parameters
     """
     def __init__(self, filename='', meshfilename='', t2reactgrid=None, path=None, read_function=default_read_function):
+        """Initialization of Parameters (Permeability Porosity)
+
+        Parameters
+        -----------
+        filename :  string
+            Name of file to be read from (optional)
+        meshfilename :  string
+            Name of mesh file to be read from (optional)
+        t2reactgrid : t2reactgrid
+            Grid object from t2react
+
+        Returns
+        --------
+
+        """
         self.t2grid = t2reactgrid
         self._sections = []
         self.title = ''
