@@ -122,7 +122,7 @@ class PlotTough(object):
             fileReader = self._read_file()
             time_year = fileReader.convert_times(format_of_date)
             if self.generation is True:
-                result_array = fileReader.getGenerationData(param)
+                result_array = fileReader.get_generation_data(param)
             else:
                 result_array = fileReader.get_timeseries_data(
                     param, grid_block_number)
@@ -404,7 +404,7 @@ class PlotTough(object):
         """
         fileReader = self._read_file()
         if len(param) == 1:
-            y_data = fileReader.getLayerData(direction_y_axis, layer_num,
+            y_data = fileReader.get_layer_data(direction_y_axis, layer_num,
                                              time, param[0])
             x_data = fileReader.get_unique_coord_data(direction_x_axis, time)
             fig, axs = plt.subplots(1, 1)
@@ -427,7 +427,7 @@ class PlotTough(object):
             for _ in range(1, len(param) + 1):
                 axs = plt.subplot(math.ceil(len(param) / 2) + 1, 2,
                                   plot_counter)
-                y_data = fileReader.getLayerData(direction_y_axis,
+                y_data = fileReader.get_layer_data(direction_y_axis,
                                                  layer_num, time,
                                                  param[start_point])
                 axs.plot(x_data, y_data)

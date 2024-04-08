@@ -46,9 +46,9 @@ class FileReadMultiple(object):
         prop : list[string]
             Properties to be plotted. Example could be 'portlandite'
         kwargs: dict
-            x_slice value (integer) - if the plot should be sliced on the  x axis
-            per_file -  (boolean) - if the plot should be made per file and not per property
-            title (list of strings) - title of each of the plots
+            1) x_slice_value (integer) - if the plot should be sliced on the  x axis
+            2) per_file  (boolean) - if the plot should be made per file and not per property
+            3) title (list of strings) - title of each of the plots
 
 
         Returns
@@ -69,22 +69,11 @@ class FileReadMultiple(object):
         # TODO write code to slice x axis
         # TODO write code to slice through domain
 
-        """
-
-        :param format_of_date:
-        :param grid_block_number: grid block number in mesh
-        :type grid_block_number: int
-        :param legend:
-        :type legend: list
-        :param plot_kind:
-        :type plot_kind: string
-        """
-
         """ Plot selected parameter on y axis and time on x axis
 
         Parameters
         -----------
-        grid_block_number :  int
+        grid_block_number : int
             The grid block number in mesh for which to retrieve the results
         legend : list[string]
             List of titles for the legend of the plot
@@ -95,8 +84,7 @@ class FileReadMultiple(object):
 
         Returns
         --------
-        data_table : pd.Dataframe
-            Dataframe with requested output
+
         """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
@@ -106,13 +94,45 @@ class FileReadMultiple(object):
             plottest.plotMultiElementMultiFile(grid_block_number, legend, format_of_date, plot_kind)
 
     def plotTimePerPanel(self, grid_block_number, panels, format_of_date='day'):
-        """ Plot Multiple plots in a panel """
+        """ Plot Multiple plots in a panel
+
+        Parameters
+        -----------
+        grid_block_number : int
+            The grid block number in mesh for which to retrieve the results
+        panels: list[string]
+            Data to be retrieved for each of the panel in the canvas
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+
+        """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
         plottest.plotMultiPerPanel(grid_block_number, panels, format_of_date)
 
     def plotParamWithLayer(self, directionX, directionY, layer_num, time, legend):
-        """ Plot of Parameter with Layer """
+        """ Plot of Parameter with Layer
+
+        Parameters
+        -----------
+        directionX :  string
+            Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
+        directionY :  string
+            Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
+        layer_num: int
+            Layer number in which to retrieve data
+        time : float
+            Time in which the data should be retrieved.
+        legend : list[string]
+            List of titles for the legend of the plot
+
+        Returns
+        --------
+
+        """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
         if len(self.props) == 1:

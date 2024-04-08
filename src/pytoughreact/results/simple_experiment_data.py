@@ -30,32 +30,94 @@ import pandas as pd
 
 class Experiment(object):
     def __init__(self, filelocation, filetitle):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        file_location : string
+            Location of results file on system
+        file_title : string
+            Title or name of the file. Example is 'kddconc.tec' or 'OUTPUT.csv'
+
+
+        Returns
+        --------
+
+        """
         self.filelocation = filelocation
         os.chdir(self.filelocation)
         self.filetitle = filetitle
 
     def read_file(self):
+        """ Read file specified in file_location and file_title
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        data_table : pd.Dataframe
+            Dataframe with requested output
+
+        """
         os.chdir(self.filelocation)
-        df = pd.read_csv(self.filetitle)
-        return df
+        data_table = pd.read_csv(self.filetitle)
+        return data_table
 
     def getColumnNames(self):
+        """ Get coulmn names from data table
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        column_names : list
+            column names in file
+
+        """
         df = self.read_file()
-        heads = df.columns
-        return heads
+        column_names = df.columns
+        return column_names
 
     def get_times(self):
+        """ Get times stored for duration of the simulation
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        unprocessed_time_data : list
+            Time data directly from file without processing.
+        """
         df = self.read_file()
-        time_raw = df['Time']
-        time_raw = list(time_raw)
-        time_raw = time_raw[1:]
-        time_raw = np.array(time_raw, float)
-        return time_raw
+        unprocessed_time_data = df['Time']
+        unprocessed_time_data = list(unprocessed_time_data)
+        unprocessed_time_data = unprocessed_time_data[1:]
+        unprocessed_time_data = np.array(unprocessed_time_data, float)
+        return unprocessed_time_data
 
     def get_timeseries_data(self, param):
+        """ Get Time series data
+
+        Parameters
+        -----------
+        param: string
+            Parameter to be derived from data
+
+        Returns
+        --------
+        final_timeseries_data : list
+            Time series data for particular parameter.
+
+        """
         df = self.read_file()
-        resultarray = df[param]
-        resultarray = list(resultarray)
-        resultarray = resultarray[1:]
-        resultarray = np.array(resultarray, float)
-        return resultarray
+        final_timeseries_data = df[param]
+        final_timeseries_data = list(final_timeseries_data)
+        final_timeseries_data = final_timeseries_data[1:]
+        final_timeseries_data = np.array(final_timeseries_data, float)
+        return final_timeseries_data

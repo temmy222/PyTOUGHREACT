@@ -113,7 +113,7 @@ class MultiResultTough3(object):
             result_data_label = 'result' + str(i)
             data_table[x_data_label] = pd.Series(x_data)
             data_table[result_data_label] = pd.Series(result_data)
-            print(tough_data.getXDepthData(1, self.prop[i], time))
+            print(tough_data.get_x_depth_data(1, self.prop[i], time))
         return data_table
 
     def retrieve_data_multi_file_fixed_time_layer(self, direction, time, layer_num):
@@ -138,7 +138,7 @@ class MultiResultTough3(object):
             tough_data = ResultTough3(self.simulator_type, self.file_location[i], self.file_title[i])
             os.chdir(self.file_location[i])
             x_data = tough_data.get_coord_data(direction, time)
-            result_data = tough_data.getLayerData(direction, layer_num, time, self.prop[i])
+            result_data = tough_data.get_layer_data(direction, layer_num, time, self.prop[i])
             x_data_label = 'x' + str(i)
             result_data_label = 'result' + str(i)
             data_table[x_data_label] = pd.Series(x_data)
@@ -182,7 +182,7 @@ class MultiResultTough3(object):
         grid_block_number :  int
             The grid block number for which to retrieve the results
         panels: list[string]
-            Date to be retrieved for each of the panel in the canvas
+            Data to be retrieved for each of the panel in the canvas
         format_of_date : str
             Provides information to the method on format of the date. For example. year, hour, min or seconds
 

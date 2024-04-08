@@ -29,10 +29,29 @@ import pytoughreact.constants.generalconstants as gc
 
 
 class FileReadSingle(object):
+    """Class for processing single file results"""
     def __init__(self, simulatortype, filelocation, filetitle, **kwargs):
-        """
-        Class for processing single file results
-        :type simulatortype: object
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        simulator_type :  string
+            Type of simulator being run. Can either be 'tmvoc', 'toughreact' or 'tough3'.
+            Should be tough3 for this class
+        file_location : string
+            Location of results file on system
+        file_title : string
+            Title or name of the file. Example is 'kddconc.tec' or 'OUTPUT.csv'
+        kwargs: dict
+            1) generation (string) - if generation data exists in the results.
+            2) restart_files  (list[string]) - if restart files exist in the results
+            3) experiment (list[strings]) - location of experiment results if available
+            4) x_slice_value (integer) - if the plot should be sliced on the  x axis
+
+
+        Returns
+        --------
+
         """
         self.filelocation = filelocation
         if isinstance(self.filelocation, str):
@@ -48,18 +67,60 @@ class FileReadSingle(object):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
 
     def validateFile(self):
-        """ Validate File """
+        """ Validate File
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+
+        """
         if type(self.filelocation) != type(self.filetitle):
             print('Values can either be strings or lists')
 
     def getSimulatorType(self):
-        """ Get Simulator Type """
+        """ Get Simulator Type
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+
+        """
         return self.simulatortype
 
     def plotTime(self, param, gridblocknumber, format_of_date='year', labels=None, singlePlot=False, style='horizontal',
                  width=12,
                  height=8):
-        """ Make Plot of parameter with time """
+        """ Make Plot of parameter with time
+
+        Parameters
+        -----------
+        grid_block_number : int
+            The grid block number in mesh for which to retrieve the results
+        param: string
+            Parameter to be plotted
+        format_of_date : string
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+        labels : string
+            Labels for the plot (Title)
+        singlePlot : boolean
+            If single plot should be made or multiple plots
+        style : string
+            Orientation of plot (should be 'vertical' or 'horizontal)
+        width : int
+            width of plot
+        height : int
+            height of plot
+
+        Returns
+        --------
+
+        """
         if isinstance(param, str):
             plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
                                  restart_files=self.full_args,
@@ -85,17 +146,68 @@ class FileReadSingle(object):
                 plottest.plotMultiParamSinglePlot(param, gridblocknumber, format_of_date, labels)
 
     def plotParamWithParam(self, param1, param2, gridblocknumber):
-        """ Make Plot of parameter with parameter """
+        """ Make Plot of parameter with parameter
+
+        Parameters
+        -----------
+        grid_block_number : int
+            The grid block number in mesh for which to retrieve the results
+        param1: string
+            First Parameter to be plotted on x axis
+        param2: string
+            Second Parameter to be plotted on x axis
+
+
+        Returns
+        --------
+
+        """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         plottest.plotParamWithParam(param1, param2, gridblocknumber)
 
     def plotParamWithLayer(self, directionXAxis, directionYAxis, param, layer_num, time):
-        """ Make Plot of parameter with layer """
+        """ Make Plot of parameter with layer
+
+        Parameters
+        -----------
+        directionXAxis : string
+            Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
+        directionYAxis : string
+            Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
+        param: string
+            Parameter to be plotted
+        layer_num: int
+            Layer number in which to retrieve data
+        time : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+
+        """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         plottest.plotParamWithLayer(directionXAxis, directionYAxis, param, layer_num, time)
 
     def plot2D(self, direction1, direction2, param, timer, grid_type='plain'):
-        """ Make 2D plot either gridded or not gridded """
+        """ Make 2D plot either gridded or not gridded
+
+        Parameters
+        -----------
+        direction1 : string
+            Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
+        direction2 : string
+            Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
+        param : string
+            Parameter to be plotted
+        grid_type : string
+            Shows if plot should contain grids or not. Options are 'grid' and 'plain'
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+
+        """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         if grid_type == 'plain':
             plottest.plot2D_one(direction1, direction2, param, timer)

@@ -119,7 +119,7 @@ class MultiResultReact(object):
             result_data_label = 'result' + str(i)
             data_table[x_data_label] = pd.Series(x_data)
             data_table[result_data_label] = pd.Series(result_data)
-            print(tough_data.getXDepthData(1, self.prop[i], time))
+            print(tough_data.get_x_depth_data(1, self.prop[i], time))
         return data_table
 
     def retrieve_data_multi_file_fixed_time_layer(self, direction, time, layer_num):
@@ -144,7 +144,7 @@ class MultiResultReact(object):
             tough_data = ResultReact(self.simulator_type, self.file_location[i], self.file_title[i])
             os.chdir(self.file_location[i])
             x_data = tough_data.get_coord_data(direction, time)
-            result_data = tough_data.getLayerData(direction, layer_num, time, self.prop[i])
+            result_data = tough_data.get_layer_data(direction, layer_num, time, self.prop[i])
             x_data_label = 'x' + str(i)
             result_data_label = 'result' + str(i)
             data_table[x_data_label] = pd.Series(x_data)
@@ -176,7 +176,7 @@ class MultiResultReact(object):
                 os.chdir(self.file_location[i])
                 tough_data = ResultReact(self.simulator_type, self.file_location[i], self.file_title[j])
                 x_data = tough_data.get_unique_coord_data(directionX, time)
-                result_data = tough_data.getLayerData(directionY, layer_num, time, self.prop[j])
+                result_data = tough_data.get_layer_data(directionY, layer_num, time, self.prop[j])
                 if self.x_slice_value is not None:
                     inter = t2Utilities()
                     time_data, result_data = inter.cutdata(x_data, result_data, self.x_slice_value)
@@ -211,7 +211,7 @@ class MultiResultReact(object):
                 os.chdir(self.file_location[j])
                 tough_data = ResultReact(self.simulator_type, self.file_location[j], self.file_title[j])
                 x_data = tough_data.get_unique_coord_data(directionX, time)
-                result_data = tough_data.getLayerData(directionY, layer_num, time, self.prop[i])
+                result_data = tough_data.get_layer_data(directionY, layer_num, time, self.prop[i])
                 if self.x_slice_value is not None:
                     utilities_instance = t2Utilities()
                     time_data, result_data = utilities_instance.cutdata(x_data, result_data, self.x_slice_value)

@@ -32,6 +32,23 @@ import t2listing
 class ResultReact(object):
     """ Class for processing results from TOUGHREACT """
     def __init__(self, simulatortype, filelocation, filetitle):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        simulator_type :  string
+            Type of simulator being run. Can either be 'tmvoc', 'toughreact' or 'tough3'.
+            Should be tough3 for this class
+        file_location : string
+            Location of results file on system
+        file_title : string
+            Title or name of the file. Example is 'kddconc.tec' or 'OUTPUT.csv'
+
+
+        Returns
+        --------
+
+        """
         self.filelocation = filelocation
         os.chdir(self.filelocation)
         self.filetitle = filetitle
@@ -41,12 +58,34 @@ class ResultReact(object):
     def __repr__(self):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
 
-    def getParameters(self):
-        """ Get Parameters """
+    def get_parameters(self):
+        """ Get Parameters from file
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        output : list
+            Parameters returned as list
+
+        """
         return self.data.element.column_name
 
     def get_elements(self):
-        """ Get elements """
+        """ Get elements from the simulation
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        grid_blocks : list
+            Elements present in the result file.
+
+        """
         find_connection = t2UtilitiesToughReact(self.filelocation, 'CONNE')
         find_connection.findword()
         find_connection.sliceoffline()
@@ -56,78 +95,187 @@ class ResultReact(object):
         return grid_blocks
 
     def get_times(self):
-        """ Get times from data file """
+        """ Get times stored for duration of the simulation
+
+        Parameters
+        -----------
+
+
+        Returns
+        --------
+        unprocessed_time_data : list
+            Time data directly from file without processing.
+        """
         time_data = self.data.times
-        time_data2 = list(time_data)
+        unprocessed_time_data = list(time_data)
         value = t2Utilities()
-        if len(time_data2) > 15:
-            time_data = value.choplist(time_data2, 15)
+        if len(unprocessed_time_data) > 15:
+            time_data = value.choplist(unprocessed_time_data, 15)
             return time_data
-        return time_data2
+        return unprocessed_time_data
 
     def convert_times(self, format_of_date):
-        """ Convert time to required format """
+        """ Convert time to desirable format e.g day, month, year
+
+        Parameters
+        -----------
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+        processed_time_data  : list
+            List of converted time
+
+        """
         get_times = self.get_times()
         utility_class = t2Utilities()
-        timeyear = utility_class.convert_times(get_times, format_of_date)
-        return timeyear
+        processed_time_data = utility_class.convert_times(get_times, format_of_date)
+        return processed_time_data
 
-    def get_timeseries_data(self, param, gridblocknumber):
-        """ Get timeseries data """
+    def get_timeseries_data(self, param, grid_block_number):
+        """ Get Time series data
+
+        Parameters
+        -----------
+        grid_block_number :  int
+            The grid block number for which to retrieve the results
+        param: string
+            Parameter to be derived from data
+
+        Returns
+        --------
+        final_timeseries_data : list
+            Time series data for particular parameter.
+
+        """
         os.chdir(self.filelocation)
-        grid = self.get_elements()[gridblocknumber]
+        grid = self.get_elements()[grid_block_number]
         mf = self.data.history([(grid, param)])
-        timeseries = mf[1]
-        timeseries = list(timeseries)
+        final_timeseries_data = mf[1]
+        final_timeseries_data = list(final_timeseries_data)
         value = t2Utilities()
-        if len(timeseries) > 15:
-            timeseries = value.choplist(timeseries, 15)
-            return timeseries
-        return timeseries
+        if len(final_timeseries_data) > 15:
+            final_timeseries_data = value.choplist(final_timeseries_data, 15)
+            return final_timeseries_data
+        return final_timeseries_data
 
     def get_element_data(self, time, param):
-        """ Get data for elements """
-        self.data.set_time(time)
-        final_data = self.data.element[param]
-        return final_data
+        """ Get Data for elements
 
-    def get_X_data(self, time):
-        """ Get data for X axis """
+        Parameters
+        -----------
+        time : float
+            Time in which the data should be retrieved.
+        param: string
+            Parameter to be derive data
+
+        Returns
+        --------
+        final_element_data : list
+            Data for each of the elements.
+        """
+        self.data.set_time(time)
+        final_element_data = self.data.element[param]
+        return final_element_data
+
+    def get_x_data(self, time):
+        """ Get X Axis Data
+
+        Parameters
+        -----------
+        time : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        output : list
+            Data for the x axis.
+
+        """
         return self.get_element_data(time, 'X(m)')
 
-    def get_Y_data(self, time):
-        """ Get data for Y axis """
+    def get_y_data(self, time):
+        """ Get Y Axis Data
+
+        Parameters
+        -----------
+        time : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        output : list
+            Data for the y axis.
+
+        """
         return self.get_element_data(time, 'Y(m)')
 
-    def get_Z_data(self, time):
-        """ Get data for Z axis """
+    def get_z_data(self, time):
+        """ Get Z Axis Data
+
+        Parameters
+        -----------
+        time : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        output : list
+            Data for the z axis.
+
+        """
         return self.get_element_data(time, 'Z(m)')
 
-    def getUniqueXData(self, timer):
-        """ Get Unique X axis data """
-        ori_array = self.get_coord_data('x', timer)
+    def get_unique_x_data(self, timer):
+        """ Get Unique X Axis Data
+
+        Parameters
+        -----------
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        unique_x_output_data : list
+            Unique data for the x axis.
+
+        """
+        original_array = self.get_coord_data('x', timer)
         indices_array = []
-        for i in range(0, len(ori_array)):
+        for i in range(0, len(original_array)):
             try:
-                if ori_array[i] > ori_array[i + 1]:
+                if original_array[i] > original_array[i + 1]:
                     indices_array.append(i)
                 else:
                     continue
             except Exception:
                 pass
         if len(indices_array) > 0:
-            output_data = ori_array[0:indices_array[0] + 1]
+            unique_x_output_data = original_array[0:indices_array[0] + 1]
         else:
-            output_data = ori_array
-        return output_data
+            unique_x_output_data = original_array
+        return unique_x_output_data
 
-    def getXStartPoints(self, timer):
-        """ Get X axis Start Points"""
-        ori_array = self.get_coord_data('x', timer)
+    def get_x_start_points(self, timer):
+        """ Get X Axis Start Point Data
+
+        Parameters
+        -----------
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        indices_array : list
+            X Axis Start Point Data.
+
+        """
+        original_array = self.get_coord_data('x', timer)
         indices_array = []
-        for i in range(0, len(ori_array)):
+        for i in range(0, len(original_array)):
             try:
-                if ori_array[i] > ori_array[i + 1]:
+                if original_array[i] > original_array[i + 1]:
                     indices_array.append(i)
                 else:
                     continue
@@ -135,36 +283,88 @@ class ResultReact(object):
                 pass
         return indices_array
 
-    def getUniqueYData(self, timer):
-        """ Get Unique Y axis data """
-        ori_array = self.get_coord_data('y', timer)
-        output = list(set(ori_array))
+    def get_unique_y_data(self, timer):
+        """ Get Unique Y Axis Data
+
+        Parameters
+        -----------
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        unique_x_output_data : list
+            Unique data for the y axis.
+
+        """
+        original_array = self.get_coord_data('y', timer)
+        output = list(set(original_array))
         return output
 
-    def getUniqueZData(self, timer):
-        """ Get Unique Z axis data """
+    def get_unique_z_data(self, timer):
+        """ Get Unique Z Axis Data
+
+        Parameters
+        -----------
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        unique_x_output_data : list
+            Unique data for the z axis.
+
+        """
         ori_array = self.get_coord_data('z', timer)
         output = list(set(ori_array))
         return output
 
-    def getNumberOfLayers(self, direction):
-        """ Get Number of Layers """
+    def get_number_of_layers(self, direction):
+        """ Get Number of Layers
+
+        Parameters
+        -----------
+        direction : string
+            Direction to get data. Can be 'X', 'Y', 'Z'
+
+        Returns
+        --------
+        number_of_layers : int
+            Total number of layers.
+
+        """
         if direction.lower() == 'x':
-            array = self.getUniqueXData(0)
+            array = self.get_unique_x_data(0)
         elif direction.lower() == 'y':
-            array = self.getUniqueYData(0)
+            array = self.get_unique_y_data(0)
         elif direction.lower() == 'z':
-            array = self.getUniqueZData(0)
+            array = self.get_unique_z_data(0)
         else:
             print("coordinates can either be X, Y or Z")
-        number = len(array)
-        return number
+        number_of_layers = len(array)
+        return number_of_layers
 
-    def getZLayerData(self, layer_number, param, timer):
-        """ Get Data for Z (depth) layer """
-        x_start = self.getXStartPoints(timer)
+    def get_z_layer_data(self, layer_number, param, timer):
+        """ Get Z Layer Data
+
+        Parameters
+        -----------
+        timer : float
+            Time in which the data should be retrieved.
+        layer_num: int
+            Layer number in which to retrieve data
+        param: string
+            Parameter to be derive data
+
+        Returns
+        --------
+        z_layer_data_output : list
+            Data for the z direction.
+
+        """
+        x_start = self.get_x_start_points(timer)
         z_data = self.get_element_data(timer, param)
-        total_grid_in_z = self.getNumberOfLayers('z')
+        total_grid_in_z = self.get_number_of_layers('z')
         if layer_number > 1:
             begin_index = x_start[layer_number - 2] + 1
         else:
@@ -173,52 +373,114 @@ class ResultReact(object):
             end_index = x_start[layer_number - 1] + 1
         else:
             end_index = 50
-        output = z_data[begin_index:end_index]
-        return output
+        z_layer_data_output = z_data[begin_index:end_index]
+        return z_layer_data_output
 
-    def getXDepthData(self, line_number, param, timer):
-        """ Get Data for X (depth) layer """
+    def get_x_depth_data(self, line_number, param, timer):
+        """ Get X Axis And Depth Data
+
+        Parameters
+        -----------
+        timer : float
+            Time in which the data should be retrieved.
+        line_number: int
+            Line number to retrieve x depth data for
+        param: string
+            Parameter to be derive data
+
+        Returns
+        --------
+        x_depth_data_array : list
+            Data for the x depth.
+
+        """
         element_data = self.get_element_data(timer, param)
-        x_layers = self.getNumberOfLayers('x')
-        z_layers = self.getNumberOfLayers('z')
-        data_array = []
+        x_layers = self.get_number_of_layers('x')
+        z_layers = self.get_number_of_layers('z')
+        x_depth_data_array = []
         for i in range(0, z_layers):
-            data_array.append(element_data[line_number - 1])
+            x_depth_data_array.append(element_data[line_number - 1])
             line_number = line_number + x_layers
-        return data_array
+        return x_depth_data_array
 
-    def getLayerData(self, direction, layer_number, timer, param):
-        """ Get Data for Layers """
-        number_of_layers = self.getNumberOfLayers(direction)
+    def get_layer_data(self, direction, layer_number, timer, param):
+        """ Get Layer Data
+
+        Parameters
+        -----------
+        direction : string
+            Direction to get data. Can be 'X', 'Y', 'Z'
+        timer : float
+            Time in which the data should be retrieved.
+        layer_num: int
+            Layer number in which to retrieve data
+        param: string
+            Parameter to be derive data
+
+        Returns
+        --------
+        layer_data_array : list
+            Data for the specified direction.
+
+        """
+        number_of_layers = self.get_number_of_layers(direction)
         if layer_number > number_of_layers:
             raise ValueError("The specified layer is more than the number of layers in the model")
         else:
             if direction.lower() == 'z':
-                data_array = self.getZLayerData(layer_number, param, timer)
+                layer_data_array = self.get_z_layer_data(layer_number, param, timer)
             elif direction.lower() == 'x':
-                data_array = self.getXDepthData(layer_number, param, timer)
-        return data_array
+                layer_data_array = self.get_x_depth_data(layer_number, param, timer)
+        return layer_data_array
 
     def get_coord_data(self, direction, timer):
-        """ Get Coordinate data """
+        """ Get Coordinate Data
+
+        Parameters
+        -----------
+        direction : string
+            Direction to get data. Can be 'X', 'Y', 'Z'
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        coordinate_data : list
+            Data for the unique coordinate.
+
+        """
         if direction.lower() == 'x':
-            value = self.get_X_data(timer)
+            coordinate_data = self.get_x_data(timer)
         elif direction.lower() == 'y':
-            value = self.get_Y_data(timer)
+            coordinate_data = self.get_y_data(timer)
         elif direction.lower() == 'z':
-            value = self.get_Z_data(timer)
+            coordinate_data = self.get_z_data(timer)
         else:
             print("coordinates can either be X, Y or Z")
-        return value
+        return coordinate_data
 
     def get_unique_coord_data(self, direction, timer):
-        """ Get Unique coordinate data """
+        """ Get Unique Coordinate Data
+
+        Parameters
+        -----------
+        direction : string
+            Direction to get data. Can be 'X', 'Y', 'Z'
+        timer : float
+            Time in which the data should be retrieved.
+
+        Returns
+        --------
+        unique_coordinate_data : list
+            Data for the unique coordinate.
+
+        """
         if direction.lower() == 'x':
-            value = self.getUniqueXData(timer)
+            unique_coordinate_data = self.get_unique_x_data(timer)
         elif direction.lower() == 'y':
-            value = self.getUniqueYData(timer)
+            unique_coordinate_data = self.get_unique_y_data(timer)
         elif direction.lower() == 'z':
-            value = self.getUniqueZData(timer)
+            unique_coordinate_data = self.get_unique_z_data(timer)
         else:
             print("coordinates can either be X, Y or Z")
-        return value
+        return unique_coordinate_data

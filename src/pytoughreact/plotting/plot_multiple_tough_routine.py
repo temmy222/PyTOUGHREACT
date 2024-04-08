@@ -736,7 +736,7 @@ class PlotMultiTough(object):
             time_data_label = pc.TIME + str(i)
             result_data_label = pc.RESULT + str(i)
             time_data = fileReader.convert_times(format_of_date=format_of_date)
-            result_data = fileReader.getGenerationData(param[i])
+            result_data = fileReader.get_generation_data(param[i])
             data_table[time_data_label] = pd.Series(time_data)
             data_table[result_data_label] = pd.Series(result_data)
         return data_table
