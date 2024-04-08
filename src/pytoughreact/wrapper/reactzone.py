@@ -27,6 +27,32 @@ SOFTWARE.
 class t2zone(object):
     def __init__(self, name='default', water=None, mineral=None, gas=None, permporo=None, adsorption=None,
                  decay=None, cation=None):
+        """ Initialization of parameters
+
+        Parameters
+        -----------
+        name : string
+            Name of the zone
+        water : list[list[Water], list[Water]]
+            List of initial and boundary waters
+        mineral : MineralZone
+            Mineral composition present in the zone
+        gas : list[list[ReactGas], list[ReactGas]]
+            List of all initial and injected gases
+        permporo : PermPoroZone
+            Porosity Permeability relationship to be used in the zone
+        adsorption : list[list[Adsorb], list[Adsorb]]
+            List of all initial and injected adsorption zones (Not Implemented yet)
+        decay : list[list[Decay], list[Decay]]
+            List of all initial and injected decay zones (Not Implemented yet)
+        cation : list[list[Cation], list[Cation]]
+            List of all initial and injected cation zones (Not Implemented yet)
+
+
+        Returns
+        --------
+
+        """
         self.name = name
         self.cation = cation
         self.decay = decay

@@ -7,6 +7,21 @@ import numpy as np
 class react_data(t2data):
     """Class for parsing REACTION data file."""
     def __init__(self, filename, mode, read_function=default_read_function):
+        """ Initialization of parameters
+
+        Parameters
+        -----------
+        filename : string
+            File name of the reaction data file
+        mode : str
+            Mode in which to read the dat (read, write)
+        read_fuction : function
+            Function for processing the different spacing forms
+
+        Returns
+        --------
+
+        """
         super(t2data, self).__init__(filename='', meshfilename='',
                                      read_function=default_read_function)
 

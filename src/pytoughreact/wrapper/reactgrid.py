@@ -31,16 +31,46 @@ from t2data import rocktype
 
 class t2reactgrid(t2grid):
     def __init__(self):
+        """ Initialization of parameters
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
+        """
         self.empty()
         super().__init__()
 
     def get_num_zones(self):
+        """ Return number of zones in grid
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+        output : int
+            Total number of zones in grid
+        """
         return len(self.zonelist)
     num_zones = property(get_num_zones)
 
     def fromgeo(self, geo, blockmap={}):
-        """Converts a MULgraph grid to a TOUGH2 grid. The blockmap parameter
+        """ Converts a MULgraph grid to a TOUGH2 grid. The blockmap parameter
         applies an optional mapping to the block names from the geometry.
+
+        Parameters
+        -----------
+        geo :  MULgraph
+            Dimension details of the grid
+        blockmap : dict
+            Applies an optional mapping to the block names from the geometry.
+
+        Returns
+        --------
+
         """
         self.empty()
         self.add_rocktype(rocktype())  # add default rock type
@@ -49,19 +79,38 @@ class t2reactgrid(t2grid):
         return self
 
     def __add__(self, other):
-        """Adds two grids together."""
-        result = t2reactgrid()
+        """ Adds two grids together
+
+        Parameters
+        -----------
+        other :  t2reactgrid
+            Grid to add to original grid
+
+        Returns
+        --------
+        resultant_grid : t2reactgrid
+            Grid after addition
+        """
+        resultant_grid = t2reactgrid()
         for grid in [self, other]:
             for rt in grid.rocktypelist:
-                result.add_rocktype(rt)
+                resultant_grid.add_rocktype(rt)
             for blk in grid.blocklist:
-                result.add_block(blk)
+                resultant_grid.add_block(blk)
             for con in grid.connectionlist:
-                result.add_connection(con)
-        return result
+                resultant_grid.add_connection(con)
+        return resultant_grid
 
     def empty(self):
-        """Empties a TOUGH2 grid"""
+        """ Empties a TOUGH2 grid
+
+        Parameters
+        -----------
+
+        Returns
+        --------
+
+        """
         self.rocktypelist = []
         self.blocklist = []
         self.connectionlist = []
@@ -72,7 +121,17 @@ class t2reactgrid(t2grid):
         self.zonelist = []
 
     def add_block(self, newblock=None):
-        """Adds a block to the grid"""
+        """ Adds a block to the grid
+
+        Parameters
+        -----------
+        newblock :  t2block
+            block to add to original react grid
+
+        Returns
+        --------
+
+        """
         if newblock is None:
             newblock = t2block()
         if newblock.name in self.block:
@@ -83,7 +142,17 @@ class t2reactgrid(t2grid):
         self.block[newblock.name] = newblock
 
     def add_zone(self, newzone=None):
-        """Adds a rock type to the grid.  Any existing rocktype of the same name is replaced."""
+        """ Adds a rock type to the grid.  Any existing rocktype of the same name is replaced.
+
+        Parameters
+        -----------
+        newzone :  t2zone
+            zone to add to original react grid
+
+        Returns
+        --------
+
+        """
         if newzone is None:
             newzone = t2zone()
         if newzone.name in self.zone:

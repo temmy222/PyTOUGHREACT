@@ -31,6 +31,37 @@ class t2block(object):
     def __init__(self, name='     ', volume=1.0, blockrocktype=None, blockzone=None,
                  centre=None, atmosphere=False, ahtx=None, pmx=None,
                  nseq=None, nadd=None):
+        """ Initialization of parameters
+
+        Parameters
+        -----------
+        name : string
+            Name of the block
+        volume : float
+            Volume associated with the block
+        blockrocktype : rocktype
+            Rock type of the block
+        blockzone : t2zone
+            Zone the block is associated with
+        centre : float
+            Center of the block
+        atmosphere: boolean
+            If atmosphere present in block or not
+        ahtx: float
+            Interface area (m2) for linear heat exchange with semi-infinite confining
+            bed
+        pmx : float
+            Block-by-block permeability modification coefficient
+        nseq : int
+            Number of additional elements having the same volume and belonging to
+            the same reservoir domain
+        nadd : int
+            Increment between the code numbers of two successive elements
+
+        Returns
+        --------
+
+        """
         self.zone = blockzone
         if blockrocktype is None:
             blockrocktype = rocktype()

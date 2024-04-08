@@ -26,4 +26,16 @@ SOFTWARE.
 
 class MineralZone(object):
     def __init__(self, minerals):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        minerals :  list[MineralComp]
+            List of all mineral compositions
+
+
+        Returns
+        --------
+
+        """
         self.minerals = minerals
