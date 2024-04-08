@@ -171,8 +171,7 @@ class PlotMultiTough(object):
             result_array = self.getRestartDataElement(parameter,
                                                       gridblocknumber)
             parameters = t2Utilities()
-            time_year, result_array = parameters.remove_repetiting(time_year,
-                                                                  result_array)
+            time_year, result_array = parameters.remove_repetiting(time_year, result_array)
             axs[j].plot(time_year, result_array, marker=pc.CARET,
                         label=self.modifier.param_label_full(
                             parameter.upper()))
@@ -476,8 +475,7 @@ class PlotMultiTough(object):
             result_array = self.getRestartDataElement(parameter,
                                                       gridblocknumber)
             parameters = t2Utilities()
-            time_year, result_array = parameters.remove_repetiting(time_year,
-                                                                  result_array)
+            time_year, result_array = parameters.remove_repetiting(time_year, result_array)
             result_array_expt = expt_test.get_timeseries_data(parameter)
             axs[j].plot(time_year, result_array, marker=pc.CARET_SYMBOL,
                         label=gc.SIMULATION)

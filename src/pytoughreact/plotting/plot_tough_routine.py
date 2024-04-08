@@ -116,8 +116,7 @@ class PlotTough(object):
             time_year = self._getRestartDataTime(format_of_date)
             result_array = self._getRestartDataElement(param,
                                                        grid_block_number)
-            time_year, result_array = parameters.remove_repetiting(time_year,
-                                                                  result_array)
+            time_year, result_array = parameters.remove_repetiting(time_year, result_array)
         else:
             fileReader = self._read_file()
             time_year = fileReader.convert_times(format_of_date)
