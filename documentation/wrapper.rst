@@ -3,20 +3,20 @@ Wrapper Class
 ++++++++++++++++++++++
 React Data
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.constants.react_data.react_data
+.. autoclass:: pytoughreact.wrapper.react_data.react_data
     :members:
 ++++++++++++++++++++++
 React Block
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.constants.reactblock.t2block
+.. autoclass:: pytoughreact.wrapper.reactblock.t2block
     :members:
 ++++++++++++++++++++++
 React Grid
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.constants.reactgrid.t2reactgrid
+.. autoclass:: pytoughreact.wrapper.reactgrid.t2reactgrid
     :members:
 ++++++++++++++++++++++
 React Zone
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.constants.reactzone.t2zone
+.. autoclass:: pytoughreact.wrapper.reactzone.t2zone
     :members:
