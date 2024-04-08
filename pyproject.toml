@@ -42,7 +42,7 @@ maintainers = [
   {name = "Temitope Ajayi", email = "ajayi_temmy@yahoo.com"}
 ]
 description = "Python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO"
-license = {file = "LICENSE"}
+license = {text = "MIT License"}
 keywords = ["biodegradation", "reactive transport", "automation", "uncertainty quantification"]
 
 [project.urls]

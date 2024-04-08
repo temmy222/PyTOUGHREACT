@@ -686,7 +686,7 @@ class ResultTough3(object):
         return input_list
 
     def duplicate_index(self, sequence):
-        """ Duplicate index
+        """ Duplicate index in sequence
 
         Parameters
         -----------
@@ -697,15 +697,15 @@ class ResultTough3(object):
         Returns
         --------
         output : list
-            Ouput after duplicate indices have been removed
+            Output after indexes have been duplicated
 
         """
         dicta = {}
         indexes = []
-        dups = collections.defaultdict(list)
+        duplicates = collections.defaultdict(list)
         for i, e in enumerate(sequence):
-            dups[e].append(i)
-        for k, v in sorted(dups.items()):
+            duplicates[e].append(i)
+        for k, v in sorted(duplicates.items()):
             if len(v) >= 2:
                 dicta[k] = v
         for k, v in dicta.items():

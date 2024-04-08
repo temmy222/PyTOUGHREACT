@@ -28,7 +28,7 @@ A new page to the documentation is added as a .rst file to the documentation fol
 added to the index.rst file. Examples can be found in the index.rst file for how to add a new file
 to it.
 
-Updates to documentation are automatically upladed to https://pytoughreact.readthedocs.io/en/latest/developer.html
+Updates to developer documentation are automatically upladed to https://pytoughreact.readthedocs.io/en/master/developer.html
 
 Important links
 ~~~~~~~~~~~~~~~~~~~~

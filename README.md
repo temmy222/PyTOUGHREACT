@@ -214,6 +214,7 @@ and run flake8 using
 flake8 src
 ```
 7. Make a pull request after passing all tests
+8. More information can be found in developer notes in the documentation - https://pytoughreact.readthedocs.io/en/master/developer.html 
 
 ## Documentation
 Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/ 
