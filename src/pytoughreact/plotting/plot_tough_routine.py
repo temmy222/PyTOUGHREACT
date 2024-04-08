@@ -405,7 +405,7 @@ class PlotTough(object):
         fileReader = self._read_file()
         if len(param) == 1:
             y_data = fileReader.get_layer_data(direction_y_axis, layer_num,
-                                             time, param[0])
+                                               time, param[0])
             x_data = fileReader.get_unique_coord_data(direction_x_axis, time)
             fig, axs = plt.subplots(1, 1)
             axs.plot(x_data, y_data, marker=pc.CARET_SYMBOL)
@@ -428,8 +428,7 @@ class PlotTough(object):
                 axs = plt.subplot(math.ceil(len(param) / 2) + 1, 2,
                                   plot_counter)
                 y_data = fileReader.get_layer_data(direction_y_axis,
-                                                 layer_num, time,
-                                                 param[start_point])
+                                                   layer_num, time, param[start_point])
                 axs.plot(x_data, y_data)
                 axs.set_xlabel(pc.DISTANCE_MSG + ' '
                                + direction_x_axis + ' ' + pc.DIRECTION

@@ -66,7 +66,7 @@ class Experiment(object):
         return data_table
 
     def getColumnNames(self):
-        """ Get coulmn names from data table
+        """ Get column names from data table
 
         Parameters
         -----------
