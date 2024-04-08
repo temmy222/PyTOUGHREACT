@@ -31,49 +31,105 @@ class t2Utilities(object):
         pass
 
     def convert_times(self, arraylist, format_of_date):
-        """ Convert times to second/minute/hour/day/year """
-        intermediate = arraylist
-        timeyear = []
+        """ Convert times to second/minute/hour/day/year
+
+        Parameters
+        -----------
+        arraylist :  list
+            Array of the time to be converted
+        format_of_date : str
+            Provides information to the method on format of the date. For example. year, hour, min or seconds
+
+        Returns
+        --------
+        processed_time_data : list
+            Time data after conversion
+        """
+        processing_data_array = arraylist
+        processed_time_data = []
         if format_of_date.lower() == 'year':
-            for i in range(len(intermediate)):
-                timeyear.append(intermediate[i] / 3.154e+7)
+            for i in range(len(processing_data_array)):
+                processed_time_data.append(processing_data_array[i] / 3.154e+7)
         elif format_of_date.lower() == 'day':
-            for i in range(len(intermediate)):
-                timeyear.append(intermediate[i] / 86400)
+            for i in range(len(processing_data_array)):
+                processed_time_data.append(processing_data_array[i] / 86400)
         elif format_of_date.lower() == 'hour':
-            for i in range(len(intermediate)):
-                timeyear.append(intermediate[i] / 3600)
+            for i in range(len(processing_data_array)):
+                processed_time_data.append(processing_data_array[i] / 3600)
         elif format_of_date.lower() == 'minute':
-            for i in range(len(intermediate)):
-                timeyear.append(intermediate[i] / 60)
+            for i in range(len(processing_data_array)):
+                processed_time_data.append(processing_data_array[i] / 60)
         elif format_of_date.lower() == 'second':
-            for i in range(len(intermediate)):
-                timeyear.append(intermediate[i])
+            for i in range(len(processing_data_array)):
+                processed_time_data.append(processing_data_array[i])
         else:
             raise ValueError("format can either be year, day, hour, minute or second")
-        return timeyear
+        return processed_time_data
 
-    def choplist(self, liste, number=3):
-        """ Reduce the lsit size """
-        global finallist
-        if isinstance(liste, list):
-            if len(liste) > 100:
-                liste = liste[0:len(liste):number]
-                self.choplist(liste)
+    def chop_list(self, input_list, step_increase=3):
+        """ Reduce the length of the list
+
+        Parameters
+        -----------
+        input_list :  list[float]
+            List for which its size is to be reduced
+        step_increase : int
+            Step increase to used in the length reduction
+
+        Returns
+        --------
+        final_processed_list : list
+            List data after reduction
+        """
+        global final_processed_list
+        if isinstance(input_list, list):
+            if len(input_list) > 100:
+                input_list = input_list[0:len(input_list):step_increase]
+                self.chop_list(input_list)
             else:
-                finallist = liste[0:len(liste):number]
-        return finallist
+                final_processed_list = input_list[0:len(input_list):step_increase]
+        return final_processed_list
 
-    def cutdata(self, time_data, resultdata, slicevalue):
-        """ Cut the result output to avoid too many points on a graph """
+    def trim_data_points(self, time_data, result_data, slice_value):
+        """ Trim the result output to avoid too many points on a graph
+
+        Parameters
+        -----------
+        time_data :  list[float]
+            Time data list
+        result_data :  list[float]
+            Result data list
+        slice_value : float
+            Number at which to trim the data
+
+        Returns
+        --------
+        time_data, result_data : list , list
+            List data after trimming
+
+        """
         for i in range(len(time_data) - 1, 0, -1):
-            if time_data[i] > slicevalue:
+            if time_data[i] > slice_value:
                 del time_data[i]
-                del resultdata[i]
-        return time_data, resultdata
+                del result_data[i]
+        return time_data, result_data
 
-    def removeRepetiting(self, time_list, value_list):
-        """ Remove repetiting values """
+    def remove_repetiting(self, time_list, value_list):
+        """ Remove repetiting values
+
+        Parameters
+        -----------
+        time_list :  list[float]
+            Time data list
+        value_list :  list[float]
+            Result data list
+
+        Returns
+        --------
+        final_time_list, final_value_list : list , list
+            List data after removing repetiting values
+
+        """
         final_time_list = []
         final_value_list = []
         for i in range(0, len(time_list)):
@@ -87,7 +143,19 @@ class t2Utilities(object):
         return final_time_list, final_value_list
 
     def param_label_full(self, param):
-        """ Get Full Names of TOUGHREACT and TMVIO parameters """
+        """ Get Full Names of TOUGHREACT and TMVIO parameters to be embedded in graphs
+
+        Parameters
+        -----------
+        param: string
+            Parameter to be derived from data
+
+        Returns
+        --------
+        output : string
+            Full name of parameter
+
+        """
         dict_param = {'PRES': 'Pressure (Pa)', 'TEMP': 'Temperature ($^o C$)', 'SAT_G': 'Gas Saturation (-)',
                       'SAT_L': 'Liquid Saturation (-)',
                       'SAT_N': 'NAPL Saturation (-)', 'X_WATER_G': 'Water Mass Fraction in Gas (-)',
@@ -119,29 +187,68 @@ class t2Utilities(object):
         return dict_param[param]
 
     def fmt(self, x, pos):
+        """ Format string
+
+        Parameters
+        -----------
+        x: string
+            String to be formatted
+
+        Returns
+        --------
+        output : string
+            String after formatting
+
+        """
         a, b = '{:.2e}'.format(x).split('e')
         b = int(b)
         return r'${} \times 10^{{{}}}$'.format(a, b)
 
     def get_number_of_grids(self, input_list):
-        """ Get number of grids in simulation """
-        output = set()
-        for x in input_list:
-            output.add(x)
-        output = list(output)
-        return len(output)
+        """ Get number of grids in simulation
 
-    def getgridnumber(self, df, direction):
-        """ Get Grid number """
-        X = df[direction]
+        Parameters
+        -----------
+        input_list: list
+            List to determine number of grids
+
+        Returns
+        --------
+        total_number_of_grids : int
+            Total number of grids
+
+        """
+        total_number_of_grids = set()
+        for x in input_list:
+            total_number_of_grids.add(x)
+        total_number_of_grids = list(total_number_of_grids)
+        return len(total_number_of_grids)
+
+    def get_grid_number(self, data_frame, direction):
+        """ Get today number of grids in a particular direction
+
+        Parameters
+        -----------
+        data_frame: pd.Dataframe
+            Dataframe containing coordinate info
+        direction: string
+            Direction in which the get grid number
+
+        Returns
+        --------
+        grid_details : list
+            Grid information
+
+        """
+        X = data_frame[direction]
         d = {}
         for i in X:
             if i not in d:
                 d[i] = 1
             else:
                 d[i] += 1
-        m = list(d.keys())
-        return m, len(d)
+        grid_details = list(d.keys())
+        return grid_details, len(d)
 
     def cust_range(self, *args, rtol=1e-05, atol=1e-08, include=[True, False]):
         """
@@ -193,12 +300,24 @@ class t2Utilities(object):
     def orange(self, *args, **kwargs):
         return self.cust_range(*args, **kwargs, include=[True, False])
 
-    def strip_param(self, param):
-        """ Convert Parameters by stripping """
+    def convert_parameter_name(self, param):
+        """ Convert Parameters to conventional names
+
+        Parameters
+        -----------
+        param: string
+            Parameter to be derived from data
+
+        Returns
+        --------
+        converted_output : string
+            parameter after conversion
+
+        """
         if param.lower() == 'porosity':
-            output = 'Porosity'
+            converted_output = 'Porosity'
         elif param.startswith("t_"):
-            output = "Total Concentration (mol/L)"
+            converted_output = "Total Concentration (mol/L)"
         elif param.startswith("pH"):
-            output = 'pH'
-        return output
+            converted_output = 'pH'
+        return converted_output

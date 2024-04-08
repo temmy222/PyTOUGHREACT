@@ -116,7 +116,7 @@ class PlotTough(object):
             time_year = self._getRestartDataTime(format_of_date)
             result_array = self._getRestartDataElement(param,
                                                        grid_block_number)
-            time_year, result_array = parameters.removeRepetiting(time_year,
+            time_year, result_array = parameters.remove_repetiting(time_year,
                                                                   result_array)
         else:
             fileReader = self._read_file()
@@ -297,7 +297,7 @@ class PlotTough(object):
             time_year = self._getRestartDataTime(format_of_date)
             result_array = self._getRestartDataElement(
                 param, grid_block_number)
-            time_year, result_array = parameters.removeRepetiting(
+            time_year, result_array = parameters.remove_repetiting(
                 time_year, result_array)
         else:
             fileReader = self._read_file()
@@ -605,8 +605,8 @@ class PlotTough(object):
         df = pd.DataFrame(index=range(len(X)))
         df[pc.X_CAPS] = X
         df[pc.Z_CAPS] = Z
-        Zvalues, Ztotal = self.modifier.getgridnumber(df, pc.Z_CAPS)
-        Xvalues, Xtotal = self.modifier.getgridnumber(df, pc.X_CAPS)
+        Zvalues, Ztotal = self.modifier.get_grid_number(df, pc.Z_CAPS)
+        Xvalues, Xtotal = self.modifier.get_grid_number(df, pc.X_CAPS)
         xi, yi = np.meshgrid(X, Z)
         orig_data = fileReader.get_element_data(timer, param)
         data = np.asarray(orig_data)

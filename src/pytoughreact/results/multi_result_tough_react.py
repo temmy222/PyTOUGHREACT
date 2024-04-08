@@ -179,7 +179,7 @@ class MultiResultReact(object):
                 result_data = tough_data.get_layer_data(directionY, layer_num, time, self.prop[j])
                 if self.x_slice_value is not None:
                     inter = t2Utilities()
-                    time_data, result_data = inter.cutdata(x_data, result_data, self.x_slice_value)
+                    time_data, result_data = inter.trim_data_points(x_data, result_data, self.x_slice_value)
                 time_data_label = self.prop[j] + 'time' + str(i) + str(j)
                 result_data_label = self.prop[j] + 'result' + str(i) + str(j)
                 data_table[time_data_label] = pd.Series(x_data)
@@ -214,7 +214,7 @@ class MultiResultReact(object):
                 result_data = tough_data.get_layer_data(directionY, layer_num, time, self.prop[i])
                 if self.x_slice_value is not None:
                     utilities_instance = t2Utilities()
-                    time_data, result_data = utilities_instance.cutdata(x_data, result_data, self.x_slice_value)
+                    time_data, result_data = utilities_instance.trim_data_points(x_data, result_data, self.x_slice_value)
                 time_data_label = self.prop[i] + 'time' + str(i) + str(j)
                 result_data_label = self.prop[i] + 'result' + str(i) + str(j)
                 data_table[time_data_label] = pd.Series(x_data)
@@ -245,7 +245,7 @@ class MultiResultReact(object):
                 time_data = tough_data.convert_times(format_of_date)
                 if self.x_slice_value is not None:
                     utilities_instance = t2Utilities()
-                    time_data, result_data = utilities_instance.cutdata(time_data, result_data, self.x_slice_value)
+                    time_data, result_data = utilities_instance.trim_data_points(time_data, result_data, self.x_slice_value)
                 time_data_label = self.prop[j] + 'time' + str(i) + str(j)
                 result_data_label = self.prop[j] + 'result' + str(i) + str(j)
                 data_table[time_data_label] = pd.Series(time_data)

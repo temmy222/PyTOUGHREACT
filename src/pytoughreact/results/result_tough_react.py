@@ -87,9 +87,9 @@ class ResultReact(object):
 
         """
         find_connection = t2UtilitiesToughReact(self.filelocation, 'CONNE')
-        find_connection.findword()
-        find_connection.sliceoffline()
-        find_connection.writetofile()
+        find_connection.find_word()
+        find_connection.slice_off_line()
+        find_connection.write_to_file()
         with open('test.txt') as f:
             grid_blocks = f.read().splitlines()
         return grid_blocks
@@ -110,7 +110,7 @@ class ResultReact(object):
         unprocessed_time_data = list(time_data)
         value = t2Utilities()
         if len(unprocessed_time_data) > 15:
-            time_data = value.choplist(unprocessed_time_data, 15)
+            time_data = value.chop_list(unprocessed_time_data, 15)
             return time_data
         return unprocessed_time_data
 
@@ -156,7 +156,7 @@ class ResultReact(object):
         final_timeseries_data = list(final_timeseries_data)
         value = t2Utilities()
         if len(final_timeseries_data) > 15:
-            final_timeseries_data = value.choplist(final_timeseries_data, 15)
+            final_timeseries_data = value.chop_list(final_timeseries_data, 15)
             return final_timeseries_data
         return final_timeseries_data
 
