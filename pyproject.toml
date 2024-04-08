@@ -10,7 +10,7 @@ testpaths = [
 
 [project]
 name = "pytoughreact"
-version = "1.0.3"
+version = "1.0.4"
 dependencies = [
   "numpy>=1",
   "scipy>=1",
