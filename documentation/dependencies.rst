@@ -2,7 +2,7 @@ Dependencies
 ================
 **Python**: Python > 3.7
 
-1. VTK >=1
+1. VTK $\geq$ 1
 2. Scipy >=1
 3. Numpy >=1
 4. Matplotlib >=3
