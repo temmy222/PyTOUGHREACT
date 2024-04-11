@@ -227,7 +227,7 @@ Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/
 
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/temmy222/PyTOUGHREACT/blob/master/LICENSE)
 
 ## Tests
 
