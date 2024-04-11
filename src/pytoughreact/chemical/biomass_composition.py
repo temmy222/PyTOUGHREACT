@@ -72,13 +72,13 @@ class Gas(object):
         """
         output = {self: [uptake, ks, kc, knc, kh]}
         if kc is not None:
-            process.NumOfCompetiting += 1
+            process.number_competiting += 1
         if knc is not None:
-            process.NumOfNonCompetiting += 1
+            process.number_of_non_competiting += 1
         if kh is not None:
-            process.NumOfHaldane += 1
-        process.componentParams = output
-        process.allProcesses.append(output)
+            process.number_of_haldane += 1
+        process.component_params = output
+        process.all_processes.append(output)
         return output, process
 
 
@@ -117,13 +117,13 @@ class WaterBio(object):
         """
         output = {self: [uptake, ks, kc, knc, kh]}
         if kc is not None:
-            process.NumOfCompetiting += 1
+            process.number_competiting += 1
         if knc is not None:
-            process.NumOfNonCompetiting += 1
+            process.number_of_non_competiting += 1
         if kh is not None:
-            process.NumOfHaldane += 1
-        process.componentParams = output
-        process.allProcesses.append(output)
+            process.number_of_haldane += 1
+        process.component_params = output
+        process.all_processes.append(output)
         return output, process
 
 
@@ -313,13 +313,13 @@ class BaseComponent(object):
         """
         output = {self: [uptake, ks, kc, knc, kh]}
         if kc is not None:
-            process.NumOfCompetiting += 1
+            process.number_competiting += 1
         if knc is not None:
-            process.NumOfNonCompetiting += 1
+            process.number_of_non_competiting += 1
         if kh is not None:
-            process.NumOfHaldane += 1
-        process.componentParams = output
-        process.allProcesses.append(output)
+            process.number_of_haldane += 1
+        process.component_params = output
+        process.all_processes.append(output)
         return output, process
 
     def default_toluene(self):

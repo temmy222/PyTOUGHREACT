@@ -172,10 +172,10 @@ class Process(object):
         self.yield_mass = yield_mass
         self.mumax = mumax
         self.biomass = biomass
-        self.waterParams = water_params
-        self.gasParams = gas_params
-        self.componentParams = component_params
-        self.allProcesses = []
+        self.water_params = water_params
+        self.gas_params = gas_params
+        self.component_params = component_params
+        self.all_processes = []
         self.number_competiting = number_competiting
         self.number_of_non_competiting = number_of_non_competiting
         self.number_of_haldane = number_of_haldane
@@ -192,7 +192,7 @@ class Process(object):
         num_of_competiting : int
             Number of Competiting species
         """
-        self.componentParams.values()
+        self.component_params.values()
 
     def get_uptake(self):
         """ Function that retrieves uptake information
@@ -206,7 +206,7 @@ class Process(object):
             list of uptake parameters
         """
         output = []
-        for process in self.allProcesses:
+        for process in self.all_processes:
             uptake_values = list(process.values())[0][0]
             output.append(uptake_values)
         return output
@@ -224,8 +224,8 @@ class Process(object):
         """
         dict_output = {}
         output = []
-        for i in reversed(range(len(self.allProcesses))):
-            uptake_values = list(self.allProcesses[i].values())[0][1]
+        for i in reversed(range(len(self.all_processes))):
+            uptake_values = list(self.all_processes[i].values())[0][1]
             dict_output[i + 1] = uptake_values
             if uptake_values is not None:
                 output.append(dict_output)
@@ -246,8 +246,8 @@ class Process(object):
         """
         dict_output = {}
         output = []
-        for i in range(len(self.allProcesses)):
-            uptake_values = list(self.allProcesses[i].values())[0][2]
+        for i in range(len(self.all_processes)):
+            uptake_values = list(self.all_processes[i].values())[0][2]
             dict_output[i + 1] = uptake_values
             if uptake_values is not None:
                 output.append(dict_output)
@@ -267,8 +267,8 @@ class Process(object):
         """
         dict_output = {}
         output = []
-        for i in range(len(self.allProcesses)):
-            uptake_values = list(self.allProcesses[i].values())[0][3]
+        for i in range(len(self.all_processes)):
+            uptake_values = list(self.all_processes[i].values())[0][3]
             dict_output[i + 1] = uptake_values
             if uptake_values is not None:
                 output.append(dict_output)
@@ -288,8 +288,8 @@ class Process(object):
         """
         dict_output = {}
         output = []
-        for i in range(len(self.allProcesses)):
-            uptake_values = list(self.allProcesses[i].values())[0][4]
+        for i in range(len(self.all_processes)):
+            uptake_values = list(self.all_processes[i].values())[0][4]
             dict_output[i + 1] = uptake_values
             if uptake_values is not None:
                 output.append(dict_output)
