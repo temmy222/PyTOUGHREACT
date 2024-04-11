@@ -120,9 +120,9 @@ class BIODG(object):
         index : int
             Index and Base Parameter
         """
-        print(len(process.allProcesses))
-        for i in range(len(process.allProcesses)):
-            first = process.allProcesses[i]
+        print(len(process.all_processes))
+        for i in range(len(process.all_processes)):
+            first = process.all_processes[i]
             keys = list(first.keys())
             values = list(first.values())
             if values[0][1] is not None:
