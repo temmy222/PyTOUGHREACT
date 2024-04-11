@@ -66,7 +66,7 @@ class FileReadSingle(object):
     def __repr__(self):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle + ' for ' + self.simulatortype
 
-    def validateFile(self):
+    def validate_file(self):
         """ Validate File
 
         Parameters
@@ -80,7 +80,7 @@ class FileReadSingle(object):
         if type(self.filelocation) != type(self.filetitle):
             print('Values can either be strings or lists')
 
-    def getSimulatorType(self):
+    def get_simulator_type(self):
         """ Get Simulator Type
 
         Parameters
@@ -93,9 +93,8 @@ class FileReadSingle(object):
         """
         return self.simulatortype
 
-    def plotTime(self, param, gridblocknumber, format_of_date='year', labels=None, singlePlot=False, style='horizontal',
-                 width=12,
-                 height=8):
+    def plot_time(self, param, gridblocknumber, format_of_date='year', labels=None, single_plot=False,
+                  style='horizontal', width=12, height=8):
         """ Make Plot of parameter with time
 
         Parameters
@@ -126,10 +125,10 @@ class FileReadSingle(object):
                                  restart_files=self.full_args,
                                  experiment=self.expt)
             if self.full_args is None:
-                plottest.plotParamWithTime(param, gridblocknumber, format_of_date)
+                plottest.plot_param_with_time(param, gridblocknumber, format_of_date)
             else:
-                plottest.plotParamWithTimeRestart(param, gridblocknumber, format_of_date)
-        elif isinstance(param, list) and isinstance(self.filelocation, str) and singlePlot is False:
+                plottest.plot_param_with_time_restart(param, gridblocknumber, format_of_date)
+        elif isinstance(param, list) and isinstance(self.filelocation, str) and single_plot is False:
             plottest = PlotMultiTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
                                       restart_files=self.full_args,
                                       experiment=self.expt)
@@ -137,15 +136,15 @@ class FileReadSingle(object):
                 plottest.multi_time_plot(param, gridblocknumber, format_of_date, style)
             else:
                 plottest.multi_time_plot_restart(param, gridblocknumber, format_of_date, style)
-        elif isinstance(param, list) and isinstance(self.filelocation, str) and singlePlot is True:
+        elif isinstance(param, list) and isinstance(self.filelocation, str) and single_plot is True:
             plottest = PlotMultiTough(self.simulatortype, self.filelocation, self.filetitle, generation=self.generation,
                                       restart_files=self.full_args,
                                       experiment=self.expt,
                                       x_slice_value=self.x_slice_value)
             if self.full_args is None:
-                plottest.plotMultiParamSinglePlot(param, gridblocknumber, format_of_date, labels)
+                plottest.plot_multi_param_single_plot(param, gridblocknumber, format_of_date, labels)
 
-    def plotParamWithParam(self, param1, param2, gridblocknumber):
+    def plot_param_with_param(self, param1, param2, gridblocknumber):
         """ Make Plot of parameter with parameter
 
         Parameters
@@ -163,16 +162,16 @@ class FileReadSingle(object):
 
         """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
-        plottest.plotParamWithParam(param1, param2, gridblocknumber)
+        plottest.plot_param_with_param(param1, param2, gridblocknumber)
 
-    def plotParamWithLayer(self, directionXAxis, directionYAxis, param, layer_num, time):
+    def plot_param_with_layer(self, direction_x_axis, direction_y_axis, param, layer_num, time):
         """ Make Plot of parameter with layer
 
         Parameters
         -----------
-        directionXAxis : string
+        direction_x_axis : string
             Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
-        directionYAxis : string
+        direction_y_axis : string
             Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
         param: string
             Parameter to be plotted
@@ -186,9 +185,9 @@ class FileReadSingle(object):
 
         """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
-        plottest.plotParamWithLayer(directionXAxis, directionYAxis, param, layer_num, time)
+        plottest.plot_param_with_layer(direction_x_axis, direction_y_axis, param, layer_num, time)
 
-    def plot2D(self, direction1, direction2, param, timer, grid_type='plain'):
+    def plot_2d(self, direction1, direction2, param, timer, grid_type='plain'):
         """ Make 2D plot either gridded or not gridded
 
         Parameters
@@ -210,8 +209,8 @@ class FileReadSingle(object):
         """
         plottest = PlotTough(self.simulatortype, self.filelocation, self.filetitle)
         if grid_type == 'plain':
-            plottest.plot2D_one(direction1, direction2, param, timer)
+            plottest.plot_2d_one(direction1, direction2, param, timer)
         elif grid_type == 'grid':
-            plottest.plot2D_withgrid(direction1, direction2, param, timer)
+            plottest.plot_2d_with_grid(direction1, direction2, param, timer)
         else:
             print('Type can either be plain or grid')

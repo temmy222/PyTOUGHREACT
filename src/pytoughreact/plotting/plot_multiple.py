@@ -67,8 +67,8 @@ class PlotMultiple(object):
         self.per_file = kwargs.get('per_file')
         self.title = kwargs.get('title')
 
-    def plotTime(self, grid_block_number, legend, plot_kind='property',
-                 format_of_date='day'):
+    def plot_time(self, grid_block_number, legend, plot_kind='property',
+                  format_of_date='day'):
         """ Line Plots of a parameter in the results file as a function of time
 
         Parameters
@@ -92,13 +92,13 @@ class PlotMultiple(object):
                                   x_slice_value=self.x_slice_value,
                                   per_file=self.per_file, title=self.title)
         if len(self.props) == 1:
-            plottest.multiFileSinglePlot(grid_block_number, legend)
+            plottest.multi_file_single_plot(grid_block_number, legend)
         else:
-            plottest.plotMultiElementMultiFile(grid_block_number, legend,
-                                               format_of_date, plot_kind)
+            plottest.plot_multi_element_multi_file(grid_block_number, legend,
+                                                   format_of_date, plot_kind)
 
-    def plotTimePerPanel(self, grid_block_number, panels,
-                         format_of_date='day'):
+    def plot_time_per_panel(self, grid_block_number, panels,
+                            format_of_date='day'):
         """ Plot Multiple plots in a panel
 
         Parameters
@@ -119,10 +119,10 @@ class PlotMultiple(object):
                                   self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value,
                                   per_file=self.per_file, title=self.title)
-        plottest.plotMultiPerPanel(grid_block_number, panels, format_of_date)
+        plottest.plot_multi_per_panel(grid_block_number, panels, format_of_date)
 
-    def plotParamWithLayer(self, direction_x, direction_y, layer_num, time,
-                           legend):
+    def plot_param_with_layer(self, direction_x, direction_y, layer_num, time,
+                              legend):
         """ Plot of Parameter with Layer
 
         Parameters
@@ -149,5 +149,5 @@ class PlotMultiple(object):
         if len(self.props) == 1:
             pass
         else:
-            plottest.plotMultiFileDistance(direction_x, direction_y, time,
-                                           layer_num, legend)
+            plottest.plot_multi_file_distance(direction_x, direction_y, time,
+                                              layer_num, legend)

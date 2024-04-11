@@ -65,7 +65,7 @@ class FileReadMultiple(object):
         self.per_file = kwargs.get('per_file')
         self.title = kwargs.get('title')
 
-    def plotTime(self, grid_block_number, legend, plot_kind='property', format_of_date='day'):
+    def plot_time(self, grid_block_number, legend, plot_kind='property', format_of_date='day'):
         # TODO write code to slice x axis
         # TODO write code to slice through domain
 
@@ -89,11 +89,11 @@ class FileReadMultiple(object):
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
         if len(self.props) == 1:
-            plottest.multiFileSinglePlot(grid_block_number, legend)
+            plottest.multi_file_single_plot(grid_block_number, legend)
         else:
-            plottest.plotMultiElementMultiFile(grid_block_number, legend, format_of_date, plot_kind)
+            plottest.plot_multi_element_multi_file(grid_block_number, legend, format_of_date, plot_kind)
 
-    def plotTimePerPanel(self, grid_block_number, panels, format_of_date='day'):
+    def plot_time_per_panel(self, grid_block_number, panels, format_of_date='day'):
         """ Plot Multiple plots in a panel
 
         Parameters
@@ -111,16 +111,16 @@ class FileReadMultiple(object):
         """
         plottest = PlotMultiFiles(self.simulator_type, self.file_locations, self.file_titles, self.props,
                                   x_slice_value=self.x_slice_value, per_file=self.per_file, title=self.title)
-        plottest.plotMultiPerPanel(grid_block_number, panels, format_of_date)
+        plottest.plot_multi_per_panel(grid_block_number, panels, format_of_date)
 
-    def plotParamWithLayer(self, directionX, directionY, layer_num, time, legend):
+    def plot_param_with_layer(self, direction_x, direction_y, layer_num, time, legend):
         """ Plot of Parameter with Layer
 
         Parameters
         -----------
-        directionX :  string
+        direction_x :  string
             Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
-        directionY :  string
+        direction_y :  string
             Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
         layer_num: int
             Layer number in which to retrieve data
@@ -138,4 +138,4 @@ class FileReadMultiple(object):
         if len(self.props) == 1:
             pass
         else:
-            plottest.plotMultiFileDistance(directionX, directionY, time, layer_num, legend)
+            plottest.plot_multi_file_distance(direction_x, direction_y, time, layer_num, legend)

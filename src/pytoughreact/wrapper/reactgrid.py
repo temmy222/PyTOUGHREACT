@@ -24,12 +24,12 @@ SOFTWARE.
 '''
 
 from t2grids import t2grid
-from pytoughreact.wrapper.reactzone import t2zone
-from pytoughreact.wrapper.reactblock import t2block
+from pytoughreact.wrapper.reactzone import T2Zone
+from pytoughreact.wrapper.reactblock import T2Block
 from t2data import rocktype
 
 
-class t2reactgrid(t2grid):
+class T2ReactGrid(t2grid):
     def __init__(self):
         """ Initialization of parameters
 
@@ -91,7 +91,7 @@ class t2reactgrid(t2grid):
         resultant_grid : t2reactgrid
             Grid after addition
         """
-        resultant_grid = t2reactgrid()
+        resultant_grid = T2ReactGrid()
         for grid in [self, other]:
             for rt in grid.rocktypelist:
                 resultant_grid.add_rocktype(rt)
@@ -133,7 +133,7 @@ class t2reactgrid(t2grid):
 
         """
         if newblock is None:
-            newblock = t2block()
+            newblock = T2Block()
         if newblock.name in self.block:
             i = self.blocklist.index(self.block[newblock.name])
             self.blocklist[i] = newblock
@@ -154,7 +154,7 @@ class t2reactgrid(t2grid):
 
         """
         if newzone is None:
-            newzone = t2zone()
+            newzone = T2Zone()
         if newzone.name in self.zone:
             i = self.zonelist.index(self.zone[newzone.name])
             self.zonelist[i] = newzone

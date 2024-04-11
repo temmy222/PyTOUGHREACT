@@ -28,7 +28,7 @@ import shutil
 import itertools
 
 
-class t2UtilitiesToughReact(object):
+class T2UtilitiesToughReact(object):
     # takes in file names as a list
     """
     This class prepares the output files from TOUGHREACT for plot visualizations and analysis
@@ -109,12 +109,12 @@ class t2UtilitiesToughReact(object):
 
         """
         # find the position of a word
-        with open(self.file2) as myFile:
-            for num, line in enumerate(myFile, 1):
+        with open(self.file2) as my_file:
+            for num, line in enumerate(my_file, 1):
                 if self.word in line:
                     point1 = num
                     return point1
-        myFile.close()
+        my_file.close()
 
     def slice_off_file(self):
         """ This method slices off all parameters below the word stated in the instance of the class

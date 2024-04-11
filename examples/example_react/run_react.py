@@ -25,16 +25,16 @@ SOFTWARE.
 
 import os
 from mulgrids import mulgrid
-from pytoughreact.writers.react_writing import t2react
+from pytoughreact.writers.react_writing import T2React
 from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
-from pytoughreact.wrapper.reactgrid import t2reactgrid
-from pytoughreact.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactgrid import T2ReactGrid
+from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
-from pytoughreact.writers.chemical_writing import t2chemical
+from pytoughreact.writers.chemical_writing import T2Chemical
 from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
-from pytoughreact.writers.solute_writing import t2solute
+from pytoughreact.writers.solute_writing import T2Solute
 from t2grids import rocktype
 
 # __________________________________FLOW.INP______________________________________________________
@@ -46,13 +46,13 @@ dz = [0.5] * 1
 geo = mulgrid().rectangular(dx, dy, dz)
 geo.write('geom.dat')
 
-react = t2react()
+react = T2React()
 react.title = 'Reaction example'
 
 react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
                'num_secondary_parameters': 6}
 
-react.grid = t2reactgrid().fromgeo(geo)
+react.grid = T2ReactGrid().fromgeo(geo)
 
 react.parameter.update(
     {'print_level': 4,
@@ -73,7 +73,7 @@ react.grid.add_rocktype(sand)
 for blk in react.grid.blocklist[0:]:
     blk.rocktype = react.grid.rocktype[sand.name]
 
-zone1 = t2zone('zone1')
+zone1 = T2Zone('zone1')
 
 react.grid.add_zone(zone1)
 
@@ -113,7 +113,8 @@ al_comp1 = WaterComp(al, 1, 1E-10, 9.96E-5)
 fe_comp1 = WaterComp(fe, 1, 1E-10, 9.7E-9)
 hs_comp1 = WaterComp(hs, 1, 1E-10, 1E-10)
 
-initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1, h4sio4_comp1, al_comp1, fe_comp1, hs_comp1],
+initial_water_zone1 = Water([h2o_comp1, h_comp1, na_comp1, cl_comp1, hco3_comp1, ca_comp1, so4_comp1, mg_comp1,
+                             h4sio4_comp1, al_comp1, fe_comp1, hs_comp1],
                             25, 200)
 
 mineral_list = ['c3fh6', 'tobermorite', 'calcite', 'csh', 'portlandite', 'ettringite', 'katoite', 'hydrotalcite']
@@ -137,23 +138,24 @@ permporozone = PermPoroZone([permporo])
 
 zone1.water = [[initial_water_zone1], []]
 zone1.gas = [[initial_co2], []]
-mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1, katoite_zone1, hydrotalcite_zone1])
+mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1,
+                             ettringite_zone1, katoite_zone1, hydrotalcite_zone1])
 zone1.mineral_zone = mineral_zone1
 zone1.permporo = permporozone
 
-writeChemical = t2chemical(t2reactgrid=react.grid)
-writeChemical.minerals = all_minerals
-writeChemical.title = 'Automating Tough react'
-writeChemical.primary_aqueous = all_species
-writeChemical.gases = initial_co2
-writeChemical.write()
+write_chemical = T2Chemical(t2reactgrid=react.grid)
+write_chemical.minerals = all_minerals
+write_chemical.title = 'Automating Tough react'
+write_chemical.primary_aqueous = all_species
+write_chemical.gases = initial_co2
+write_chemical.write()
 
 # ____________________________________SOLUTE.INP________________________________________________________________
-writeSolute = t2solute(t2chemical=writeChemical)
-writeSolute.nodes_to_write = [0]
-writeSolute.write()
+write_solute = T2Solute(t2chemical=write_chemical)
+write_solute.nodes_to_write = [0]
+write_solute.write()
 
 # ___________________________________ RUN SIMULATION ___________________________________________________________
 print(os.path.dirname(__file__))
-react.run(writeSolute, simulator='treacteos1.exe')
+react.run(write_solute, simulator='treacteos1.exe')
 # react.run(simulator='treacteos1.exe', runlocation=os.getcwd())

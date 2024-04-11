@@ -32,16 +32,16 @@ from pytoughreact.constants.sections import t2solute_sections
 from pytoughreact.constants.defaults_constants import (DEFAULT_OPTIONS, DEFAULT_CONSTRAINTS, DEFAULT_READIO,
                                                        DEFAULT_WEIGHT_DIFFUSION, DEFAULT_TOLERANCE, DEFAULT_PRINTOUT,
                                                        DEFAULT_ZONE)
-from pytoughreact.exceptions.custom_error import ReactiveOptionsError, RequiredInputException, ReactiveConstraintsError
+from pytoughreact.exceptions.custom_error import ReactiveOptionsError, RequiredInputError, ReactiveConstraintsError
 from copy import deepcopy
 
 
-class t2solute_parser(fixed_format_file):
+class T2SoluteParser(fixed_format_file):
     """Class for parsing SOLUTE.INP data file."""
 
     def __init__(self, filename, mode, read_function=default_read_function):
-        super(t2solute_parser, self).__init__(filename, mode,
-                                              t2solute_format_specification, read_function)
+        super(T2SoluteParser, self).__init__(filename, mode,
+                                             t2solute_format_specification, read_function)
 
     def get_reactive_options(self):
         """ Get Reactive Options in SOLUTE.INP.
@@ -302,8 +302,8 @@ class t2solute_parser(fixed_format_file):
             name and properties of the primary species
 
         """
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         for i in range(len(primary_aqueous)):
             if name.lower() == primary_aqueous[i].NAME.strip().lower():
@@ -325,15 +325,15 @@ class t2solute_parser(fixed_format_file):
             name and properties of the mineral
 
         """
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         for i in range(len(minerals)):
             if name.lower() == minerals[i].name.strip().lower():
                 return minerals[i]
 
 
-class t2solute(t2data):
+class T2Solute(t2data):
     """
         Main class for structuring the writing , reading  of solute parameters
     """
@@ -398,7 +398,7 @@ class t2solute(t2data):
         self.read_function = read_function
         self.chemical_zones_to_nodes = self.getgrid_info()
 
-    def getZoneValue(self, dict_to_check, value):
+    def get_zone_value(self, dict_to_check, value):
         """ Get value of a particular zone
 
         Parameters
@@ -451,13 +451,13 @@ class t2solute(t2data):
                     injection_gas = block.zone.gas[1][0]
                 except IndexError:
                     injection_gas = 0
-                initial_water_zone = self.getZoneValue(self.initial_water_index, initial_water)
-                mineral_zone = self.getZoneValue(self.mineral_index, mineral_in_block)
-                perm_poro_zone = self.getZoneValue(self.perm_poro_index, perm_poro)
+                initial_water_zone = self.get_zone_value(self.initial_water_index, initial_water)
+                mineral_zone = self.get_zone_value(self.mineral_index, mineral_in_block)
+                perm_poro_zone = self.get_zone_value(self.perm_poro_index, perm_poro)
                 try:
-                    initial_gas_zone = self.getZoneValue(self.initial_gas_index, initial_gas)
-                    boundary_water_zone = self.getZoneValue(self.boundary_water_index, boundary_water)
-                    injection_gas_zone = self.getZoneValue(self.injection_gas_index, injection_gas)
+                    initial_gas_zone = self.get_zone_value(self.initial_gas_index, initial_gas)
+                    boundary_water_zone = self.get_zone_value(self.boundary_water_index, boundary_water)
+                    injection_gas_zone = self.get_zone_value(self.injection_gas_index, injection_gas)
                 except ValueError:
                     boundary_water_zone = 1
                     injection_gas_zone = 1
@@ -547,7 +547,7 @@ class t2solute(t2data):
 
     present_sections = property(get_present_sections)
 
-    def getGridBlocks(self):
+    def get_grid_blocks(self):
         """ Return name of grid blocks.
 
         Parameters
@@ -565,7 +565,7 @@ class t2solute(t2data):
             blk.append(t2block.name)
         return blk
 
-    def getInitialWaterIndex(self):
+    def get_initial_water_index(self):
         """ Get Initial Water Index.
 
         Parameters
@@ -585,7 +585,7 @@ class t2solute(t2data):
         val_list = list(water_dict.values())
         return key_list, val_list
 
-    def getInitialWater(self):
+    def get_initial_water(self):
         """ Get Initial Water Parameters.
 
         Parameters
@@ -603,7 +603,7 @@ class t2solute(t2data):
             zone_water.append(blk.zone.water[0])
         return zone_water
 
-    def getBoundaryWaterIndex(self):
+    def get_boundary_water_index(self):
         """ Get Boundary Water Index.
 
         Parameters
@@ -623,7 +623,7 @@ class t2solute(t2data):
         val_list = list(water_dict.values())
         return key_list, val_list
 
-    def getBoundaryWater(self):
+    def get_boundary_water(self):
         """ Get Boundary Water Parameters.
 
         Parameters
@@ -641,7 +641,7 @@ class t2solute(t2data):
             zone_water.append(blk.zone.water[1])
         return zone_water
 
-    def getMineral(self):
+    def get_mineral(self):
         """ Get Mineral Parameters.
 
         Parameters
@@ -861,7 +861,7 @@ class t2solute(t2data):
         """
         params = infile.get_readio()
         if len(params) == 0:
-            raise RequiredInputException
+            raise RequiredInputError
         else:
             self.__dict__['readio']['database'] = params[0]
             self.__dict__['readio']['iteration_info'] = params[1]
@@ -905,7 +905,7 @@ class t2solute(t2data):
         """
         params = infile.get_weight_diffusion()
         if len(params) == 0:
-            raise RequiredInputException
+            raise RequiredInputError
         else:
             self.__dict__['weight_diffusion']['time_weighting'] = float(params[0])
             self.__dict__['weight_diffusion']['upstream_weighting'] = float(params[1])
@@ -946,7 +946,7 @@ class t2solute(t2data):
         """
         params = infile.get_tolerance_values()
         if len(params) == 0:
-            raise RequiredInputException
+            raise RequiredInputError
         else:
             self.__dict__['tolerance']['maximum_iterations_transport'] = int(params[0])
             self.__dict__['tolerance']['transport_tolerance'] = float(params[1])
@@ -992,7 +992,7 @@ class t2solute(t2data):
         """
         params = infile.get_printout_options()
         if len(params) == 0:
-            raise RequiredInputException
+            raise RequiredInputError
         else:
             self.__dict__['printout']['printout_frequency'] = int(params[0])
             self.__dict__['printout']['number_of_gridblocks'] = int(params[1])
@@ -1233,7 +1233,7 @@ class t2solute(t2data):
         """
         params = infile.get_default_chemical_zones()
         if len(params) == 0:
-            raise RequiredInputException
+            raise RequiredInputError
         else:
             self.__dict__['chemical_zones']['IZIWDF'] = int(params[0])
             self.__dict__['chemical_zones']['IZBWDF'] = int(params[1])
@@ -1400,7 +1400,7 @@ class t2solute(t2data):
             filename = 'solute.inp'
         self.update_sections()
         self.update_read_write_functions()
-        outfile = t2solute_parser(filename, 'w')
+        outfile = T2SoluteParser(filename, 'w')
         for keyword in self._sections:
             self.write_fn[keyword](outfile)
             outfile.write('\n')
@@ -1435,7 +1435,7 @@ class t2solute(t2data):
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = t2solute_parser(self.filename, mode, read_function=self.read_function)
+        infile = T2SoluteParser(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
         self._sections = []
         self.update_read_write_functions()

@@ -24,7 +24,7 @@ SOFTWARE.
 '''
 
 
-class t2zone(object):
+class T2Zone(object):
     def __init__(self, name='default', water=None, mineral=None, gas=None, permporo=None, adsorption=None,
                  decay=None, cation=None):
         """ Initialization of parameters

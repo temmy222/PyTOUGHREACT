@@ -39,16 +39,16 @@ from fixed_format_file import default_read_function
 from pytoughreact.constants.format_specifications import t2bio_format_specification
 from pytoughreact.constants.sections import t2bio_sections
 from pytoughreact.constants.defaults_constants import DEFAULT_PARAMETERS
-from pytoughreact.chemical.biomass_composition import BaseComponent, Gas, Water_Bio, Biomass
+from pytoughreact.chemical.biomass_composition import BaseComponent, Gas, WaterBio, Biomass
 from pytoughreact.chemical.bio_process_description import Process, BIODG
 
 
-class t2bio_parser(fixed_format_file):
+class T2BioParser(fixed_format_file):
     """Class for parsing TMVOC data file."""
 
     def __init__(self, filename, mode, read_function=default_read_function):
-        super(t2bio_parser, self).__init__(filename, mode,
-                                           t2bio_format_specification, read_function)
+        super(T2BioParser, self).__init__(filename, mode,
+                                          t2bio_format_specification, read_function)
 
     def read_multi_value_line(self, variable, linetype):
         """ Reads a line of parameter multi values from the file into a dictionary variable.
@@ -99,7 +99,7 @@ class t2bio_parser(fixed_format_file):
             variable[linetype] = vals
 
 
-class t2bio(t2data):
+class T2Bio(t2data):
     """Class for TMVOC data."""
 
     def __init__(self, filename='', meshfilename='',
@@ -434,22 +434,27 @@ class t2bio(t2data):
             fifth_line = infile.read_values('chemp1.5')
             sixth_line = infile.read_values('chemp1.6')
             seventh_line = infile.read_values('chemp1.7')
-            comp = BaseComponent(name=comp_name[0], critTemp=first_line[0], critPres=first_line[1],
-                                 critComp=first_line[2],
-                                 acentricFactor=first_line[3], dipoleMoment=first_line[4],
-                                 boilPoint=second_line[0], vapPressA=second_line[1], vapPressB=second_line[2],
-                                 vapPressC=second_line[3], vapPressD=second_line[4],
-                                 molWeight=third_line[0], heatCapConstantA=third_line[1],
-                                 heatCapConstantB=third_line[2], heatCapConstantC=third_line[3],
-                                 heatCapConstantD=third_line[4],
-                                 liqDensity=fourth_line[0], refTempForDensity=fourth_line[1],
-                                 refBinaryDif=fourth_line[2], refTempForDif=fourth_line[3], expChemDif=fourth_line[4],
-                                 liqVisConstA=fifth_line[0], liqVisConstB=fifth_line[1], liqVisConstC=fifth_line[2],
-                                 liqVisConstD=fifth_line[3], liqCritVol=fifth_line[4],
-                                 liqChemSolA=sixth_line[0], liqChemSolB=sixth_line[1], liqChemSolC=sixth_line[2],
-                                 liqChemSolD=sixth_line[3],
-                                 carbonPartCoefficient=seventh_line[0], fracCarbon=seventh_line[1],
-                                 decayConstant=seventh_line[2])
+            comp = BaseComponent(name=comp_name[0], critical_temperature=first_line[0], critical_pressure=first_line[1],
+                                 critical_composition=first_line[2],
+                                 acentric_factor=first_line[3], dipole_moment=first_line[4],
+                                 boiling_point=second_line[0], vapor_pressure_a=second_line[1],
+                                 vapor_pressure_b=second_line[2],
+                                 vapor_pressure_c=second_line[3], vapor_pressure_d=second_line[4],
+                                 molecular_weight=third_line[0], heat_capacity_constant_a=third_line[1],
+                                 heat_capacity_constant_b=third_line[2], heat_capacity_constant_c=third_line[3],
+                                 heat_capacity_constant_d=third_line[4],
+                                 liquid_density=fourth_line[0], reference_temp_for_density=fourth_line[1],
+                                 reference_binary_difference=fourth_line[2],
+                                 reference_temperature_for_difference=fourth_line[3],
+                                 exponent_chemical_difference=fourth_line[4],
+                                 liquid_viscosity_constant_a=fifth_line[0], liquid_viscosity_constant_b=fifth_line[1],
+                                 liquid_viscosity_constant_c=fifth_line[2],
+                                 liquid_viscosity_constant_d=fifth_line[3], liquid_critical_volume=fifth_line[4],
+                                 liquid_chemical_solubility_a=sixth_line[0], liquid_chemical_solubility_b=sixth_line[1],
+                                 liquid_chemical_solubility_c=sixth_line[2],
+                                 liquid_chemical_solubility_d=sixth_line[3],
+                                 carbon_part_coefficient=seventh_line[0], fractional_carbon=seventh_line[1],
+                                 decay_constant=seventh_line[2])
             all_comp.append(comp)
         self.components = all_comp
 
@@ -472,19 +477,19 @@ class t2bio(t2data):
         for component in self.components:
             vals = component.name
             outfile.write(vals + '\n')
-            vals = component.getFirstSet()
+            vals = component.get_first_set()
             outfile.write_values(vals, 'chemp1.1')
-            vals = component.getSecondSet()
+            vals = component.get_second_set()
             outfile.write_values(vals, 'chemp1.2')
-            vals = component.getThirdSet()
+            vals = component.get_third_set()
             outfile.write_values(vals, 'chemp1.3')
-            vals = component.getFourthSet()
+            vals = component.get_fourth_set()
             outfile.write_values(vals, 'chemp1.4')
-            vals = component.getFifthSet()
+            vals = component.get_fifth_set()
             outfile.write_values(vals, 'chemp1.5')
-            vals = component.getSixthSet()
+            vals = component.get_sixth_set()
             outfile.write_values(vals, 'chemp1.6')
-            vals = component.getSeventhSet()
+            vals = component.get_seventh_set()
             outfile.write_values(vals, 'chemp1.7')
         # outfile.write(str(comp_total) + '\n')
         pass
@@ -585,7 +590,7 @@ class t2bio(t2data):
             biomass_class = Biomass(index=i + 1, name='biom' + str(i), init_conc=biomass_1[0], min_conc=biomass_1[1],
                                     max_temp=biomass_1[2], death_rate=biomass_1[3], inhibition_constant=biomass_1[4])
             biomass_details.append(biomass_class)
-        water_component = [Water_Bio('H2O')]
+        water_component = [WaterBio('H2O')]
         all_components = water_component + self.gas + self.components
         dicta_all = []
         # for i in range(len(all_components)):
@@ -596,35 +601,36 @@ class t2bio(t2data):
         for i in range(len(process_details)):
             dicta_all = self.reset_bio_dicta(all_components)
             process = Process(biomass=biomass_details[process_details[i][0][1] - 1],
-                              numberOfComponents=process_details[i][0][0],
+                              number_of_components=process_details[i][0][0],
                               mumax=process_details[i][0][2], yield_mass=process_details[i][0][3],
-                              NumOfCompetiting=process_details[i][0][4], NumOfNonCompetiting=process_details[i][0][5],
-                              NumOfHaldane=process_details[i][0][6], enthalpy=process_details[i][0][7])
+                              number_competiting=process_details[i][0][4],
+                              number_of_non_competiting=process_details[i][0][5],
+                              number_of_haldane=process_details[i][0][6], enthalpy=process_details[i][0][7])
             for j in range(len(all_components)):
                 dicta_all[j][all_components[j]].append(process_details[i][5][j])
                 for k in range(len(process_details[i][1])):
                     if process_details[i][1][k] == j + 1:
                         dicta_all[j][all_components[j]].append(process_details[i][1][k + 1])
                 if len(dicta_all[j][all_components[j]]) == 1:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0])
+                    all_components[j].add_to_process(process, dicta_all[j][all_components[j]][0])
                 elif len(dicta_all[j][all_components[j]]) == 2:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
-                                                   dicta_all[j][all_components[j]][1])
+                    all_components[j].add_to_process(process, dicta_all[j][all_components[j]][0],
+                                                     dicta_all[j][all_components[j]][1])
                 elif len(dicta_all[j][all_components[j]]) == 3:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
-                                                   dicta_all[j][all_components[j]][1],
-                                                   dicta_all[j][all_components[j]][2])
+                    all_components[j].add_to_process(process, dicta_all[j][all_components[j]][0],
+                                                     dicta_all[j][all_components[j]][1],
+                                                     dicta_all[j][all_components[j]][2])
                 elif len(dicta_all[j][all_components[j]]) == 4:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
-                                                   dicta_all[j][all_components[j]][1],
-                                                   dicta_all[j][all_components[j]][2],
-                                                   dicta_all[j][all_components[j]][3])
+                    all_components[j].add_to_process(process, dicta_all[j][all_components[j]][0],
+                                                     dicta_all[j][all_components[j]][1],
+                                                     dicta_all[j][all_components[j]][2],
+                                                     dicta_all[j][all_components[j]][3])
                 elif len(dicta_all[j][all_components[j]]) == 5:
-                    all_components[j].addToProcess(process, dicta_all[j][all_components[j]][0],
-                                                   [j][all_components[j]][1],
-                                                   dicta_all[j][all_components[j]][2],
-                                                   dicta_all[j][all_components[j]][3],
-                                                   dicta_all[j][all_components[j]][4])
+                    all_components[j].add_to_process(process, dicta_all[j][all_components[j]][0],
+                                                     dicta_all[j][all_components[j]][1],
+                                                     dicta_all[j][all_components[j]][2],
+                                                     dicta_all[j][all_components[j]][3],
+                                                     dicta_all[j][all_components[j]][4])
             all_processes.append(process)
         biodegradation = BIODG(imonod=params[0], bfac=params[2], sw1=params[4], sw2=params[5], wea=params[6],
                                wsub=params[7],
@@ -645,17 +651,17 @@ class t2bio(t2data):
         """
         outfile.write('BIODG\n')
         value = self.biodg[0]
-        vals = value.getFirstSet()
+        vals = value.get_first_set()
         # numberOfBiomass = value.getNumberOfBiomasses()
         outfile.write_values(vals, 'biodg')
         vals = [len(value.processes)]
         outfile.write_values(vals, 'biodg1')
         for i in range(len(value.processes)):
-            sub_degrade = value.processes[i].getKs()
-            comp_degrade = value.processes[i].getKc()
-            ncomp_degrade = value.processes[i].getKnc()
-            h_degrade = value.processes[i].getKh()
-            uptake = value.processes[i].getUptake()
+            sub_degrade = value.processes[i].get_ks()
+            comp_degrade = value.processes[i].get_kc()
+            ncomp_degrade = value.processes[i].get_knc()
+            h_degrade = value.processes[i].get_kh()
+            uptake = value.processes[i].get_uptake()
             vals = [len(sub_degrade), value.processes[i].biomass.index, value.processes[i].mumax,
                     value.processes[i].yield_mass,
                     value.processes[i].NumOfCompetiting, value.processes[i].NumOfNonCompetiting,
@@ -907,7 +913,7 @@ class t2bio(t2data):
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = t2bio_parser(self.filename, mode, read_function=self.read_function)
+        infile = T2BioParser(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
         self._sections = []
         more = True
@@ -939,7 +945,7 @@ class t2bio(t2data):
             self.meshfilename = meshfilename
             if isinstance(meshfilename, str):
                 mode = 'r' if sys.version_info > (3,) else 'rU'
-                meshfile = t2bio_parser(self.meshfilename, mode, read_function=self.read_function)
+                meshfile = T2BioParser(self.meshfilename, mode, read_function=self.read_function)
                 self.read_meshfile(meshfile)
                 meshfile.close()
             elif isinstance(meshfilename, (list, tuple)):
@@ -993,7 +999,7 @@ class t2bio(t2data):
             self.meshfilename = meshfilename
         if self.meshfilename:
             if isinstance(self.meshfilename, str):
-                meshfile = t2bio_parser(self.meshfilename, 'w')
+                meshfile = T2BioParser(self.meshfilename, 'w')
                 self.write_blocks(meshfile)
                 self.write_connections(meshfile)
                 meshfile.close()
@@ -1004,7 +1010,7 @@ class t2bio(t2data):
                     mesh_sections = ['ELEME', 'CONNE']
         if self.type == 'AUTOUGH2':
             self.write_extra_precision(extra_precision, echo_extra_precision)
-        outfile = t2bio_parser(self.filename, 'w')
+        outfile = T2BioParser(self.filename, 'w')
         self.write_title(outfile)
         for keyword in self._sections:
             if (keyword not in mesh_sections) and \

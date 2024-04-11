@@ -26,7 +26,7 @@ from t2data import rocktype
 import numpy as np
 
 
-class t2block(object):
+class T2Block(object):
     """Grid block"""
     def __init__(self, name='     ', volume=1.0, blockrocktype=None, blockzone=None,
                  centre=None, atmosphere=False, ahtx=None, pmx=None,

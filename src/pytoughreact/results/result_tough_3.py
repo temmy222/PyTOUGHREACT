@@ -28,7 +28,7 @@ import numpy as np
 import csv
 import collections
 import itertools
-from pytoughreact.utilities.t2_utilities import t2Utilities
+from pytoughreact.utilities.t2_utilities import T2Utilities
 
 
 class ResultTough3(object):
@@ -132,7 +132,7 @@ class ResultTough3(object):
 
         """
         intermediate = self.get_times()
-        utility_function = t2Utilities()
+        utility_function = T2Utilities()
         processed_time_data = utility_function.convert_times(intermediate, format_of_date)
         return processed_time_data
 
@@ -621,14 +621,14 @@ class ResultTough3(object):
             print("coordinates can either be X, Y or Z")
         return unique_coordinate_data
 
-    def remove_non_increasing(self, sequenceA, sequenceB):
+    def remove_non_increasing(self, sequence_a, sequence_b):
         """ Remove Non Increasing Data
 
         Parameters
         -----------
-        sequenceA: list
+        sequence_a: list
             list containing first sequence
-        sequenceB: list
+        sequence_b: list
             list containing second sequence
 
         Returns
@@ -637,16 +637,16 @@ class ResultTough3(object):
             Data for the unique coordinate.
 
         """
-        monotone = self.check_strictly_increasing(sequenceA)
+        monotone = self.check_strictly_increasing(sequence_a)
         if not monotone:
-            index = self.duplicate_index(sequenceA)
+            index = self.duplicate_index(sequence_a)
             if len(index) > 0:
-                sequenceA = self.del_index(sequenceA, index)
-            indexes1 = self.duplicate_index(sequenceB)
-            if len(sequenceA) != len(sequenceB):
+                sequence_a = self.del_index(sequence_a, index)
+            indexes1 = self.duplicate_index(sequence_b)
+            if len(sequence_a) != len(sequence_b):
                 if len(indexes1) > 0:
-                    sequenceB = self.del_index(sequenceB, indexes1)
-        return sequenceA, sequenceB
+                    sequence_b = self.del_index(sequence_b, indexes1)
+        return sequence_a, sequence_b
 
     def check_strictly_increasing(self, sequence):
         """ Check for only strictly increasing data

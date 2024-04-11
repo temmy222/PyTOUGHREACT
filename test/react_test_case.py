@@ -1,26 +1,26 @@
 import unittest
-from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation
+from pytoughreact.chemical.kinetic_properties import PHDependenceType2, Dissolution, Precipitation
 from pytoughreact.chemical.mineral_description import Mineral
 from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
 from mulgrids import mulgrid
-from pytoughreact.writers.react_writing import t2react
-from pytoughreact.writers.solute_writing import t2solute
-from pytoughreact.writers.chemical_writing import t2chemical
+from pytoughreact.writers.react_writing import T2React
+from pytoughreact.writers.solute_writing import T2Solute
+from pytoughreact.writers.chemical_writing import T2Chemical
 from t2grids import rocktype
-from pytoughreact.wrapper.reactzone import t2zone
-from pytoughreact.wrapper.reactgrid import t2reactgrid
+from pytoughreact.wrapper.reactzone import T2Zone
+from pytoughreact.wrapper.reactgrid import T2ReactGrid
 from pytoughreact.plotting.plot_single import PlotSingle
 
 
 class ReactTestCase(unittest.TestCase):
     def get_specific_mineral(self, mineral_name):
 
-        calcite_ph = pHDependenceType2(5.0119e-01, 14.4, 1, 'h+', 1.0)
+        calcite_ph = PHDependenceType2(5.0119e-01, 14.4, 1, 'h+', 1.0)
         dissolution_calcite = Dissolution(1.5488e-06, 2, 1, 1, 23.5, 0, 0, 0)
-        dissolution_calcite.pHDependence = [calcite_ph]
+        dissolution_calcite.ph_dependence = [calcite_ph]
         precipitation_calcite = Precipitation(1.5488e-06, 0, 1, 1, 23.5, 0, 0, 0, 1.0E-5, 0, 0, 0, 0)
         calcite = Mineral('Calcite', 1, 3, 0, 0)
         calcite.dissolution = [dissolution_calcite]
@@ -68,17 +68,17 @@ class ReactTestCase(unittest.TestCase):
         friedel_salt.dissolution = [dissolution_friedel_salt]
         friedel_salt.precipitation = [precipitation_friedel_salt]
 
-        brucite_ph = pHDependenceType2(1.8621e-05, 59, 1, 'h+', 0.5)
+        brucite_ph = PHDependenceType2(1.8621e-05, 59, 1, 'h+', 0.5)
         dissolution_brucite = Dissolution(5.7543e-09, 2, 1, 1, 42, 0, 0, 0)
-        dissolution_brucite.pHDependence = [brucite_ph]
+        dissolution_brucite.ph_dependence = [brucite_ph]
         precipitation_brucite = Precipitation(5.7543e-09, 0, 1, 1, 42, 0, 0, 0, 1.0E-5, 0, 0, 0, 0)
         brucite = Mineral('Brucite', 1, 3, 0, 0)
         brucite.dissolution = [dissolution_brucite]
         brucite.precipitation = [precipitation_brucite]
 
-        dolomite_ph = pHDependenceType2(6.4565e-04, 36.1, 1, 'h+', 0.5)
+        dolomite_ph = PHDependenceType2(6.4565e-04, 36.1, 1, 'h+', 0.5)
         dissolution_dolomite = Dissolution(2.9512e-08, 2, 1, 1, 52.2, 0, 0, 0)
-        dissolution_dolomite.pHDependence = [dolomite_ph]
+        dissolution_dolomite.ph_dependence = [dolomite_ph]
         precipitation_dolomite = Precipitation(2.9512e-08, 0, 1, 1, 52.2, 0, 0, 0, 1.0E-5, 0, 0, 0, 0)
         dolomite = Mineral('Dolomite', 1, 3, 0, 0)
         dolomite.dissolution = [dissolution_dolomite]
@@ -108,9 +108,9 @@ class ReactTestCase(unittest.TestCase):
         jennite.dissolution = [dissolution_jennite]
         jennite.precipitation = [precipitation_jennite]
 
-        sepiolite_ph = pHDependenceType2(1.9953e-06, 75.5, 1, 'h+', 0.8)
+        sepiolite_ph = PHDependenceType2(1.9953e-06, 75.5, 1, 'h+', 0.8)
         dissolution_sepiolite = Dissolution(3.9811e-013, 2, 1, 1, 56.6, 0, 0, 0)
-        dissolution_sepiolite.pHDependence = [sepiolite_ph]
+        dissolution_sepiolite.ph_dependence = [sepiolite_ph]
         precipitation_sepiolite = Precipitation(3.9811e-013, 0, 1, 1, 56.6, 0, 0, 0, 1.0E-5, 0, 0, 0, 0)
         sepiolite = Mineral('Sepiolite', 1, 3, 0, 0)
         sepiolite.dissolution = [dissolution_sepiolite]
@@ -132,35 +132,35 @@ class ReactTestCase(unittest.TestCase):
         quartz = Mineral('Quartz(alpha)', 1, 1, 0, 0)
         quartz.dissolution = [dissolution_quartz]
 
-        microcline_ph = pHDependenceType2(8.7096e-11, 51.7, 1, 'h+', 0.5)
-        microcline_ph2 = pHDependenceType2(6.3096e-22, 94.1, 1, 'h+', -0.823)
+        microcline_ph = PHDependenceType2(8.7096e-11, 51.7, 1, 'h+', 0.5)
+        microcline_ph2 = PHDependenceType2(6.3096e-22, 94.1, 1, 'h+', -0.823)
         dissolution_microcline = Dissolution(3.8905e-13, 2, 1, 1, 38, 0, 0, 0)
-        dissolution_microcline.pHDependence = [microcline_ph, microcline_ph2]
+        dissolution_microcline.ph_dependence = [microcline_ph, microcline_ph2]
         precipitation_microcline = Precipitation(3.8905e-13, 0, 1, 1, 38, 0, 0, 0, 1.0E-6, 0, 0, 0, 0)
         microcline = Mineral('Microcline', 1, 3, 0, 0)
         microcline.dissolution = [dissolution_microcline]
         microcline.precipitation = [precipitation_microcline]
 
-        albite_ph = pHDependenceType2(2.1380e-11, 65, 1, 'h+', 0.457)
+        albite_ph = PHDependenceType2(2.1380e-11, 65, 1, 'h+', 0.457)
         dissolution_albite = Dissolution(1.4454e-13, 2, 1, 1, 69.8, 0, 0, 0)
-        dissolution_albite.pHDependence = [albite_ph]
+        dissolution_albite.ph_dependence = [albite_ph]
         precipitation_albite = Precipitation(1.4454e-13, 0, 1, 1, 69.8, 0, 0, 0, 1.0E-6, 0, 0, 0, 0)
         albite = Mineral('Albite(low)', 1, 3, 0, 0)
         albite.dissolution = [dissolution_albite]
         albite.precipitation = [precipitation_albite]
 
-        muscovite_ph = pHDependenceType2(1.4125e-12, 22, 1, 'h+', 0.37)
-        muscovite_ph2 = pHDependenceType2(2.8184e-15, 22, 1, 'h+', -0.22)
+        muscovite_ph = PHDependenceType2(1.4125e-12, 22, 1, 'h+', 0.37)
+        muscovite_ph2 = PHDependenceType2(2.8184e-15, 22, 1, 'h+', -0.22)
         dissolution_muscovite = Dissolution(2.8184e-13, 2, 1, 1, 22, 0, 0, 0)
-        dissolution_muscovite.pHDependence = [muscovite_ph, muscovite_ph2]
+        dissolution_muscovite.ph_dependence = [muscovite_ph, muscovite_ph2]
         precipitation_muscovite = Precipitation(2.8184e-13, 0, 1, 1, 22, 0, 0, 0, 1.0E-6, 0, 0, 0, 0)
         muscovite = Mineral('Muscovite(ordered)', 1, 3, 0, 0)
         muscovite.dissolution = [dissolution_muscovite]
         muscovite.precipitation = [precipitation_muscovite]
 
-        chlorite_ph = pHDependenceType2(7.7624e-12, 88.0, 1, 'h+', 0.5)
+        chlorite_ph = PHDependenceType2(7.7624e-12, 88.0, 1, 'h+', 0.5)
         dissolution_chlorite = Dissolution(3.0200e-13, 2, 1, 0.380, 88, 0, 0, 0)
-        dissolution_chlorite.pHDependence = [chlorite_ph]
+        dissolution_chlorite.ph_dependence = [chlorite_ph]
         precipitation_chlorite = Precipitation(3.0200e-13, 0, 1, 0.380, 88, 0, 0, 0, 1.0E-6, 0, 0, 0, 0)
         chlorite = Mineral('Chlorite(Cca-2)', 1, 3, 0, 0)
         chlorite.dissolution = [dissolution_chlorite]
@@ -232,13 +232,13 @@ class ReactTestCase(unittest.TestCase):
         geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -100])
         geo.write('geom.dat')
 
-        react = t2react()
+        react = T2React()
         react.title = 'Multiple Rock Type'
 
         react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
                        'num_secondary_parameters': 6}
 
-        react.grid = t2reactgrid().fromgeo(geo)
+        react.grid = T2ReactGrid().fromgeo(geo)
 
         react.parameter.update(
             {'print_level': 3,
@@ -260,7 +260,7 @@ class ReactTestCase(unittest.TestCase):
         for blk in react.grid.blocklist[0:]:
             blk.rocktype = react.grid.rocktype[shale.name]
 
-        shale_zone = t2zone('shale_zone')
+        shale_zone = T2Zone('shale_zone')
 
         react.grid.add_zone(shale_zone)
 
@@ -326,37 +326,38 @@ class ReactTestCase(unittest.TestCase):
         shale_zone.water = [[initial_shale_water], []]
         shale_zone.gas = [[initial_co2], []]
         shale_mineral_zone = MineralZone(
-            [quartz_zone2, microcline_zone2, albite_zone2, muscovite_zone2, chlorite_zone2, dolomite_zone2, calcite_zone2])
+            [quartz_zone2, microcline_zone2, albite_zone2, muscovite_zone2, chlorite_zone2, dolomite_zone2,
+             calcite_zone2])
         shale_zone.mineral_zone = shale_mineral_zone
         shale_zone.permporo = permporozone
 
         mineral_list = ['quartz', 'microcline', 'albite', 'muscovite', 'chlorite', 'dolomite', 'calcite']
         all_minerals = self.get_kinetics_minerals(mineral_list)
 
-        writeChemical = t2chemical(t2reactgrid=react.grid)
-        writeChemical.minerals = all_minerals
-        writeChemical.title = "An-Gy-Hal-Hal"
-        writeChemical.primary_aqueous = all_species
-        writeChemical.gases = [initial_co2]
+        write_chemical = T2Chemical(t2reactgrid=react.grid)
+        write_chemical.minerals = all_minerals
+        write_chemical.title = "An-Gy-Hal-Hal"
+        write_chemical.primary_aqueous = all_species
+        write_chemical.gases = [initial_co2]
         # masa = writeChemical.perm_poro_index
-        writeChemical.write()
+        write_chemical.write()
 
-        writeSolute = t2solute(writeChemical)
-        writeSolute.nodes_to_write = [0]
-        writeSolute.options['linear_equation_solver'] = 4
-        writeSolute.write()
-        return writeSolute
+        write_solute = T2Solute(write_chemical)
+        write_solute.nodes_to_write = [0]
+        write_solute.options['linear_equation_solver'] = 4
+        write_solute.write()
+        return write_solute
 
     def set_up_read(self):
-        react = t2react()
+        react = T2React()
         react.read('flow.inp')
-        writeChemical = t2chemical(t2reactgrid=react.grid)
-        writeSolute = t2solute(t2chemical=writeChemical)
+        write_chemical = T2Chemical(t2reactgrid=react.grid)
+        write_solute = T2Solute(t2chemical=write_chemical)
 
-        writeChemical.read('chemical.inp')
-        writeSolute.read('solute.inp')
+        write_chemical.read('chemical.inp')
+        write_solute.read('solute.inp')
 
-        return writeSolute
+        return write_solute
 
     def test_write(self):
         write_output = self.set_up_write()
@@ -378,7 +379,7 @@ class ReactTestCase(unittest.TestCase):
         self.assertEqual(time_length, parameter_result_length)
 
     def test_result_second(self):
-        react = t2react()
+        react = T2React()
         react.read('flow.inp')
         results = PlotSingle('toughreact', 'kdd_conc.tec')
         parameter_result = results.get_grid_data(5000, 'pH')

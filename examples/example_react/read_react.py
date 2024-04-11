@@ -23,17 +23,17 @@ SOFTWARE.
 
 '''
 
-from pytoughreact.writers.chemical_writing import t2chemical
-from pytoughreact.writers.react_writing import t2react
-from pytoughreact.writers.solute_writing import t2solute
+from pytoughreact.writers.chemical_writing import T2Chemical
+from pytoughreact.writers.react_writing import T2React
+from pytoughreact.writers.solute_writing import T2Solute
 
-react = t2react()
+react = T2React()
 
 react.read('flow.inp')
-writeChemical = t2chemical(t2reactgrid=react.grid)
-writeSolute = t2solute(t2chemical=writeChemical)
+write_chemical = T2Chemical(t2reactgrid=react.grid)
+write_solute = T2Solute(t2chemical=write_chemical)
 
 
-writeChemical.read('chemical.inp')
-writeSolute.read('solute.inp')
+write_chemical.read('chemical.inp')
+write_solute.read('solute.inp')
 print('yes')

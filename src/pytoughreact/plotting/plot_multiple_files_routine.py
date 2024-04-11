@@ -34,7 +34,7 @@ import pytoughreact.constants.generalconstants as gc
 import pytoughreact.constants.plotconstants as pc
 import pytoughreact.constants.reactionconstants as rc
 
-from pytoughreact.utilities.t2_utilities import t2Utilities
+from pytoughreact.utilities.t2_utilities import T2Utilities
 
 
 class PlotMultiFiles(object):
@@ -75,12 +75,12 @@ class PlotMultiFiles(object):
         self.file_titles = file_titles
         self.simulator_type = simulator_type
         self.props = props
-        self.modifier = t2Utilities
+        self.modifier = T2Utilities
         self.x_slice_value = kwargs.get(gc.X_SLICE_VALUE)
         self.per_file = kwargs.get(gc.PER_FILE)
         self.title = kwargs.get(gc.TITLE)
 
-    def _validateInput(self):
+    def _validate_input(self):
         """ Validate Inputs
         """
         if self.simulator_type.lower() == gc.TOUGHREACT:
@@ -99,7 +99,7 @@ class PlotMultiFiles(object):
                   (by extension TMVOC)")
         return multi_tough
 
-    def _plotRawSingle(self, data, legend):
+    def _plot_raw_single(self, data, legend):
         """ Plot of Single File
 
         Parameters
@@ -130,7 +130,7 @@ class PlotMultiFiles(object):
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' +
                     pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def _plotRawMulti(self, data, legend):
+    def _plot_raw_multi(self, data, legend):
         """ Plot of Multi File
 
         Parameters
@@ -173,7 +173,7 @@ class PlotMultiFiles(object):
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' +
                     pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def _setToughYLabel(self, value):
+    def _set_tough_y_label(self, value):
         """ Convert the value in tough results to understandable values
 
         Parameters
@@ -201,7 +201,7 @@ class PlotMultiFiles(object):
             value = value.upper()
         return value
 
-    def _plotRawMultiFile(self, data, legend, format_of_date):
+    def _plot_raw_multi_file(self, data, legend, format_of_date):
         """ Plot of Multi File
 
         Parameters
@@ -236,7 +236,7 @@ class PlotMultiFiles(object):
                          label=legend[legend_index])
                 axs.set_xlabel('Time ' + '(' + format_of_date + ')',
                                fontsize=14)
-                axs.set_ylabel(self._setToughYLabel(self.props[prop_index]),
+                axs.set_ylabel(self._set_tough_y_label(self.props[prop_index]),
                                fontsize=14)
                 axs.ticklabel_format(useOffset=False)
                 legend_index = legend_index + 1
@@ -258,7 +258,7 @@ class PlotMultiFiles(object):
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' ' +
                     pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def _plotRawMultiFilePanel(self, data, panels, format_of_date):
+    def _plot_raw_multi_file_panel(self, data, panels, format_of_date):
         """ Plot of Multi File Per Panel
 
         Parameters
@@ -294,36 +294,36 @@ class PlotMultiFiles(object):
                 # marker = itertools.cycle((',', '+', '.', 'o', '*'))
                 axsa = axs[0, 0]
                 axsa.plot(x_data, y_data)
-                yLabel = list(panels[0].values())[0][2][0]
+                y_label = list(panels[0].values())[0][2][0]
                 axsa.set_xlabel('Time ' + format_of_date, fontsize=12)
-                axsa.set_ylabel(yLabel, fontsize=12)
+                axsa.set_ylabel(y_label, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
                 axsa.legend(list(panels[0].values())[0][1], fontsize=12,
                             loc=pc.LOC_BEST, shadow=True, fancybox=True)
             elif i == 1:
                 axsa = axs[0, 1]
                 axsa.plot(x_data, y_data)
-                yLabel = list(panels[1].values())[0][2][0]
+                y_label = list(panels[1].values())[0][2][0]
                 axsa.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=12)
-                axsa.set_ylabel(yLabel, fontsize=12)
+                axsa.set_ylabel(y_label, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
                 axsa.legend(list(panels[1].values())[0][1], fontsize=12,
                             loc=pc.LOC_BEST, shadow=True, fancybox=True)
             elif i == 2:
                 axsa = axs[1, 0]
                 axsa.plot(x_data, y_data)
-                yLabel = list(panels[2].values())[0][2][0]
+                y_label = list(panels[2].values())[0][2][0]
                 axsa.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=12)
-                axsa.set_ylabel(yLabel, fontsize=12)
+                axsa.set_ylabel(y_label, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
                 axsa.legend(list(panels[2].values())[0][1], fontsize=12,
                             loc=pc.LOC_BEST, shadow=True, fancybox=True)
             elif i == 3:
                 axsa = axs[1, 1]
                 axsa.plot(x_data, y_data)
-                yLabel = list(panels[3].values())[0][2][0]
+                y_label = list(panels[3].values())[0][2][0]
                 axsa.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=12)
-                axsa.set_ylabel(yLabel, fontsize=12)
+                axsa.set_ylabel(y_label, fontsize=12)
                 axsa.ticklabel_format(useOffset=False)
                 axsa.legend(list(panels[3].values())[0][1], fontsize=10,
                             loc=pc.LOC_BEST, shadow=True, fancybox=True)
@@ -333,7 +333,7 @@ class PlotMultiFiles(object):
                     pc.MULTI_PLOTS_PER_PANEL + pc.IMAGE_TYPE,
                     bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def _plotRawMultiFilePerFile(self, data, legend):
+    def _plot_raw_multi_file_per_file(self, data, legend):
         """ Plot of Multi File Per File
 
         Parameters
@@ -361,7 +361,7 @@ class PlotMultiFiles(object):
                 y_data = data.iloc[:, i + 1]
                 if gc.POROSITY in data.columns[i]:
                     axs.plot(x_data, y_data, marker=markers[legend_index],
-                             label=self._setToughYLabel(legend[legend_index]))
+                             label=self._set_tough_y_label(legend[legend_index]))
                     axs.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=14)
                     if self.simulator_type.lower() == gc.TMVOC:
                         axs.set_ylabel(
@@ -372,7 +372,7 @@ class PlotMultiFiles(object):
                                        fontsize=14)
                 else:
                     axs.plot(x_data, y_data, marker=markers[legend_index],
-                             label=self._setToughYLabel(legend[legend_index]))
+                             label=self._set_tough_y_label(legend[legend_index]))
                     axs.set_xlabel(pc.X_LABEL_TIME_YEAR, fontsize=14)
                     if self.simulator_type.lower() == gc.TMVOC:
                         param_value = self.modifier.param_label_full(
@@ -402,7 +402,7 @@ class PlotMultiFiles(object):
         fig.savefig(self.props[0] + ' ' + pc.DIFFERENT_FILES_TAG + ' '
                     + pc.IMAGE_TYPE, bbox_inches=pc.TIGHT_BBOX, dpi=600)
 
-    def multiFileSinglePlot(self, grid_block_number, legend):
+    def multi_file_single_plot(self, grid_block_number, legend):
         """ Plot of  Multiple Files with a single plot
 
         Parameters
@@ -416,17 +416,17 @@ class PlotMultiFiles(object):
         --------
 
         """
-        multi_tough = self._validateInput()
+        multi_tough = self._validate_input()
         data = multi_tough.retrieve_data_multi_timeseries(grid_block_number)
         try:
             with plt.style.context(pc.MY_STYLE):
-                self._plotRawSingle(data, legend)
+                self._plot_raw_single(data, legend)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self._plotRawSingle(data, legend)
+                self._plot_raw_single(data, legend)
 
-    def _plotMultiElementMultiFilePerFile(self, grid_block_number, legend,
-                                          format_of_date):
+    def _plot_multi_element_multi_file_per_file(self, grid_block_number, legend,
+                                                format_of_date):
         """ Plot of Multi Elements and Multiple Files for File only
 
         Parameters
@@ -442,18 +442,18 @@ class PlotMultiFiles(object):
         --------
 
         """
-        multi_tough = self._validateInput()
-        data = multi_tough.getMultiElementData(grid_block_number,
-                                               format_of_date)
+        multi_tough = self._validate_input()
+        data = multi_tough.get_multi_element_data(grid_block_number,
+                                                  format_of_date)
         try:
             with plt.style.context(pc.MY_STYLE):
-                self._plotRawMultiFilePerFile(data, legend)
+                self._plot_raw_multi_file_per_file(data, legend)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self._plotRawMultiFilePerFile(data, legend)
+                self._plot_raw_multi_file_per_file(data, legend)
 
-    def _plotMultiElementMultiFilePerProp(self, grid_block_number, legend,
-                                          format_of_date):
+    def _plot_multi_element_multi_file_per_prop(self, grid_block_number, legend,
+                                                format_of_date):
         """ Plot of Multi Elements and Multiple Files for Property only
 
         Parameters
@@ -469,18 +469,18 @@ class PlotMultiFiles(object):
         --------
 
         """
-        multi_tough = self._validateInput()
-        data = multi_tough.getMultiElementData(grid_block_number,
-                                               format_of_date)
+        multi_tough = self._validate_input()
+        data = multi_tough.get_multi_element_data(grid_block_number,
+                                                  format_of_date)
         try:
             with plt.style.context(pc.MY_STYLE):
-                self._plotRawMultiFile(data, legend, format_of_date)
+                self._plot_raw_multi_file(data, legend, format_of_date)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self._plotRawMultiFile(data, legend, format_of_date)
+                self._plot_raw_multi_file(data, legend, format_of_date)
 
-    def plotMultiElementMultiFile(self, grid_block_number, legend,
-                                  format_of_date, plot_kind=pc.PROPERTY):
+    def plot_multi_element_multi_file(self, grid_block_number, legend,
+                                      format_of_date, plot_kind=pc.PROPERTY):
         """ Plot of Multi Elements and Multiple Files
 
         Parameters
@@ -499,16 +499,16 @@ class PlotMultiFiles(object):
 
         """
         if plot_kind.lower() == pc.PROPERTY:
-            self._plotMultiElementMultiFilePerProp(grid_block_number, legend,
-                                                   format_of_date)
+            self._plot_multi_element_multi_file_per_prop(grid_block_number, legend,
+                                                         format_of_date)
         elif plot_kind.lower() == pc.FILE:
-            self._plotMultiElementMultiFilePerFile(grid_block_number, legend,
-                                                   format_of_date)
+            self._plot_multi_element_multi_file_per_file(grid_block_number, legend,
+                                                         format_of_date)
         else:
             print('Plot kind can either be property or file')
 
-    def plotMultiPerPanel(self, grid_block_number, panels,
-                          format_of_date=pc.DAY):
+    def plot_multi_per_panel(self, grid_block_number, panels,
+                             format_of_date=pc.DAY):
         """ Plot of Multi Properties Per Panel
 
         Parameters
@@ -524,21 +524,21 @@ class PlotMultiFiles(object):
         --------
 
         """
-        multi_tough = self._validateInput()
-        data = multi_tough.getMultiElementDataPerPanel(grid_block_number,
-                                                       panels, format_of_date)
+        multi_tough = self._validate_input()
+        data = multi_tough.get_multi_element_data_per_panel(grid_block_number,
+                                                            panels, format_of_date)
         if self.x_slice_value is not None:
             stringo = panels[0]['panel1'][0][0] + 'time00'
             data = data[data[stringo] <= self.x_slice_value]
         try:
             with plt.style.context(pc.MY_STYLE):
-                self._plotRawMultiFilePanel(data, panels, format_of_date)
+                self._plot_raw_multi_file_panel(data, panels, format_of_date)
         except Exception:
             with plt.style.context(pc.CLASSIC):
-                self._plotRawMultiFilePanel(data, panels, format_of_date)
+                self._plot_raw_multi_file_panel(data, panels, format_of_date)
 
-    def plotMultiFileDistance(self, direction_x, direction_y, time, layer_num,
-                              legend):
+    def plot_multi_file_distance(self, direction_x, direction_y, time, layer_num,
+                                 legend):
         """ Plot of Parameter with Distance for Multiple Files
 
         Parameters
@@ -558,20 +558,20 @@ class PlotMultiFiles(object):
         --------
 
         """
-        multi_tough = self._validateInput()
-        data = multi_tough.getMultiFileDistance(direction_x, direction_y, time,
-                                                layer_num)
+        multi_tough = self._validate_input()
+        data = multi_tough.get_multi_file_distance(direction_x, direction_y, time,
+                                                   layer_num)
         if self.per_file is True:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self._plotRawMultiFilePerFile(data, legend)
+                    self._plot_raw_multi_file_per_file(data, legend)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self._plotRawMultiFilePerFile(data, legend)
+                    self._plot_raw_multi_file_per_file(data, legend)
         else:
             try:
                 with plt.style.context(pc.MY_STYLE):
-                    self._plotRawMultiFile(data, legend)
+                    self._plot_raw_multi_file(data, legend)
             except Exception:
                 with plt.style.context(pc.CLASSIC):
-                    self._plotRawMultiFile(data, legend)
+                    self._plot_raw_multi_file(data, legend)

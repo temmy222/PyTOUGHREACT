@@ -24,7 +24,7 @@ SOFTWARE.
 '''
 
 import os
-from pytoughreact.utilities.t2_utilities import t2Utilities
+from pytoughreact.utilities.t2_utilities import T2Utilities
 import pandas as pd
 from pytoughreact.results.result_tough_react import ResultReact
 
@@ -151,14 +151,14 @@ class MultiResultReact(object):
             data_table[result_data_label] = pd.Series(result_data)
         return data_table
 
-    def getMultiPropDistance(self, directionX, directionY, time, layer_num):
+    def get_multi_prop_distance(self, direction_x, direction_y, time, layer_num):
         """ DataFrame to retrieve multi element time and results from file for properties
 
         Parameters
         -----------
-        directionX :  string
+        direction_x :  string
             Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
-        directionY :  string
+        direction_y :  string
             Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
         time : float
             Time in which the data should be retrieved.
@@ -175,10 +175,10 @@ class MultiResultReact(object):
             for j in range(0, len(self.prop)):
                 os.chdir(self.file_location[i])
                 tough_data = ResultReact(self.simulator_type, self.file_location[i], self.file_title[j])
-                x_data = tough_data.get_unique_coord_data(directionX, time)
-                result_data = tough_data.get_layer_data(directionY, layer_num, time, self.prop[j])
+                x_data = tough_data.get_unique_coord_data(direction_x, time)
+                result_data = tough_data.get_layer_data(direction_y, layer_num, time, self.prop[j])
                 if self.x_slice_value is not None:
-                    inter = t2Utilities()
+                    inter = T2Utilities()
                     time_data, result_data = inter.trim_data_points(x_data, result_data, self.x_slice_value)
                 time_data_label = self.prop[j] + 'time' + str(i) + str(j)
                 result_data_label = self.prop[j] + 'result' + str(i) + str(j)
@@ -186,14 +186,14 @@ class MultiResultReact(object):
                 data_table[result_data_label] = pd.Series(result_data)
         return data_table
 
-    def getMultiFileDistance(self, directionX, directionY, time, layer_num):
+    def get_multi_file_distance(self, direction_x, direction_y, time, layer_num):
         """ DataFrame to retrieve multi element time and results from multiple files
 
         Parameters
         -----------
-        directionX :  string
+        direction_x :  string
             Direction to be plotted on the X axis. Can be 'X', 'Y', 'Z'
-        directionY :  string
+        direction_y :  string
             Direction to be plotted on the Y axis. Can be 'X', 'Y', 'Z'
         time : float
             Time in which the data should be retrieved.
@@ -210,10 +210,10 @@ class MultiResultReact(object):
             for j in range(0, len(self.file_location)):
                 os.chdir(self.file_location[j])
                 tough_data = ResultReact(self.simulator_type, self.file_location[j], self.file_title[j])
-                x_data = tough_data.get_unique_coord_data(directionX, time)
-                result_data = tough_data.get_layer_data(directionY, layer_num, time, self.prop[i])
+                x_data = tough_data.get_unique_coord_data(direction_x, time)
+                result_data = tough_data.get_layer_data(direction_y, layer_num, time, self.prop[i])
                 if self.x_slice_value is not None:
-                    utilities_instance = t2Utilities()
+                    utilities_instance = T2Utilities()
                     time_data, result_data = utilities_instance.trim_data_points(x_data, result_data,
                                                                                  self.x_slice_value)
                 time_data_label = self.prop[i] + 'time' + str(i) + str(j)
@@ -222,7 +222,7 @@ class MultiResultReact(object):
                 data_table[result_data_label] = pd.Series(result_data)
         return data_table
 
-    def getMultiElementData(self, grid_block_number, format_of_date='year'):
+    def get_multi_element_data(self, grid_block_number, format_of_date='year'):
         """ DataFrame to retrieve multi element time and results from file
 
         Parameters
@@ -245,7 +245,7 @@ class MultiResultReact(object):
                 result_data = tough_data.get_timeseries_data(self.prop[j], grid_block_number)
                 time_data = tough_data.convert_times(format_of_date)
                 if self.x_slice_value is not None:
-                    utilities_instance = t2Utilities()
+                    utilities_instance = T2Utilities()
                     time_data, result_data = utilities_instance.trim_data_points(time_data, result_data,
                                                                                  self.x_slice_value)
                 time_data_label = self.prop[j] + 'time' + str(i) + str(j)

@@ -76,7 +76,7 @@ class BIODG(object):
         self.bfac = bfac
         self.null = " "
 
-    def getFirstSet(self):
+    def get_first_set(self):
         """ Function that gets the first line of information
 
         Parameters
@@ -91,7 +91,7 @@ class BIODG(object):
                                     self.wea, self.wsub]
         return bio_numerical_parameters
 
-    def getNumberOfBiomasses(self):
+    def get_number_of_biomasses(self):
         """ Function that gets the number of biomasses
 
         Parameters
@@ -107,7 +107,7 @@ class BIODG(object):
             biomasses.append(process.biomass)
         return len(set(biomasses))
 
-    def getBaseParameterAndIndex(self, process):
+    def get_base_parameter_and_index(self, process):
         """ Function that retrieves base parameter and index
 
         Parameters
@@ -132,16 +132,16 @@ class BIODG(object):
 class Process(object):
     """Process specification"""
 
-    def __init__(self, biomass, numberOfComponents, mumax, yield_mass, enthalpy, totalComp=0,
-                 NumOfHaldane=0, NumOfNonCompetiting=0,
-                 NumOfCompetiting=0, componentParams=None, gasParams=None, waterParams=None):
+    def __init__(self, biomass, number_of_components, mumax, yield_mass, enthalpy, total_component=0,
+                 number_of_haldane=0, number_of_non_competiting=0,
+                 number_competiting=0, component_params=None, gas_params=None, water_params=None):
         """Initialization of Parameters
 
         Parameters
         -----------
         biomass :  Biomass
             Biomass class with all properties of the biomass
-        numberOfComponents : int
+        number_of_components : int
             Number of mass components responsible for competitive inhibition in process
         mumax: float
             Maximum specific substrate degradation rate
@@ -150,17 +150,17 @@ class Process(object):
             substrate in process IP (kg biomass / kg substrate)
         enthalpy: float
             Heat of reaction for the degradation of substrate in process (J/kg substrate)
-        totalComp: int
+        total_component: int
             Number of mass components controlling the substrate degradation rate in process
-        NumOfHaldane: int
+        number_of_haldane: int
             Number of mass components responsible for Haldane inhibition in process
-        NumOfNonCompetiting: int
+        number_of_non_competiting: int
             Number of mass components responsible for non-competitive inhibition in process
-        componentParams : list
+        component_params : list
             List of chemical components involved in the process
-        waterParams : list
+        water_params : list
             List of water components involved in the process
-        gasParams : list
+        gas_params : list
             List of gas components involved in the process
 
         Returns
@@ -168,20 +168,20 @@ class Process(object):
 
         """
         self.enthalpy = enthalpy
-        self.numberOfComponents = numberOfComponents
+        self.numberOfComponents = number_of_components
         self.yield_mass = yield_mass
         self.mumax = mumax
         self.biomass = biomass
-        self.waterParams = waterParams
-        self.gasParams = gasParams
-        self.componentParams = componentParams
+        self.waterParams = water_params
+        self.gasParams = gas_params
+        self.componentParams = component_params
         self.allProcesses = []
-        self.NumOfCompetiting = NumOfCompetiting
-        self.NumOfNonCompetiting = NumOfNonCompetiting
-        self.NumOfHaldane = NumOfHaldane
-        self.totalComp = totalComp
+        self.NumOfCompetiting = number_competiting
+        self.NumOfNonCompetiting = number_of_non_competiting
+        self.NumOfHaldane = number_of_haldane
+        self.totalComp = total_component
 
-    def getNumOfCompetiting(self):
+    def get_number_of_competiting(self):
         """ Function that retrieves number of competiting specie
 
         Parameters
@@ -194,7 +194,7 @@ class Process(object):
         """
         self.componentParams.values()
 
-    def getUptake(self):
+    def get_uptake(self):
         """ Function that retrieves uptake information
 
         Parameters
@@ -211,7 +211,7 @@ class Process(object):
             output.append(uptake_values)
         return output
 
-    def getKs(self):
+    def get_ks(self):
         """ Function that retrieves Ks information
 
         Parameters
@@ -233,7 +233,7 @@ class Process(object):
         output.reverse()
         return output
 
-    def getKc(self):
+    def get_kc(self):
         """ Function that retrieves competitive inhibition information
 
         Parameters
@@ -254,7 +254,7 @@ class Process(object):
             dict_output = {}
         return output
 
-    def getKnc(self):
+    def get_knc(self):
         """ Function that retrieves non competitive inhibition information
 
         Parameters
@@ -275,7 +275,7 @@ class Process(object):
             dict_output = {}
         return output
 
-    def getKh(self):
+    def get_kh(self):
         """ Function that retrieves haldane inhibition information
 
         Parameters

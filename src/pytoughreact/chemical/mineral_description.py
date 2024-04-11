@@ -28,24 +28,24 @@ from pytoughreact.constants.defaults_constants import DEFAULT_MINERAL_INCON
 
 
 class Mineral(object):
-    def __init__(self, name, typeOfMineral, typeOfKC, indexSS, dryGridBlock):
+    def __init__(self, name, type_of_mineral, type_of_kinetic_constraint, index_solid_solution, dry_grid_block):
         """Initialization of Parameters
 
         Parameters
         -----------
         name :  string
             Name of the mineral phase,
-        typeOfMineral : int
+        type_of_mineral : int
             Flag for the type of mineral: 0 for minerals at equilibrium, and 1 for those under kinetic
             constraints
-        typeOfKC : int
+        type_of_kinetic_constraint : int
             Flag for the type of kinetic constraint: 1 for dissolution only, 2 for precipitation only, and 3
             for both (mineral can either precipitate or dissolve
-        indexSS : int
+        index_solid_solution : int
             Index for a solid solution mineral endmember. All endmembers for a specified phase are given the
             same ISS value: ISS = 1 for each endmember of the first solid solution, ISS = 2 for each
             endmember of the second solid solution
-        dryGridBlock : int
+        dry_grid_block : int
             Flag to indicate that the mineral may precipitate in a dry grid block as a result of complete
             evaporation (See user guide for more)
 
@@ -54,12 +54,12 @@ class Mineral(object):
         --------
 
         """
-        self.dryGridBlock = dryGridBlock
-        self.indexSS = indexSS
-        self.typeOfKC = typeOfKC
-        self.typeOfMineral = typeOfMineral
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        self.dry_grid_block = dry_grid_block
+        self.index_solid_solution = index_solid_solution
+        self.type_of_kinetic_constraint = type_of_kinetic_constraint
+        self.type_of_mineral = type_of_mineral
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         self.name = name
         self.dissolution = []
@@ -67,7 +67,7 @@ class Mineral(object):
         self.equilibrium = []
         self.initial_composition = deepcopy(DEFAULT_MINERAL_INCON)
 
-    def getFirstRow(self):
+    def get_first_row(self):
         """ Function that gets the first line of information in Minerals Section
 
         Parameters
@@ -78,10 +78,11 @@ class Mineral(object):
         parameters : list
             List of parameters (name, Mineral Type, Dry Grid) for mineral reactions
         """
-        parameters = [self.name, self.typeOfMineral, self.typeOfKC, self.indexSS, self.dryGridBlock]
+        parameters = [self.name, self.type_of_mineral, self.type_of_kinetic_constraint, self.index_solid_solution,
+                      self.dry_grid_block]
         return parameters
 
-    def getDissolutionParams(self):
+    def get_dissolution_parameters(self):
         """ Function that gets Dissolution parameters
 
         Parameters
@@ -93,16 +94,16 @@ class Mineral(object):
             List of parameters (rate constant, rate pH, activation energy) for dissolution
         """
         dissolution_data = self.dissolution[0]
-        dissolution_data_list = [dissolution_data.rateConstant, dissolution_data.ratepH, dissolution_data.exponentN,
-                                 dissolution_data.exponentTheta, dissolution_data.activationEnergy,
-                                 dissolution_data.coefA,
-                                 dissolution_data.coefB, dissolution_data.coefC]
+        dissolution_data_list = [dissolution_data.rate_constant, dissolution_data.rate_ph, dissolution_data.exponent_n,
+                                 dissolution_data.exponent_theta, dissolution_data.activation_energy,
+                                 dissolution_data.coef_a,
+                                 dissolution_data.coef_b, dissolution_data.coef_c]
         return dissolution_data_list
 
-    def getComposition(self):
+    def get_composition(self):
         return self.initial_composition
 
-    def getPrecipitationParams(self):
+    def get_precipitation_parameters(self):
         """ Function that gets Precipitation parameters
 
         Parameters
@@ -114,16 +115,16 @@ class Mineral(object):
             List of parameters (rate constant, rate pH, activation energy etc) for Precipitation
         """
         precipitation_data = self.precipitation[0]
-        precipitation_data_list = [precipitation_data.rateConstant, precipitation_data.ratepH,
-                                   precipitation_data.exponentN,
-                                   precipitation_data.exponentTheta, precipitation_data.activationEnergy,
-                                   precipitation_data.coefA,
-                                   precipitation_data.coefB, precipitation_data.coefC,
-                                   precipitation_data.initVolumeFraction,
-                                   precipitation_data.prepLawIndex]
+        precipitation_data_list = [precipitation_data.rate_constant, precipitation_data.rate_ph,
+                                   precipitation_data.exponent_n,
+                                   precipitation_data.exponent_theta, precipitation_data.activation_energy,
+                                   precipitation_data.coef_a,
+                                   precipitation_data.coef_b, precipitation_data.coef_c,
+                                   precipitation_data.initial_volume_fraction,
+                                   precipitation_data.precipitation_law_index]
         return precipitation_data_list
 
-    def getPrecipitationParams2(self):
+    def get_precipitation_parameters_2(self):
         """ Function that gets Precipitation parameters
 
         Parameters
@@ -135,11 +136,11 @@ class Mineral(object):
             List of parameters () for Precipitation
         """
         precipitation_data_2 = self.precipitation[0]
-        precipitation_data_list_2 = [precipitation_data_2.logQKgap, precipitation_data_2.tempGap1,
-                                     precipitation_data_2.tempGap2]
+        precipitation_data_list_2 = [precipitation_data_2.log_qk_gap, precipitation_data_2.temperature_gap_1,
+                                     precipitation_data_2.temperature_gap_2]
         return precipitation_data_list_2
 
-    def getNumberOfpHDependence(self):
+    def get_number_of_ph_dependence(self):
         """ Function that gets number of pH dependencies
 
         Parameters
@@ -150,12 +151,12 @@ class Mineral(object):
         parameter : int
             number of pH dependencies
         """
-        return [len(self.dissolution[0].pHDependence)]
+        return [len(self.dissolution[0].ph_dependence)]
 
-    def getpHDependency1(self):
+    def get_ph_dependency_1(self):
         pass
 
-    def getpHDependency2(self, pHDep):
+    def get_ph_dependency_2(self, ph_dependency):
         """ Function that gets pH Dependency parameters
 
         Parameters
@@ -167,11 +168,13 @@ class Mineral(object):
             List of parameters (rate constant, activation Energy, number of Species) for pH Dependency
         """
         # pHDep = self.dissolution[0].pHDependence[0]
-        pH_dependency_list_2 = [pHDep.rateConstant, pHDep.activationEnergy, pHDep.numberSpecies, pHDep.nameSpecies,
-                                pHDep.exponentSpecies]
-        return pH_dependency_list_2
+        ph_dependency_list_2 = [ph_dependency.rate_constant, ph_dependency.activation_energy,
+                                ph_dependency.number_of_species,
+                                ph_dependency.name_of_species,
+                                ph_dependency.exponent_of_species]
+        return ph_dependency_list_2
 
-    def getEquilibriumData(self):
+    def get_equilibrium_data(self):
         """ Function that gets Equilibrium parameters
 
         Parameters
@@ -183,5 +186,5 @@ class Mineral(object):
             List of parameters for equilibrium
         """
         equil_data = self.equilibrium[0]
-        equil_data_list = [equil_data.logQK, equil_data.tempGap1, equil_data.tempGap2]
+        equil_data_list = [equil_data.log_qk_gap, equil_data.temperature_gap_1, equil_data.temperature_gap_2]
         return equil_data_list

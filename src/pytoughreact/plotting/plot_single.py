@@ -48,18 +48,18 @@ class PlotSingle(object):
         return 'Results from ' + self.filelocation + ' in ' + self.filetitle \
             + ' for ' + self.simulatortype
 
-    def _validateFile(self):
+    def _validate_file(self):
         """ Validate File """
         if type(self.filelocation) != type(self.filetitle):
             print('Values can either be strings or lists')
 
-    def _getSimulatorType(self):
+    def _get_simulator_type(self):
         """ Get Simulator Type """
         return self.simulatortype
 
-    def plotTime(self, param, grid_block_number, format_of_date='year',
-                 labels=None, singlePlot=False, style='horizontal',
-                 width=12, height=8):
+    def plot_time(self, param, grid_block_number, format_of_date='year',
+                  labels=None, single_plot=False, style='horizontal',
+                  width=12, height=8):
         """ General function for making line plot of parameter with time
 
         Parameters
@@ -92,13 +92,13 @@ class PlotSingle(object):
                                  restart_files=self.full_args,
                                  experiment=self.expt)
             if self.full_args is None:
-                plottest.plotParamWithTime(param, grid_block_number,
-                                           format_of_date)
+                plottest.plot_param_with_time(param, grid_block_number,
+                                              format_of_date)
             else:
-                plottest.plotParamWithTimeRestart(param, grid_block_number,
-                                                  format_of_date)
+                plottest.plot_param_with_time_restart(param, grid_block_number,
+                                                      format_of_date)
         elif (isinstance(param, list) and isinstance(self.filelocation, str)
-              and singlePlot is False):
+              and single_plot is False):
             plottest = PlotMultiTough(self.simulatortype, self.filelocation,
                                       self.filetitle,
                                       generation=self.generation,
@@ -111,7 +111,7 @@ class PlotSingle(object):
                 plottest.multi_time_plot_restart(param, grid_block_number,
                                                  format_of_date, style)
         elif (isinstance(param, list) and isinstance(self.filelocation, str)
-              and singlePlot is True):
+              and single_plot is True):
             plottest = PlotMultiTough(self.simulatortype, self.filelocation,
                                       self.filetitle,
                                       generation=self.generation,
@@ -119,10 +119,10 @@ class PlotSingle(object):
                                       experiment=self.expt,
                                       x_slice_value=self.x_slice_value)
             if self.full_args is None:
-                plottest.plotMultiParamSinglePlot(param, grid_block_number,
-                                                  format_of_date, labels)
+                plottest.plot_multi_param_single_plot(param, grid_block_number,
+                                                      format_of_date, labels)
 
-    def plotParamWithParam(self, param1, param2, gridblocknumber):
+    def plot_param_with_param(self, param1, param2, gridblocknumber):
         """ Line Plot of two parameters in the results file
 
         Parameters
@@ -141,10 +141,10 @@ class PlotSingle(object):
         """ Make Plot of parameter with parameter """
         plottest = PlotTough(self.simulatortype, self.filelocation,
                              self.filetitle)
-        plottest.plotParamWithParam(param1, param2, gridblocknumber)
+        plottest.plot_param_with_param(param1, param2, gridblocknumber)
 
-    def plotParamWithLayer(self, direction_x, direction_y, param, layer_num,
-                           time):
+    def plot_param_with_layer(self, direction_x, direction_y, param, layer_num,
+                              time):
         """ Make line plot of parameter at a particular time at a particular
         layer
 
@@ -167,11 +167,11 @@ class PlotSingle(object):
         """
         plottest = PlotTough(self.simulatortype, self.filelocation,
                              self.filetitle)
-        plottest.plotParamWithLayer(direction_x, direction_y, param, layer_num,
-                                    time)
+        plottest.plot_param_with_layer(direction_x, direction_y, param, layer_num,
+                                       time)
 
-    def plot2D(self, direction_x, direction_y, param, timer,
-               grid_type='plain'):
+    def plot_2d(self, direction_x, direction_y, param, timer,
+                grid_type='plain'):
         """ Make 2D plot of parameter at a particular time across the whole
         domain
 
@@ -196,8 +196,8 @@ class PlotSingle(object):
         plottest = PlotTough(self.simulatortype, self.filelocation,
                              self.filetitle)
         if grid_type == 'plain':
-            plottest.plot2D_one(direction_x, direction_y, param, timer)
+            plottest.plot_2d_one(direction_x, direction_y, param, timer)
         elif grid_type == 'grid':
-            plottest.plot2D_withgrid(direction_x, direction_y, param, timer)
+            plottest.plot_2d_with_grid(direction_x, direction_y, param, timer)
         else:
             print('Type can either be plain or grid')

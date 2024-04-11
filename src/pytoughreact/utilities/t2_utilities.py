@@ -26,7 +26,7 @@ SOFTWARE.
 import numpy as np
 
 
-class t2Utilities(object):
+class T2Utilities(object):
     def __init__(self):
         pass
 
@@ -240,9 +240,9 @@ class t2Utilities(object):
             Grid information
 
         """
-        X = data_frame[direction]
+        x = data_frame[direction]
         d = {}
-        for i in X:
+        for i in x:
             if i not in d:
                 d[i] = 1
             else:

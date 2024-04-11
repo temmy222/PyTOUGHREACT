@@ -30,7 +30,7 @@ class Error(Exception):
     pass
 
 
-class RequiredInputException(Exception):
+class RequiredInputError(Exception):
     """Exception raised for missing inputs"""
     def __init__(self, input_value):
         self.input_value = input_value
@@ -90,7 +90,7 @@ class ParameterLessThanThreeError(Exception):
         super().__init__(self.message)
 
 
-class MissingParameter(Exception):
+class MissingParameterError(Exception):
     """ Exception raised when parameters are expected to be greater than three"""
     def __init__(self):
         self.message = 'Parameters Missing'

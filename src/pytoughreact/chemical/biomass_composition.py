@@ -44,23 +44,23 @@ class Gas(object):
         self.index = index
         self.name = name
 
-    def addToProcess(self, process, Uptake, Ks=None, Kc=None, Knc=None, Kh=None):
+    def add_to_process(self, process, uptake, ks=None, kc=None, knc=None, kh=None):
         """ Add gas component to the process
 
         Parameters
         -----------
         process :  Process
             This should be a Process class with all properties of the process
-        Uptake : int
+        uptake : int
             uptake coefficient of gas component in particular process with respect to 1 mole of
             degraded primary substrate (mole component / mole substrate).
-        Ks: float
+        ks: float
             Substrate degradation rate
-        Kc: float
+        kc: float
             Competitive inhibition rate
-        Knc: float
+        knc: float
             Non Competitive inhibition rate
-        Kh: float
+        kh: float
             Haldane inhibition rate
 
         Returns
@@ -70,42 +70,42 @@ class Gas(object):
         process : Process
             Updated Process with new parameters
         """
-        output = {self: [Uptake, Ks, Kc, Knc, Kh]}
-        if Kc is not None:
+        output = {self: [uptake, ks, kc, knc, kh]}
+        if kc is not None:
             process.NumOfCompetiting += 1
-        if Knc is not None:
+        if knc is not None:
             process.NumOfNonCompetiting += 1
-        if Kh is not None:
+        if kh is not None:
             process.NumOfHaldane += 1
         process.componentParams = output
         process.allProcesses.append(output)
         return output, process
 
 
-class Water_Bio(object):
+class WaterBio(object):
     """Rock type"""
 
     def __init__(self, name='H2O', index=1):
         self.index = index
         self.name = name
 
-    def addToProcess(self, process, Uptake, Ks=None, Kc=None, Knc=None, Kh=None):
+    def add_to_process(self, process, uptake, ks=None, kc=None, knc=None, kh=None):
         """ Add water component to the process
 
         Parameters
         -----------
         process :  Process
             This should be a Process class with all properties of the process
-        Uptake : int
+        uptake : int
             uptake coefficient of water component in particular process with respect to 1 mole of
             degraded primary substrate (mole component / mole substrate).
-        Ks: float
+        ks: float
             Substrate degradation rate
-        Kc: float
+        kc: float
             Competitive inhibition rate
-        Knc: float
+        knc: float
             Non Competitive inhibition rate
-        Kh: float
+        kh: float
             Haldane inhibition rate
 
         Returns
@@ -115,12 +115,12 @@ class Water_Bio(object):
         process : Process
             Updated Process with new parameters
         """
-        output = {self: [Uptake, Ks, Kc, Knc, Kh]}
-        if Kc is not None:
+        output = {self: [uptake, ks, kc, knc, kh]}
+        if kc is not None:
             process.NumOfCompetiting += 1
-        if Knc is not None:
+        if knc is not None:
             process.NumOfNonCompetiting += 1
-        if Kh is not None:
+        if kh is not None:
             process.NumOfHaldane += 1
         process.componentParams = output
         process.allProcesses.append(output)
@@ -130,52 +130,57 @@ class Water_Bio(object):
 class BaseComponent(object):
     """Rock type"""
 
-    def __init__(self, name=None, critTemp=None, critPres=None, critComp=None, acentricFactor=None, dipoleMoment=None,
-                 boilPoint=None, vapPressA=None, vapPressB=None, vapPressC=None, vapPressD=None,
-                 molWeight=None, heatCapConstantA=None, heatCapConstantB=None, heatCapConstantC=None,
-                 heatCapConstantD=None,
-                 liqDensity=None, refTempForDensity=None, refBinaryDif=None, refTempForDif=None, expChemDif=None,
-                 liqVisConstA=None, liqVisConstB=None, liqVisConstC=None, liqVisConstD=None, liqCritVol=None,
-                 liqChemSolA=None, liqChemSolB=None, liqChemSolC=None, liqChemSolD=None,
-                 carbonPartCoefficient=None, fracCarbon=None, decayConstant=None):
-        self.diffNAPL = 0
-        self.diffGas = 0
-        self.diffAqueous = 0
-        self.liqCritVol = liqCritVol
-        self.liqVisConstD = liqVisConstD
-        self.liqVisConstC = liqVisConstC
-        self.decayConstant = decayConstant
-        self.fracCarbon = fracCarbon
-        self.carbonPartCoefficient = carbonPartCoefficient
-        self.liqChemSolA = liqChemSolA
-        self.liqChemSolD = liqChemSolD
-        self.liqChemSolB = liqChemSolB
-        self.liqChemSolC = liqChemSolC
-        self.liqVisConstB = liqVisConstB
-        self.liqVisConstA = liqVisConstA
-        self.expChemDif = expChemDif
-        self.refTempForDif = refTempForDif
-        self.refBinaryDif = refBinaryDif
-        self.refTempForDensity = refTempForDensity
-        self.liqDensity = liqDensity
-        self.heatCapConstantD = heatCapConstantD
-        self.heatCapConstantC = heatCapConstantC
-        self.heatCapConstantB = heatCapConstantB
-        self.heatCapConstantA = heatCapConstantA
-        self.molWeight = molWeight
-        self.vapPressD = vapPressD
-        self.vapPressB = vapPressB
-        self.vapPressA = vapPressA
-        self.boilPoint = boilPoint
-        self.dipoleMoment = dipoleMoment
-        self.acentricFactor = acentricFactor
-        self.critComp = critComp
-        self.vapPressC = vapPressC
-        self.critPres = critPres
+    def __init__(self, name=None, critical_temperature=None, critical_pressure=None, critical_composition=None,
+                 acentric_factor=None, dipole_moment=None,
+                 boiling_point=None, vapor_pressure_a=None, vapor_pressure_b=None,
+                 vapor_pressure_c=None, vapor_pressure_d=None,
+                 molecular_weight=None, heat_capacity_constant_a=None, heat_capacity_constant_b=None,
+                 heat_capacity_constant_c=None, heat_capacity_constant_d=None,
+                 liquid_density=None, reference_temp_for_density=None, reference_binary_difference=None,
+                 reference_temperature_for_difference=None, exponent_chemical_difference=None,
+                 liquid_viscosity_constant_a=None, liquid_viscosity_constant_b=None, liquid_viscosity_constant_c=None,
+                 liquid_viscosity_constant_d=None, liquid_critical_volume=None,
+                 liquid_chemical_solubility_a=None, liquid_chemical_solubility_b=None,
+                 liquid_chemical_solubility_c=None, liquid_chemical_solubility_d=None,
+                 carbon_part_coefficient=None, fractional_carbon=None, decay_constant=None):
+        self.differential_napl = 0
+        self.differential_gas = 0
+        self.differential_aqueous = 0
+        self.liquid_critical_volume = liquid_critical_volume
+        self.liquid_viscosity_cosntant_d = liquid_viscosity_constant_d
+        self.liquid_viscosity_cosntant_c = liquid_viscosity_constant_c
+        self.decay_constant = decay_constant
+        self.fractional_carbon = fractional_carbon
+        self.carbon_part_coefficient = carbon_part_coefficient
+        self.liquid_chemical_solubility_a = liquid_chemical_solubility_a
+        self.liquid_chemical_solubility_d = liquid_chemical_solubility_d
+        self.liquid_chemical_solubility_b = liquid_chemical_solubility_b
+        self.liquid_chemical_solubility_c = liquid_chemical_solubility_c
+        self.liquid_viscosity_constant_b = liquid_viscosity_constant_b
+        self.liquid_viscosity_constant_a = liquid_viscosity_constant_a
+        self.exponent_chemical_difference = exponent_chemical_difference
+        self.reference_temperature_for_difference = reference_temperature_for_difference
+        self.reference_binary_difference = reference_binary_difference
+        self.reference_temp_for_density = reference_temp_for_density
+        self.liquid_density = liquid_density
+        self.heat_capacity_constant_d = heat_capacity_constant_d
+        self.heat_capacity_constant_c = heat_capacity_constant_c
+        self.heat_capacity_constant_b = heat_capacity_constant_b
+        self.heat_capacity_constant_a = heat_capacity_constant_a
+        self.molecular_weight = molecular_weight
+        self.vapor_pressure_d = vapor_pressure_d
+        self.vapor_pressure_b = vapor_pressure_b
+        self.vapor_pressure_a = vapor_pressure_a
+        self.boiling_point = boiling_point
+        self.dipole_moment = dipole_moment
+        self.acentric_factor = acentric_factor
+        self.critical_composition = critical_composition
+        self.vapor_pressure_c = vapor_pressure_c
+        self.critical_pressure = critical_pressure
         self.name = name
-        self.critTemp = critTemp
+        self.critical_temperature = critical_temperature
 
-    def getFirstSet(self):
+    def get_first_set(self):
         """ Function that gets the first line of information in INFILE Component Section
 
         Parameters
@@ -187,10 +192,11 @@ class BaseComponent(object):
             List of parameters (Critical Temperature, Critical Pressure, Acentric Factor,
             Dipole Moment) for biodegradation
         """
-        parameters = [self.critTemp, self.critPres, self.critComp, self.acentricFactor, self.dipoleMoment]
+        parameters = [self.critical_temperature, self.critical_pressure, self.critical_composition,
+                      self.acentric_factor, self.dipole_moment]
         return parameters
 
-    def getSecondSet(self):
+    def get_second_set(self):
         """ Function that gets the second line of information in INFILE Component Section
 
         Parameters
@@ -201,10 +207,11 @@ class BaseComponent(object):
         parameters : list
             List of parameters (Boiling Point, Vapor Pressure) for biodegradation
         """
-        parameters = [self.boilPoint, self.vapPressA, self.vapPressB, self.vapPressC, self.vapPressD]
+        parameters = [self.boiling_point, self.vapor_pressure_a, self.vapor_pressure_b, self.vapor_pressure_c,
+                      self.vapor_pressure_d]
         return parameters
 
-    def getThirdSet(self):
+    def get_third_set(self):
         """ Function that gets the third line of information in INFILE Component Section
 
         Parameters
@@ -215,11 +222,11 @@ class BaseComponent(object):
         parameters : list
             List of parameters (Molecular Weight, heat Capacity Constant) for biodegradation
         """
-        parameters = [self.molWeight, self.heatCapConstantA, self.heatCapConstantB, self.heatCapConstantC,
-                      self.heatCapConstantD]
+        parameters = [self.molecular_weight, self.heat_capacity_constant_a, self.heat_capacity_constant_b,
+                      self.heat_capacity_constant_c, self.heat_capacity_constant_d]
         return parameters
 
-    def getFourthSet(self):
+    def get_fourth_set(self):
         """ Function that gets the fourth line of information in INFILE Component Section
 
         Parameters
@@ -230,10 +237,11 @@ class BaseComponent(object):
         parameters : list
             List of parameters (Liquid density, Reference Temperature for density, Diffusion) for biodegradation
         """
-        parameters = [self.liqDensity, self.refTempForDensity, self.refBinaryDif, self.refTempForDif, self.expChemDif]
+        parameters = [self.liquid_density, self.reference_temp_for_density, self.reference_binary_difference,
+                      self.reference_temperature_for_difference, self.exponent_chemical_difference]
         return parameters
 
-    def getFifthSet(self):
+    def get_fifth_set(self):
         """ Function that gets the fifth line of information in INFILE Component Section
 
         Parameters
@@ -244,10 +252,11 @@ class BaseComponent(object):
         parameters : list
             List of parameters (Liquid Viscosity) for biodegradation
         """
-        parameters = [self.liqVisConstA, self.liqVisConstB, self.liqVisConstC, self.liqVisConstD, self.liqCritVol]
+        parameters = [self.liquid_viscosity_constant_a, self.liquid_viscosity_constant_b,
+                      self.liquid_viscosity_cosntant_c, self.liquid_viscosity_cosntant_d, self.liquid_critical_volume]
         return parameters
 
-    def getSixthSet(self):
+    def get_sixth_set(self):
         """ Function that gets the sixth line of information in INFILE Component Section
 
         Parameters
@@ -258,10 +267,11 @@ class BaseComponent(object):
         parameters : list
             List of parameters (Liquid Chemical Solubility) for biodegradation
         """
-        parameters = [self.liqChemSolA, self.liqChemSolB, self.liqChemSolC, self.liqChemSolD]
+        parameters = [self.liquid_chemical_solubility_a, self.liquid_chemical_solubility_b,
+                      self.liquid_chemical_solubility_c, self.liquid_chemical_solubility_d]
         return parameters
 
-    def getSeventhSet(self):
+    def get_seventh_set(self):
         """ Function that gets the seventh line of information in INFILE Component Section
 
         Parameters
@@ -272,26 +282,26 @@ class BaseComponent(object):
         parameters : list
             List of parameters (carbon Coefficient, Decay Constant) for biodegradation
         """
-        parameters = [self.carbonPartCoefficient, self.fracCarbon, self.decayConstant]
+        parameters = [self.carbon_part_coefficient, self.fractional_carbon, self.decay_constant]
         return parameters
 
-    def addToProcess(self, process, Uptake, Ks=None, Kc=None, Knc=None, Kh=None):
+    def add_to_process(self, process, uptake, ks=None, kc=None, knc=None, kh=None):
         """ Add bio component to the process
 
         Parameters
         -----------
         process :  Process
             This should be a Process class with all properties of the process
-        Uptake : int
+        uptake : int
             uptake coefficient of bio component in particular process with respect to 1 mole of
             degraded primary substrate (mole component / mole substrate).
-        Ks: float
+        ks: float
             Substrate degradation rate
-        Kc: float
+        kc: float
             Competitive inhibition rate
-        Knc: float
+        knc: float
             Non Competitive inhibition rate
-        Kh: float
+        kh: float
             Haldane inhibition rate
 
         Returns
@@ -301,18 +311,18 @@ class BaseComponent(object):
         process : Process
             Updated Process with new parameters
         """
-        output = {self: [Uptake, Ks, Kc, Knc, Kh]}
-        if Kc is not None:
+        output = {self: [uptake, ks, kc, knc, kh]}
+        if kc is not None:
             process.NumOfCompetiting += 1
-        if Knc is not None:
+        if knc is not None:
             process.NumOfNonCompetiting += 1
-        if Kh is not None:
+        if kh is not None:
             process.NumOfHaldane += 1
         process.componentParams = output
         process.allProcesses.append(output)
         return output, process
 
-    def defaultToluene(self):
+    def default_toluene(self):
         """ Function that provides default parameters for Toluene component (can be modified)
 
         Parameters
@@ -332,7 +342,7 @@ class BaseComponent(object):
                                 0.0088649, 0, 0)
         return toluene
 
-    def defaultBenzene(self):
+    def default_benzene(self):
         """ Function that provides default parameters for Benzene component (can be modified)
 
         Parameters
@@ -352,7 +362,7 @@ class BaseComponent(object):
                                 0.891E-01, 0, 0)
         return benzene
 
-    def defaultNDecane(self):
+    def default_n_decane(self):
         """ Function that provides default parameters for Decane component (can be modified)
 
         Parameters
@@ -372,7 +382,7 @@ class BaseComponent(object):
                                   7.000, 0.001, 0)
         return component
 
-    def defaultPXylene(self):
+    def default_p_xylene(self):
         """ Function that provides default parameters for P-Xylene component (can be modified)
 
         Parameters
@@ -392,7 +402,7 @@ class BaseComponent(object):
                                   0.550E+00, 0.001, 0)
         return component
 
-    def defaultNPropylBenzene(self):
+    def default_n_propyl_benzene(self):
         """ Function that provides default parameters for N Propyl Benzene component (can be modified)
 
         Parameters
@@ -412,7 +422,7 @@ class BaseComponent(object):
                                   1.050, 0.001, 0)
         return component
 
-    def defaultNPentane(self):
+    def default_n_pentane(self):
         """ Function that provides default parameters for N Pentane component (can be modified)
 
         Parameters
@@ -437,18 +447,18 @@ class Component(BaseComponent):
     def __init__(self, index):
         self.index = index
 
-    def getToluene(self):
+    def get_toluene(self):
         pass
 
 
 class Solids(object):
-    def __init__(self, name, mol_weight, carbonPartCoefficient, decayConstant):
+    def __init__(self, name, molecular_weight, carbon_part_coefficient, decay_constant):
         self.name = name
-        self.mol_weight = mol_weight
-        self.carbonPartCoefficient = carbonPartCoefficient
-        self.decayConstant = decayConstant
+        self.molecular_weight = molecular_weight
+        self.carbon_part_coefficient = carbon_part_coefficient
+        self.decay_constant = decay_constant
 
-    def getFirstSet(self):
+    def get_first_set(self):
         """ Function that gets the first line of information in INFILE Solids Section
 
         Parameters
@@ -459,5 +469,5 @@ class Solids(object):
         parameters : list
             List of parameters (Name, Molecular Weight, Decay Constant, Carbon Coefficient) for biodegradation
         """
-        listo = [self.name, self.mol_weight, self.carbonPartCoefficient, self.decayConstant]
+        listo = [self.name, self.molecular_weight, self.carbon_part_coefficient, self.decay_constant]
         return listo

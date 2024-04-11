@@ -61,8 +61,8 @@ class BioTestCase(unittest.TestCase):
         toluene = pytoughreact.Component(1).defaultToluene()
         bio.components = [toluene]
 
-        O2_gas = pytoughreact.Gas('O2', 2)
-        bio.gas = [O2_gas]
+        o2_gas = pytoughreact.Gas('O2', 2)
+        bio.gas = [o2_gas]
 
         water = pytoughreact.Water_Bio('H2O')
 
@@ -73,7 +73,7 @@ class BioTestCase(unittest.TestCase):
 
         process1 = pytoughreact.Process(biomass, 2, 1.6944e-04, 0.58, 0)
         water.addToProcess(process1, water_uptake)
-        O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
+        o2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
         toluene.addToProcess(process1, 1, 7.4625e-06)
 
         biodegradation = pytoughreact.BIODG(0, 1e-5, 0, 0.2, 0.9, 0.9, [process1], [biomass])

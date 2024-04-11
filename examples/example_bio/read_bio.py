@@ -23,8 +23,8 @@ SOFTWARE.
 
 '''
 
-from pytoughreact.writers.bio_writing import t2bio
+from pytoughreact.writers.bio_writing import T2Bio
 
-bio_read = t2bio()
+bio_read = T2Bio()
 bio_read.read('INFILE')
 print('yes')

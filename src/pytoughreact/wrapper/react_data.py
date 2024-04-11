@@ -1,10 +1,10 @@
 from t2data import t2data, padstring, fix_blockname
 from fixed_format_file import default_read_function
-from pytoughreact.wrapper.reactblock import t2block
+from pytoughreact.wrapper.reactblock import T2Block
 import numpy as np
 
 
-class react_data(t2data):
+class ReactData(t2data):
     """Class for parsing REACTION data file."""
     def __init__(self, filename, mode, read_function=default_read_function):
         """ Initialization of parameters
@@ -61,7 +61,7 @@ class react_data(t2data):
                 nseq = None
             if nadd == 0:
                 nadd = None
-            self.grid.add_block(t2block(name, volume, rocktype,
+            self.grid.add_block(T2Block(name, volume, rocktype,
                                         centre=centre, ahtx=ahtx,
                                         pmx=pmx, nseq=nseq, nadd=nadd))
             line = padstring(infile.readline())

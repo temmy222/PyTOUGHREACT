@@ -66,8 +66,8 @@ class ReactGas(object):
         --------
 
         """
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         self.partial_pressure = partial_pressure
         self.name = name
@@ -150,12 +150,12 @@ class PrimarySpecies(object):
 
         """
         self.NOTRANS = notrans
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         self.NAME = name
 
-    def getNameTrans(self):
+    def get_name_trans(self):
         """ Function that retrieves the name of primary species and flag for transport and surface complexation options
         Parameters
         -----------

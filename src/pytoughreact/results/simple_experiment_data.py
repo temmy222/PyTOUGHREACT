@@ -65,7 +65,7 @@ class Experiment(object):
         data_table = pd.read_csv(self.filetitle)
         return data_table
 
-    def getColumnNames(self):
+    def get_column_names(self):
         """ Get column names from data table
 
         Parameters

@@ -24,8 +24,8 @@ SOFTWARE.
 '''
 
 import os
-from pytoughreact.utilities.t2_utilities import t2Utilities
-from pytoughreact.utilities.t2_tough_react_utilities import t2UtilitiesToughReact
+from pytoughreact.utilities.t2_utilities import T2Utilities
+from pytoughreact.utilities.t2_tough_react_utilities import T2UtilitiesToughReact
 import t2listing
 
 
@@ -86,7 +86,7 @@ class ResultReact(object):
             Elements present in the result file.
 
         """
-        find_connection = t2UtilitiesToughReact(self.filelocation, 'CONNE')
+        find_connection = T2UtilitiesToughReact(self.filelocation, 'CONNE')
         find_connection.find_word()
         find_connection.slice_off_line()
         find_connection.write_to_file()
@@ -108,7 +108,7 @@ class ResultReact(object):
         """
         time_data = self.data.times
         unprocessed_time_data = list(time_data)
-        value = t2Utilities()
+        value = T2Utilities()
         if len(unprocessed_time_data) > 15:
             time_data = value.chop_list(unprocessed_time_data, 15)
             return time_data
@@ -129,7 +129,7 @@ class ResultReact(object):
 
         """
         get_times = self.get_times()
-        utility_class = t2Utilities()
+        utility_class = T2Utilities()
         processed_time_data = utility_class.convert_times(get_times, format_of_date)
         return processed_time_data
 
@@ -154,7 +154,7 @@ class ResultReact(object):
         mf = self.data.history([(grid, param)])
         final_timeseries_data = mf[1]
         final_timeseries_data = list(final_timeseries_data)
-        value = t2Utilities()
+        value = T2Utilities()
         if len(final_timeseries_data) > 15:
             final_timeseries_data = value.chop_list(final_timeseries_data, 15)
             return final_timeseries_data

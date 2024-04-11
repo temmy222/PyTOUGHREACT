@@ -35,15 +35,15 @@ from pytoughreact.chemical.mineral_description import Mineral
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
-from pytoughreact.chemical.kinetic_properties import pHDependenceType2, Dissolution, Precipitation, pHDependenceType1
-from pytoughreact.exceptions.custom_error import MissingParameter
+from pytoughreact.chemical.kinetic_properties import PHDependenceType2, Dissolution, Precipitation, PHDependenceType1
+from pytoughreact.exceptions.custom_error import MissingParameterError
 
 
-class t2ChemicalData(fixed_format_file):
+class T2ChemicalData(fixed_format_file):
     """Class for parsing CHEMICAL.INP data file."""
 
     def __init__(self, filename, mode, read_function=default_read_function):
-        super(t2ChemicalData, self).__init__(filename, mode,
+        super(T2ChemicalData, self).__init__(filename, mode,
                                              t2chemical_format_specification, read_function)
 
     def get_param_values(self, linetype):
@@ -98,8 +98,8 @@ class t2ChemicalData(fixed_format_file):
                 read_dissolution = Dissolution(float(liner[0]), int(liner[1]), float(liner[2]),
                                                float(liner[3]), float(liner[4]),
                                                float(liner[5]), float(liner[6]), float(liner[7]))
-                type_of_pH = liner[1]
-                if int(type_of_pH) == 0:
+                type_of_ph = liner[1]
+                if int(type_of_ph) == 0:
                     mineral.dissolution = [read_dissolution]
                 else:
                     line = self.file.readline()
@@ -110,14 +110,14 @@ class t2ChemicalData(fixed_format_file):
                         for i in range(number_of_ph):
                             line = self.file.readline()
                             liner = (line.split())
-                            if type_of_pH == '2':
-                                ph_dep = pHDependenceType2(float(liner[0]), float(liner[1]), int(liner[2]),
+                            if type_of_ph == '2':
+                                ph_dep = PHDependenceType2(float(liner[0]), float(liner[1]), int(liner[2]),
                                                            liner[3], float(liner[4]))
-                            elif type_of_pH == '1':
-                                ph_dep = pHDependenceType1(float(liner[0]), int(liner[1]),
+                            elif type_of_ph == '1':
+                                ph_dep = PHDependenceType1(float(liner[0]), int(liner[1]),
                                                            float(liner[2]), int(liner[3]))
                             ph_deps.append(ph_dep)
-                        read_dissolution.pHDependence = ph_deps
+                        read_dissolution.ph_dependence = ph_deps
                         mineral.dissolution = [read_dissolution]
                 presence = any(c.isalpha() for c in liner[0])
                 if precip_presence > 1:
@@ -489,8 +489,8 @@ class t2ChemicalData(fixed_format_file):
             name and properties of the primary species
 
         """
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         for i in range(len(primary_aqueous)):
             if name.lower() == primary_aqueous[i].NAME.strip().lower():
@@ -592,8 +592,8 @@ class t2ChemicalData(fixed_format_file):
             name and properties of the mineral
 
         """
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         for i in range(len(minerals)):
             if name.lower() == minerals[i].name.strip().lower():
@@ -666,8 +666,8 @@ class t2ChemicalData(fixed_format_file):
             name and properties of the gas
 
         """
-        startIndex = name.find('\'')
-        if startIndex >= 0:
+        start_index = name.find('\'')
+        if start_index >= 0:
             name = name.replace("'", "")
         for i in range(len(gases)):
             if name.lower() == gases[i].name.strip().lower():
@@ -764,7 +764,7 @@ class t2ChemicalData(fixed_format_file):
         liner = (line.split())
         counter = 1
         if len(liner) == 0:
-            raise MissingParameter
+            raise MissingParameterError
         while int(liner[0]) < number_of_perm_poro_zones + 1 and counter < number_of_perm_poro_zones + 1:
             perm_poro_num = int(liner[0])
             line = self.file.readline()
@@ -791,7 +791,7 @@ class t2ChemicalData(fixed_format_file):
         return initial_perm_poro_list, initial_perm_poro_mapping
 
 
-class t2chemical(t2data):
+class T2Chemical(t2data):
     """
         Main class for structuring the writing , reading  of chemical parameters
     """
@@ -1123,7 +1123,7 @@ class t2chemical(t2data):
         outfile.write('#DEFINITION OF THE GEOCHEMICAL SYSTEM\n')
         outfile.write('#PRIMARY AQUEOUS SPECIES\n')
         for specie in self.primary_aqueous:
-            vals = specie.getNameTrans()
+            vals = specie.get_name_trans()
             outfile.write_values(vals, 'primary_aqueous')
         outfile.write("'*'\n")
 
@@ -1237,28 +1237,28 @@ class t2chemical(t2data):
         """
         if format.lower() == 'dissolution':
             try:
-                vals = mineral.getDissolutionParams()
+                vals = mineral.get_dissolution_parameters()
             except Exception:
                 raise ValueError("Dissolution parameters are not given")
         elif format.lower() == 'precipitation':
             try:
-                vals = mineral.getPrecipitationParams()
-                vals2 = mineral.getPrecipitationParams2()
+                vals = mineral.get_precipitation_parameters()
+                vals2 = mineral.get_precipitation_parameters_2()
             except Exception:
                 raise ValueError("Precipitation parameters are not given")
         outfile.write_values(vals, 'minerals1.1')
         if vals[1] == 1:
             try:
-                vals = mineral.getpHDependency1()
+                vals = mineral.get_ph_dependency_1()
             except Exception:
                 raise ValueError("The dependency on pH has to be provided. See manual for more")
             outfile.write_values(vals, 'minerals1.1.1')
         elif vals[1] == 2:
-            vals1 = mineral.getNumberOfpHDependence()
+            vals1 = mineral.get_number_of_ph_dependence()
             outfile.write_values(vals1, 'minerals1.1.2a')
-            for ph in mineral.dissolution[0].pHDependence:
+            for ph in mineral.dissolution[0].ph_dependence:
                 try:
-                    vals = mineral.getpHDependency2(ph)
+                    vals = mineral.get_ph_dependency_2(ph)
                 except Exception:
                     raise ValueError("The dependency on pH has to be provided. See manual for more")
                 outfile.write_values(vals, 'minerals1.1.2')
@@ -1296,7 +1296,7 @@ class t2chemical(t2data):
         """
         outfile.write('#MINERALS\n')
         for mineral in self.minerals:
-            vals = mineral.getFirstRow()
+            vals = mineral.get_first_row()
             outfile.write_values(vals, 'minerals')
             if vals[1] == 1 and (vals[2] == 1 or vals[2] == 3):
                 self.write_dissolution_precipitation(outfile, mineral, 'dissolution')
@@ -1493,19 +1493,19 @@ class t2chemical(t2data):
             if len(list(boundary_waters_mapping.keys())) > 0:
                 self.boundary_waters_mapping = boundary_waters_mapping
 
-    def getInitialWaterRow(self, water):
+    def get_initial_water_row(self, water):
         pass
         # print(water[0]['initial'])
 
-    def getInitialWatersTemperature(self, all_waters):
+    def get_initial_waters_temperature(self, all_waters):
         pass
         # print(all_waters[0]['initial'])
 
-    def getInitialWatersPressure(self, all_waters):
+    def get_initial_waters_pressure(self, all_waters):
         pass
         # print(all_waters[0]['initial'])
 
-    def getBoundaryWaters(self, all_waters):
+    def get_boundary_waters(self, all_waters):
         pass
         # for i in range(len(all_waters)):
         #     print(all_waters[0][0]['boundary'])
@@ -1581,7 +1581,7 @@ class t2chemical(t2data):
                         outfile.write_values(vals, 'water_comp2')
                     outfile.write("'*'\n")
 
-    def getInitialWaterIndex(self):
+    def get_initial_water_index(self):
         """ Get Initial Water Index
 
         Parameters
@@ -1599,9 +1599,9 @@ class t2chemical(t2data):
 
         return water_index
 
-    initial_water_index = property(getInitialWaterIndex)
+    initial_water_index = property(get_initial_water_index)
 
-    def getBoundaryWaterIndex(self):
+    def get_boundary_water_index(self):
         """ Get Boundary Water Index
 
         Parameters
@@ -1620,9 +1620,9 @@ class t2chemical(t2data):
 
         return water_index
 
-    boundary_water_index = property(getBoundaryWaterIndex)
+    boundary_water_index = property(get_boundary_water_index)
 
-    def getMineralIndex(self):
+    def get_mineral_index(self):
         """ Get Mineral Index
 
         Parameters
@@ -1642,9 +1642,9 @@ class t2chemical(t2data):
             mineral_index[all_mineral[i]] = i + 1
         return mineral_index
 
-    mineral_index = property(getMineralIndex)
+    mineral_index = property(get_mineral_index)
 
-    def getInitialGasIndex(self):
+    def get_initial_gas_index(self):
         """ Get Initial Gas Index
 
         Parameters
@@ -1662,9 +1662,9 @@ class t2chemical(t2data):
             gas_index[initial_gas[i][0]] = i + 1
         return gas_index
 
-    initial_gas_index = property(getInitialGasIndex)
+    initial_gas_index = property(get_initial_gas_index)
 
-    def getInjectionGasIndex(self):
+    def get_injection_gas_index(self):
         """ Get Injection Gas Index
 
         Parameters
@@ -1682,9 +1682,9 @@ class t2chemical(t2data):
             gas_index[initial_gas[i][0]] = i + 1
         return gas_index
 
-    injection_gas_index = property(getInjectionGasIndex)
+    injection_gas_index = property(get_injection_gas_index)
 
-    def getPermPoroIndex(self):
+    def get_perm_poro_index(self):
         """ Get Permeability Porosity Index
 
         Parameters
@@ -1705,7 +1705,7 @@ class t2chemical(t2data):
                 perm_poro_all.append(perm_poro[i])
         return perm_poro_index
 
-    perm_poro_index = property(getPermPoroIndex)
+    perm_poro_index = property(get_perm_poro_index)
 
     def read_mineral_zones(self, infile):
         """ Reads Mineral Zones
@@ -1729,7 +1729,7 @@ class t2chemical(t2data):
             self.__dict__['mineral_zones'] = initial_minerals_list
             self.initial_minerals_mapping = initial_minerals_mapping
 
-    def countZones(self):
+    def count_zones(self):
         """ Count number of zones
 
         Parameters
@@ -1744,7 +1744,7 @@ class t2chemical(t2data):
         count = len(self.mineral_zones)
         return count
 
-    def countMineralZones(self):
+    def count_mineral_zones(self):
         """ Count number of mineral zones
 
         Parameters
@@ -2060,7 +2060,7 @@ class t2chemical(t2data):
             filename = 'chemical.inp'
         self.update_sections()
         self.update_read_write_functions()
-        outfile = t2ChemicalData(filename, 'w')
+        outfile = T2ChemicalData(filename, 'w')
         for keyword in self._sections:
             self.write_fn[keyword](outfile)
             outfile.write('\n')
@@ -2141,7 +2141,7 @@ class t2chemical(t2data):
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = t2ChemicalData(self.filename, mode, read_function=self.read_function)
+        infile = T2ChemicalData(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
         self._sections = []
         self.update_read_write_functions()

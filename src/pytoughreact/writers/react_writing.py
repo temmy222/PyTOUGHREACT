@@ -25,14 +25,14 @@ SOFTWARE.
 
 from pytoughreact.constants.format_specifications import t2react_format_specification, \
     t2react_extra_precision_format_specification
-from pytoughreact.constants.defaults_constants import DEFAULT_REACT as default_react
-from pytoughreact.constants.defaults_constants import DEFAULT_PARAMETERS as default_parameters
+from pytoughreact.constants.defaults_constants import DEFAULT_REACT
+from pytoughreact.constants.defaults_constants import DEFAULT_PARAMETERS
 from pytoughreact.constants.sections import t2react_sections
 from fixed_format_file import default_read_function, fixed_format_file
-from pytoughreact.wrapper.reactgrid import t2reactgrid
-from pytoughreact.wrapper.reactblock import t2block
+from pytoughreact.wrapper.reactgrid import T2ReactGrid
+from pytoughreact.wrapper.reactblock import T2Block
 from pytoughreact.exceptions.custom_error import NotFoundError
-from pytoughreact.wrapper.reactzone import t2zone
+from pytoughreact.wrapper.reactzone import T2Zone
 from copy import deepcopy
 from t2data import t2data, fix_blockname, rocktype
 import numpy as np
@@ -46,14 +46,14 @@ from mulgrids import padstring
 from subprocess import call
 
 
-class t2react_parser(fixed_format_file):
+class T2ReactParser(fixed_format_file):
     """Class for parsing REACTION data file."""
     def __init__(self, filename, mode, read_function=default_read_function):
-        super(t2react_parser, self).__init__(filename, mode,
-                                             t2react_format_specification, read_function)
+        super(T2ReactParser, self).__init__(filename, mode,
+                                            t2react_format_specification, read_function)
 
 
-class t2_extra_precision_data_parser(fixed_format_file):
+class T2ExtraPrecisionDataParser(fixed_format_file):
     """ Class for parsing AUTOUGH2 extra-precision auxiliary data file.
 
         Parameters
@@ -66,23 +66,23 @@ class t2_extra_precision_data_parser(fixed_format_file):
 
         """
     def __init__(self, filename, mode, read_function=default_read_function):
-        super(t2_extra_precision_data_parser,
+        super(T2ExtraPrecisionDataParser,
               self).__init__(filename, mode,
                              t2react_extra_precision_format_specification,
                              read_function)
 
 
-class t2react(t2data):
+class T2React(t2data):
     def __init__(self, filename='', meshfilename='', read_function=default_read_function):
         """
         Main class for structuring the writing , reading and running of reaction simulations
         """
         super().__init__(filename='', meshfilename='', read_function=default_read_function)
-        self.react = default_react.copy()
-        self.grid = t2reactgrid()
+        self.react = DEFAULT_REACT.copy()
+        self.grid = T2ReactGrid()
         self.title = ''
         self.simulator = ''
-        self.parameter = deepcopy(default_parameters)
+        self.parameter = deepcopy(DEFAULT_PARAMETERS)
         self._more_option_str = '0' * 21,
         self.more_option = np.zeros(22, int)
         self.multi = {}
@@ -150,7 +150,7 @@ class t2react(t2data):
                     self.grid.rocktype[name].capillarity['type'] = vals[0]
                     self.grid.rocktype[name].capillarity['parameters'] = vals[2: -1]
             line = padstring(infile.readline())
-            zone = t2zone(name)
+            zone = T2Zone(name)
             self.grid.add_zone(zone)
 
     def read_blocks(self, infile):
@@ -193,7 +193,7 @@ class t2react(t2data):
                 nseq = None
             if nadd == 0:
                 nadd = None
-            self.grid.add_block(t2block(name, volume, rocktype, blockzone=zonename,
+            self.grid.add_block(T2Block(name, volume, rocktype, blockzone=zonename,
                                         centre=centre, ahtx=ahtx,
                                         pmx=pmx, nseq=nseq, nadd=nadd))
             line = padstring(infile.readline())
@@ -407,9 +407,9 @@ class t2react(t2data):
             self.check_for_thermodynamic_database(runlocation, t2solute)
             self.check_for_executable(simulator, runlocation)
         if self.filename:
-            ROOT_DIR = os.path.abspath(os.curdir)
-            self.check_for_executable(simulator, ROOT_DIR)
-            self.check_for_thermodynamic_database(ROOT_DIR, t2solute)
+            root_dir = os.path.abspath(os.curdir)
+            self.check_for_executable(simulator, root_dir)
+            self.check_for_thermodynamic_database(root_dir, t2solute)
             datbase, ext = splitext(self.filename)
             if (self.type == 'AUTOUGH2'):
                 if save_filename == '':
@@ -543,7 +543,7 @@ class t2react(t2data):
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = t2react_parser(self.filename, mode, read_function=self.read_function)
+        infile = T2ReactParser(self.filename, mode, read_function=self.read_function)
         self.read_title(infile)
         self._sections = []
         more = True
@@ -575,7 +575,7 @@ class t2react(t2data):
             self.meshfilename = meshfilename
             if isinstance(meshfilename, str):
                 mode = 'r' if sys.version_info > (3,) else 'rU'
-                meshfile = t2react_parser(self.meshfilename, mode, read_function=self.read_function)
+                meshfile = T2ReactParser(self.meshfilename, mode, read_function=self.read_function)
                 self.read_meshfile(meshfile)
                 meshfile.close()
             elif isinstance(meshfilename, (list, tuple)):
@@ -627,7 +627,7 @@ class t2react(t2data):
             self.meshfilename = meshfilename
         if self.meshfilename:
             if isinstance(self.meshfilename, str):
-                meshfile = t2react_parser(self.meshfilename, 'w')
+                meshfile = T2ReactParser(self.meshfilename, 'w')
                 self.write_blocks(meshfile)
                 self.write_connections(meshfile)
                 meshfile.close()
@@ -638,7 +638,7 @@ class t2react(t2data):
                     mesh_sections = ['ELEME', 'CONNE']
         if self.type == 'AUTOUGH2':
             self.write_extra_precision(extra_precision, echo_extra_precision)
-        outfile = t2react_parser(self.filename, 'w')
+        outfile = T2ReactParser(self.filename, 'w')
         self.write_title(outfile)
         for keyword in self._sections:
             if (keyword not in mesh_sections) and ((keyword not in self.extra_precision) or

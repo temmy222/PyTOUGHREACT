@@ -145,7 +145,7 @@ class MultiResultTough3(object):
             data_table[result_data_label] = pd.Series(result_data)
         return data_table
 
-    def getMultiElementData(self, grid_block_number, format_of_date):
+    def get_multi_element_data(self, grid_block_number, format_of_date):
         """ DataFrame to retrieve multi element time and results from file
 
         Parameters
@@ -174,7 +174,7 @@ class MultiResultTough3(object):
                 data_table[result_data_label] = pd.Series(result_data)
         return data_table
 
-    def getMultiElementDataPerPanel(self, grid_block_number, panels, format_of_date):
+    def get_multi_element_data_per_panel(self, grid_block_number, panels, format_of_date):
         """ DataFrame to retrieve multi element time and results from file per panel
 
         Parameters

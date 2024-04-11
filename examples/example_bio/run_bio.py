@@ -27,8 +27,8 @@ import numpy as np
 import os
 
 from mulgrids import mulgrid
-from pytoughreact.writers.bio_writing import t2bio
-from pytoughreact.chemical.biomass_composition import Component, Biomass, Gas, Water_Bio
+from pytoughreact.writers.bio_writing import T2Bio
+from pytoughreact.chemical.biomass_composition import Component, Biomass, Gas, WaterBio
 from pytoughreact.chemical.bio_process_description import BIODG, Process
 from t2grids import t2grid
 from t2data import rocktype, t2generator
@@ -52,7 +52,7 @@ dz = [5] * zblock
 geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -95])
 geo.write('geom.dat')
 
-bio = t2bio()
+bio = T2Bio()
 bio.title = 'Biodegradation Runs'
 
 bio.grid = t2grid().fromgeo(geo)
@@ -80,12 +80,12 @@ bio.parameter.update(
 
 # ______________________________________BIODEGRADATION______________________________
 bio.start = True
-toluene = Component(1).defaultToluene()
+toluene = Component(1).default_toluene()
 bio.components = [toluene]
 O2_gas = Gas('O2', 2)
 bio.gas = [O2_gas]
 
-water = Water_Bio('H2O')
+water = WaterBio('H2O')
 
 biomass = Biomass(1, 'biom', 0.0153, 1.00e-6, 30, 2.3148e-07, 0.e-6)
 oxygen_ks = 0.5e-6
@@ -93,9 +93,9 @@ oxygen_uptake = 1
 water_uptake = -3
 
 process1 = Process(biomass, 2, 1.6944e-04, 0.58, 0)
-water.addToProcess(process1, water_uptake)
-O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
-toluene.addToProcess(process1, 1, 7.4625e-06)
+water.add_to_process(process1, water_uptake)
+O2_gas.add_to_process(process1, oxygen_uptake, oxygen_ks)
+toluene.add_to_process(process1, 1, 7.4625e-06)
 
 biodegradation = BIODG(0, 1.e-10, 0, 0.2, 0.9, 0.9,
                        [process1],
@@ -119,7 +119,7 @@ direction = 'x'
 duration = [0, 1 * year, 101 * year]
 # duration = np.linspace(0, simtime * 2, 7)
 rate = np.array([1.00e-2, 0, 0])
-rate_O2 = [1.00e-03, 0, 0]
+rate_o2 = [1.00e-03, 0, 0]
 energy = [5, 5, 5]
 
 if direction == 'x':
@@ -131,7 +131,7 @@ if direction == 'x':
                 gen = t2generator(name=well + str(i), block=bio.grid.blocklist[i].name, type=component,
                                   ltab=len(duration),
                                   itab=str(3),
-                                  time=duration, rate=rate_O2, enthalpy=energy)
+                                  time=duration, rate=rate_o2, enthalpy=energy)
                 bio.add_generator(gen)
             else:
                 gen = t2generator(name=well + str(i), block=bio.grid.blocklist[i].name, type=component,

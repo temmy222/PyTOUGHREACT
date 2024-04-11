@@ -29,7 +29,7 @@ from pytoughreact.results.result_tough_3 import ResultTough3
 from pytoughreact.results.result_tough_react import ResultReact
 
 
-class t2result(object):
+class T2Result(object):
     def __init__(self, simulatortype, filetitle, filelocation=None, **kwargs):
         """Initialization of Parameters
 
@@ -94,8 +94,8 @@ class t2result(object):
         processed_time_data : list
             Time data directly from file without processing.
         """
-        fileReader = self.read_file()
-        processed_time_data = fileReader.convert_times(format_of_date)
+        file_reader = self.read_file()
+        processed_time_data = file_reader.convert_times(format_of_date)
         return processed_time_data
 
     def get_time_series_data(self, param, gridblocknumber):
@@ -114,8 +114,8 @@ class t2result(object):
             Time series data for particular parameter.
 
         """
-        fileReader = self.read_file()
-        final_timeseries_data = fileReader.get_timeseries_data(param, gridblocknumber)
+        file_reader = self.read_file()
+        final_timeseries_data = file_reader.get_timeseries_data(param, gridblocknumber)
         return final_timeseries_data
 
     def get_grid_data(self, timer, param):
@@ -133,6 +133,6 @@ class t2result(object):
         final_element_data : list
             Data for each of the elements.
         """
-        fileReader = self.read_file()
-        final_element_data = fileReader.get_element_data(timer, param)
+        file_reader = self.read_file()
+        final_element_data = file_reader.get_element_data(timer, param)
         return final_element_data

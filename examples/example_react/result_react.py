@@ -1,14 +1,14 @@
 import os
 from pytoughreact.results.result_tough_react import ResultReact
-from pytoughreact.results.t2result import t2result
+from pytoughreact.results.t2result import T2Result
 from pytoughreact.plotting.plot_multiple import PlotMultiple
 from pytoughreact.plotting.plot_single import PlotSingle
 from pytoughreact.plotting.plot_tough_routine import PlotTough
 
 FILE_PATH = os.path.abspath(os.curdir)
 
-results = t2result('toughreact', 'kdd_conc.tec', FILE_PATH)
-results_tmvoc = t2result('tmvoc', 'OUTPUT_ELEME.csv', FILE_PATH)
+results = T2Result('toughreact', 'kdd_conc.tec', FILE_PATH)
+results_tmvoc = T2Result('tmvoc', 'OUTPUT_ELEME.csv', FILE_PATH)
 time = results.get_times()
 parameter_result = results.get_time_series_data('pH', 0)
 time = results_tmvoc.get_times()
@@ -20,7 +20,6 @@ pt = PlotTough('toughreact', FILE_PATH, 'kdd_conc.tec')
 # pt.plotParamWithLayer('x', 'z', ['pH'], 1, 300)
 # pt.plotParamWithTime('pH', 0, 'day')
 # pt.plotParamWithParam('pH', 't_so4-2', 0)
-
 
 
 file_toughreact = os.path.join(FILE_PATH, "example_files/folder_1")
@@ -44,9 +43,9 @@ testcodetoughreact_min = PlotSingle("toughreact", file_toughreact, filetype_toug
 
 # testcodetoughreact_min.plot2D('x', 'z', 'calcite', 2.592e+15, 'grid')
 # testcodetoughreact.plotTime('pH', 85, format_of_date='day')
-testcodetoughreact_min.plotTime(param_min, 85, format_of_date='day')
+testcodetoughreact_min.plot_time(param_min, 85, format_of_date='day')
 
-testcodemultitoughreact.plotTime(0, labels)
+testcodemultitoughreact.plot_time(0, labels)
 
 results = ResultReact('toughreact', FILE_PATH, 'kdd_conc.tec')
 time = results.get_times()

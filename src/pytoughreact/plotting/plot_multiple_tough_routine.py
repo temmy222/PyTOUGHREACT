@@ -24,7 +24,7 @@ SOFTWARE.
 '''
 
 import itertools
-from pytoughreact.utilities.t2_utilities import t2Utilities
+from pytoughreact.utilities.t2_utilities import T2Utilities
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -68,7 +68,7 @@ class PlotMultiTough(object):
         self.filelocations = filelocations
         self.filetitles = filetitles
         self.simulatortype = simulatortype
-        self.modifier = t2Utilities()
+        self.modifier = T2Utilities()
         self.generation = kwargs.get(gc.GENERATION)
         self.args = kwargs.get(gc.RESTART_FILES)
         self.expt = kwargs.get(gc.EXPERIMENT)
@@ -78,68 +78,67 @@ class PlotMultiTough(object):
         os.chdir(self.filelocations)
         if (self.simulatortype.lower() == gc.TMVOC or
                 self.simulatortype.lower() == gc.TOUGH3):
-            fileReader = ResultTough3(self.simulatortype, self.filelocations,
-                                      self.filetitles,
-                                      generation=self.generation)
+            file_reader = ResultTough3(self.simulatortype, self.filelocations,
+                                       self.filetitles, generation=self.generation)
         else:
-            fileReader = ResultReact(self.simulatortype, self.filelocations,
-                                     self.filetitles)
-        return fileReader
+            file_reader = ResultReact(self.simulatortype, self.filelocations,
+                                      self.filetitles)
+        return file_reader
 
     def read_file_multi(self, file, filetitle):
         os.chdir(file)
         if (self.simulatortype.lower() == gc.TMVOC or
                 self.simulatortype.lower() == gc.TOUGH3):
-            fileReader = ResultTough3(self.simulatortype, file, filetitle)
+            file_reader = ResultTough3(self.simulatortype, file, filetitle)
         else:
-            fileReader = ResultReact(self.simulatortype, file, filetitle)
-        return fileReader
+            file_reader = ResultReact(self.simulatortype, file, filetitle)
+        return file_reader
 
-    def getRestartLocations(self):
+    def get_restart_locations(self):
         restart_files = list()
         restart_files.append(self.filelocations)
         restart_files = restart_files + self.args
         return restart_files
 
-    def getRestartDataTime(self, format_of_date):
-        locations = self.getRestartLocations()
+    def get_restart_data_time(self, format_of_date):
+        locations = self.get_restart_locations()
         final_time = []
         for i in range(0, len(locations)):
             if (self.simulatortype.lower() == gc.TMVOC or
                     self.simulatortype.lower() == gc.TOUGH3):
-                fileReader = ResultTough3(self.simulatortype, locations[i],
-                                          self.filetitle)
+                file_reader = ResultTough3(self.simulatortype, locations[i],
+                                           self.filetitle)
             else:
-                fileReader = ResultReact(self.simulatortype, locations[i],
-                                         self.filetitles)
+                file_reader = ResultReact(self.simulatortype, locations[i],
+                                          self.filetitles)
             if i == 0:
-                time_year = fileReader.convert_times(format_of_date)
+                time_year = file_reader.convert_times(format_of_date)
                 final_time.append(time_year)
             else:
-                time_year = fileReader.convert_times(format_of_date)
+                time_year = file_reader.convert_times(format_of_date)
                 time_year = time_year[1:]
                 final_time.append(time_year)
         final_time = list(itertools.chain.from_iterable(final_time))
         return final_time
 
-    def getRestartDataElement(self, param, gridblocknumber):
-        locations = self.getRestartLocations()
+    def get_restart_data_element(self, param, gridblocknumber):
+        locations = self.get_restart_locations()
         final_result = []
         for i in range(0, len(locations)):
             if (self.simulatortype.lower() == gc.TMVOC or
                     self.simulatortype.lower() == gc.TOUGH3):
-                fileReader = ResultTough3(self.simulatortype, locations[i],
-                                          self.filetitles)
+                file_reader = ResultTough3(self.simulatortype, locations[i],
+                                           self.filetitles)
             else:
-                fileReader = ResultReact(self.simulatortype, locations[i],
-                                         self.filetitles)
+                file_reader = ResultReact(self.simulatortype, locations[i],
+                                          self.filetitles)
             if i == 0:
-                result_array = fileReader.get_timeseries_data(param,
-                                                              gridblocknumber)
+                result_array = file_reader.get_timeseries_data(param,
+                                                               gridblocknumber)
                 final_result.append(result_array)
             else:
-                result_array = fileReader.get_timeseries_data(param,
-                                                              gridblocknumber)
+                result_array = file_reader.get_timeseries_data(param,
+                                                               gridblocknumber)
                 result_array = result_array[1:]
                 final_result.append(result_array)
         final_result = list(itertools.chain.from_iterable(final_result))
@@ -164,13 +163,13 @@ class PlotMultiTough(object):
         --------
 
         """
-        time_year = self.getRestartDataTime(format_of_date)
+        time_year = self.get_restart_data_time(format_of_date)
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
         for parameter in param:
-            result_array = self.getRestartDataElement(parameter,
-                                                      gridblocknumber)
-            parameters = t2Utilities()
+            result_array = self.get_restart_data_element(parameter,
+                                                         gridblocknumber)
+            parameters = T2Utilities()
             time_year, result_array = parameters.remove_repetiting(time_year, result_array)
             axs[j].plot(time_year, result_array, marker=pc.CARET,
                         label=self.modifier.param_label_full(
@@ -217,12 +216,12 @@ class PlotMultiTough(object):
         --------
 
         """
-        time_year = self.getRestartDataTime(format_of_date)
+        time_year = self.get_restart_data_time(format_of_date)
         fig = plt.figure()
         for number in range(1, len(param) + 1):
             ax = fig.add_subplot(1, len(param), number)
-            result_array = self.getRestartDataElement(param[number - 1],
-                                                      gridblocknumber)
+            result_array = self.get_restart_data_element(param[number - 1],
+                                                         gridblocknumber)
             ax.plot(time_year, result_array, marker=pc.CARET_SYMBOL,
                     label=self.modifier.param_label_full(
                         param[number - 1].upper()))
@@ -340,13 +339,13 @@ class PlotMultiTough(object):
         --------
 
         """
-        fileReader = self.read_file()
-        time_year = fileReader.convert_times(format_of_date)
+        file_reader = self.read_file()
+        time_year = file_reader.convert_times(format_of_date)
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
         for parameter in param:
-            result_array = fileReader.get_timeseries_data(parameter,
-                                                          gridblocknumber)
+            result_array = file_reader.get_timeseries_data(parameter,
+                                                           gridblocknumber)
             axs[j].plot(time_year, result_array, marker=pc.CARET_SYMBOL,
                         label=self.modifier.param_label_full(
                             parameter.upper()))
@@ -396,15 +395,15 @@ class PlotMultiTough(object):
         --------
 
         """
-        fileReader = self.read_file()
-        time_year = fileReader.convert_times(format_of_date)
+        file_reader = self.read_file()
+        time_year = file_reader.convert_times(format_of_date)
         expt_test = Experiment(self.expt[0], data_file)
         time_year_expt = expt_test.get_times()
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
         for parameter in param:
-            result_array = fileReader.get_timeseries_data(parameter,
-                                                          gridblocknumber)
+            result_array = file_reader.get_timeseries_data(parameter,
+                                                           gridblocknumber)
             result_array_expt = expt_test.get_timeseries_data(parameter)
             axs[j].plot(time_year, result_array, marker=pc.CARET_SYMBOL,
                         label=gc.SIMULATION)
@@ -466,15 +465,15 @@ class PlotMultiTough(object):
         --------
 
         """
-        time_year = self.getRestartDataTime(format_of_date)
+        time_year = self.get_restart_data_time(format_of_date)
         j = 0
         fig, axs = plt.subplots(len(param), sharex=False)
         expt_test = Experiment(self.expt[0], data_file)
         time_year_expt = expt_test.get_times()
         for parameter in param:
-            result_array = self.getRestartDataElement(parameter,
-                                                      gridblocknumber)
-            parameters = t2Utilities()
+            result_array = self.get_restart_data_element(parameter,
+                                                         gridblocknumber)
+            parameters = T2Utilities()
             time_year, result_array = parameters.remove_repetiting(time_year, result_array)
             result_array_expt = expt_test.get_timeseries_data(parameter)
             axs[j].plot(time_year, result_array, marker=pc.CARET_SYMBOL,
@@ -529,14 +528,14 @@ class PlotMultiTough(object):
         --------
 
         """
-        fileReader = self.read_file()
-        time_year = fileReader.convert_times(format_of_date)
+        file_reader = self.read_file()
+        time_year = file_reader.convert_times(format_of_date)
         j = 0
         fig = plt.figure()
         for number in range(1, len(param) + 1):
             ax = fig.add_subplot(1, len(param), number)
-            result_array = fileReader.get_timeseries_data(param[number - 1],
-                                                          gridblocknumber)
+            result_array = file_reader.get_timeseries_data(param[number - 1],
+                                                           gridblocknumber)
             ax.plot(time_year, result_array, marker=pc.CARET_SYMBOL,
                     label=self.modifier.param_label_full(
                         param[number - 1].upper()))
@@ -586,8 +585,8 @@ class PlotMultiTough(object):
         --------
 
         """
-        fileReader = self.read_file()
-        time_year = fileReader.convert_times(format_of_date)
+        file_reader = self.read_file()
+        time_year = file_reader.convert_times(format_of_date)
         expt_test = Experiment(self.expt[0], data_file)
         time_year_expt = expt_test.get_times()
         j = 0
@@ -596,8 +595,8 @@ class PlotMultiTough(object):
             ax = fig.add_subplot(1, len(param), number)
             result_array_expt = expt_test.get_timeseries_data(
                 param[number - 1])
-            result_array = fileReader.get_timeseries_data(param[number - 1],
-                                                          grid_block_number)
+            result_array = file_reader.get_timeseries_data(param[number - 1],
+                                                           grid_block_number)
             ax.plot(time_year, result_array, marker=pc.CARET,
                     label=gc.SIMULATION)
             ax.plot(time_year_expt, result_array_expt, '--', marker='o',
@@ -697,19 +696,19 @@ class PlotMultiTough(object):
                     raise ParameterLessThanThreeError()
 
     def _retrieve_multi_data(self, param, gridblocknumber):
-        dataStorage = {}
-        fileNames = []
+        data_storage = {}
+        file_names = []
         for parameter in param:
-            fileNumber = 0
+            file_number = 0
             for file in self.filelocations:
-                fileReader = self.read_file_multi(
-                    file, self.filetitles[fileNumber])
-                filename = parameter + str(fileNumber)
-                dataStorage[filename] = fileReader.get_timeseries_data(
+                file_reader = self.read_file_multi(
+                    file, self.filetitles[file_number])
+                filename = parameter + str(file_number)
+                data_storage[filename] = file_reader.get_timeseries_data(
                     parameter, gridblocknumber)
-                fileNames.append(filename)
-                fileNumber = fileNumber + 1
-        return fileNames, dataStorage
+                file_names.append(filename)
+                file_number = file_number + 1
+        return file_names, data_storage
 
     def _retrieve_multi_data_generation(self, param, format_of_date):
         """ Retrieve multi data for plotting
@@ -729,12 +728,12 @@ class PlotMultiTough(object):
 
         """
         data_table = pd.DataFrame()
-        fileReader = self.read_file()
+        file_reader = self.read_file()
         for i in range(len(param)):
             time_data_label = pc.TIME + str(i)
             result_data_label = pc.RESULT + str(i)
-            time_data = fileReader.convert_times(format_of_date=format_of_date)
-            result_data = fileReader.get_generation_data(param[i])
+            time_data = file_reader.convert_times(format_of_date=format_of_date)
+            result_data = file_reader.get_generation_data(param[i])
             data_table[time_data_label] = pd.Series(time_data)
             data_table[result_data_label] = pd.Series(result_data)
         return data_table
@@ -752,8 +751,8 @@ class PlotMultiTough(object):
         result_array = np.append(result_array, last_result)
         return time_array, result_array
 
-    def plotMultiParamSinglePlot(self, param, gridblocknumber, format_of_date,
-                                 labels=None):
+    def plot_multi_param_single_plot(self, param, gridblocknumber, format_of_date,
+                                     labels=None):
         """ Line Multiple parameters in a single Plot
 
         Parameters
@@ -773,15 +772,15 @@ class PlotMultiTough(object):
         if self.generation is True:
             with plt.style.context(pc.CLASSIC):
                 fig, axs = plt.subplots(1, 1)
-                dataFile = self._retrieve_multi_data_generation(param,
-                                                                format_of_date)
+                data_file = self._retrieve_multi_data_generation(param,
+                                                                 format_of_date)
                 legend_index = 0
-                for i in range(0, len(dataFile.columns), 2):
+                for i in range(0, len(data_file.columns), 2):
                     if labels is None:
-                        axs.plot(dataFile.iloc[:, i], dataFile.iloc[:, i + 1],
+                        axs.plot(data_file.iloc[:, i], data_file.iloc[:, i + 1],
                                  label=param[legend_index])
                     else:
-                        axs.plot(dataFile.iloc[:, i], dataFile.iloc[:, i + 1],
+                        axs.plot(data_file.iloc[:, i], data_file.iloc[:, i + 1],
                                  label=labels[legend_index])
                     axs.set_xlabel(pc.TIME_CAPS + ' ' + pc.OPEN_BRACKET +
                                    format_of_date + pc.CLOSE_BRACKET,
@@ -800,10 +799,10 @@ class PlotMultiTough(object):
             with plt.style.context(pc.CLASSIC):
                 fig, axs = plt.subplots(1, 1)
                 markers = pc.ALL_MARKERS
-                fileReader = self.read_file()
+                file_reader = self.read_file()
                 for i in range(0, len(param)):
-                    time_year = fileReader.convert_times(format_of_date)
-                    result_array = fileReader.get_timeseries_data(
+                    time_year = file_reader.convert_times(format_of_date)
+                    result_array = file_reader.get_timeseries_data(
                         param[i], gridblocknumber)
                     if len(time_year) > 50:
                         time_year, result_array = self._slice_value(
@@ -860,9 +859,9 @@ class PlotMultiTough(object):
 
         """
         fig = plt.figure(figsize=(width, height))
-        fileReader = self.read_file_multi(self.filelocations[0],
-                                          self.filetitles[0])
-        time_year = fileReader.convert_times(format_of_date)
+        file_reader = self.read_file_multi(self.filelocations[0],
+                                           self.filetitles[0])
+        time_year = file_reader.convert_times(format_of_date)
         lst, dictionary = self._retrieve_multi_data(param, gridblocknumber)
         colors = pc.ALL_COLORS
         markers = pc.ALL_MARKERS
