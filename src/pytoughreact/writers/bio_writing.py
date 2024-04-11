@@ -453,7 +453,8 @@ class T2Bio(t2data):
                                  liquid_chemical_solubility_a=sixth_line[0], liquid_chemical_solubility_b=sixth_line[1],
                                  liquid_chemical_solubility_c=sixth_line[2],
                                  liquid_chemical_solubility_d=sixth_line[3],
-                                 carbon_partition_coefficient=seventh_line[0], fractional_organic_carbon=seventh_line[1],
+                                 carbon_partition_coefficient=seventh_line[0],
+                                 fractional_organic_carbon=seventh_line[1],
                                  decay_constant=seventh_line[2])
             all_comp.append(comp)
         self.components = all_comp
