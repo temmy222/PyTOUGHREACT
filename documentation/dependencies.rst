@@ -1,12 +1,12 @@
 Dependencies
 ================
-**Python**: `pandas <https://pandas.pydata.org/>` _ library
+**Python**: Python > 3.7
 
-1. VTK
-2. Scipy
-3. Numpy
-4. Matplotlib
-5. pandas
+1. VTK >=1
+2. Scipy >=1
+3. Numpy >=1
+4. Matplotlib >=3
+5. pandas >=1
 6. PyTOUGH
 7. flake8
 
