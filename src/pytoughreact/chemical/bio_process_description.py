@@ -176,9 +176,9 @@ class Process(object):
         self.gasParams = gas_params
         self.componentParams = component_params
         self.allProcesses = []
-        self.NumOfCompetiting = number_competiting
-        self.NumOfNonCompetiting = number_of_non_competiting
-        self.NumOfHaldane = number_of_haldane
+        self.number_competiting = number_competiting
+        self.number_of_non_competiting = number_of_non_competiting
+        self.number_of_haldane = number_of_haldane
         self.totalComp = total_component
 
     def get_number_of_competiting(self):

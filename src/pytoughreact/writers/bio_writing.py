@@ -664,8 +664,8 @@ class T2Bio(t2data):
             uptake = value.processes[i].get_uptake()
             vals = [len(sub_degrade), value.processes[i].biomass.index, value.processes[i].mumax,
                     value.processes[i].yield_mass,
-                    value.processes[i].NumOfCompetiting, value.processes[i].NumOfNonCompetiting,
-                    value.processes[i].NumOfHaldane, value.processes[i].enthalpy]
+                    value.processes[i].number_competiting, value.processes[i].number_of_non_competiting,
+                    value.processes[i].number_of_haldane, value.processes[i].enthalpy]
             outfile.write_values(vals, 'biodg1.1')
             vals = []
             for j in sub_degrade:
