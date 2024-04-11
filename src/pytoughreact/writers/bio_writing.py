@@ -435,7 +435,7 @@ class T2Bio(t2data):
             sixth_line = infile.read_values('chemp1.6')
             seventh_line = infile.read_values('chemp1.7')
             comp = BaseComponent(name=comp_name[0], critical_temperature=first_line[0], critical_pressure=first_line[1],
-                                 critical_composition=first_line[2],
+                                 critical_compressibility=first_line[2],
                                  acentric_factor=first_line[3], dipole_moment=first_line[4],
                                  boiling_point=second_line[0], vapor_pressure_a=second_line[1],
                                  vapor_pressure_b=second_line[2],
@@ -444,16 +444,16 @@ class T2Bio(t2data):
                                  heat_capacity_constant_b=third_line[2], heat_capacity_constant_c=third_line[3],
                                  heat_capacity_constant_d=third_line[4],
                                  liquid_density=fourth_line[0], reference_temp_for_density=fourth_line[1],
-                                 reference_binary_difference=fourth_line[2],
-                                 reference_temperature_for_difference=fourth_line[3],
-                                 exponent_chemical_difference=fourth_line[4],
+                                 reference_binary_diffusivity=fourth_line[2],
+                                 reference_temperature_for_diffusivity=fourth_line[3],
+                                 exponent_chemical_diffusivity=fourth_line[4],
                                  liquid_viscosity_constant_a=fifth_line[0], liquid_viscosity_constant_b=fifth_line[1],
                                  liquid_viscosity_constant_c=fifth_line[2],
                                  liquid_viscosity_constant_d=fifth_line[3], liquid_critical_volume=fifth_line[4],
                                  liquid_chemical_solubility_a=sixth_line[0], liquid_chemical_solubility_b=sixth_line[1],
                                  liquid_chemical_solubility_c=sixth_line[2],
                                  liquid_chemical_solubility_d=sixth_line[3],
-                                 carbon_part_coefficient=seventh_line[0], fractional_carbon=seventh_line[1],
+                                 carbon_partition_coefficient=seventh_line[0], fractional_organic_carbon=seventh_line[1],
                                  decay_constant=seventh_line[2])
             all_comp.append(comp)
         self.components = all_comp

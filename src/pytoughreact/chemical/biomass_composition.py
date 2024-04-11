@@ -25,9 +25,37 @@ SOFTWARE.
 
 
 class Biomass(object):
-    """Rock type"""
+    """Biomass type"""
 
     def __init__(self, index, name, init_conc, min_conc, max_temp, death_rate, inhibition_constant):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        index :  int
+            Serial index of biomass
+        name : string
+            Name of biomass
+        init_conc: float
+            Initial concentration (valid for the entire simulation grid) in the aqueous phase of
+            microbial population (kg biomass / kg aqueous phase)
+        min_conc: float
+            Minimum concentration in the aqueous phase of microbial population
+            enforced during the simulation (kg biomass / kg aqueous phase)
+        max_temp: float
+            Maximum temperature for the calculation of temperature inhibition function in the
+            substrate degradation rate equation (°C)
+        death_rate: float
+            Death rate constant, or maintenance constant, for the microbial population
+            (s-1)
+        inhibition_constant: float
+            Inhibition constant for biomass growth of microbial population # IB (kg biomass
+            kg aqueous phase).
+
+        Returns
+        --------
+
+        """
         self.index = index
         self.death_rate = death_rate
         self.max_temp = max_temp
@@ -41,6 +69,19 @@ class Gas(object):
     """Rock type"""
 
     def __init__(self, name, index):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        index :  int
+            Serial index of gas
+        name : string
+            Name of gas
+
+        Returns
+        --------
+
+        """
         self.index = index
         self.name = name
 
@@ -86,6 +127,19 @@ class WaterBio(object):
     """Rock type"""
 
     def __init__(self, name='H2O', index=1):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        index :  int
+            Serial index of water
+        name : string
+            Name of water
+
+        Returns
+        --------
+
+        """
         self.index = index
         self.name = name
 
@@ -130,19 +184,94 @@ class WaterBio(object):
 class BaseComponent(object):
     """Rock type"""
 
-    def __init__(self, name=None, critical_temperature=None, critical_pressure=None, critical_composition=None,
+    def __init__(self, name=None, critical_temperature=None, critical_pressure=None, critical_compressibility=None,
                  acentric_factor=None, dipole_moment=None,
                  boiling_point=None, vapor_pressure_a=None, vapor_pressure_b=None,
                  vapor_pressure_c=None, vapor_pressure_d=None,
                  molecular_weight=None, heat_capacity_constant_a=None, heat_capacity_constant_b=None,
                  heat_capacity_constant_c=None, heat_capacity_constant_d=None,
-                 liquid_density=None, reference_temp_for_density=None, reference_binary_difference=None,
-                 reference_temperature_for_difference=None, exponent_chemical_difference=None,
+                 liquid_density=None, reference_temp_for_density=None, reference_binary_diffusivity=None,
+                 reference_temperature_for_diffusivity=None, exponent_chemical_diffusivity=None,
                  liquid_viscosity_constant_a=None, liquid_viscosity_constant_b=None, liquid_viscosity_constant_c=None,
                  liquid_viscosity_constant_d=None, liquid_critical_volume=None,
                  liquid_chemical_solubility_a=None, liquid_chemical_solubility_b=None,
                  liquid_chemical_solubility_c=None, liquid_chemical_solubility_d=None,
-                 carbon_part_coefficient=None, fractional_carbon=None, decay_constant=None):
+                 carbon_partition_coefficient=None, fractional_organic_carbon=None, decay_constant=None):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        name : string
+            Name of component
+        critical_temperature : float
+            Chemical critical temperature, K
+        critical_pressure : float
+            Chemical critical pressure, bar (1 bar = 105 Pa)
+        critical_compressibility : float
+            Chemical critical compressibility
+        acentric_factor : float
+            Pitzer's acentric factor for the chemical.
+        dipole_moment : float
+            Chemical dipole moment, debyes.
+        boiling_point : float
+            Chemical normal boiling point, K.
+        vapor_pressure_a : float
+            Chemical vapor pressure constant from Reid et al. (1987)
+        vapor_pressure_b : float
+            Chemical vapor pressure constant from Reid et al. (1987)
+        vapor_pressure_c : float
+            Chemical vapor pressure constant from Reid et al. (1987)
+        vapor_pressure_d : float
+            Chemical vapor pressure constant from Reid et al. (1987)
+        molecular_weight : float
+            Chemical molecular weight, g/mole.
+        heat_capacity_constant_a : float
+            Chemical ideal gas heat capacity constant from Reid et al. (1987).
+        heat_capacity_constant_b : float
+            Chemical ideal gas heat capacity constant from Reid et al. (1987).
+        heat_capacity_constant_c : float
+            Chemical ideal gas heat capacity constant from Reid et al. (1987).
+        heat_capacity_constant_d : float
+            Chemical ideal gas heat capacity constant from Reid et al. (1987).
+        liquid_density : float
+            Reference NAPL (liquid) density, kg/m3.
+        reference_temp_for_density : float
+            Reference temperature for NAPL density, K.
+        reference_binary_diffusivity : float
+            Reference binary diffusivity of VOC in air, m2/s.
+        reference_temperature_for_diffusivity : float
+            Reference temperature for gas diffusivity, K..
+        exponent_chemical_diffusivity : float
+            Exponent for calculation of chemical diffusivity.
+        liquid_viscosity_constant_a : float
+            Liquid NAPL viscosity constant from Reid et al. (1987).
+        liquid_viscosity_constant_b : float
+            Liquid NAPL viscosity constant from Reid et al. (1987).
+        liquid_viscosity_constant_c : float
+            Liquid NAPL viscosity constant from Reid et al. (1987).
+        liquid_viscosity_constant_d : float
+            Liquid NAPL viscosity constant from Reid et al. (1987).
+        liquid_critical_volume : float
+            Chemical critical volume, cm3/mole.
+        liquid_chemical_solubility_a : float
+            Constant for chemical solubility in water, mole fraction.
+        liquid_chemical_solubility_b : float
+            Constant for chemical solubility in water, mole fraction/K.
+        liquid_chemical_solubility_c : float
+            Constant for chemical solubility in water, mole fraction/K2.
+        liquid_chemical_solubility_d : float
+            Constant for chemical solubility in water, mole fraction/K3.
+        carbon_partition_coefficient : float
+            chemical organic carbon partition coefficient Koc, m3/kg.
+        fractional_organic_carbon : float
+            Default value for fraction of organic carbon in soil.
+        decay_constant : float
+            decay constant for biodegradation of VOC, s-1.
+
+        Returns
+        --------
+
+        """
         self.differential_napl = 0
         self.differential_gas = 0
         self.differential_aqueous = 0
@@ -150,17 +279,17 @@ class BaseComponent(object):
         self.liquid_viscosity_cosntant_d = liquid_viscosity_constant_d
         self.liquid_viscosity_cosntant_c = liquid_viscosity_constant_c
         self.decay_constant = decay_constant
-        self.fractional_carbon = fractional_carbon
-        self.carbon_part_coefficient = carbon_part_coefficient
+        self.fractional_organic_carbon = fractional_organic_carbon
+        self.carbon_partition_coefficient = carbon_partition_coefficient
         self.liquid_chemical_solubility_a = liquid_chemical_solubility_a
         self.liquid_chemical_solubility_d = liquid_chemical_solubility_d
         self.liquid_chemical_solubility_b = liquid_chemical_solubility_b
         self.liquid_chemical_solubility_c = liquid_chemical_solubility_c
         self.liquid_viscosity_constant_b = liquid_viscosity_constant_b
         self.liquid_viscosity_constant_a = liquid_viscosity_constant_a
-        self.exponent_chemical_difference = exponent_chemical_difference
-        self.reference_temperature_for_difference = reference_temperature_for_difference
-        self.reference_binary_difference = reference_binary_difference
+        self.exponent_chemical_diffusivity = exponent_chemical_diffusivity
+        self.reference_temperature_for_diffusivity = reference_temperature_for_diffusivity
+        self.reference_binary_diffusivity = reference_binary_diffusivity
         self.reference_temp_for_density = reference_temp_for_density
         self.liquid_density = liquid_density
         self.heat_capacity_constant_d = heat_capacity_constant_d
@@ -174,7 +303,7 @@ class BaseComponent(object):
         self.boiling_point = boiling_point
         self.dipole_moment = dipole_moment
         self.acentric_factor = acentric_factor
-        self.critical_composition = critical_composition
+        self.critical_compressibility = critical_compressibility
         self.vapor_pressure_c = vapor_pressure_c
         self.critical_pressure = critical_pressure
         self.name = name
@@ -192,7 +321,7 @@ class BaseComponent(object):
             List of parameters (Critical Temperature, Critical Pressure, Acentric Factor,
             Dipole Moment) for biodegradation
         """
-        parameters = [self.critical_temperature, self.critical_pressure, self.critical_composition,
+        parameters = [self.critical_temperature, self.critical_pressure, self.critical_compressibility,
                       self.acentric_factor, self.dipole_moment]
         return parameters
 
@@ -237,8 +366,8 @@ class BaseComponent(object):
         parameters : list
             List of parameters (Liquid density, Reference Temperature for density, Diffusion) for biodegradation
         """
-        parameters = [self.liquid_density, self.reference_temp_for_density, self.reference_binary_difference,
-                      self.reference_temperature_for_difference, self.exponent_chemical_difference]
+        parameters = [self.liquid_density, self.reference_temp_for_density, self.reference_binary_diffusivity,
+                      self.reference_temperature_for_diffusivity, self.exponent_chemical_diffusivity]
         return parameters
 
     def get_fifth_set(self):
@@ -282,7 +411,7 @@ class BaseComponent(object):
         parameters : list
             List of parameters (carbon Coefficient, Decay Constant) for biodegradation
         """
-        parameters = [self.carbon_part_coefficient, self.fractional_carbon, self.decay_constant]
+        parameters = [self.carbon_partition_coefficient, self.fractional_organic_carbon, self.decay_constant]
         return parameters
 
     def add_to_process(self, process, uptake, ks=None, kc=None, knc=None, kh=None):
@@ -445,6 +574,17 @@ class BaseComponent(object):
 
 class Component(BaseComponent):
     def __init__(self, index):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        index :  int
+            Serial index of component
+
+        Returns
+        --------
+
+        """
         self.index = index
 
     def get_toluene(self):
@@ -452,10 +592,27 @@ class Component(BaseComponent):
 
 
 class Solids(object):
-    def __init__(self, name, molecular_weight, carbon_part_coefficient, decay_constant):
+    def __init__(self, name, molecular_weight, carbon_partition_coefficient, decay_constant):
+        """Initialization of Parameters
+
+        Parameters
+        -----------
+        name : string
+            Name of dissolved solid
+        molecular_weight: float
+            Dissolved solid molecular weight, g/mole
+        carbon_partition_coefficient: float
+            Dissolved solid organic carbon partition coefficient KOC, m3/kg
+        decay_constant: float
+            decay constant for dissolved solid, s-1.
+
+        Returns
+        --------
+
+        """
         self.name = name
         self.molecular_weight = molecular_weight
-        self.carbon_part_coefficient = carbon_part_coefficient
+        self.carbon_part_coefficient = carbon_partition_coefficient
         self.decay_constant = decay_constant
 
     def get_first_set(self):
