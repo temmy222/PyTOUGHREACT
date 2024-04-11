@@ -45,16 +45,16 @@ pip install PyTOUGH
 ```python
 import os
 from mulgrids import mulgrid
-from pytoughreact.writers.react_writing import t2react
-from pytoughreact.pytough_wrapper.wrapper.reactgrid import t2reactgrid
-from pytoughreact.pytough_wrapper.wrapper.reactzone import t2zone
+from pytoughreact.writers.react_writing import T2React
 from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
+from pytoughreact.wrapper.reactgrid import T2ReactGrid
+from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
-from pytoughreact.chemical.mineral_description import Mineral
 from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
-from pytoughreact.writers.chemical_writing import t2chemical
-from pytoughreact.writers.solute_writing import t2solute
+from pytoughreact.writers.chemical_writing import T2Chemical
+from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
+from pytoughreact.writers.solute_writing import T2Solute
 from t2grids import rocktype
 
 #__________________________________FLOW.INP____________________________________________
@@ -66,13 +66,13 @@ dz = [0.5] * 1
 geo = mulgrid().rectangular(dx, dy, dz)
 geo.write('geom.dat')
 
-react = t2react()
+react = T2React()
 react.title = 'Reaction example'
 
 react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
                'num_secondary_parameters': 6}
 
-react.grid = t2reactgrid().fromgeo(geo)
+react.grid = T2ReactGrid().fromgeo(geo)
 
 react.parameter.update(
     {'print_level': 4,
@@ -94,7 +94,7 @@ for blk in react.grid.blocklist[0:]:
     blk.rocktype = react.grid.rocktype[sand.name]
 
 
-zone1 = t2zone('zone1')
+zone1 = T2Zone('zone1')
 
 react.grid.add_zone(zone1)
 
@@ -152,12 +152,16 @@ hydrotalcite_zone1 = MineralComp(get_specific_mineral(mineral_list[7]), 0.05, 1,
 initial_co2 = ReactGas('co2(g)', 0, 1.1)
 ijgas = [[initial_co2], []]
 
+permporo = PermPoro(1, 0, 0)
+permporozone = PermPoroZone([permporo])
+
 zone1.water = [[initial_water_zone1], []]
 zone1.gas = [[initial_co2], []]
 mineral_zone1 = MineralZone([c3fh6_zone1, tobermorite_zone1, calcite_zone1, csh_zone1, portlandite_zone1, ettringite_zone1, katoite_zone1, hydrotalcite_zone1])
 zone1.mineral_zone = mineral_zone1
+zone1.permporo = permporozone
 
-writeChemical = t2chemical(t2reactgrid=react.grid)
+write_chemical = T2Chemical(t2reactgrid=react.grid)
 writeChemical.minerals = all_minerals
 writeChemical.title = 'Automating Tough react'
 writeChemical.primary_aqueous = all_species
@@ -165,10 +169,9 @@ writeChemical.gases = initial_co2
 writeChemical.write()
 
 #____________________________________SOLUTE.INP__________________________________________
-writeSolute = t2solute(writeChemical)
-writeSolute.nodes_to_write = [0]
-masa = writeSolute.getgrid_info()
-writeSolute.write()
+write_solute = T2Solute(t2chemical=write_chemical)
+write_solute.nodes_to_write = [0]
+write_solute.write()
 
 #___________________________________ RUN SIMULATION ______________________________________
 react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
@@ -210,11 +213,14 @@ pip install flake8
 ```
 and run flake8 using
 
+7. PEP8 Naming package is also used to ensure adherence to PEP8. Install pep8-naming using 
+   
 ```python
-flake8 src
+pip install pep8-naming
 ```
-7. Make a pull request after passing all tests
-8. More information can be found in developer notes in the documentation - https://pytoughreact.readthedocs.io/en/master/developer.html 
+
+8. Make a pull request after passing all tests
+9. More information can be found in developer notes in the documentation - https://pytoughreact.readthedocs.io/en/master/developer.html 
 
 ## Documentation
 Documentation can be found here https://pytoughreact.readthedocs.io/en/latest/ 
