@@ -40,13 +40,13 @@ hour = 60 * minute
 day = 24 * hour
 year = 365. * day
 year = float(year)
-simtime = 100 * year
+simulation_time = 100 * year
 
 length = 1000.
-xblock = 10
+x_block = 10
 yblock = 1
 zblock = 5
-dx = [length / xblock] * xblock
+dx = [length / x_block] * x_block
 dy = [1.0]
 dz = [5] * zblock
 geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -95])
@@ -69,7 +69,7 @@ bio.multi = {'num_components': 3, 'num_equations': 3, 'num_phases': 3,
 bio.parameter.update(
     {'print_level': 3,
      'max_timesteps': 9999,
-     'tstop': simtime,
+     'tstop': simulation_time,
      'const_timestep': 100.,
      'print_interval': 1,
      'gravity': 9.81,
@@ -124,7 +124,7 @@ energy = [5, 5, 5]
 
 if direction == 'x':
     j = 0
-    for i in range(0, xblock):
+    for i in range(0, x_block):
         # for i in range(xblock * (zblock - 1), xblock * (zblock)):
         for component in compo:
             if component == 'COM2':
