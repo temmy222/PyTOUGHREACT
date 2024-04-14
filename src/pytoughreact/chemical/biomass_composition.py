@@ -107,7 +107,7 @@ class Gas(object):
         Returns
         --------
         output : dict
-            Dicitionary of all parameters
+            Dictionary of all parameters
         process : Process
             Updated Process with new parameters
         """
@@ -276,8 +276,8 @@ class BaseComponent(object):
         self.differential_gas = 0
         self.differential_aqueous = 0
         self.liquid_critical_volume = liquid_critical_volume
-        self.liquid_viscosity_cosntant_d = liquid_viscosity_constant_d
-        self.liquid_viscosity_cosntant_c = liquid_viscosity_constant_c
+        self.liquid_viscosity_constant_d = liquid_viscosity_constant_d
+        self.liquid_viscosity_constant_c = liquid_viscosity_constant_c
         self.decay_constant = decay_constant
         self.fractional_organic_carbon = fractional_organic_carbon
         self.carbon_partition_coefficient = carbon_partition_coefficient
@@ -382,7 +382,7 @@ class BaseComponent(object):
             List of parameters (Liquid Viscosity) for biodegradation
         """
         parameters = [self.liquid_viscosity_constant_a, self.liquid_viscosity_constant_b,
-                      self.liquid_viscosity_cosntant_c, self.liquid_viscosity_cosntant_d, self.liquid_critical_volume]
+                      self.liquid_viscosity_constant_c, self.liquid_viscosity_constant_d, self.liquid_critical_volume]
         return parameters
 
     def get_sixth_set(self):
@@ -436,7 +436,7 @@ class BaseComponent(object):
         Returns
         --------
         output : dict
-            Dicitionary of all parameters
+            Dictionary of all parameters
         process : Process
             Updated Process with new parameters
         """
@@ -520,7 +520,7 @@ class BaseComponent(object):
         Returns
         --------
         component : BaseComponent
-            List of default parameters for pxylene for biodegradation
+            List of default parameters for p-xylene for biodegradation
         """
         component = BaseComponent("p-Xylene", 616.2, 35.1, 0.260, 0.320, 0.1,
                                   411.5, -7.63495, 1.50724, -3.19678, -2.78710,
@@ -626,5 +626,5 @@ class Solids(object):
         parameters : list
             List of parameters (Name, Molecular Weight, Decay Constant, Carbon Coefficient) for biodegradation
         """
-        listo = [self.name, self.molecular_weight, self.carbon_part_coefficient, self.decay_constant]
-        return listo
+        first_set_list = [self.name, self.molecular_weight, self.carbon_part_coefficient, self.decay_constant]
+        return first_set_list
