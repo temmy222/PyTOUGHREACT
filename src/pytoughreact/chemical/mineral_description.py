@@ -42,9 +42,9 @@ class Mineral(object):
             Flag for the type of kinetic constraint: 1 for dissolution only, 2 for precipitation only, and 3
             for both (mineral can either precipitate or dissolve
         index_solid_solution : int
-            Index for a solid solution mineral endmember. All endmembers for a specified phase are given the
-            same ISS value: ISS = 1 for each endmember of the first solid solution, ISS = 2 for each
-            endmember of the second solid solution
+            Index for a solid solution mineral end member. All end members for a specified phase are given the
+            same ISS value: ISS = 1 for each end member of the first solid solution, ISS = 2 for each
+            end member of the second solid solution
         dry_grid_block : int
             Flag to indicate that the mineral may precipitate in a dry grid block as a result of complete
             evaporation (See user guide for more)
