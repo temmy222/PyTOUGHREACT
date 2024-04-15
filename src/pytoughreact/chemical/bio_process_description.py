@@ -284,7 +284,7 @@ class Process(object):
         Returns
         --------
         output : list
-            list of haldana inhibition parameters
+            list of haldane inhibition parameters
         """
         dict_output = {}
         output = []

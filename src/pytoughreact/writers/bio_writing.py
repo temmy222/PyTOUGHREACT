@@ -50,7 +50,7 @@ class T2BioParser(fixed_format_file):
         super(T2BioParser, self).__init__(filename, mode,
                                           t2bio_format_specification, read_function)
 
-    def read_multi_value_line(self, variable, linetype):
+    def read_multi_value_line(self, variable, line_type):
         """ Reads a line of parameter multi values from the file into a dictionary variable.
         Null values are ignored.
 
@@ -58,23 +58,23 @@ class T2BioParser(fixed_format_file):
         -----------
         variable :  str
             variable to be read
-        linetype: str
+        line_type: str
             type of line to be read
 
         Returns
         --------
 
         """
-        spec = self.specification[linetype]
-        vals = self.read_values(linetype)
+        spec = self.specification[line_type]
+        vals = self.read_values(line_type)
         if len(spec[0]) < 6:
             for var, val in zip(spec[0], vals):
                 if val is not None:
                     variable[var] = val
         else:
-            variable[linetype] = vals
+            variable[line_type] = vals
 
-    def read_params_value_line(self, variable, linetype):
+    def read_params_value_line(self, variable, line_type):
         """ Reads a line of parameter values from the file into a dictionary variable.
         Null values are ignored.
 
@@ -82,21 +82,21 @@ class T2BioParser(fixed_format_file):
         -----------
         variable :  str
             variable to be read
-        linetype: str
+        line_type: str
             type of line to be read
 
         Returns
         --------
 
         """
-        spec = self.specification[linetype]
-        vals = self.read_values(linetype)
+        spec = self.specification[line_type]
+        vals = self.read_values(line_type)
         if len(spec[0]) > 2:
             for var, val in zip(spec[0], vals):
                 if val is not None:
                     variable[var] = val
         else:
-            variable[linetype] = vals
+            variable[line_type] = vals
 
 
 class T2Bio(t2data):
@@ -538,7 +538,7 @@ class T2Bio(t2data):
             outfile.write(vals + '\n')
 
     def reset_bio_dicta(self, all_components):
-        """ Resets the BIO dicitonary
+        """ Resets the BIO dictionary
 
         Parameters
         -----------
@@ -957,7 +957,7 @@ class T2Bio(t2data):
         self.status = 'successful'
         return self
 
-    def write(self, filename='', meshfilename='', runlocation='',
+    def write(self, filename='', meshfilename='', run_location='',
               extra_precision=None, echo_extra_precision=None):
         """ Writes data to file.  Mesh data can optionally be written to an
         auxiliary file.  For AUTOUGH2, if extra_precision is True or a
@@ -986,10 +986,10 @@ class T2Bio(t2data):
 
         """
 
-        if runlocation:
-            if not os.path.isdir(runlocation):
-                os.mkdir(runlocation)
-            os.chdir(runlocation)
+        if run_location:
+            if not os.path.isdir(run_location):
+                os.mkdir(run_location)
+            os.chdir(run_location)
         if filename:
             self.filename = filename
         if self.filename == '':

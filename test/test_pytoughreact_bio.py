@@ -117,7 +117,7 @@ class BioTestCase():
                     j = j + 1
 
         # ____________________________________RUN SIMULATION____________________________________________________________
-        bio.write('INFILE', runlocation=os.getcwd())
+        bio.write('INFILE', run_location=os.getcwd())
         # bio.run(simulator='tmvoc', runlocation='')
         return bio
 

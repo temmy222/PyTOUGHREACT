@@ -40,15 +40,15 @@ hour = 60 * minute
 day = 24 * hour
 year = 365. * day
 year = float(year)
-simtime = 100 * year
+simulation_time = 100 * year
 
 length = 1000.
-xblock = 10
-yblock = 1
-zblock = 5
-dx = [length / xblock] * xblock
+x_block = 10
+y_block = 1
+z_block = 5
+dx = [length / x_block] * x_block
 dy = [1.0]
-dz = [5] * zblock
+dz = [5] * z_block
 geo = mulgrid().rectangular(dx, dy, dz, origin=[0, 0, -95])
 geo.write('geom.dat')
 
@@ -69,7 +69,7 @@ bio.multi = {'num_components': 3, 'num_equations': 3, 'num_phases': 3,
 bio.parameter.update(
     {'print_level': 3,
      'max_timesteps': 9999,
-     'tstop': simtime,
+     'tstop': simulation_time,
      'const_timestep': 100.,
      'print_interval': 1,
      'gravity': 9.81,
@@ -117,15 +117,15 @@ well = 'wl '
 compo = ['COM3']
 direction = 'x'
 duration = [0, 1 * year, 101 * year]
-# duration = np.linspace(0, simtime * 2, 7)
+# duration = np.linspace(0, simulation_time * 2, 7)
 rate = np.array([1.00e-2, 0, 0])
 rate_o2 = [1.00e-03, 0, 0]
 energy = [5, 5, 5]
 
 if direction == 'x':
     j = 0
-    for i in range(0, xblock):
-        # for i in range(xblock * (zblock - 1), xblock * (zblock)):
+    for i in range(0, x_block):
+        # for i in range(x_block * (z_block - 1), x_block * (z_block)):
         for component in compo:
             if component == 'COM2':
                 gen = t2generator(name=well + str(i), block=bio.grid.blocklist[i].name, type=component,
@@ -143,6 +143,6 @@ if direction == 'x':
 
 # ____________________________________RUN SIMULATION_______________________________________________________________
 
-runlocation = os.getcwd()
-bio.write('INFILE', runlocation=os.getcwd())
-bio.run(simulator='tmvoc', runlocation='')
+run_location = os.getcwd()
+bio.write('INFILE', run_location=os.getcwd())
+bio.run(simulator='tmvoc', run_location='')
