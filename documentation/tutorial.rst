@@ -16,22 +16,23 @@ This can be done as shown below
 .. code-block:: python
 
     import os
-    from mulgrids import mulgrid
+    from mulgrids import mulgrid # import grid creation class from PyTOUGH
+    from t2grids import rocktype # import rocktype class from PyTOUGH
     from pytoughreact.writers.react_writing import t2react # import class that helps with setting parameters for reactions
     from pytoughreact.wrapper.reactgrid import t2reactgrid # import class for setting up the reaction grid
     from pytoughreact.wrapper.reactzone import t2zone # import class for setting up reaction zones
-    from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
-    from pytoughreact.chemical.mineral_composition import MineralComp
-    from pytoughreact.chemical.mineral_zone import MineralZone
-    from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
-    from pytoughreact.writers.chemical_writing import t2chemical
-    from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
-    from pytoughreact.writers.solute_writing import t2solute
-    from t2grids import rocktype
+    from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas # import reaction components
+    from pytoughreact.chemical.mineral_composition import MineralComp # import reaction components
+    from pytoughreact.chemical.mineral_zone import MineralZone # import reaction components
+    from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone # import reaction components
+    from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral # function to retrieve minerals and mineral kinetics
+    from pytoughreact.writers.chemical_writing import t2chemical # class to wrap all chemical inputs (similar to chemical.inp)
+    from pytoughreact.writers.solute_writing import t2solute # class to wrap all solute inputs (similar to solute.inp)
+    
 
 
 The simulation grid is then created. A simple 2D grid is created here consisting of one block in the X and Z directions. The mulgrid class is used to create the
-rectangular dimensions of the grid and stroed in the `geom.dat` file
+rectangular dimensions of the grid and stored in the `geom.dat` file
 
 .. code-block:: python
 
