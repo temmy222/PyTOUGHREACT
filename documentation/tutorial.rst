@@ -17,9 +17,9 @@ This can be done as shown below
 
     import os
     from mulgrids import mulgrid
-    from pytoughreact.writers.react_writing import t2react
-    from pytoughreact.wrapper.reactgrid import t2reactgrid
-    from pytoughreact.wrapper.reactzone import t2zone
+    from pytoughreact.writers.react_writing import t2react # import class that helps with setting parameters for reactions
+    from pytoughreact.wrapper.reactgrid import t2reactgrid # import class for setting up the reaction grid
+    from pytoughreact.wrapper.reactzone import t2zone # import class for setting up reaction zones
     from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas
     from pytoughreact.chemical.mineral_composition import MineralComp
     from pytoughreact.chemical.mineral_zone import MineralZone
