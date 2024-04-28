@@ -163,11 +163,11 @@ zone1.mineral_zone = mineral_zone1
 zone1.permporo = permporozone
 
 write_chemical = T2Chemical(t2reactgrid=react.grid)
-writeChemical.minerals = all_minerals
-writeChemical.title = 'Automating Tough react'
-writeChemical.primary_aqueous = all_species
-writeChemical.gases = initial_co2
-writeChemical.write()
+write_chemical.minerals = all_minerals
+write_chemical.title = 'Automating Tough react'
+write_chemical.primary_aqueous = all_species
+write_chemical.gases = initial_co2
+write_chemical.write()
 
 #____________________________________SOLUTE.INP__________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
