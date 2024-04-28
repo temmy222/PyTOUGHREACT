@@ -171,12 +171,11 @@ write_chemical.write()
 
 #____________________________________SOLUTE.INP__________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
-write_solute.readio['database'] = 'tk-ddem25aug09.dat' # update a property in solute file
 write_solute.nodes_to_write = [0]
 write_solute.write()
 
 #___________________________________ RUN SIMULATION ______________________________________
-react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
+react.run(write_solute, simulator='treacteos1.exe', runlocation=os.getcwd())
 
 
 ```
