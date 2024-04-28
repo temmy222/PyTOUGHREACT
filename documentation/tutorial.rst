@@ -53,13 +53,13 @@ grid. The number of phases and components are also specified in this section
 
 .. code-block:: python
 
-    react = t2react()
+    react = T2React()
     react.title = 'Reaction example'
 
     react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
                 'num_secondary_parameters': 6}
 
-    react.grid = t2reactgrid().fromgeo(geo)
+    react.grid = T2ReactGrid().fromgeo(geo)
 
 
 The numerical parameters and default initial conditions for the model are then specified using the update method of the react.parameter
@@ -100,7 +100,7 @@ used to assign reaction zones to different parts of the model.
 
 .. code-block:: python
 
-    zone1 = t2zone('zone1')
+    zone1 = T2Zone('zone1')
 
     react.grid.add_zone(zone1)
 
@@ -274,20 +274,20 @@ The properties to be written in the `chemical.inp` file are then saved in a `t2c
 .. code-block:: python
 
     write_chemical = T2Chemical(t2reactgrid=react.grid)
-    writeChemical.minerals = all_minerals
-    writeChemical.title = 'Automating Tough react'
-    writeChemical.primary_aqueous = all_species
-    writeChemical.gases = initial_co2
-    writeChemical.write()
+    write_chemical.minerals = all_minerals
+    write_chemical.title = 'Automating Tough react'
+    write_chemical.primary_aqueous = all_species
+    write_chemical.gases = initial_co2
+    write_chemical.write()
 
 The `t2solute` class takes care of writing to `solute.inp` file as shown below. Updating any property in the `solute.inp` can be done by calling the 
 
 .. code-block:: python
 
     write_solute = T2Solute(t2chemical=write_chemical)
-    writeSolute.nodes_to_write = [0]
+    write_solute.nodes_to_write = [0]
     write_solute.readio['database'] = 'tk-ddem25aug09.dat' # update a property in solute file
-    writeSolute.write()
+    write_solute.write()
 
 Run Model
 ~~~~~~~~~~~~~~~~~~~~
@@ -296,7 +296,7 @@ The simulation can be run using the code below
 
 .. code-block:: python
 
-    react.run(writeSolute, simulator='treacteos1.exe')
+    react.run(write_solute, simulator='treacteos1.exe')
 
 The file containing this tutorial can be found in the example folder of the GitHub repo
 
@@ -314,11 +314,11 @@ As with the TOUGHREACT model, the first step is to import all essential librarie
     import numpy as np
     import os
     from mulgrids import mulgrid
-    from pytoughreact.writers.bio_writing import t2bio
+    from pytoughreact.writers.bio_writing import T2Bio
     from pytoughreact.chemical.biomass_composition import Component, Biomass, Gas, Water_Bio
     from pytoughreact.chemical.bio_process_description import BIODG, Process
     from t2grids import t2grid
-    from t2data import rocktype, t2generator
+    from t2data import rocktype
 
 
 The next step is to create the grid. This is done as follows
@@ -340,7 +340,7 @@ The `t2bio` class is instantiated and the grid is attached to it
 
 .. code-block:: python
 
-    bio = t2bio()
+    bio = T2Bio()
     bio.title = 'Biodegradation Runs'
     bio.grid = t2grid().fromgeo(geo)
 
@@ -374,10 +374,12 @@ The parameters for the model including numerical and initial conditions are defi
 
 .. code-block:: python
 
+    sim_time_seconds = 60 * 60 * 24 * 365 * 100.0 # 100 years: m * h * d * y * 100
+
     bio.parameter.update(
     {'print_level': 3,
      'max_timesteps': 9999,
-     'tstop': simtime,
+     'tstop': sim_time_seconds,
      'const_timestep': 100.,
      'print_interval': 1,
      'gravity': 9.81,
@@ -393,7 +395,7 @@ exists in the package already and can be accessed as follows
 
 .. code-block:: python
 
-    toluene = Component(1).defaultToluene()
+    toluene = Component(1).default_toluene()
     bio.components = [toluene]
     O2_gas = Gas('O2', 2)
     bio.gas = [O2_gas]
@@ -431,9 +433,12 @@ competitive inhibition rate or haldane inhibition rate as shown below.
 
 .. code-block:: python
 
-    water.addToProcess(process1, water_uptake)
-    O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
-    toluene.addToProcess(process1, 1, 7.4625e-06)
+    oxygen_ks = 0.5e-6
+    oxygen_uptake = 1
+    water_uptake = -3
+    water.add_to_process(process1, water_uptake)
+    O2_gas.add_to_process(process1, oxygen_uptake, oxygen_ks)
+    toluene.add_to_process(process1, 1, 7.4625e-06)
 
 
 The defined processes are then merged into `BIODG` class to assign numerical values to the simulation.
@@ -455,7 +460,7 @@ be run using the run function with the simulator as 'tmvoc'.
 
 .. code-block:: python
 
-    bio.write('INFILE', runlocation=os.getcwd())
+    bio.write('INFILE', run_location=os.getcwd())
     bio.run(simulator='tmvoc', runlocation='')
 
 Results and Plotting.

@@ -163,20 +163,19 @@ zone1.mineral_zone = mineral_zone1
 zone1.permporo = permporozone
 
 write_chemical = T2Chemical(t2reactgrid=react.grid)
-writeChemical.minerals = all_minerals
-writeChemical.title = 'Automating Tough react'
-writeChemical.primary_aqueous = all_species
-writeChemical.gases = initial_co2
-writeChemical.write()
+write_chemical.minerals = all_minerals
+write_chemical.title = 'Automating Tough react'
+write_chemical.primary_aqueous = all_species
+write_chemical.gases = initial_co2
+write_chemical.write()
 
 #____________________________________SOLUTE.INP__________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
-write_solute.readio['database'] = 'tk-ddem25aug09.dat' # update a property in solute file
 write_solute.nodes_to_write = [0]
 write_solute.write()
 
 #___________________________________ RUN SIMULATION ______________________________________
-react.run(simulator='treacteos1.exe', runlocation=os.getcwd())
+react.run(write_solute, simulator='treacteos1.exe', runlocation=os.getcwd())
 
 
 ```
