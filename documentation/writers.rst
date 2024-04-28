@@ -10,23 +10,23 @@ Biodegradation Writing
 ++++++++++++++++++++++
 Chemical Writing
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.writers.chemical_writing.t2ChemicalData
+.. autoclass:: pytoughreact.writers.chemical_writing.T2ChemicalData
     :members:
-.. autoclass:: pytoughreact.writers.chemical_writing.t2chemical
+.. autoclass:: pytoughreact.writers.chemical_writing.T2Chemical
     :members:
 ++++++++++++++++++++++
 React Writing
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.writers.react_writing.t2react_parser
+.. autoclass:: pytoughreact.writers.react_writing.T2ReactParser
     :members:
-.. autoclass:: pytoughreact.writers.react_writing.t2_extra_precision_data_parser
+.. autoclass:: pytoughreact.writers.react_writing.T2ExtraPrecisionDataParser
     :members:
-.. autoclass:: pytoughreact.writers.react_writing.t2react
+.. autoclass:: pytoughreact.writers.react_writing.T2React
     :members:
 ++++++++++++++++++++++
 Solute Writing
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.writers.solute_writing.t2solute_parser
+.. autoclass:: pytoughreact.writers.solute_writing.T2SoluteParser
     :members:
-.. autoclass:: pytoughreact.writers.solute_writing.t2solute
+.. autoclass:: pytoughreact.writers.solute_writing.T2Solute
     :members:
