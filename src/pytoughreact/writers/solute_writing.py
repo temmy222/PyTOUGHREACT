@@ -340,6 +340,115 @@ class T2Solute(t2data):
     def __init__(self, filename='', meshfilename='', options=None, chemical_zones=None, constraints=None, readio=None,
                  weight_diffusion=None, tolerance=None, printout=None, t2chemical=None,
                  read_function=default_read_function):
+        """Initialization of Parameters (T2Solute).
+
+        Parameters
+        -----------
+        filename :  string
+            Name of file to be read from (optional)
+        meshfilename :  string
+            Name of mesh file to be read from (optional)
+        options : dictionary
+            Simulation numerical options. Dictionary keys include.
+
+            iteration_scheme : int
+            rsa_newton_raphson: int
+            linear_equation_solver: int
+            activity_coefficient_calculation: int
+            gaseous_species_in_transport: int
+            result_printout: int
+            poro_perm: int
+            co2_h2o_effects: int
+            itds_react: int
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+        chemical_zones : dictionary
+            Simulation printout values. Dictionary keys include.
+
+            IZIWDF: int
+            IZBWDF: int
+            IZMIDF: int
+            IZGSDF: int
+            IZADDF: int
+            IZEXDF: int
+            IZPPDF: int
+            IZKDDF: int
+            IZBGDF: int
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+        constraints : dictionary
+            Simulation numerical constraints. Dictionary keys include.
+
+            skip_saturation : float
+            courant_number: float
+            maximum_ionic_strength: int
+            weighting_factor: int
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+        readio : dictionary
+            Simulation input output values. Dictionary keys include.
+
+            database : string
+            iteration_info: string
+            aqueous_concentration: string
+            minerals: string
+            gas: string
+            time: string
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+        weight_diffusion : dictionary
+            Simulation weight and diffusion values. Dictionary keys include.
+
+            time_weighting : int
+            upstream_weighting: int
+            aqueous_diffusion_coefficient: float
+            gas_diffusion_coefficient: float
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+        tolerance : dictionary
+            Simulation tolerance values. Dictionary keys include.
+
+            maximum_iterations_transport: int
+            transport_tolerance: float
+            maximum_iterations_chemistry: int
+            chemistry_tolerance: float
+            not_used1: float
+            not_used2: float
+            relative_concentration_change: float
+            relative_kinetics_change: float
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+
+        printout : dictionary
+            Simulation printout values. Dictionary keys include.
+
+            printout_frequency: int
+            number_of_gridblocks: int
+            number_of_chemical_components: int
+            number_of_minerals: int
+            number_of_aqueous: int
+            number_of_surface_complexes: int
+            number_of_exchange_species: int
+            aqueous_unit: int
+            mineral_unit: int
+            gas_unit: int
+
+            Please refer to TOUGHREACT documentation for details on these properties
+
+        t2chemical:  T2Chemical
+            T2Chemical class to be used in the T2Solute
+
+
+        Returns
+        --------
+
+        """
         super().__init__(filename, meshfilename, read_function)
         self.t2chemical = t2chemical
         self._sections = []

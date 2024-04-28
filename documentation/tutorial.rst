@@ -273,19 +273,20 @@ The properties to be written in the `chemical.inp` file are then saved in a `t2c
 
 .. code-block:: python
 
-    writeChemical = t2chemical(t2reactgrid=react.grid)
+    write_chemical = T2Chemical(t2reactgrid=react.grid)
     writeChemical.minerals = all_minerals
     writeChemical.title = 'Automating Tough react'
     writeChemical.primary_aqueous = all_species
     writeChemical.gases = initial_co2
     writeChemical.write()
 
-The `t2solute` class takes care of writing to `solute.inp` file as shown below
+The `t2solute` class takes care of writing to `solute.inp` file as shown below. Updating any property in the `solute.inp` can be done by calling the 
 
 .. code-block:: python
 
-    writeSolute = t2solute(t2chemical=writeChemical)
+    write_solute = T2Solute(t2chemical=write_chemical)
     writeSolute.nodes_to_write = [0]
+    write_solute.readio['database'] = 'tk-ddem25aug09.dat' # update a property in solute file
     writeSolute.write()
 
 Run Model

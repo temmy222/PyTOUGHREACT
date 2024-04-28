@@ -171,6 +171,7 @@ writeChemical.write()
 
 #____________________________________SOLUTE.INP__________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
+write_solute.readio['database'] = 'tk-ddem25aug09.dat' # update a property in solute file
 write_solute.nodes_to_write = [0]
 write_solute.write()
 

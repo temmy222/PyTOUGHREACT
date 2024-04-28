@@ -152,6 +152,7 @@ write_chemical.write()
 
 # ____________________________________SOLUTE.INP________________________________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
+write_solute.readio['database'] = 'tk-ddem25aug09.dat'
 write_solute.nodes_to_write = [0]
 write_solute.write()
 
