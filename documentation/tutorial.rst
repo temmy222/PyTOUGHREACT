@@ -314,11 +314,11 @@ As with the TOUGHREACT model, the first step is to import all essential librarie
     import numpy as np
     import os
     from mulgrids import mulgrid
-    from pytoughreact.writers.bio_writing import t2bio
+    from pytoughreact.writers.bio_writing import T2Bio
     from pytoughreact.chemical.biomass_composition import Component, Biomass, Gas, Water_Bio
     from pytoughreact.chemical.bio_process_description import BIODG, Process
     from t2grids import t2grid
-    from t2data import rocktype, t2generator
+    from t2data import rocktype
 
 
 The next step is to create the grid. This is done as follows
@@ -340,7 +340,7 @@ The `t2bio` class is instantiated and the grid is attached to it
 
 .. code-block:: python
 
-    bio = t2bio()
+    bio = T2Bio()
     bio.title = 'Biodegradation Runs'
     bio.grid = t2grid().fromgeo(geo)
 
@@ -374,10 +374,12 @@ The parameters for the model including numerical and initial conditions are defi
 
 .. code-block:: python
 
+    sim_time_seconds = 60 * 60 * 24 * 365 * 100.0 # 100 years: m * h * d * y * 100
+
     bio.parameter.update(
     {'print_level': 3,
      'max_timesteps': 9999,
-     'tstop': simtime,
+     'tstop': sim_time_seconds,
      'const_timestep': 100.,
      'print_interval': 1,
      'gravity': 9.81,
@@ -393,7 +395,7 @@ exists in the package already and can be accessed as follows
 
 .. code-block:: python
 
-    toluene = Component(1).defaultToluene()
+    toluene = Component(1).default_toluene()
     bio.components = [toluene]
     O2_gas = Gas('O2', 2)
     bio.gas = [O2_gas]
@@ -431,9 +433,12 @@ competitive inhibition rate or haldane inhibition rate as shown below.
 
 .. code-block:: python
 
-    water.addToProcess(process1, water_uptake)
-    O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
-    toluene.addToProcess(process1, 1, 7.4625e-06)
+    oxygen_ks = 0.5e-6
+    oxygen_uptake = 1
+    water_uptake = -3
+    water.add_to_process(process1, water_uptake)
+    O2_gas.add_to_process(process1, oxygen_uptake, oxygen_ks)
+    toluene.add_to_process(process1, 1, 7.4625e-06)
 
 
 The defined processes are then merged into `BIODG` class to assign numerical values to the simulation.
@@ -455,7 +460,7 @@ be run using the run function with the simulator as 'tmvoc'.
 
 .. code-block:: python
 
-    bio.write('INFILE', runlocation=os.getcwd())
+    bio.write('INFILE', run_location=os.getcwd())
     bio.run(simulator='tmvoc', runlocation='')
 
 Results and Plotting.
