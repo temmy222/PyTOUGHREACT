@@ -215,6 +215,10 @@ pip install flake8
 ```
 and run flake8 using
 
+```python
+flake8 src
+```
+
 7. PEP8 Naming package is also used to ensure adherence to PEP8. Install pep8-naming using 
    
 ```python
