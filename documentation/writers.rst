@@ -3,9 +3,9 @@ Writers Class
 ++++++++++++++++++++++
 Biodegradation Writing
 ++++++++++++++++++++++
-.. autoclass:: pytoughreact.writers.bio_writing.t2bio_parser
+.. autoclass:: pytoughreact.writers.bio_writing.T2BioParser
     :members:
-.. autoclass:: pytoughreact.writers.bio_writing.t2bio
+.. autoclass:: pytoughreact.writers.bio_writing.T2Bio
     :members:
 ++++++++++++++++++++++
 Chemical Writing
