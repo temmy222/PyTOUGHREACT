@@ -53,13 +53,13 @@ grid. The number of phases and components are also specified in this section
 
 .. code-block:: python
 
-    react = t2react()
+    react = T2React()
     react.title = 'Reaction example'
 
     react.multi = {'num_components': 1, 'num_equations': 1, 'num_phases': 2,
                 'num_secondary_parameters': 6}
 
-    react.grid = t2reactgrid().fromgeo(geo)
+    react.grid = T2ReactGrid().fromgeo(geo)
 
 
 The numerical parameters and default initial conditions for the model are then specified using the update method of the react.parameter
@@ -100,7 +100,7 @@ used to assign reaction zones to different parts of the model.
 
 .. code-block:: python
 
-    zone1 = t2zone('zone1')
+    zone1 = T2Zone('zone1')
 
     react.grid.add_zone(zone1)
 
@@ -274,20 +274,20 @@ The properties to be written in the `chemical.inp` file are then saved in a `t2c
 .. code-block:: python
 
     write_chemical = T2Chemical(t2reactgrid=react.grid)
-    writeChemical.minerals = all_minerals
-    writeChemical.title = 'Automating Tough react'
-    writeChemical.primary_aqueous = all_species
-    writeChemical.gases = initial_co2
-    writeChemical.write()
+    write_chemical.minerals = all_minerals
+    write_chemical.title = 'Automating Tough react'
+    write_chemical.primary_aqueous = all_species
+    write_chemical.gases = initial_co2
+    write_chemical.write()
 
 The `t2solute` class takes care of writing to `solute.inp` file as shown below. Updating any property in the `solute.inp` can be done by calling the 
 
 .. code-block:: python
 
     write_solute = T2Solute(t2chemical=write_chemical)
-    writeSolute.nodes_to_write = [0]
+    write_solute.nodes_to_write = [0]
     write_solute.readio['database'] = 'tk-ddem25aug09.dat' # update a property in solute file
-    writeSolute.write()
+    write_solute.write()
 
 Run Model
 ~~~~~~~~~~~~~~~~~~~~
@@ -296,7 +296,7 @@ The simulation can be run using the code below
 
 .. code-block:: python
 
-    react.run(writeSolute, simulator='treacteos1.exe')
+    react.run(write_solute, simulator='treacteos1.exe')
 
 The file containing this tutorial can be found in the example folder of the GitHub repo
 
