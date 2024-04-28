@@ -18,16 +18,18 @@ This can be done as shown below
     import os
     from mulgrids import mulgrid # import grid creation class from PyTOUGH
     from t2grids import rocktype # import rocktype class from PyTOUGH
-    from pytoughreact.writers.react_writing import t2react # import class that helps with setting parameters for reactions
-    from pytoughreact.wrapper.reactgrid import t2reactgrid # import class for setting up the reaction grid
-    from pytoughreact.wrapper.reactzone import t2zone # import class for setting up reaction zones
+    # can use from pytoughreact import * rather than the below imports
+    from pytoughreact.writers.react_writing import T2React # import class that helps with setting parameters for reactions
+    from pytoughreact.wrapper.reactgrid import T2ReactGrid # import class for setting up the reaction grid
+    from pytoughreact.wrapper.reactzone import T2Zone # import class for setting up reaction zones
     from pytoughreact.chemical.chemical_composition import PrimarySpecies, WaterComp, Water, ReactGas # import reaction components
     from pytoughreact.chemical.mineral_composition import MineralComp # import reaction components
     from pytoughreact.chemical.mineral_zone import MineralZone # import reaction components
     from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone # import reaction components
     from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral # function to retrieve minerals and mineral kinetics
-    from pytoughreact.writers.chemical_writing import t2chemical # class to wrap all chemical inputs (similar to chemical.inp)
-    from pytoughreact.writers.solute_writing import t2solute # class to wrap all solute inputs (similar to solute.inp)
+    from pytoughreact.writers.chemical_writing import T2Chemical # class to wrap all chemical inputs (similar to chemical.inp)
+    from pytoughreact.writers.solute_writing import T2Solute # class to wrap all solute inputs (similar to solute.inp)
+    from pytoughreact.chemical.mineral_description import Mineral #class to import Mineral
     
 
 
@@ -230,7 +232,7 @@ as shown below.
 
 .. code-block:: python
 
-    co2_gas = ReactGas('co2(g)', 0, 1.1)
+    initial_co2 = ReactGas('co2(g)', 0, 1.1)
 
 
 The initial and injection gas are then saved in a list as shown below

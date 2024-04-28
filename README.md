@@ -52,6 +52,7 @@ from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.chemical.mineral_composition import MineralComp
 from pytoughreact.chemical.mineral_zone import MineralZone
 from pytoughreact.constants.default_minerals import get_kinetics_minerals, get_specific_mineral
+from pytoughreact.chemical.mineral_description import Mineral
 from pytoughreact.writers.chemical_writing import T2Chemical
 from pytoughreact.chemical.perm_poro_zone import PermPoro, PermPoroZone
 from pytoughreact.writers.solute_writing import T2Solute
