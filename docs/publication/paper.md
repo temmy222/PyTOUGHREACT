@@ -7,10 +7,10 @@ tags:
   - sensitivity analysis
   - TOUGH, PyTOUGH
 authors:
-  - name: Temitope Ajayi^[Co-first author] # note this makes a footnote saying 'Co-first author'
+  - name: Temitope Ajayi^[Co-first author]^[Corresponding author] # note this makes a footnote saying 'Co-first author'
     orcid: 0000-0002-0782-7460
     affiliation: "1" # (Multiple affiliations must be quoted)
-  - name: Ipsita Gupta^[Corresponding author]
+  - name: Ipsita Gupta
     affiliation: 1
 affiliations:
  - name: Louisiana State University, USA
@@ -180,11 +180,11 @@ zone1.mineral_zone = mineral_zone1
 zone1.permporo = permporozone
 
 write_chemical = T2Chemical(t2reactgrid=react.grid)
-writeChemical.minerals = all_minerals
-writeChemical.title = 'Automating Tough react'
-writeChemical.primary_aqueous = all_species
-writeChemical.gases = initial_co2
-writeChemical.write()
+write_chemical.minerals = all_minerals
+write_chemical.title = 'Automating Tough react'
+write_chemical.primary_aqueous = all_species
+write_chemical.gases = initial_co2
+write_chemical.write()
 
 #____________________________________SOLUTE.INP__________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
@@ -273,9 +273,9 @@ oxygen_uptake = 1
 water_uptake = -3
 
 process1 = Process(biomass, 2, 1.6944e-04, 0.58, 0)
-water.addToProcess(process1, water_uptake)
-O2_gas.addToProcess(process1, oxygen_uptake, oxygen_ks)
-toluene.addToProcess(process1, 1, 7.4625e-06)
+water.add_to_process(process1, water_uptake)
+O2_gas.add_to_process(process1, oxygen_uptake, oxygen_ks)
+toluene.add_to_process(process1, 1, 7.4625e-06)
 
 biodegradation = BIODG(0, 1.e-10, 0, 0.2, 0.9, 0.9,
                        [process1],
@@ -323,9 +323,9 @@ if direction == 'x':
 
 # ____________________________________RUN SIMULATION_______________________________________
 
-runlocation = os.getcwd()
-bio.write('INFILE', runlocation=os.getcwd())
-bio.run(simulator='tmvoc', runlocation='')
+run_location = os.getcwd()
+bio.write('INFILE', run_location=os.getcwd())
+bio.run(simulator='tmvoc', run_location='')
 
 
 ```
