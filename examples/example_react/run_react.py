@@ -70,12 +70,24 @@ sand = rocktype('ROCK1', 0, 2600, 0.1, [6.51e-12, 6.51e-12, 6.51e-12], 0.0, 952.
 react.grid.delete_rocktype('dfalt')
 react.grid.add_rocktype(sand)
 
+
 for blk in react.grid.blocklist[0:]:
     blk.rocktype = react.grid.rocktype[sand.name]
 
 zone1 = T2Zone('zone1')
 
 react.grid.add_zone(zone1)
+
+# test
+# test = repr(react.grid)
+# grid2 = T2ReactGrid().fromgeo(geo)
+# zone1 = T2Zone('zone2')
+# react.grid.add_zone(zone1)
+# result = react.grid.__add__(grid2)
+
+react.grid.add_connection()
+
+#
 
 for blk in react.grid.blocklist[0:]:
     blk.zone = react.grid.zone[zone1.name]

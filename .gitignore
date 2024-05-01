@@ -156,6 +156,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+coverage_html_report
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]

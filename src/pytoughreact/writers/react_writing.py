@@ -44,6 +44,7 @@ from os import devnull, remove
 from t2data import trim_trailing_nones
 from mulgrids import padstring
 from subprocess import call
+import typing
 
 
 class T2ReactParser(fixed_format_file):

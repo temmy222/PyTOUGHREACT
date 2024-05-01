@@ -83,12 +83,12 @@ class T2ReactGrid(t2grid):
 
         Parameters
         -----------
-        other :  t2reactgrid
+        other :  T2ReactGrid
             Grid to add to original grid
 
         Returns
         --------
-        resultant_grid : t2reactgrid
+        resultant_grid : T2ReactGrid
             Grid after addition
         """
         resultant_grid = T2ReactGrid()
@@ -125,7 +125,7 @@ class T2ReactGrid(t2grid):
 
         Parameters
         -----------
-        newblock :  t2block
+        newblock :  T2block
             block to add to original react grid
 
         Returns
