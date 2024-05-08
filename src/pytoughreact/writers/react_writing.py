@@ -50,7 +50,8 @@ import typing
 
 class T2ReactParser(fixed_format_file):
     """Class for parsing REACTION data file."""
-    def __init__(self, filename, mode, specification=t2react_format_specification, read_function=default_read_function, location=None):
+    def __init__(self, filename, mode, specification=t2react_format_specification, read_function=default_read_function,
+                 location=None):
         # super(T2ReactParser, self).__init__(filename, mode,
         #                                     t2react_format_specification, read_function)
         self.specification = specification
@@ -134,9 +135,12 @@ class T2React(t2data):
              nad1, nad2, isot, d1, d2,
              areax, betax, sigx] = infile.parse_string(line, 'connections')
             name1, name2 = fix_blockname(name1), fix_blockname(name2)
-            if nseq == 0: nseq = None
-            if nad1 == 0: nad1 = None
-            if nad2 == 0: nad2 = None
+            if nseq == 0:
+                nseq = None
+            if nad1 == 0:
+                nad1 = None
+            if nad2 == 0:
+                nad2 = None
             self.grid.add_connection(t2connection([self.grid.block[name1],
                                                    self.grid.block[name2]],
                                                   isot, [d1, d2], areax, betax,
