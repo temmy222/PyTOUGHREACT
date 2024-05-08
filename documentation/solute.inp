@@ -1,0 +1,79 @@
+#Title
+Automating Tough react
+
+#options for reactive chemical transport 
+# ISPIA itersfa ISOLVC NGAMM NGAS1 ichdump kcpl Ico2h2o  iTDS_REACT
+     2     0     5     0     0     2     1     0     0
+
+#constraints for reactive chemical transport 
+# SL1MIN        rcour     STIMAX    CNFACT(=1 fully implicit)
+1.00e-04         0.5        14         1
+
+#Read input and output file names
+thddem.dat
+iter.out
+kdd_conc.tec
+kdd_min.tec
+kdd_gas.tec
+kdd_tim.tec
+
+# Weighting space/time, aq. and gas diffusion coeffs
+# ITIME     WUPC   DFFUN     DFFUNG
+   1.0      1.0  1.6500e-10  0.0000e+00
+
+# Convergence and tolerance parameters
+#  MAXITPTR  TOLTR    MAXITPCH  TOLCH    NOT-USED  NOT-USED    TOLDC    TOLDR
+     1     1.0000e-04     300     1.0000e-04     0.0000e+00     0.0000e+00     0.0000e+00     0.0000e+00
+
+# Printout control variables:
+# NWTI NWNOD NWCOM NWMIN NWAQ NWADS NWEXC iconflag minflag igasflag
+  1000     1    -1    -1     0     0     0     1     1     1
+
+# Nodes for which to output data in time file (15a5):
+  a 1
+
+# Primary (total) aqueous species for which to output concentrations in time and plot files:
+h2o
+h+
+na+
+cl-
+hco3-
+ca+2
+so4-2
+mg+2
+h4sio4
+al+3
+fe+2
+hs-
+
+# Minerals for which to output data in time and plot files:
+C3FH6
+Tobermorite(11A)
+Calcite
+CSH(1.6)
+Portlandite
+Ettringite
+KatoiteSi1
+Hydrotalcite
+
+
+# Individual aqueous species for which to output concentrations in time and plot files:
+
+# Adsorption species for which to output concentrations in time and plot files: 
+
+# Exchange species for which to output concentrations in time and plot files: 
+
+# Default types of chemical zones
+# Initial  Boundary                                      Porosity/ 
+#  Water    Water   Minerals   Gases Adsorption Exchange  Permeab  Kd zones  Injection Gas Zones
+# IZIWDF   IZBWDF    IZMIDF   IZGSDF   IZADDF    IZEXDF   IZPPDF    IZKDDF     IZBGDF
+   1         1         1         1         0         0         1         0         1
+
+# Types of chemical zones for specific nodes (optional)
+# Gridblock  Gridblocks Increment   Water    Water     Minerals   Gases  Adsorption Exchange  Permeab  Kd zones Injection Gas Zones
+# ELEM(a5)   NSEQ         NADD       IZIWDF   IZBWDF    IZMIDF   IZGSDF   IZADDF    IZEXDF    IZPPDF   IZKDDF     IZBGDF
+  a 1         0            0             1       1       1         1         0         0         1         0         1
+
+# this "end" record is needed 
+end
+*************************************************************************** 

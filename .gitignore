@@ -39,7 +39,6 @@ screen_info.out
 LINEQ
 runlog.out
 SAVE
-solute.inp
 solute.out
 TABLE
 thddem.dat
