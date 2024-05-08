@@ -41,7 +41,6 @@ runlog.out
 SAVE
 solute.out
 TABLE
-thddem.dat
 VERS
 savechem
 tmvoc.exe
@@ -58,7 +57,6 @@ example_files/folder_2/kdd_conc.tec
 example_files/folder_3/kdd_conc.tec
 test.txt
 test2.txt
-thddem.dat
 geom.dat
 
 
