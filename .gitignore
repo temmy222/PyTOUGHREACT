@@ -22,7 +22,6 @@ treacteos1.exe
 **/treacteos1.exe*
 setup.py
 chdump.out
-chemical.inp
 chemical.out
 FIXPT
 /flow.inp
