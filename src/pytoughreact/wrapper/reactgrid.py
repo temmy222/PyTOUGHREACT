@@ -132,14 +132,46 @@ class T2ReactGrid(t2grid):
         --------
 
         """
+        if newblock is not None:
+            local_nseq = newblock.nseq
+        else:
+            local_nseq = None
         if newblock is None:
             newblock = T2Block()
-        if newblock.name in self.block:
-            i = self.blocklist.index(self.block[newblock.name])
-            self.blocklist[i] = newblock
+        if local_nseq is None:
+            if newblock.name in self.block:
+                i = self.blocklist.index(self.block[newblock.name])
+                self.blocklist[i] = newblock
+            else:
+                self.blocklist.append(newblock)
+            self.block[newblock.name] = newblock
         else:
-            self.blocklist.append(newblock)
-        self.block[newblock.name] = newblock
+            if local_nseq is not None:
+                for i in range(local_nseq + 1):
+                    if newblock.name in self.block:
+                        i = self.blocklist.index(self.block[newblock.name])
+                        self.blocklist[i] = newblock
+                    else:
+                        self.blocklist.append(newblock)
+                    self.block[newblock.name] = newblock
+                    present_block = newblock
+                    present_block_number = int(present_block.name[2:].strip()) + 1
+                    if len(str(present_block_number)) == 1:
+                        present_block.name = present_block.name[0:2] + "  " + str(present_block_number)
+                    elif len(str(present_block_number)) == 2:
+                        present_block.name = present_block.name[0:2] + " " + str(present_block_number)
+                    elif len(str(present_block_number)) == 3:
+                        present_block.name = present_block.name[0:2] + str(present_block_number)
+                    added_block = T2Block()
+                    added_block.name = present_block.name
+                    added_block.volume = newblock.volume
+                    added_block.ahtx = newblock.ahtx
+                    added_block.atmosphere = newblock.atmosphere
+                    added_block.centre = newblock.centre
+                    added_block.connection_name = newblock.connection_name
+                    added_block.nadd = newblock.nadd
+                    added_block.nseq = 0
+                    newblock = added_block
 
     def add_zone(self, newzone=None):
         """ Adds a rock type to the grid.  Any existing rocktype of the same name is replaced.

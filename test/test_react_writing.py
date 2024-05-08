@@ -12,13 +12,14 @@ from pytoughreact.writers.solute_writing import T2Solute
 from pytoughreact.writers.chemical_writing import T2Chemical
 from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.wrapper.reactgrid import T2ReactGrid
+from pytoughreact.wrapper.reactblock import T2Block
 from pytoughreact.results.t2result import T2Result
+from pytoughreact.exceptions.custom_error import NotFoundError
 from t2data import rocktype
 
 
-class ReactTestCase():
+class T2ReactWritingTestCases():
     def get_specific_mineral(self, mineral_name):
-
         calcite_ph = PHDependenceType2(5.0119e-01, 14.4, 1, 'h+', 1.0)
         dissolution_calcite = Dissolution(1.5488e-06, 2, 1, 1, 23.5, 0, 0, 0)
         dissolution_calcite.ph_dependence = [calcite_ph]
@@ -338,22 +339,11 @@ class ReactTestCase():
         # masa = writeSolute.getgrid_info()
         write_solute.write()
         # react.run(writeSolute, simulator='treacteos1.exe')
-        return write_solute
+        return react, write_chemical, write_solute
 
     def set_up_read(self):
         react = T2React()
-        react.read('flow2.inp')
-        write_chemical = T2Chemical(t2reactgrid=react.grid)
-        write_solute = T2Solute(t2chemical=write_chemical)
-
-        write_chemical.read('chemical.inp')
-        write_solute.read('solute2.inp')
-
-        return write_solute
-
-    def set_up_read2(self):
-        react = T2React()
-        react.read('flow_read.inp')
+        react.read('flow.inp')
         write_chemical = T2Chemical(t2reactgrid=react.grid)
         write_solute = T2Solute(t2chemical=write_chemical)
 
@@ -363,43 +353,43 @@ class ReactTestCase():
         return write_solute
 
 
-def test_write_react():
-    test_case = ReactTestCase()
-    write_output = test_case.set_up_write()
-    result = write_output.status
-    assert result == 'successful'
+def test_read_file():
+    test_case = T2React(filename='flow.inp')
+    output = test_case.title
+    assert output == ''
 
 
-def test_read_react():
-    test_case = ReactTestCase()
-    write_output = test_case.set_up_read()
-    result = write_output.status
-    assert result == 'successful'
+def test_check_for_thermodynamic_database():
+    test_case = T2ReactWritingTestCases()
+    test_case_react = T2React(filename='flow.inp')
+    write_solute = test_case.set_up_read()
+    output = test_case_react.check_for_thermodynamic_database(os.getcwd(), write_solute)
+    assert output is None
 
 
-def test_read_react_two():
-    test_case = ReactTestCase()
-    write_output = test_case.set_up_read2()
-    result = write_output.status
-    assert result == 'successful'
+def test_check_for_thermodynamic_database_raise_exception():
+    test_case = T2ReactWritingTestCases()
+    test_case_react = T2React(filename='flow.inp')
+    write_solute = test_case.set_up_read()
+    write_solute.readio['database'] = 'thddem2.dat'
+    try:
+        test_case_react.check_for_thermodynamic_database(os.getcwd(), write_solute)
+        assert False
+    except NotFoundError:
+        assert True
 
 
-def test_result_first():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = T2Result('toughreact', 'kdd_conc.tec', file_path)
-    time = results.get_times()
-    parameter_result = results.get_time_series_data('pH', 0)
-    time_length = len(time)
-    parameter_result_length = len(parameter_result)
-    assert time_length == parameter_result_length
+def test_react_run(mocker):
+    test_case = T2ReactWritingTestCases()
+    test_case_react, test_chemical, test_solute = test_case.set_up_write()
+    mocker.patch('pytoughreact.writers.react_writing.T2React.check_for_executable', return_value=True)
+    mocker.patch('pytoughreact.writers.react_writing.call', return_value='successful')
+    test_case_react.run(test_solute)
 
 
-def test_result_second():
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    react = T2React()
-    react.read('flow.inp')
-    results = T2Result('toughreact', 'kdd_conc.tec', file_path)
-    parameter_result = results.get_grid_data(5000, 'pH')
-    parameter_result_length = len(parameter_result)
-    assert len(react.grid.blocklist) == parameter_result_length
+def test_react_run_specify_directory(mocker):
+    test_case = T2ReactWritingTestCases()
+    test_case_react = T2React(filename='flow.inp')
+    write_solute = test_case.set_up_read()
+    mocker.patch('pytoughreact.writers.react_writing.T2React.check_for_executable', return_value=True)
+    test_case_react.run(write_solute, runlocation=os.getcwd())

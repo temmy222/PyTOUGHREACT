@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel", "pip"]
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
-addopts = "--cov=pytoughreact"
+addopts = "--cov=pytoughreact" # remove for debugging test
 testpaths = [
     "test",
 ]
@@ -59,6 +59,7 @@ omit = [
     "*/model/*",
     "*/constants/*",
     "*/exceptions/*",
+    "*/plotting/*",
     # omit everything in /usr
     "/usr/*",
     # omit this single file

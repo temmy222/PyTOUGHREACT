@@ -79,13 +79,10 @@ zone1 = T2Zone('zone1')
 react.grid.add_zone(zone1)
 
 # test
-# test = repr(react.grid)
-# grid2 = T2ReactGrid().fromgeo(geo)
-# zone1 = T2Zone('zone2')
-# react.grid.add_zone(zone1)
-# result = react.grid.__add__(grid2)
+test_case = T2React()
+test_case.read('flow2.inp')
 
-react.grid.add_connection()
+# output = test_case.read_rocktypes()
 
 #
 
@@ -164,9 +161,10 @@ write_chemical.write()
 
 # ____________________________________SOLUTE.INP________________________________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
-write_solute.readio['database'] = 'tk-ddem25aug09.dat'
+write_solute.readio['database'] = 'thddem.dat'
 write_solute.nodes_to_write = [0]
 write_solute.write()
+
 
 # ___________________________________ RUN SIMULATION ___________________________________________________________
 print(os.path.dirname(__file__))
