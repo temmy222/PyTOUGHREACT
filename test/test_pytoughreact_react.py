@@ -13,6 +13,7 @@ from pytoughreact.writers.chemical_writing import T2Chemical
 from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.wrapper.reactgrid import T2ReactGrid
 from pytoughreact.results.t2result import T2Result
+from pytoughreact.results.result_single import FileReadSingle
 from t2data import rocktype
 
 
@@ -403,3 +404,74 @@ def test_result_second():
     parameter_result = results.get_grid_data(5000, 'pH')
     parameter_result_length = len(parameter_result)
     assert len(react.grid.blocklist) == parameter_result_length
+
+
+def test_result_single(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_param_with_time', return_value=True)
+    results.plot_time('t_ca+2', 0)
+
+
+def test_result_single_get_simulator_type():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    assert results.get_simulator_type() == 'toughreact'
+
+
+def test_result_single_2(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotMultiTough.multi_time_plot', return_value=True)
+    results.plot_time(['t_ca+2', 't_na+'], 0)
+
+
+def test_result_single_3(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotMultiTough.plot_multi_param_single_plot', return_value=True)
+    results.plot_time(['t_ca+2', 't_na+'], 0, single_plot=True)
+
+
+def test_result_single_4(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_param_with_param', return_value=True)
+    results.plot_param_with_param('t_ca+2', 't_na+', 0)
+
+
+def test_result_single_5(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_param_with_layer', return_value=True)
+    results.plot_param_with_layer('X', 'Y', 't_na+', 0, 10)
+
+
+def test_result_single_6(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_one', return_value=True)
+    results.plot_2d('X', 'Y', 't_na+', 10)
+
+
+def test_result_single_7(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_with_grid', return_value=True)
+    results.plot_2d('X', 'Y', 't_na+', 10, grid_type='grid')
+
+
+def test_result_single_8(mocker):
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
+    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_with_grid', return_value=True)
+    results.plot_2d('X', 'Y', 't_na+', 10, grid_type='test')

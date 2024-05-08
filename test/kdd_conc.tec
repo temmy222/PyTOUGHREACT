@@ -1,5 +1,5 @@
 Title="TOUGHREACT V3.60demo: Aqueous Total & Species Concentrations in      mol/L, Surface & Exchanged Species in      mol/L, Dry blocks in mol/L medium"
-Variables= "X(m)"   "Y(m)"   "Z(m)"   "P(bar)"     "T(C)"   "SatGas"   "SatLiq"     "aH2O"       "pH"        "t_h2o"         "t_h+"        "t_na+"        "t_cl-"      "t_hco3-"       "t_ca+2"      "t_so4-2"       "t_mg+2"     "t_h4sio4"       "t_al+3"       "t_fe+2"        "t_hs-"
+Variables= "X(m)"   "Y(m)"   "Z(m)"   "P(bar)"     "T(C)"   "SatGas"   "SatLiq"     "aH2O"       "pH"        "t_h2o"         "t_h+"        "a+t_n"        "t_cl-"      "t_hco3-"       "t_ca+2"      "t_so4-2"       "t_mg+2"     "t_h4sio4"       "t_al+3"       "t_fe+2"        "t_hs-"
 Zone T= "0.00000000E+00 sec" I=       1 J=       1 K=       1 F=Point
        0.0500       0.2500      -0.2500  1.01300E+00   25.000  0.00000E+00  1.00000E+00  0.99933  4.8825  5.5352E+01  9.9823E-08  2.9217E-02  1.0769E-03  2.2037E-08  5.8832E-03  6.9203E-03  2.5328E-08  9.9716E-11  9.9316E-05  9.6724E-09  9.9716E-11
 Zone T= "1.00000000E+01 sec" I=       1 J=       1 K=       1 F=Point
