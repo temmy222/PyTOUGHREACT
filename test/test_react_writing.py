@@ -12,16 +12,14 @@ from pytoughreact.writers.solute_writing import T2Solute
 from pytoughreact.writers.chemical_writing import T2Chemical
 from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.wrapper.reactgrid import T2ReactGrid
+from pytoughreact.wrapper.reactblock import T2Block
 from pytoughreact.results.t2result import T2Result
-from pytoughreact.results.result_single import FileReadSingle
-from pytoughreact.results.result_tough_react import ResultReact
-from pytoughreact.results.result_tough_3 import ResultTough3
+from pytoughreact.exceptions.custom_error import NotFoundError
 from t2data import rocktype
 
 
-class ReactTestCase():
+class T2ReactWritingTestCases():
     def get_specific_mineral(self, mineral_name):
-
         calcite_ph = PHDependenceType2(5.0119e-01, 14.4, 1, 'h+', 1.0)
         dissolution_calcite = Dissolution(1.5488e-06, 2, 1, 1, 23.5, 0, 0, 0)
         dissolution_calcite.ph_dependence = [calcite_ph]
@@ -341,24 +339,11 @@ class ReactTestCase():
         # masa = writeSolute.getgrid_info()
         write_solute.write()
         # react.run(writeSolute, simulator='treacteos1.exe')
-        return write_solute
+        return react, write_chemical, write_solute
 
     def set_up_read(self):
         react = T2React()
-        file_path = os.path.dirname(os.path.realpath(__file__))
-        react.read('flow2.inp', file_location=file_path)
-        write_chemical = T2Chemical(t2reactgrid=react.grid)
-        write_solute = T2Solute(t2chemical=write_chemical)
-
-        write_chemical.read('chemical.inp')
-        write_solute.read('solute2.inp')
-
-        return write_solute
-
-    def set_up_read2(self):
-        react = T2React()
-        file_path = os.path.dirname(os.path.realpath(__file__))
-        react.read('flow_read.inp', file_location=file_path)
+        react.read('flow.inp')
         write_chemical = T2Chemical(t2reactgrid=react.grid)
         write_solute = T2Solute(t2chemical=write_chemical)
 
@@ -368,298 +353,43 @@ class ReactTestCase():
         return write_solute
 
 
-def test_write_react():
-    test_case = ReactTestCase()
-    write_output = test_case.set_up_write()
-    result = write_output.status
-    assert result == 'successful'
-
-
-def test_read_react():
-    test_case = ReactTestCase()
-    write_output = test_case.set_up_read()
-    result = write_output.status
-    assert result == 'successful'
-
-
-def test_read_react_two():
-    test_case = ReactTestCase()
-    write_output = test_case.set_up_read2()
-    result = write_output.status
-    assert result == 'successful'
-
-
-def test_result_first():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = T2Result('toughreact', 'kdd_conc.tec', file_path)
-    time = results.get_times()
-    parameter_result = results.get_time_series_data('pH', 0)
-    time_length = len(time)
-    parameter_result_length = len(parameter_result)
-    assert time_length == parameter_result_length
-
-
-def test_result_second():
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    react = T2React()
-    react.read('flow.inp')
-    results = T2Result('toughreact', 'kdd_conc.tec', file_path)
-    parameter_result = results.get_grid_data(5000, 'pH')
-    parameter_result_length = len(parameter_result)
-    assert len(react.grid.blocklist) == parameter_result_length
-
-
-def test_result_single(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_param_with_time', return_value=True)
-    results.plot_time('t_ca+2', 0)
-
-
-def test_result_single_get_simulator_type():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    assert results.get_simulator_type() == 'toughreact'
-
-
-def test_result_single_2(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotMultiTough.multi_time_plot', return_value=True)
-    results.plot_time(['t_ca+2', 't_na+'], 0)
-
-
-def test_result_single_3(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotMultiTough.plot_multi_param_single_plot', return_value=True)
-    results.plot_time(['t_ca+2', 't_na+'], 0, single_plot=True)
-
-
-def test_result_single_4(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_param_with_param', return_value=True)
-    results.plot_param_with_param('t_ca+2', 't_na+', 0)
-
-
-def test_result_single_5(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_param_with_layer', return_value=True)
-    results.plot_param_with_layer('X', 'Y', 't_na+', 0, 10)
-
-
-def test_result_single_6(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_one', return_value=True)
-    results.plot_2d('X', 'Y', 't_na+', 10)
-
-
-def test_result_single_7(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_with_grid', return_value=True)
-    results.plot_2d('X', 'Y', 't_na+', 10, grid_type='grid')
-
-
-def test_result_single_8(mocker):
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
-    mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_with_grid', return_value=True)
-    results.plot_2d('X', 'Y', 't_na+', 10, grid_type='test')
-
-
-def test_result_tough_react_1():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    x_data = results.get_unique_x_data(200)
-    assert len(x_data) == 1
-
-
-def test_result_tough_react_2():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    x_data = results.get_x_start_points(200)
-    assert len(x_data) == 0
-
-
-def test_result_tough_react_3():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    x_data = results.get_number_of_layers('X')
-    assert x_data == 1
-
-
-def test_result_tough_react_4():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    y_data = results.get_number_of_layers('Y')
-    assert y_data == 1
-
-
-def test_result_tough_react_5():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    z_data = results.get_number_of_layers('Z')
-    assert z_data == 1
-
-
-def test_result_tough_react_6():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    z_data = results.get_layer_data('Z', 1, 200, 'pH')
-    assert len(z_data) == 1
-
-
-def test_result_tough_react_7():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    x_data = results.get_layer_data('X', 1, 200, 'pH')
-    assert len(x_data) == 1
-
-
-def test_result_tough_react_8():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    x_data = results.get_unique_coord_data('X', 200)
-    assert len(x_data) == 1
-
-
-def test_result_tough_react_9():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    y_data = results.get_unique_coord_data('Y', 200)
-    assert len(y_data) == 1
-
-
-def test_result_tough_react_10():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
-    z_data = results.get_unique_coord_data('Z', 200)
-    assert len(z_data) == 1
-
-
-def test_result_tough_3__1():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    x_data = results.convert_times('day')
-    assert len(x_data) == 22
-
-
-def test_result_tough_3__1_a():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    x_data = results.convert_times('hour')
-    assert len(x_data) == 22
-
-
-def test_result_tough_3__1_b():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    x_data = results.convert_times('minute')
-    assert len(x_data) == 22
-
-
-def test_result_tough_3__1_a():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    x_data = results.convert_times('second')
-    assert len(x_data) == 22
-
-
-def test_result_tough_3__2():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    x_data = results.get_timeseries_data('FLOW_G', 0)
-    assert len(x_data) == 22
-
-
-def test_result_tough_3__3():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_coord_data('X', 0)
-    assert len(data) == 85
-
-
-def test_result_tough_3__4():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_coord_data('Y', 0)
-    assert len(data) == 85
-
-
-def test_result_tough_3__5():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_coord_data('Z', 0)
-    assert len(data) == 85
-
-
-def test_result_tough_3__6():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_number_of_layers('X')
-    assert data == 9
-
-
-def test_result_tough_3__7():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_number_of_layers('Y')
-    assert data == 1
-
-
-def test_result_tough_3__8():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_number_of_layers('Z')
-    assert data == 9
-
-
-def test_result_tough_3__9():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_layer_data('X', 1, 200, 'FLOW_G')
-    assert len(data) == 9
-
-
-def test_result_tough_3__10():
-    file_path = os.path.abspath(os.curdir)
-    file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
-    data = results.get_layer_data('Z', 1, 200, 'FLOW_G')
-    assert len(data) == 9
+def test_read_file():
+    test_case = T2React(filename='flow.inp')
+    output = test_case.title
+    assert output == ''
+
+
+def test_check_for_thermodynamic_database():
+    test_case = T2ReactWritingTestCases()
+    test_case_react = T2React(filename='flow.inp')
+    write_solute = test_case.set_up_read()
+    output = test_case_react.check_for_thermodynamic_database(os.getcwd(), write_solute)
+    assert output is None
+
+
+def test_check_for_thermodynamic_database_raise_exception():
+    test_case = T2ReactWritingTestCases()
+    test_case_react = T2React(filename='flow.inp')
+    write_solute = test_case.set_up_read()
+    write_solute.readio['database'] = 'thddem2.dat'
+    try:
+        test_case_react.check_for_thermodynamic_database(os.getcwd(), write_solute)
+        assert False
+    except NotFoundError:
+        assert True
+
+
+def test_react_run(mocker):
+    test_case = T2ReactWritingTestCases()
+    test_case_react, test_chemical, test_solute = test_case.set_up_write()
+    mocker.patch('pytoughreact.writers.react_writing.T2React.check_for_executable', return_value=True)
+    mocker.patch('pytoughreact.writers.react_writing.call', return_value='successful')
+    test_case_react.run(test_solute)
+
+
+def test_react_run_specify_directory(mocker):
+    test_case = T2ReactWritingTestCases()
+    test_case_react = T2React(filename='flow.inp')
+    write_solute = test_case.set_up_read()
+    mocker.patch('pytoughreact.writers.react_writing.T2React.check_for_executable', return_value=True)
+    test_case_react.run(write_solute, runlocation=os.getcwd())

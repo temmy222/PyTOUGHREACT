@@ -43,7 +43,7 @@ class MultiResultTough3(object):
         file_title : list[string]
             List of title or name of the file. Example is 'kddconc.tec'
         prop : string
-            Prperty to be plotted. Example could be 'portlandite'
+            Property to be plotted. Example could be 'portlandite'
 
 
         Returns

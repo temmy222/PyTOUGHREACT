@@ -22,7 +22,6 @@ treacteos1.exe
 **/treacteos1.exe*
 setup.py
 chdump.out
-chemical.inp
 chemical.out
 FIXPT
 /flow.inp
@@ -40,10 +39,8 @@ screen_info.out
 LINEQ
 runlog.out
 SAVE
-solute.inp
 solute.out
 TABLE
-thddem.dat
 VERS
 savechem
 tmvoc.exe
@@ -51,8 +48,6 @@ tmvoc.exe
 INFILE
 MESHA
 MESHB
-OUTPUT
-OUTPUT_CONNE.csv
 OUTPUT_ELEME.csv
 OUTPUT_GENER.csv
 example_files/folder_1/kdd_conc.tec
@@ -60,8 +55,14 @@ example_files/folder_2/kdd_conc.tec
 example_files/folder_3/kdd_conc.tec
 test.txt
 test2.txt
-thddem.dat
 geom.dat
+flow2.inp
+flow.inp
+solute.inp
+solute2.inp
+chemical.inp
+thddem.dat
+
 
 
 # Distribution / packaging
@@ -115,7 +116,6 @@ INFILE
 MESHA
 MESHB
 OUTPUT
-OUTPUT_CONNE.csv
 OUTPUT_ELEME.csv
 OUTPUT_GENER.csv
 .vscode
@@ -156,6 +156,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+coverage_html_report
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]

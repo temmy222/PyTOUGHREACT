@@ -99,9 +99,9 @@ class FileReadSingle(object):
 
         Parameters
         -----------
-        grid_block_number : int
+        gridblocknumber : int
             The grid block number in mesh for which to retrieve the results
-        param: string
+        param : string
             Parameter to be plotted
         format_of_date : string
             Provides information to the method on format of the date. For example. year, hour, min or seconds

@@ -35,6 +35,7 @@ from pytoughreact.exceptions.custom_error import NotFoundError
 from pytoughreact.wrapper.reactzone import T2Zone
 from copy import deepcopy
 from t2data import t2data, fix_blockname, rocktype
+from t2grids import t2connection
 import numpy as np
 import os
 import sys
@@ -44,13 +45,24 @@ from os import devnull, remove
 from t2data import trim_trailing_nones
 from mulgrids import padstring
 from subprocess import call
+import typing
 
 
 class T2ReactParser(fixed_format_file):
     """Class for parsing REACTION data file."""
-    def __init__(self, filename, mode, read_function=default_read_function):
-        super(T2ReactParser, self).__init__(filename, mode,
-                                            t2react_format_specification, read_function)
+    def __init__(self, filename, mode, specification=t2react_format_specification, read_function=default_read_function,
+                 location=None):
+        # super(T2ReactParser, self).__init__(filename, mode,
+        #                                     t2react_format_specification, read_function)
+        self.specification = specification
+        self.read_function = read_function
+        self.preprocess_specification()
+        print(os.getcwd())
+        if location is None:
+            self.file = open(filename, mode)
+        else:
+            os.chdir(location)
+            self.file = open(filename, mode)
 
 
 class T2ExtraPrecisionDataParser(fixed_format_file):
@@ -109,10 +121,31 @@ class T2React(t2data):
         self._extra_precision, self._echo_extra_precision = [], True
         self.update_read_write_functions()
         self.read_function = read_function
-        if self.filename:
-            self.read(filename, meshfilename)
+        # if self.filename:
+        #     self.read(filename, meshfilename)
         self.minerals = []
         self.all_species = []
+
+    def read_connections(self, infile):
+        """Reads grid connections"""
+        self.grid.connectionlist, self.grid.connection = [], {}
+        line = padstring(infile.readline())
+        while line.strip() and not line.startswith('+++'):
+            [name1, name2, nseq,
+             nad1, nad2, isot, d1, d2,
+             areax, betax, sigx] = infile.parse_string(line, 'connections')
+            name1, name2 = fix_blockname(name1), fix_blockname(name2)
+            if nseq == 0:
+                nseq = None
+            if nad1 == 0:
+                nad1 = None
+            if nad2 == 0:
+                nad2 = None
+            self.grid.add_connection(t2connection([self.grid.block[name1],
+                                                   self.grid.block[name2]],
+                                                  isot, [d1, d2], areax, betax,
+                                                  sigx, nseq, nad1, nad2))
+            line = padstring(infile.readline())
 
     def read_rocktypes(self, infile):
         """ Reads grid rock types
@@ -520,7 +553,7 @@ class T2React(t2data):
         vals = self.react
         outfile.write_values(vals, 'REACT')
 
-    def read(self, filename='', meshfilename=''):
+    def read(self, filename='', meshfilename='', file_location: str = None):
         """ Reads data from file.  Mesh data can optionally be read from an
         auxiliary file.  Extra precision data will also be read from
         an associated '.pdat' file, if it exists.
@@ -535,15 +568,19 @@ class T2React(t2data):
             file to read
         meshfilename : str
             Mesh file to read
+        file_location : str
+            Location where the file is on the local system
 
         Returns
         --------
 
         """
+        if file_location is None:
+            file_location = os.getcwd()
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = T2ReactParser(self.filename, mode, read_function=self.read_function)
+        infile = T2ReactParser(self.filename, mode, read_function=self.read_function, location=file_location)
         self.read_title(infile)
         self._sections = []
         more = True

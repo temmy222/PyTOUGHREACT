@@ -70,12 +70,21 @@ sand = rocktype('ROCK1', 0, 2600, 0.1, [6.51e-12, 6.51e-12, 6.51e-12], 0.0, 952.
 react.grid.delete_rocktype('dfalt')
 react.grid.add_rocktype(sand)
 
+
 for blk in react.grid.blocklist[0:]:
     blk.rocktype = react.grid.rocktype[sand.name]
 
 zone1 = T2Zone('zone1')
 
 react.grid.add_zone(zone1)
+
+# test
+test_case = T2React()
+test_case.read('flow2.inp')
+
+# output = test_case.read_rocktypes()
+
+#
 
 for blk in react.grid.blocklist[0:]:
     blk.zone = react.grid.zone[zone1.name]
@@ -152,9 +161,10 @@ write_chemical.write()
 
 # ____________________________________SOLUTE.INP________________________________________________________________
 write_solute = T2Solute(t2chemical=write_chemical)
-write_solute.readio['database'] = 'tk-ddem25aug09.dat'
+write_solute.readio['database'] = 'thddem.dat'
 write_solute.nodes_to_write = [0]
 write_solute.write()
+
 
 # ___________________________________ RUN SIMULATION ___________________________________________________________
 print(os.path.dirname(__file__))
