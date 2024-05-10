@@ -58,6 +58,15 @@ example_files/folder_3/kdd_conc.tec
 test.txt
 test2.txt
 geom.dat
+flow2.inp
+flow.inp
+flow_read.inp
+solute.inp
+solute2.inp
+chemical.inp
+thddem.dat
+
+
 
 
 # Distribution / packaging
