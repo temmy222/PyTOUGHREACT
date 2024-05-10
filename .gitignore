@@ -49,7 +49,6 @@ INFILE
 MESHA
 MESHB
 OUTPUT
-OUTPUT_CONNE.csv
 OUTPUT_ELEME.csv
 OUTPUT_GENER.csv
 example_files/folder_1/kdd_conc.tec
