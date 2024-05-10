@@ -355,7 +355,8 @@ class ReactTestCase():
 
     def set_up_read2(self):
         react = T2React()
-        react.read('flow_read.inp')
+        file_path = os.path.dirname(os.path.realpath(__file__))
+        react.read('flow_read.inp', file_location=file_path)
         write_chemical = T2Chemical(t2reactgrid=react.grid)
         write_solute = T2Solute(t2chemical=write_chemical)
 
