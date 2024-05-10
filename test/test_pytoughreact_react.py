@@ -14,6 +14,8 @@ from pytoughreact.wrapper.reactzone import T2Zone
 from pytoughreact.wrapper.reactgrid import T2ReactGrid
 from pytoughreact.results.t2result import T2Result
 from pytoughreact.results.result_single import FileReadSingle
+from pytoughreact.results.result_tough_react import ResultReact
+from pytoughreact.results.result_tough_3 import ResultTough3
 from t2data import rocktype
 
 
@@ -477,3 +479,91 @@ def test_result_single_8(mocker):
     results = FileReadSingle('toughreact', file_path, 'kdd_conc.tec')
     mocker.patch('pytoughreact.results.result_single.PlotTough.plot_2d_with_grid', return_value=True)
     results.plot_2d('X', 'Y', 't_na+', 10, grid_type='test')
+
+
+def test_result_tough_react_1():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    x_data = results.get_unique_x_data(200)
+    assert len(x_data) == 1
+
+
+def test_result_tough_react_2():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    x_data = results.get_x_start_points(200)
+    assert len(x_data) == 0
+
+
+def test_result_tough_react_3():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    x_data = results.get_number_of_layers('X')
+    assert x_data == 1
+
+
+def test_result_tough_react_4():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    y_data = results.get_number_of_layers('Y')
+    assert y_data == 1
+
+
+def test_result_tough_react_5():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    z_data = results.get_number_of_layers('Z')
+    assert z_data == 1
+
+
+def test_result_tough_react_6():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    z_data = results.get_layer_data('Z', 1, 200, 'pH')
+    assert len(z_data) == 1
+
+
+def test_result_tough_react_7():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    x_data = results.get_layer_data('X', 1, 200, 'pH')
+    assert len(x_data) == 1
+
+
+def test_result_tough_react_8():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    x_data = results.get_unique_coord_data('X', 200)
+    assert len(x_data) == 1
+
+
+def test_result_tough_react_9():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    y_data = results.get_unique_coord_data('Y', 200)
+    assert len(y_data) == 1
+
+
+def test_result_tough_react_10():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultReact('toughreact', file_path, 'kdd_conc.tec')
+    z_data = results.get_unique_coord_data('Z', 200)
+    assert len(z_data) == 1
+
+
+def test_result_tough_3__1():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'kdd_conc.tec')
+    x_data = results.get_unique_x_data(200)
+    assert len(x_data) == 1

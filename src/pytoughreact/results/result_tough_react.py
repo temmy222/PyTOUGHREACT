@@ -31,7 +31,7 @@ import t2listing
 
 class ResultReact(object):
     """ Class for processing results from TOUGHREACT """
-    def __init__(self, simulatortype, filelocation, filetitle):
+    def __init__(self, simulator_type, file_location, file_title):
         """Initialization of Parameters
 
         Parameters
@@ -49,10 +49,10 @@ class ResultReact(object):
         --------
 
         """
-        self.filelocation = filelocation
+        self.filelocation = file_location
         os.chdir(self.filelocation)
-        self.filetitle = filetitle
-        self.simulatortype = simulatortype
+        self.filetitle = file_title
+        self.simulatortype = simulator_type
         self.data = t2listing.toughreact_tecplot(self.filetitle, self.get_elements())
 
     def __repr__(self):
@@ -409,7 +409,7 @@ class ResultReact(object):
         Parameters
         -----------
         direction : string
-            Direction to get data. Can be 'X', 'Y', 'Z'
+            Direction to get data. Can be 'X', 'Z'
         timer : float
             Time in which the data should be retrieved.
         layer_num: int
