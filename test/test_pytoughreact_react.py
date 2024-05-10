@@ -564,6 +564,102 @@ def test_result_tough_react_10():
 def test_result_tough_3__1():
     file_path = os.path.abspath(os.curdir)
     file_path = os.path.dirname(os.path.realpath(__file__))
-    results = ResultTough3('tmvoc', file_path, 'kdd_conc.tec')
-    x_data = results.get_unique_x_data(200)
-    assert len(x_data) == 1
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    x_data = results.convert_times('day')
+    assert len(x_data) == 22
+
+
+def test_result_tough_3__1_a():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    x_data = results.convert_times('hour')
+    assert len(x_data) == 22
+
+
+def test_result_tough_3__1_b():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    x_data = results.convert_times('minute')
+    assert len(x_data) == 22
+
+
+def test_result_tough_3__1_a():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    x_data = results.convert_times('second')
+    assert len(x_data) == 22
+
+
+def test_result_tough_3__2():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    x_data = results.get_timeseries_data('FLOW_G', 0)
+    assert len(x_data) == 22
+
+
+def test_result_tough_3__3():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_coord_data('X', 0)
+    assert len(data) == 85
+
+
+def test_result_tough_3__4():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_coord_data('Y', 0)
+    assert len(data) == 85
+
+
+def test_result_tough_3__5():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_coord_data('Z', 0)
+    assert len(data) == 85
+
+
+def test_result_tough_3__6():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_number_of_layers('X')
+    assert data == 9
+
+
+def test_result_tough_3__7():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_number_of_layers('Y')
+    assert data == 1
+
+
+def test_result_tough_3__8():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_number_of_layers('Z')
+    assert data == 9
+
+
+def test_result_tough_3__9():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_layer_data('X', 1, 200, 'FLOW_G')
+    assert len(data) == 9
+
+
+def test_result_tough_3__10():
+    file_path = os.path.abspath(os.curdir)
+    file_path = os.path.dirname(os.path.realpath(__file__))
+    results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
+    data = results.get_layer_data('Z', 1, 200, 'FLOW_G')
+    assert len(data) == 9
