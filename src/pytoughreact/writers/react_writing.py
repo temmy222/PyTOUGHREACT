@@ -553,7 +553,7 @@ class T2React(t2data):
         vals = self.react
         outfile.write_values(vals, 'REACT')
 
-    def read(self, filename='', meshfilename=''):
+    def read(self, filename='', meshfilename='', file_location: str = None):
         """ Reads data from file.  Mesh data can optionally be read from an
         auxiliary file.  Extra precision data will also be read from
         an associated '.pdat' file, if it exists.
@@ -568,15 +568,19 @@ class T2React(t2data):
             file to read
         meshfilename : str
             Mesh file to read
+        file_location : str
+            Location where the file is on the local system
 
         Returns
         --------
 
         """
+        if file_location is None:
+            file_location = os.getcwd()
         if filename:
             self.filename = filename
         mode = 'r' if sys.version_info > (3,) else 'rU'
-        infile = T2ReactParser(self.filename, mode, read_function=self.read_function)
+        infile = T2ReactParser(self.filename, mode, read_function=self.read_function, location=file_location)
         self.read_title(infile)
         self._sections = []
         more = True
