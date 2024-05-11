@@ -75,9 +75,9 @@ The first subsection is responsible for aggregating the unique constituents
 of a biodegradation simulation for TMVOC; these constituents include water, 
 gas, biomass, solids, and components. The second subsection is responsible 
 for unique biodegradation processes in the simulation. This is done via two
- classes Process class and the BIODG class. The process class defines the 
- constituents for any biodegradation process and BIODG class combines all 
- processes together with numerical parameters for that process. 
+classes Process class and the BIODG class. The process class defines the 
+constituents for any biodegradation process and BIODG class combines all 
+processes together with numerical parameters for that process. 
 
  .. image:: ../docs/images/bio_architecture.png
    :alt: bio architecture
