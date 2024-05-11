@@ -35,7 +35,11 @@ access file contents quickly. Since it uses Python to quickly perform these task
 
 Numerous tools have been created that wrap around the executables and make writing, reading and visualization of model properties easier to implement. Examples of such include PetraSim [@Yamamoto:2008] for which assist in creating the models and visualizing results, TOUGH2VIEWER [@Bondua:2012] and TECPLOT [@tecplot] for postprocessing and visualizations and IGMESH for building and integrating visualization tools suited especially for irregular gridding [@Hu:2016]. For scripting purposes, PyTOUGH [@Croucher:2011] and TOUGHIO [@Luu:2020] are used for pre and post processing of TOUGH2 simulations. So far, no tool exists for scripting of the reaction softwares of TOUGH. Reactive processes as with other processes are subject to lots of uncertainties and need to be adequately accounted for in engineering studies. To enable this with the TOUGHREACT simulator, it is essential to create a scripting tool to accomplish this. This tool extends the work done by PyTOUGH in creating an automatic platform for running TOUGH flow simulations by creating a concurrent tool for automating chemical and biodegradation reactions from any python enabled terminal or development environment.  
 
-The importance of PyTOUGHREACT was shown in the publication [@Ajayi:2021] where the authors used PyTOUGHREACT to conduct their TOUGHREACT simulations
+The importance of PyTOUGHREACT was shown in the publication [@Ajayi:2021] where the authors used PyTOUGHREACT to conduct their TOUGHREACT simulations. 
+
+The code for this project can be found in the repo https://github.com/temmy222/PyTOUGHREACT and documentation for how to use the software and examples can be
+found here https://pytoughreact.readthedocs.io/ 
+
 
 <!-- # Architecture
 
