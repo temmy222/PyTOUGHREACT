@@ -51,7 +51,7 @@ Welcome to PyTOUGHREACT's documentation!
 .. Contributions
 .. toctree::
    :maxdepth: 2
-   :caption: Contribute to the project
+   :caption: Community Guidelines
 
    contributing.rst
 
