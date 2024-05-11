@@ -41,7 +41,7 @@ In addition to this capability, it also posesses the ability to make different k
 visualizations.
 
 PyTOUGHREACT Software Architecture
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 General Architecture
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
