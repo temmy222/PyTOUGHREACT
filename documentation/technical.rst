@@ -63,4 +63,53 @@ simulations and contains methods and functions which assist the user in
 creating 2D or 3D plots through the plotting module.
 
 .. image:: ../docs/images/general_architecture.png
-   :alt: alternate text
+   :alt: general architecture
+
+
+BIO Architecture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The BIO section is responsible for processing the TMVOC inputs. 
+It makes use of two subsections to achieve this. 
+The first subsection is responsible for aggregating the unique constituents 
+of a biodegradation simulation for TMVOC; these constituents include water, 
+gas, biomass, solids, and components. The second subsection is responsible 
+for unique biodegradation processes in the simulation. This is done via two
+ classes Process class and the BIODG class. The process class defines the 
+ constituents for any biodegradation process and BIODG class combines all 
+ processes together with numerical parameters for that process. 
+
+ .. image:: ../docs/images/bio_architecture.png
+   :alt: bio architecture
+
+
+REACT Architecture
+~~~~~~~~~~~~~~~~~~~~
+
+The react component consists of two main subcomponents: the chemical 
+subcomponent and the solute subcomponent. The chemical subcomponent is 
+responsible for defining the chemical constituents of the simulation 
+such as the primary species, water, mineral, gas while the solute sub 
+component is responsible for mapping each of the defined chemical 
+constituents to the grid of the simulation and other functions such as 
+what grids to write to output etc. This component contains information 
+stored in the solute.inp file for TOUGHREACT simulations.
+
+
+Result and Plotting Architecture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Though separate, the result and plotting architecture have very similar 
+structures. The two sections are subdivided into 
+single and multiple file processing. As the name suggests, the single file 
+enables the processing of a single file. While the results section enables 
+to process simulation output further in python, the plotting sections uses 
+the output from the results section to make line and 2D plots. Similarly,
+the multiple file processing of the results section makes use of multiple 
+files to output results which are then used in the plotting section for
+line and 2D plots. The multiple file processing provides efficiency when 
+multiple files are required to be processed or in the plotting section to 
+see variations from one simulation to another in a single plot. 
+
+.. image:: ../docs/images/result_architecture.png
+   :alt: bio architecture
