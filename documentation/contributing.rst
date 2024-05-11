@@ -58,3 +58,24 @@ pip install pep8-naming
 8. Make a pull request after passing all tests
 
 9. More information can be found in developer notes in the documentation - https://pytoughreact.readthedocs.io/en/master/developer.html 
+
+
+Report issues or problems with the software
+======================================
+
+Issues with the software can be raised through the GitHub page under
+issues https://github.com/temmy222/PyTOUGHREACT/issues and clicking 'New issue'
+on the right green button
+
+After this has been clicked, two kinds of issues can be raised; bug report or
+a feature request. For each of the type of issues, a form shows up where each sections
+are to be filled to enable the developers able to adequately replicate and resolve
+your issue
+
+
+Support
+========
+Software support to new issues after going through the documentations can be received
+by contacting any of the code owners listed below
+
+1. Temitope Ajayi - ajayi_temmy@yahoo.com
