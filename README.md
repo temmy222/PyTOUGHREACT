@@ -180,8 +180,6 @@ react.run(write_solute, simulator='treacteos1.exe', runlocation=os.getcwd())
 
 ```
 
-## Community Guideline
-[Community Guideline]([https://github.com/temmy222/PyTOUGHREACT/blob/master/LICENSE](https://github.com/temmy222/PyTOUGHREACT/blob/master/CONTRIBUTING.rst))
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
