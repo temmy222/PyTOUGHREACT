@@ -585,7 +585,7 @@ def test_result_tough_3__1_b():
     assert len(x_data) == 22
 
 
-def test_result_tough_3__1_a():
+def test_result_tough_3__1_c():
     file_path = os.path.abspath(os.curdir)
     file_path = os.path.dirname(os.path.realpath(__file__))
     results = ResultTough3('tmvoc', file_path, 'OUTPUT_CONNE.csv')
