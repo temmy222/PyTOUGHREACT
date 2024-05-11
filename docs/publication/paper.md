@@ -1,5 +1,5 @@
 ---
-title: 'PyToughReact – A Python Package for automating reactive transport and biodegradation simulations.'
+title: 'PyTOUGHREACT – A Python Package for automating reactive transport and biodegradation simulations.'
 tags:
   - python
   - reactive transport
@@ -7,7 +7,7 @@ tags:
   - sensitivity analysis
   - TOUGH, PyTOUGH
 authors:
-  - name: Temitope Ajayi^[Co-first author]^[Corresponding author] # note this makes a footnote saying 'Co-first author'
+  - name: Temitope Ajayi ^[Co-first author] ^[Corresponding author] # note this makes a footnote saying 'Co-first author'
     orcid: 0000-0002-0782-7460
     affiliation: "1" # (Multiple affiliations must be quoted)
   - name: Ipsita Gupta
