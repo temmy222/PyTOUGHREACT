@@ -39,3 +39,28 @@ What is  PyTOUGHREACT
 Simply put, PyTOUGHREACT is a python Library for automating reaction simulations using TOUGHREACT, TMVOC and TMVOC-BIO.
 In addition to this capability, it also posesses the ability to make different kinds of 2D line and surface plots for different kinds of 
 visualizations.
+
+PyTOUGHREACT Software Architecture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+General Architecture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The software uses object-oriented programming principles to structure the code. 
+The software can be thought of as composed of two main segments; 
+the processing segment and the output segment. 
+The processing segment contains three main sections, IO processing, BIO and 
+REACT.  The IO processing is responsible for most of the input and output 
+processing such as reading, writing. The BIO section is responsible for the 
+TMVOC section of the package where it contains classes for storing biomass 
+and degradation information and processing it before passing to IO processing 
+for read/write. Similarly, the react section assists in processing reaction 
+parameters such as mineral, chemical, and solute information before passing 
+to the IO processing segment for read/write. After the files have been written 
+to or read from the appropriate file types, the executable is called from 
+within PyTOUGHREACT and the simulation is performed using the executable. 
+Thereafter, the output segment is called which can read the results of the 
+simulations and contains methods and functions which assist the user in 
+creating 2D or 3D plots through the plotting module.
+
+.. image:: ../docs/images/general_architecture.png
+   :alt: alternate text

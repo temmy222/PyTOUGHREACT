@@ -20,7 +20,7 @@ Contributing to the code would involve you following the below procedures to qui
 pip install -e .
 ```
 
-3. Modify the code
+3. Modify the code and write tests for the modified code
 
 4. Tests are conducted with pytest and coverage reports are performed using pytest-cov. Install pytest and pytest-cov using the commands below
    
